@@ -5,6 +5,11 @@ module Platter
     acts_as_list :scope => :feature
 
     validates_presence_of :text
+
+    def package
+      feature.package
+    end
+    
   end
 
 end

@@ -1,7 +1,7 @@
 Longer Term:
 - Foreign key support
-- Git
 - Remote Backup
 
 Next:
+- Package support
 - Autocomplete steps

@@ -6,6 +6,6 @@
 <div id="<%= dom_id(feature, :new_line) %>">
 </div>
 <div id="<%= dom_id(feature, :add_line) %>">
-  &nbsp;&nbsp;&nbsp;&nbsp;<%= link_to_remote("Add Line", :url => new_feature_line_path(feature), :method => :get) %>
+  &nbsp;&nbsp;&nbsp;&nbsp;<%= link_to_remote("Add Line", :url => new_package_feature_line_path(feature.package, feature), :method => :get) %>
 </div>
 <br/>

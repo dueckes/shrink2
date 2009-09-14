@@ -14,6 +14,15 @@ describe Platter::FeatureLine do
     line.feature.should eql(feature)
   end
 
+  it "should belong to a package" do
+    package = Platter::Package.new
+    feature = Platter::Feature.new(:package => package)
+
+    line = Platter::FeatureLine.new(:feature => feature)
+
+    line.package.should eql(package)
+  end
+
   describe "#valid?" do
 
     describe "when text has been provided" do
