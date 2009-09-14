@@ -1,0 +1,4 @@
+page.hide(:new_package)
+page.replace_html(:new_package, "")
+page.insert_html(:before, :new_package, :partial => "show_with_div", :locals => { :package => @package })
+page.show(:add_package)

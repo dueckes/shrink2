@@ -1,0 +1,11 @@
+<h1><%= @package.name.capitalize %> Features</h1>
+<div id="features">
+  <% @package.features.each do |feature| -%>
+    <%= render :partial => "show_shrunk_with_div", :locals => { :feature => feature } %>
+  <% end -%>
+  <div id="new_feature">
+  </div>
+  <div id="add_feature">
+    <%= link_to_remote "Add Feature", :url => new_feature_path, :method => :get %>
+  </div>
+</div>

@@ -1,0 +1,10 @@
+<div id="<%= dom_id(feature, :scenarios) %>">
+  <% feature.scenarios.each do |scenario| -%>
+    <%= render :partial => "scenarios/show_with_div", :locals => { :scenario => scenario } %>
+  <% end -%>
+</div>
+<div id="<%= dom_id(feature, :new_scenario) %>">
+</div>
+<div id="<%= dom_id(feature, :add_scenario) %>">
+  &nbsp;&nbsp;&nbsp;&nbsp;<%= link_to_remote("Add Scenario", :url => new_feature_scenario_path(feature), :method => :get) %>
+</div>

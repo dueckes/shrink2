@@ -1,0 +1,3 @@
+page.hide(:new_feature)
+page.replace_html(:new_feature, "")
+page.show(:add_feature)

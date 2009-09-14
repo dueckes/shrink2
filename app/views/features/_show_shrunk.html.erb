@@ -1,0 +1,3 @@
+Feature: <%= feature.title %><br/>
+<%= link_to_remote "Expand", :update => dom_id(feature), :url => feature_path(feature), :method => :get %>&nbsp;
+<%= render :partial => "show_common", :locals => { :feature => feature } %>

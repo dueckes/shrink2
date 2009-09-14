@@ -1,0 +1,3 @@
+page.hide(:add_feature)
+page.replace_html(:new_feature, :partial => "form_new")
+page.show(:new_feature)

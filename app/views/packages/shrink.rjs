@@ -1,0 +1,3 @@
+page.replace("#{dom_id(@package)}_shrink_link", link_to_remote("Expand", :id => "#{dom_id(@package)}_expand_link", :update => "#{dom_id(@package)}_children", :url => package_path(@package), :method => :get))
+page.visual_effect(:fade, "#{dom_id(@package)}_children")
+page.replace_html("#{dom_id(@package)}_children", "")

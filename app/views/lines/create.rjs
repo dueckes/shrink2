@@ -1,0 +1,4 @@
+page.hide(dom_id(@line.feature, :new_line))
+page.replace_html(dom_id(@line.feature, :new_line), "")
+page.insert_html(:before, dom_id(@line.feature, :new_line), :partial => "lines/show_with_div", :locals => { :line => @line })
+page.show(dom_id(@line.feature, :add_line))

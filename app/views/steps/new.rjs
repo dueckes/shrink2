@@ -1,0 +1,3 @@
+page.hide(dom_id(@scenario, :add_step))
+page.replace_html(dom_id(@scenario, :new_step), :partial => "steps/form_new", :locals => { :scenario => @scenario })
+page.show(dom_id(@scenario, :new_step))

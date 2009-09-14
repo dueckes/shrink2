@@ -1,0 +1,3 @@
+page.hide(dom_id(@feature, :add_line))
+page.replace_html(dom_id(@feature, :new_line), :partial => "lines/form_new", :locals => { :feature => @feature })
+page.show(dom_id(@feature, :new_line))

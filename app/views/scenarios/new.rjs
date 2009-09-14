@@ -1,0 +1,3 @@
+page.hide(dom_id(@feature, :add_scenario))
+page.replace_html(dom_id(@feature, :new_scenario), :partial => "scenarios/form_new", :locals => { :feature => @feature })
+page.show(dom_id(@feature, :new_scenario))

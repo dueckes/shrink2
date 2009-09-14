@@ -1,0 +1,11 @@
+<div id="<%= dom_id(feature, :lines) %>">
+  <% feature.lines.each do |line| -%>
+    <%= render :partial => "lines/show_with_div", :locals => { :line => line } %>
+  <% end -%>
+</div>
+<div id="<%= dom_id(feature, :new_line) %>">
+</div>
+<div id="<%= dom_id(feature, :add_line) %>">
+  &nbsp;&nbsp;&nbsp;&nbsp;<%= link_to_remote("Add Line", :url => new_feature_line_path(feature), :method => :get) %>
+</div>
+<br/>

@@ -1,0 +1,4 @@
+<%= link_to_remote "Edit", :update => dom_id(feature), :url => edit_feature_path(feature), :method => :get %>&nbsp;
+<%= link_to_remote "Delete", :confirm => "Are you sure you want to delete this feature?", :loading => visual_effect(:fade, dom_id(feature)), :url => feature_path(feature), :method => :delete %>&nbsp;
+<br/>
+<br/>

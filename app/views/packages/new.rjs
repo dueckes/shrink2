@@ -1,0 +1,3 @@
+page.hide(:add_package)
+page.replace_html(:new_package, :partial => "packages/form_new")
+page.show(:new_package)

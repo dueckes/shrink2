@@ -1,0 +1,10 @@
+# Logfile created on 2009-09-14 10:20:21 +1000  [4;36;1mSQL (3.0ms)[0m   [0;1mSET client_min_messages TO 'panic'[0m
+  [4;35;1mSQL (2.0ms)[0m   [0mSET client_min_messages TO 'notice'[0m
+  [4;36;1mSQL (6.0ms)[0m   [0;1mSET client_encoding TO 'utf8'[0m
+
+
+Processing PackagesController#index (for 127.0.0.1 at 2009-09-14 11:06:57) [GET]
+  [4;35;1mPlatter::Package Load (197.0ms)[0m   [0mSELECT * FROM "packages" WHERE (parent_id IS NULL) ORDER BY name[0m
+Rendering packages/index
+Rendered packages/_list (1.0ms)
+Completed in 773ms (View: 321, DB: 208) | 200 OK [http://localhost/packages]

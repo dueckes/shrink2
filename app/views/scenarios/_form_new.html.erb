@@ -1,0 +1,5 @@
+<%= error_messages_for :scenario %>
+<% remote_form_for(:scenario, Platter::Scenario.new(:feature => feature), :url => feature_scenarios_path(feature), :builder => ScenarioFormBuilder) do |scenario_form| -%>
+  <%= render :partial => "scenarios/form_common", :locals => { :scenario_form => scenario_form } %>
+  &nbsp;&nbsp;&nbsp;&nbsp;<%= scenario_form.submit_button %>&nbsp;<%= scenario_form.cancel_button %>
+<% end -%>

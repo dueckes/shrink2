@@ -1,0 +1,4 @@
+&nbsp;&nbsp;&nbsp;&nbsp;<%= line.text %>
+&nbsp;<%= link_to_remote "Edit", :update => dom_id(line), :url => edit_feature_line_path(line.feature, line), :method => :get %>
+&nbsp;<%= link_to_remote "Delete", :confirm => "Are you sure you want to delete this feature line?", :loading => visual_effect(:fade, dom_id(line)), :url => feature_line_path(line.feature, line), :method => :delete %>
+<br/>

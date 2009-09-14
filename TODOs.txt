@@ -1,0 +1,7 @@
+Longer Term:
+- Foreign key support
+- Git
+- Remote Backup
+
+Next:
+- Autocomplete steps

@@ -1,0 +1,15 @@
+<html>
+  <head>
+    <%= javascript_include_tag :all %>
+    <title>Platter - Cucumber served on a PracticLe Acceptance Testing Tool for EveRyone</title>
+  </head>
+  <body>
+    <% if flash[:error] -%>
+      Error: <%= flash[:error] %>
+    <% end -%>
+    <% if flash[:message] -%>
+      Message: <%= flash[:message] %>
+    <% end -%>
+    <%= yield %>
+  </body>
+</html>
