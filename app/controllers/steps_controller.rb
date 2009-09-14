@@ -4,6 +4,12 @@ class StepsController < ApplicationController
     @scenario = Platter::Scenario.find(params[:scenario_id])
   end
 
+  def auto_complete_for_step_text
+    user_text = params[:step][:text] ? params[:step][:text].downcase : ""
+    @steps = Platter::Step.find(:all, :conditions => "LOWER(text) LIKE '#{user_text}%'",
+                                      :order => "text ASC", :limit => 10)
+  end
+
   def cancel_create
     @scenario = Platter::Scenario.find(params[:scenario_id])
   end
