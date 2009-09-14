@@ -1,12 +1,15 @@
 class PlatterFormBuilder < ActionView::Helpers::FormBuilder
 
-  def submit_button
-    verb = @object.new_record? ? "add" : "update"
-    submit(verb.capitalize, :id => "#{element_id_prefix}_#{verb}")
+  def commit_button
+    submit_button_for(@object.new_record? ? :add : :update)
   end
 
   def cancel_button
-    @object.new_record? ? cancel_add_button : submit("Cancel", :id => "#{element_id_prefix}_cancel")
+    @object.new_record? ? cancel_add_button : submit_button_for(:cancel)
+  end
+
+  def submit_button_for(verb)
+    submit(verb.to_s.capitalize, :id => "#{element_id_prefix}_#{verb}")
   end
 
   def text_field_for(element_symbol)

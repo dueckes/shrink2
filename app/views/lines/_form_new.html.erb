@@ -1,5 +1,5 @@
 <%= error_messages_for :line %>
 <% remote_form_for(:line, Platter::FeatureLine.new(:feature => feature), :url => package_feature_lines_path(feature.package, feature), :builder => FeatureLineFormBuilder) do |line_form| -%>
   <%= render :partial => "lines/form_common", :locals => { :line_form => line_form } %>
-  &nbsp;&nbsp;&nbsp;&nbsp;<%= line_form.submit_button %>&nbsp;<%= line_form.cancel_button %>
+  &nbsp;&nbsp;&nbsp;&nbsp;<%= line_form.commit_button %>&nbsp;<%= line_form.cancel_button %>
 <% end -%>

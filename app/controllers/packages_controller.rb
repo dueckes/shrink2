@@ -6,13 +6,16 @@ class PackagesController < ApplicationController
   end
 
   def new
+    @parent = params[:parent_id] ? Platter::Package.find(params[:parent_id]) : nil
   end
 
   def cancel_create
+    @parent = params[:parent_id] ? Platter::Package.find(params[:parent_id]) : nil
   end
 
   def create
-    @package = Platter::Package.new(params[:package])
+    @parent = params[:parent_id] ? Platter::Package.find(params[:parent_id]) : nil
+    @package = Platter::Package.new(params[:package].merge(:parent => @parent))
     @package.save!
   end
 
