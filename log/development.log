@@ -8,3 +8,282 @@ Processing PackagesController#index (for 127.0.0.1 at 2009-09-14 11:06:57) [GET]
 Rendering packages/index
 Rendered packages/_list (1.0ms)
 Completed in 773ms (View: 321, DB: 208) | 200 OK [http://localhost/packages]
+  [4;36;1mSQL (1.0ms)[0m   [0;1mSET client_min_messages TO 'panic'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET client_min_messages TO 'notice'[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mSET client_encoding TO 'utf8'[0m
+  [4;35;1mSQL (101.0ms)[0m   [0mSELECT version FROM schema_migrations[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mSET client_min_messages TO 'panic'[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mSET client_min_messages TO 'notice'[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mSET client_encoding TO 'utf8'[0m
+  [4;35;1mSQL (17.0ms)[0m   [0mSET search_path TO public[0m
+  [4;36;1mSQL (1262.0ms)[0m   [0;1mDROP DATABASE IF EXISTS "platter_test"[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mSET client_min_messages TO 'panic'[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mSET client_min_messages TO 'notice'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET client_encoding TO 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET search_path TO public[0m
+  [4;35;1mSQL (10788.0ms)[0m   [0mCREATE DATABASE "platter_test" ENCODING = 'utf8'[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mSET client_min_messages TO 'panic'[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mSET client_min_messages TO 'notice'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET client_encoding TO 'utf8'[0m
+  [4;35;1mSQL (476.0ms)[0m   [0mCREATE TABLE "feature_lines" ("id" serial primary key, "feature_id" integer NOT NULL, "position" integer NOT NULL, "text" character varying(255) NOT NULL, "created_at" timestamp, "updated_at" timestamp) [0m
+  [4;36;1mSQL (94.0ms)[0m   [0;1mCREATE TABLE "features" ("id" serial primary key, "title" character varying(255) NOT NULL, "created_at" timestamp, "updated_at" timestamp, "package_id" integer NOT NULL) [0m
+  [4;35;1mSQL (75.0ms)[0m   [0mCREATE TABLE "packages" ("id" serial primary key, "parent_id" integer, "name" character varying(255) NOT NULL) [0m
+  [4;36;1mSQL (87.0ms)[0m   [0;1mCREATE TABLE "scenarios" ("id" serial primary key, "feature_id" integer NOT NULL, "position" integer NOT NULL, "title" character varying(255) NOT NULL, "created_at" timestamp, "updated_at" timestamp) [0m
+  [4;35;1mSQL (68.0ms)[0m   [0mCREATE TABLE "steps" ("id" serial primary key, "scenario_id" integer NOT NULL, "position" integer NOT NULL, "text" character varying(255) NOT NULL, "created_at" timestamp, "updated_at" timestamp) [0m
+  [4;36;1mSQL (8.0ms)[0m   [0;1mCREATE TABLE "schema_migrations" ("version" character varying(255) NOT NULL) [0m
+  [4;35;1mSQL (47.0ms)[0m   [0mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [4;36;1mSQL (4.0ms)[0m   [0;1mSELECT version FROM "schema_migrations"[0m
+  [4;35;1mSQL (22.0ms)[0m   [0mINSERT INTO "schema_migrations" (version) VALUES ('20090911071012')[0m
+  [4;36;1mSQL (6.0ms)[0m   [0;1mINSERT INTO "schema_migrations" (version) VALUES ('20090901063602')[0m
+  [4;35;1mSQL (3.0ms)[0m   [0mINSERT INTO "schema_migrations" (version) VALUES ('20090901063603')[0m
+  [4;36;1mSQL (2.0ms)[0m   [0;1mINSERT INTO "schema_migrations" (version) VALUES ('20090901063622')[0m
+  [4;35;1mSQL (2.0ms)[0m   [0mINSERT INTO "schema_migrations" (version) VALUES ('20090902054059')[0m
+  [4;36;1mSQL (2.0ms)[0m   [0;1mINSERT INTO "schema_migrations" (version) VALUES ('20090911070641')[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET client_min_messages TO 'panic'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET client_min_messages TO 'notice'[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mSET client_encoding TO 'utf8'[0m
+  [4;35;1mSQL (3.0ms)[0m   [0mSELECT version FROM schema_migrations[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET client_min_messages TO 'panic'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET client_min_messages TO 'notice'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET client_encoding TO 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET search_path TO public[0m
+  [4;36;1mSQL (507.0ms)[0m   [0;1mDROP DATABASE IF EXISTS "platter_test"[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mSET client_min_messages TO 'panic'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET client_min_messages TO 'notice'[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mSET client_encoding TO 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET search_path TO public[0m
+  [4;35;1mSQL (4678.0ms)[0m   [0mCREATE DATABASE "platter_test" ENCODING = 'utf8'[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mSET client_min_messages TO 'panic'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET client_min_messages TO 'notice'[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mSET client_encoding TO 'utf8'[0m
+  [4;35;1mSQL (245.0ms)[0m   [0mCREATE TABLE "feature_lines" ("id" serial primary key, "feature_id" integer NOT NULL, "position" integer NOT NULL, "text" character varying(255) NOT NULL, "created_at" timestamp, "updated_at" timestamp) [0m
+  [4;36;1mSQL (71.0ms)[0m   [0;1mCREATE TABLE "features" ("id" serial primary key, "title" character varying(255) NOT NULL, "created_at" timestamp, "updated_at" timestamp, "package_id" integer NOT NULL) [0m
+  [4;35;1mSQL (69.0ms)[0m   [0mCREATE TABLE "packages" ("id" serial primary key, "parent_id" integer, "name" character varying(255) NOT NULL) [0m
+  [4;36;1mSQL (72.0ms)[0m   [0;1mCREATE TABLE "scenarios" ("id" serial primary key, "feature_id" integer NOT NULL, "position" integer NOT NULL, "title" character varying(255) NOT NULL, "created_at" timestamp, "updated_at" timestamp) [0m
+  [4;35;1mSQL (53.0ms)[0m   [0mCREATE TABLE "steps" ("id" serial primary key, "scenario_id" integer NOT NULL, "position" integer NOT NULL, "text" character varying(255) NOT NULL, "created_at" timestamp, "updated_at" timestamp) [0m
+  [4;36;1mSQL (10.0ms)[0m   [0;1mCREATE TABLE "schema_migrations" ("version" character varying(255) NOT NULL) [0m
+  [4;35;1mSQL (68.0ms)[0m   [0mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [4;36;1mSQL (10.0ms)[0m   [0;1mSELECT version FROM "schema_migrations"[0m
+  [4;35;1mSQL (5.0ms)[0m   [0mINSERT INTO "schema_migrations" (version) VALUES ('20090911071012')[0m
+  [4;36;1mSQL (3.0ms)[0m   [0;1mINSERT INTO "schema_migrations" (version) VALUES ('20090901063602')[0m
+  [4;35;1mSQL (4.0ms)[0m   [0mINSERT INTO "schema_migrations" (version) VALUES ('20090901063603')[0m
+  [4;36;1mSQL (2.0ms)[0m   [0;1mINSERT INTO "schema_migrations" (version) VALUES ('20090901063622')[0m
+  [4;35;1mSQL (3.0ms)[0m   [0mINSERT INTO "schema_migrations" (version) VALUES ('20090902054059')[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mINSERT INTO "schema_migrations" (version) VALUES ('20090911070641')[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET client_min_messages TO 'panic'[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mSET client_min_messages TO 'notice'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET client_encoding TO 'utf8'[0m
+  [4;35;1mSQL (3.0ms)[0m   [0mSELECT version FROM schema_migrations[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET client_min_messages TO 'panic'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET client_min_messages TO 'notice'[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mSET client_encoding TO 'utf8'[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mSET search_path TO public[0m
+  [4;36;1mSQL (408.0ms)[0m   [0;1mDROP DATABASE IF EXISTS "platter_test"[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET client_min_messages TO 'panic'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET client_min_messages TO 'notice'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET client_encoding TO 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET search_path TO public[0m
+  [4;35;1mSQL (5729.0ms)[0m   [0mCREATE DATABASE "platter_test" ENCODING = 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET client_min_messages TO 'panic'[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mSET client_min_messages TO 'notice'[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mSET client_encoding TO 'utf8'[0m
+  [4;35;1mSQL (252.0ms)[0m   [0mCREATE TABLE "feature_lines" ("id" serial primary key, "feature_id" integer NOT NULL, "position" integer NOT NULL, "text" character varying(255) NOT NULL, "created_at" timestamp, "updated_at" timestamp) [0m
+  [4;36;1mSQL (79.0ms)[0m   [0;1mCREATE TABLE "features" ("id" serial primary key, "title" character varying(255) NOT NULL, "created_at" timestamp, "updated_at" timestamp, "package_id" integer NOT NULL) [0m
+  [4;35;1mSQL (76.0ms)[0m   [0mCREATE TABLE "packages" ("id" serial primary key, "parent_id" integer, "name" character varying(255) NOT NULL) [0m
+  [4;36;1mSQL (77.0ms)[0m   [0;1mCREATE TABLE "scenarios" ("id" serial primary key, "feature_id" integer NOT NULL, "position" integer NOT NULL, "title" character varying(255) NOT NULL, "created_at" timestamp, "updated_at" timestamp) [0m
+  [4;35;1mSQL (73.0ms)[0m   [0mCREATE TABLE "steps" ("id" serial primary key, "scenario_id" integer NOT NULL, "position" integer NOT NULL, "text" character varying(255) NOT NULL, "created_at" timestamp, "updated_at" timestamp) [0m
+  [4;36;1mSQL (5.0ms)[0m   [0;1mCREATE TABLE "schema_migrations" ("version" character varying(255) NOT NULL) [0m
+  [4;35;1mSQL (59.0ms)[0m   [0mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mSELECT version FROM "schema_migrations"[0m
+  [4;35;1mSQL (3.0ms)[0m   [0mINSERT INTO "schema_migrations" (version) VALUES ('20090911071012')[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mINSERT INTO "schema_migrations" (version) VALUES ('20090901063602')[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mINSERT INTO "schema_migrations" (version) VALUES ('20090901063603')[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mINSERT INTO "schema_migrations" (version) VALUES ('20090901063622')[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mINSERT INTO "schema_migrations" (version) VALUES ('20090902054059')[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mINSERT INTO "schema_migrations" (version) VALUES ('20090911070641')[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET client_min_messages TO 'panic'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET client_min_messages TO 'notice'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET client_encoding TO 'utf8'[0m
+  [4;35;1mSQL (3.0ms)[0m   [0mSELECT version FROM schema_migrations[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mSET client_min_messages TO 'panic'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET client_min_messages TO 'notice'[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mSET client_encoding TO 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET search_path TO public[0m
+  [4;36;1mSQL (374.0ms)[0m   [0;1mDROP DATABASE IF EXISTS "platter_test"[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET client_min_messages TO 'panic'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET client_min_messages TO 'notice'[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mSET client_encoding TO 'utf8'[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mSET search_path TO public[0m
+  [4;35;1mSQL (4638.0ms)[0m   [0mCREATE DATABASE "platter_test" ENCODING = 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET client_min_messages TO 'panic'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET client_min_messages TO 'notice'[0m
+  [4;36;1mSQL (2.0ms)[0m   [0;1mSET client_encoding TO 'utf8'[0m
+  [4;35;1mSQL (169.0ms)[0m   [0mCREATE TABLE "feature_lines" ("id" serial primary key, "feature_id" integer NOT NULL, "position" integer NOT NULL, "text" character varying(255) NOT NULL, "created_at" timestamp, "updated_at" timestamp) [0m
+  [4;36;1mSQL (72.0ms)[0m   [0;1mCREATE TABLE "features" ("id" serial primary key, "title" character varying(255) NOT NULL, "created_at" timestamp, "updated_at" timestamp, "package_id" integer NOT NULL) [0m
+  [4;35;1mSQL (79.0ms)[0m   [0mCREATE TABLE "packages" ("id" serial primary key, "parent_id" integer, "name" character varying(255) NOT NULL) [0m
+  [4;36;1mSQL (83.0ms)[0m   [0;1mCREATE TABLE "scenarios" ("id" serial primary key, "feature_id" integer NOT NULL, "position" integer NOT NULL, "title" character varying(255) NOT NULL, "created_at" timestamp, "updated_at" timestamp) [0m
+  [4;35;1mSQL (72.0ms)[0m   [0mCREATE TABLE "steps" ("id" serial primary key, "scenario_id" integer NOT NULL, "position" integer NOT NULL, "text" character varying(255) NOT NULL, "created_at" timestamp, "updated_at" timestamp) [0m
+  [4;36;1mSQL (8.0ms)[0m   [0;1mCREATE TABLE "schema_migrations" ("version" character varying(255) NOT NULL) [0m
+  [4;35;1mSQL (107.0ms)[0m   [0mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [4;36;1mSQL (5.0ms)[0m   [0;1mSELECT version FROM "schema_migrations"[0m
+  [4;35;1mSQL (5.0ms)[0m   [0mINSERT INTO "schema_migrations" (version) VALUES ('20090911071012')[0m
+  [4;36;1mSQL (5.0ms)[0m   [0;1mINSERT INTO "schema_migrations" (version) VALUES ('20090901063602')[0m
+  [4;35;1mSQL (5.0ms)[0m   [0mINSERT INTO "schema_migrations" (version) VALUES ('20090901063603')[0m
+  [4;36;1mSQL (3.0ms)[0m   [0;1mINSERT INTO "schema_migrations" (version) VALUES ('20090901063622')[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mINSERT INTO "schema_migrations" (version) VALUES ('20090902054059')[0m
+  [4;36;1mSQL (2.0ms)[0m   [0;1mINSERT INTO "schema_migrations" (version) VALUES ('20090911070641')[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET client_min_messages TO 'panic'[0m
+  [4;35;1mSQL (3.0ms)[0m   [0mSET client_min_messages TO 'notice'[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mSET client_encoding TO 'utf8'[0m
+  [4;35;1mSQL (4.0ms)[0m   [0mSELECT version FROM schema_migrations[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET client_min_messages TO 'panic'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET client_min_messages TO 'notice'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET client_encoding TO 'utf8'[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mSET search_path TO public[0m
+  [4;36;1mSQL (646.0ms)[0m   [0;1mDROP DATABASE IF EXISTS "platter_test"[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET client_min_messages TO 'panic'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET client_min_messages TO 'notice'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET client_encoding TO 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET search_path TO public[0m
+  [4;35;1mSQL (10024.0ms)[0m   [0mCREATE DATABASE "platter_test" ENCODING = 'utf8'[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mSET client_min_messages TO 'panic'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET client_min_messages TO 'notice'[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mSET client_encoding TO 'utf8'[0m
+  [4;35;1mSQL (106.0ms)[0m   [0mCREATE TABLE "feature_lines" ("id" serial primary key, "feature_id" integer NOT NULL, "position" integer NOT NULL, "text" character varying(255) NOT NULL, "created_at" timestamp, "updated_at" timestamp) [0m
+  [4;36;1mSQL (124.0ms)[0m   [0;1mCREATE TABLE "features" ("id" serial primary key, "title" character varying(255) NOT NULL, "created_at" timestamp, "updated_at" timestamp, "package_id" integer NOT NULL) [0m
+  [4;35;1mSQL (131.0ms)[0m   [0mCREATE TABLE "packages" ("id" serial primary key, "parent_id" integer, "name" character varying(255) NOT NULL) [0m
+  [4;36;1mSQL (79.0ms)[0m   [0;1mCREATE TABLE "scenarios" ("id" serial primary key, "feature_id" integer NOT NULL, "position" integer NOT NULL, "title" character varying(255) NOT NULL, "created_at" timestamp, "updated_at" timestamp) [0m
+  [4;35;1mSQL (150.0ms)[0m   [0mCREATE TABLE "steps" ("id" serial primary key, "scenario_id" integer NOT NULL, "position" integer NOT NULL, "text" character varying(255) NOT NULL, "created_at" timestamp, "updated_at" timestamp) [0m
+  [4;36;1mSQL (10.0ms)[0m   [0;1mCREATE TABLE "schema_migrations" ("version" character varying(255) NOT NULL) [0m
+  [4;35;1mSQL (59.0ms)[0m   [0mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [4;36;1mSQL (2.0ms)[0m   [0;1mSELECT version FROM "schema_migrations"[0m
+  [4;35;1mSQL (2.0ms)[0m   [0mINSERT INTO "schema_migrations" (version) VALUES ('20090911071012')[0m
+  [4;36;1mSQL (2.0ms)[0m   [0;1mINSERT INTO "schema_migrations" (version) VALUES ('20090901063602')[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mINSERT INTO "schema_migrations" (version) VALUES ('20090901063603')[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mINSERT INTO "schema_migrations" (version) VALUES ('20090901063622')[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mINSERT INTO "schema_migrations" (version) VALUES ('20090902054059')[0m
+  [4;36;1mSQL (2.0ms)[0m   [0;1mINSERT INTO "schema_migrations" (version) VALUES ('20090911070641')[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET client_min_messages TO 'panic'[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mSET client_min_messages TO 'notice'[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mSET client_encoding TO 'utf8'[0m
+  [4;35;1mSQL (4.0ms)[0m   [0mSELECT version FROM schema_migrations[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET client_min_messages TO 'panic'[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mSET client_min_messages TO 'notice'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET client_encoding TO 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET search_path TO public[0m
+  [4;36;1mSQL (404.0ms)[0m   [0;1mDROP DATABASE IF EXISTS "platter_test"[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET client_min_messages TO 'panic'[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mSET client_min_messages TO 'notice'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET client_encoding TO 'utf8'[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mSET search_path TO public[0m
+  [4;35;1mSQL (4741.0ms)[0m   [0mCREATE DATABASE "platter_test" ENCODING = 'utf8'[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mSET client_min_messages TO 'panic'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET client_min_messages TO 'notice'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET client_encoding TO 'utf8'[0m
+  [4;35;1mSQL (136.0ms)[0m   [0mCREATE TABLE "feature_lines" ("id" serial primary key, "feature_id" integer NOT NULL, "position" integer NOT NULL, "text" character varying(255) NOT NULL, "created_at" timestamp, "updated_at" timestamp) [0m
+  [4;36;1mSQL (56.0ms)[0m   [0;1mCREATE TABLE "features" ("id" serial primary key, "title" character varying(255) NOT NULL, "created_at" timestamp, "updated_at" timestamp, "package_id" integer NOT NULL) [0m
+  [4;35;1mSQL (50.0ms)[0m   [0mCREATE TABLE "packages" ("id" serial primary key, "parent_id" integer, "name" character varying(255) NOT NULL) [0m
+  [4;36;1mSQL (104.0ms)[0m   [0;1mCREATE TABLE "scenarios" ("id" serial primary key, "feature_id" integer NOT NULL, "position" integer NOT NULL, "title" character varying(255) NOT NULL, "created_at" timestamp, "updated_at" timestamp) [0m
+  [4;35;1mSQL (47.0ms)[0m   [0mCREATE TABLE "steps" ("id" serial primary key, "scenario_id" integer NOT NULL, "position" integer NOT NULL, "text" character varying(255) NOT NULL, "created_at" timestamp, "updated_at" timestamp) [0m
+  [4;36;1mSQL (4.0ms)[0m   [0;1mCREATE TABLE "schema_migrations" ("version" character varying(255) NOT NULL) [0m
+  [4;35;1mSQL (68.0ms)[0m   [0mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [4;36;1mSQL (3.0ms)[0m   [0;1mSELECT version FROM "schema_migrations"[0m
+  [4;35;1mSQL (3.0ms)[0m   [0mINSERT INTO "schema_migrations" (version) VALUES ('20090911071012')[0m
+  [4;36;1mSQL (2.0ms)[0m   [0;1mINSERT INTO "schema_migrations" (version) VALUES ('20090901063602')[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mINSERT INTO "schema_migrations" (version) VALUES ('20090901063603')[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mINSERT INTO "schema_migrations" (version) VALUES ('20090901063622')[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mINSERT INTO "schema_migrations" (version) VALUES ('20090902054059')[0m
+  [4;36;1mSQL (2.0ms)[0m   [0;1mINSERT INTO "schema_migrations" (version) VALUES ('20090911070641')[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET client_min_messages TO 'panic'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET client_min_messages TO 'notice'[0m
+  [4;36;1mSQL (2.0ms)[0m   [0;1mSET client_encoding TO 'utf8'[0m
+  [4;35;1mSQL (4.0ms)[0m   [0mSELECT version FROM schema_migrations[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET client_min_messages TO 'panic'[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mSET client_min_messages TO 'notice'[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mSET client_encoding TO 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET search_path TO public[0m
+  [4;36;1mSQL (404.0ms)[0m   [0;1mDROP DATABASE IF EXISTS "platter_test"[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET client_min_messages TO 'panic'[0m
+  [4;36;1mSQL (2.0ms)[0m   [0;1mSET client_min_messages TO 'notice'[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mSET client_encoding TO 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET search_path TO public[0m
+  [4;35;1mSQL (5217.0ms)[0m   [0mCREATE DATABASE "platter_test" ENCODING = 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET client_min_messages TO 'panic'[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mSET client_min_messages TO 'notice'[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mSET client_encoding TO 'utf8'[0m
+  [4;35;1mSQL (133.0ms)[0m   [0mCREATE TABLE "feature_lines" ("id" serial primary key, "feature_id" integer NOT NULL, "position" integer NOT NULL, "text" character varying(255) NOT NULL, "created_at" timestamp, "updated_at" timestamp) [0m
+  [4;36;1mSQL (51.0ms)[0m   [0;1mCREATE TABLE "features" ("id" serial primary key, "title" character varying(255) NOT NULL, "created_at" timestamp, "updated_at" timestamp, "package_id" integer NOT NULL) [0m
+  [4;35;1mSQL (73.0ms)[0m   [0mCREATE TABLE "packages" ("id" serial primary key, "parent_id" integer, "name" character varying(255) NOT NULL) [0m
+  [4;36;1mSQL (165.0ms)[0m   [0;1mCREATE TABLE "scenarios" ("id" serial primary key, "feature_id" integer NOT NULL, "position" integer NOT NULL, "title" character varying(255) NOT NULL, "created_at" timestamp, "updated_at" timestamp) [0m
+  [4;35;1mSQL (166.0ms)[0m   [0mCREATE TABLE "steps" ("id" serial primary key, "scenario_id" integer NOT NULL, "position" integer NOT NULL, "text" character varying(255) NOT NULL, "created_at" timestamp, "updated_at" timestamp) [0m
+  [4;36;1mSQL (35.0ms)[0m   [0;1mCREATE TABLE "schema_migrations" ("version" character varying(255) NOT NULL) [0m
+  [4;35;1mSQL (93.0ms)[0m   [0mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [4;36;1mSQL (8.0ms)[0m   [0;1mSELECT version FROM "schema_migrations"[0m
+  [4;35;1mSQL (6.0ms)[0m   [0mINSERT INTO "schema_migrations" (version) VALUES ('20090911071012')[0m
+  [4;36;1mSQL (5.0ms)[0m   [0;1mINSERT INTO "schema_migrations" (version) VALUES ('20090901063602')[0m
+  [4;35;1mSQL (2.0ms)[0m   [0mINSERT INTO "schema_migrations" (version) VALUES ('20090901063603')[0m
+  [4;36;1mSQL (2.0ms)[0m   [0;1mINSERT INTO "schema_migrations" (version) VALUES ('20090901063622')[0m
+  [4;35;1mSQL (2.0ms)[0m   [0mINSERT INTO "schema_migrations" (version) VALUES ('20090902054059')[0m
+  [4;36;1mSQL (3.0ms)[0m   [0;1mINSERT INTO "schema_migrations" (version) VALUES ('20090911070641')[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET client_min_messages TO 'panic'[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mSET client_min_messages TO 'notice'[0m
+  [4;36;1mSQL (2.0ms)[0m   [0;1mSET client_encoding TO 'utf8'[0m
+  [4;35;1mSQL (3.0ms)[0m   [0mSELECT version FROM schema_migrations[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET client_min_messages TO 'panic'[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mSET client_min_messages TO 'notice'[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mSET client_encoding TO 'utf8'[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mSET search_path TO public[0m
+  [4;36;1mSQL (2921.0ms)[0m   [0;1mDROP DATABASE IF EXISTS "platter_test"[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mSET client_min_messages TO 'panic'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET client_min_messages TO 'notice'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET client_encoding TO 'utf8'[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mSET search_path TO public[0m
+  [4;35;1mSQL (5849.0ms)[0m   [0mCREATE DATABASE "platter_test" ENCODING = 'utf8'[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mSET client_min_messages TO 'panic'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET client_min_messages TO 'notice'[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mSET client_encoding TO 'utf8'[0m
+  [4;35;1mSQL (113.0ms)[0m   [0mCREATE TABLE "feature_lines" ("id" serial primary key, "feature_id" integer NOT NULL, "position" integer NOT NULL, "text" character varying(255) NOT NULL, "created_at" timestamp, "updated_at" timestamp) [0m
+  [4;36;1mSQL (113.0ms)[0m   [0;1mCREATE TABLE "features" ("id" serial primary key, "title" character varying(255) NOT NULL, "created_at" timestamp, "updated_at" timestamp, "package_id" integer NOT NULL) [0m
+  [4;35;1mSQL (54.0ms)[0m   [0mCREATE TABLE "packages" ("id" serial primary key, "parent_id" integer, "name" character varying(255) NOT NULL) [0m
+  [4;36;1mSQL (72.0ms)[0m   [0;1mCREATE TABLE "scenarios" ("id" serial primary key, "feature_id" integer NOT NULL, "position" integer NOT NULL, "title" character varying(255) NOT NULL, "created_at" timestamp, "updated_at" timestamp) [0m
+  [4;35;1mSQL (74.0ms)[0m   [0mCREATE TABLE "steps" ("id" serial primary key, "scenario_id" integer NOT NULL, "position" integer NOT NULL, "text" character varying(255) NOT NULL, "created_at" timestamp, "updated_at" timestamp) [0m
+  [4;36;1mSQL (8.0ms)[0m   [0;1mCREATE TABLE "schema_migrations" ("version" character varying(255) NOT NULL) [0m
+  [4;35;1mSQL (59.0ms)[0m   [0mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [4;36;1mSQL (7.0ms)[0m   [0;1mSELECT version FROM "schema_migrations"[0m
+  [4;35;1mSQL (4.0ms)[0m   [0mINSERT INTO "schema_migrations" (version) VALUES ('20090911071012')[0m
+  [4;36;1mSQL (5.0ms)[0m   [0;1mINSERT INTO "schema_migrations" (version) VALUES ('20090901063602')[0m
+  [4;35;1mSQL (2.0ms)[0m   [0mINSERT INTO "schema_migrations" (version) VALUES ('20090901063603')[0m
+  [4;36;1mSQL (4.0ms)[0m   [0;1mINSERT INTO "schema_migrations" (version) VALUES ('20090901063622')[0m
+  [4;35;1mSQL (6.0ms)[0m   [0mINSERT INTO "schema_migrations" (version) VALUES ('20090902054059')[0m
+  [4;36;1mSQL (2.0ms)[0m   [0;1mINSERT INTO "schema_migrations" (version) VALUES ('20090911070641')[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET client_min_messages TO 'panic'[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mSET client_min_messages TO 'notice'[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mSET client_encoding TO 'utf8'[0m
+  [4;35;1mSQL (2.0ms)[0m   [0mSELECT version FROM schema_migrations[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET client_min_messages TO 'panic'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET client_min_messages TO 'notice'[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mSET client_encoding TO 'utf8'[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mSET search_path TO public[0m
+  [4;36;1mSQL (407.0ms)[0m   [0;1mDROP DATABASE IF EXISTS "platter_test"[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET client_min_messages TO 'panic'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET client_min_messages TO 'notice'[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mSET client_encoding TO 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET search_path TO public[0m
+  [4;35;1mSQL (4904.0ms)[0m   [0mCREATE DATABASE "platter_test" ENCODING = 'utf8'[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mSET client_min_messages TO 'panic'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET client_min_messages TO 'notice'[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mSET client_encoding TO 'utf8'[0m
+  [4;35;1mSQL (88.0ms)[0m   [0mCREATE TABLE "feature_lines" ("id" serial primary key, "feature_id" integer NOT NULL, "position" integer NOT NULL, "text" character varying(255) NOT NULL, "created_at" timestamp, "updated_at" timestamp) [0m
+  [4;36;1mSQL (114.0ms)[0m   [0;1mCREATE TABLE "features" ("id" serial primary key, "title" character varying(255) NOT NULL, "created_at" timestamp, "updated_at" timestamp, "package_id" integer NOT NULL) [0m
+  [4;35;1mSQL (64.0ms)[0m   [0mCREATE TABLE "packages" ("id" serial primary key, "parent_id" integer, "name" character varying(255) NOT NULL) [0m
+  [4;36;1mSQL (82.0ms)[0m   [0;1mCREATE TABLE "scenarios" ("id" serial primary key, "feature_id" integer NOT NULL, "position" integer NOT NULL, "title" character varying(255) NOT NULL, "created_at" timestamp, "updated_at" timestamp) [0m
+  [4;35;1mSQL (82.0ms)[0m   [0mCREATE TABLE "steps" ("id" serial primary key, "scenario_id" integer NOT NULL, "position" integer NOT NULL, "text" character varying(255) NOT NULL, "created_at" timestamp, "updated_at" timestamp) [0m
+  [4;36;1mSQL (8.0ms)[0m   [0;1mCREATE TABLE "schema_migrations" ("version" character varying(255) NOT NULL) [0m
+  [4;35;1mSQL (59.0ms)[0m   [0mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [4;36;1mSQL (8.0ms)[0m   [0;1mSELECT version FROM "schema_migrations"[0m
+  [4;35;1mSQL (7.0ms)[0m   [0mINSERT INTO "schema_migrations" (version) VALUES ('20090911071012')[0m
+  [4;36;1mSQL (3.0ms)[0m   [0;1mINSERT INTO "schema_migrations" (version) VALUES ('20090901063602')[0m
+  [4;35;1mSQL (3.0ms)[0m   [0mINSERT INTO "schema_migrations" (version) VALUES ('20090901063603')[0m
+  [4;36;1mSQL (7.0ms)[0m   [0;1mINSERT INTO "schema_migrations" (version) VALUES ('20090901063622')[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mINSERT INTO "schema_migrations" (version) VALUES ('20090902054059')[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mINSERT INTO "schema_migrations" (version) VALUES ('20090911070641')[0m

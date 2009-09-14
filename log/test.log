@@ -3352,3 +3352,669 @@ Completed in 0ms (View: 0, DB: 0) | 200 OK [http://test.host/feature/add?text=So
   [4;36;1mPlatter::Package Load (0.0ms)[0m   [0;1mSELECT * FROM "packages" WHERE ("packages"."id" = 22) [0m
   [4;35;1mPlatter::Package Load (0.0ms)[0m   [0mSELECT * FROM "packages" WHERE ("packages"."id" = 23) [0m
   [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mSET client_min_messages TO 'panic'[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mSET client_min_messages TO 'notice'[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mSET client_encoding TO 'utf8'[0m
+  [4;35;1mSQL (19.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (2.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+  [4;36;1mSQL (2.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (2.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (2.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mSQL (25.0ms)[0m   [0mINSERT INTO "packages" ("name", "parent_id") VALUES(E'Package Name', NULL) RETURNING "id"[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mSQL (53.0ms)[0m   [0;1mINSERT INTO "features" ("package_id", "created_at", "title", "updated_at") VALUES(1, '2009-09-14 02:04:50.928334', E'Feature Title', '2009-09-14 02:04:50.928334') RETURNING "id"[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mSQL (7.0ms)[0m   [0mINSERT INTO "scenarios" ("position", "created_at", "title", "updated_at", "feature_id") VALUES(3, '2009-09-14 02:04:51.009334', E'Scenario Title 1', '2009-09-14 02:04:51.009334', 1) RETURNING "id"[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mSQL (2.0ms)[0m   [0;1mINSERT INTO "scenarios" ("position", "created_at", "title", "updated_at", "feature_id") VALUES(2, '2009-09-14 02:04:51.029334', E'Scenario Title 2', '2009-09-14 02:04:51.029334', 1) RETURNING "id"[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mSQL (2.0ms)[0m   [0mINSERT INTO "scenarios" ("position", "created_at", "title", "updated_at", "feature_id") VALUES(1, '2009-09-14 02:04:51.037334', E'Scenario Title 3', '2009-09-14 02:04:51.037334', 1) RETURNING "id"[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+  [4;35;1mPlatter::Scenario Load (4.0ms)[0m   [0mSELECT * FROM "scenarios" WHERE ("scenarios".feature_id = 1) ORDER BY position[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mSQL (2.0ms)[0m   [0mINSERT INTO "packages" ("name", "parent_id") VALUES(E'Package Name', NULL) RETURNING "id"[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mINSERT INTO "features" ("package_id", "created_at", "title", "updated_at") VALUES(2, '2009-09-14 02:04:51.060334', E'Feature Title', '2009-09-14 02:04:51.060334') RETURNING "id"[0m
+  [4;35;1mSQL (3.0ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mINSERT INTO "scenarios" ("position", "created_at", "title", "updated_at", "feature_id") VALUES(3, '2009-09-14 02:04:51.070334', E'Scenario Title 1', '2009-09-14 02:04:51.070334', 2) RETURNING "id"[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mINSERT INTO "scenarios" ("position", "created_at", "title", "updated_at", "feature_id") VALUES(2, '2009-09-14 02:04:51.075334', E'Scenario Title 2', '2009-09-14 02:04:51.075334', 2) RETURNING "id"[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mINSERT INTO "scenarios" ("position", "created_at", "title", "updated_at", "feature_id") VALUES(1, '2009-09-14 02:04:51.080334', E'Scenario Title 3', '2009-09-14 02:04:51.080334', 2) RETURNING "id"[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+  [4;35;1mPlatter::Scenario Load (2.0ms)[0m   [0mSELECT * FROM "scenarios" WHERE ("scenarios".feature_id = 2) ORDER BY position[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mINSERT INTO "packages" ("name", "parent_id") VALUES(E'Package Name', NULL) RETURNING "id"[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+  [4;35;1mSQL (2.0ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mINSERT INTO "features" ("package_id", "created_at", "title", "updated_at") VALUES(3, '2009-09-14 02:04:51.103334', E'Feature Title', '2009-09-14 02:04:51.103334') RETURNING "id"[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mSQL (92.0ms)[0m   [0mINSERT INTO "feature_lines" ("position", "created_at", "updated_at", "text", "feature_id") VALUES(3, '2009-09-14 02:04:51.109334', '2009-09-14 02:04:51.109334', E'Feature Line Text 1', 3) RETURNING "id"[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mINSERT INTO "feature_lines" ("position", "created_at", "updated_at", "text", "feature_id") VALUES(2, '2009-09-14 02:04:51.208334', '2009-09-14 02:04:51.208334', E'Feature Line Text 2', 3) RETURNING "id"[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mINSERT INTO "feature_lines" ("position", "created_at", "updated_at", "text", "feature_id") VALUES(1, '2009-09-14 02:04:51.213334', '2009-09-14 02:04:51.213334', E'Feature Line Text 3', 3) RETURNING "id"[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+  [4;35;1mPlatter::FeatureLine Load (2.0ms)[0m   [0mSELECT * FROM "feature_lines" WHERE ("feature_lines".feature_id = 3) ORDER BY position[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mINSERT INTO "packages" ("name", "parent_id") VALUES(E'Package Name', NULL) RETURNING "id"[0m
+  [4;36;1mSQL (2.0ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mINSERT INTO "features" ("package_id", "created_at", "title", "updated_at") VALUES(4, '2009-09-14 02:04:51.229334', E'Feature Title', '2009-09-14 02:04:51.229334') RETURNING "id"[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mSQL (2.0ms)[0m   [0mINSERT INTO "feature_lines" ("position", "created_at", "updated_at", "text", "feature_id") VALUES(3, '2009-09-14 02:04:51.234334', '2009-09-14 02:04:51.234334', E'Feature Line Text 1', 4) RETURNING "id"[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mINSERT INTO "feature_lines" ("position", "created_at", "updated_at", "text", "feature_id") VALUES(2, '2009-09-14 02:04:51.239334', '2009-09-14 02:04:51.239334', E'Feature Line Text 2', 4) RETURNING "id"[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mINSERT INTO "feature_lines" ("position", "created_at", "updated_at", "text", "feature_id") VALUES(1, '2009-09-14 02:04:51.243334', '2009-09-14 02:04:51.243334', E'Feature Line Text 3', 4) RETURNING "id"[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+  [4;35;1mPlatter::FeatureLine Load (2.0ms)[0m   [0mSELECT * FROM "feature_lines" WHERE ("feature_lines".feature_id = 4) ORDER BY position[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mINSERT INTO "packages" ("name", "parent_id") VALUES(E'Package Name', NULL) RETURNING "id"[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mINSERT INTO "features" ("package_id", "created_at", "title", "updated_at") VALUES(5, '2009-09-14 02:04:51.263334', E'Feature Title', '2009-09-14 02:04:51.263334') RETURNING "id"[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mPlatter::Scenario Load (1.0ms)[0m   [0mSELECT * FROM "scenarios" WHERE (feature_id = 5) ORDER BY position DESC LIMIT 1[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mINSERT INTO "scenarios" ("position", "created_at", "title", "updated_at", "feature_id") VALUES(1, '2009-09-14 02:04:51.271334', E'Scenario Title', '2009-09-14 02:04:51.271334', 5) RETURNING "id"[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mPlatter::Step Load (4.0ms)[0m   [0mSELECT * FROM "steps" WHERE (scenario_id = 7) ORDER BY position DESC LIMIT 1[0m
+  [4;36;1mSQL (15.0ms)[0m   [0;1mINSERT INTO "steps" ("position", "scenario_id", "created_at", "updated_at", "text") VALUES(1, 7, '2009-09-14 02:04:51.280334', '2009-09-14 02:04:51.280334', E'Some Text') RETURNING "id"[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+  [4;36;1mPlatter::Step Load (1.0ms)[0m   [0;1mSELECT "steps".id FROM "steps" WHERE ("steps"."id" = 1) LIMIT 1[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mINSERT INTO "packages" ("name", "parent_id") VALUES(E'Package Name', NULL) RETURNING "id"[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mINSERT INTO "features" ("package_id", "created_at", "title", "updated_at") VALUES(6, '2009-09-14 02:04:51.315334', E'Feature Title', '2009-09-14 02:04:51.315334') RETURNING "id"[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mPlatter::FeatureLine Load (1.0ms)[0m   [0;1mSELECT * FROM "feature_lines" WHERE (feature_id = 6) ORDER BY position DESC LIMIT 1[0m
+  [4;35;1mSQL (2.0ms)[0m   [0mINSERT INTO "feature_lines" ("position", "created_at", "updated_at", "text", "feature_id") VALUES(1, '2009-09-14 02:04:51.321334', '2009-09-14 02:04:51.321334', E'Some Text', 6) RETURNING "id"[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+  [4;35;1mPlatter::FeatureLine Load (1.0ms)[0m   [0mSELECT "feature_lines".id FROM "feature_lines" WHERE ("feature_lines"."id" = 7) LIMIT 1[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mINSERT INTO "packages" ("name", "parent_id") VALUES(E'Package Name', NULL) RETURNING "id"[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mINSERT INTO "features" ("package_id", "created_at", "title", "updated_at") VALUES(7, '2009-09-14 02:04:51.337334', E'Feature Title', '2009-09-14 02:04:51.337334') RETURNING "id"[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mSQL (2.0ms)[0m   [0mINSERT INTO "packages" ("name", "parent_id") VALUES(E'Package Name', NULL) RETURNING "id"[0m
+  [4;36;1mSQL (2.0ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mINSERT INTO "features" ("package_id", "created_at", "title", "updated_at") VALUES(8, '2009-09-14 02:04:51.348334', E'Feature Title', '2009-09-14 02:04:51.348334') RETURNING "id"[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mPlatter::Scenario Load (1.0ms)[0m   [0mSELECT * FROM "scenarios" WHERE (feature_id = 8) ORDER BY position DESC LIMIT 1[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mINSERT INTO "scenarios" ("position", "created_at", "title", "updated_at", "feature_id") VALUES(1, '2009-09-14 02:04:51.354334', E'Scenario Title', '2009-09-14 02:04:51.354334', 8) RETURNING "id"[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mINSERT INTO "steps" ("position", "scenario_id", "created_at", "updated_at", "text") VALUES(3, 8, '2009-09-14 02:04:51.359334', '2009-09-14 02:04:51.359334', E'Step Text 1') RETURNING "id"[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mINSERT INTO "steps" ("position", "scenario_id", "created_at", "updated_at", "text") VALUES(2, 8, '2009-09-14 02:04:51.363334', '2009-09-14 02:04:51.363334', E'Step Text 2') RETURNING "id"[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mINSERT INTO "steps" ("position", "scenario_id", "created_at", "updated_at", "text") VALUES(1, 8, '2009-09-14 02:04:51.367334', '2009-09-14 02:04:51.367334', E'Step Text 3') RETURNING "id"[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+  [4;35;1mPlatter::Step Load (2.0ms)[0m   [0mSELECT * FROM "steps" WHERE ("steps".scenario_id = 8) ORDER BY position[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (2.0ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mINSERT INTO "packages" ("name", "parent_id") VALUES(E'Package Name', NULL) RETURNING "id"[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mSQL (2.0ms)[0m   [0;1mINSERT INTO "features" ("package_id", "created_at", "title", "updated_at") VALUES(9, '2009-09-14 02:04:51.383334', E'Feature Title', '2009-09-14 02:04:51.383334') RETURNING "id"[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+  [4;36;1mSQL (3.0ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mINSERT INTO "packages" ("name", "parent_id") VALUES(E'Package Name', NULL) RETURNING "id"[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mINSERT INTO "features" ("package_id", "created_at", "title", "updated_at") VALUES(10, '2009-09-14 02:04:51.394334', E'Feature Title', '2009-09-14 02:04:51.394334') RETURNING "id"[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mPlatter::Scenario Load (1.0ms)[0m   [0mSELECT * FROM "scenarios" WHERE (feature_id = 10) ORDER BY position DESC LIMIT 1[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mINSERT INTO "scenarios" ("position", "created_at", "title", "updated_at", "feature_id") VALUES(1, '2009-09-14 02:04:51.400334', E'Scenario Title', '2009-09-14 02:04:51.400334', 10) RETURNING "id"[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mINSERT INTO "steps" ("position", "scenario_id", "created_at", "updated_at", "text") VALUES(3, 9, '2009-09-14 02:04:51.404334', '2009-09-14 02:04:51.404334', E'Step Text 1') RETURNING "id"[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mINSERT INTO "steps" ("position", "scenario_id", "created_at", "updated_at", "text") VALUES(2, 9, '2009-09-14 02:04:51.408334', '2009-09-14 02:04:51.408334', E'Step Text 2') RETURNING "id"[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mINSERT INTO "steps" ("position", "scenario_id", "created_at", "updated_at", "text") VALUES(1, 9, '2009-09-14 02:04:51.412334', '2009-09-14 02:04:51.412334', E'Step Text 3') RETURNING "id"[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+  [4;35;1mPlatter::Step Load (1.0ms)[0m   [0mSELECT * FROM "steps" WHERE ("steps".scenario_id = 9) ORDER BY position[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mINSERT INTO "packages" ("name", "parent_id") VALUES(E'Package Name', NULL) RETURNING "id"[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mINSERT INTO "features" ("package_id", "created_at", "title", "updated_at") VALUES(11, '2009-09-14 02:04:51.429334', E'Feature Title', '2009-09-14 02:04:51.429334') RETURNING "id"[0m
+  [4;35;1mSQL (2.0ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mPlatter::Scenario Load (2.0ms)[0m   [0mSELECT * FROM "scenarios" WHERE (feature_id = 11) ORDER BY position DESC LIMIT 1[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mINSERT INTO "scenarios" ("position", "created_at", "title", "updated_at", "feature_id") VALUES(1, '2009-09-14 02:04:51.437334', E'Some Title', '2009-09-14 02:04:51.437334', 11) RETURNING "id"[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+  [4;36;1mPlatter::Scenario Load (1.0ms)[0m   [0;1mSELECT "scenarios".id FROM "scenarios" WHERE ("scenarios"."id" = 10) LIMIT 1[0m
+  [4;35;1mSQL (2.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (2.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mSQL (3.0ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+  [4;35;1mSQL (2.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mINSERT INTO "packages" ("name", "parent_id") VALUES(E'Package Name', NULL) RETURNING "id"[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mINSERT INTO "packages" ("name", "parent_id") VALUES(E'Child 1 Name', NULL) RETURNING "id"[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mPlatter::Package Update (25.0ms)[0m   [0;1mUPDATE "packages" SET "parent_id" = 12 WHERE "id" = 13[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mINSERT INTO "packages" ("name", "parent_id") VALUES(E'Child 2 Name', NULL) RETURNING "id"[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mPlatter::Package Update (1.0ms)[0m   [0;1mUPDATE "packages" SET "parent_id" = 12 WHERE "id" = 14[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mINSERT INTO "packages" ("name", "parent_id") VALUES(E'Child 3 Name', NULL) RETURNING "id"[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mPlatter::Package Update (1.0ms)[0m   [0;1mUPDATE "packages" SET "parent_id" = 12 WHERE "id" = 15[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+  [4;36;1mPlatter::Package Load (1.0ms)[0m   [0;1mSELECT * FROM "packages" WHERE ("packages"."id" = 12) [0m
+  [4;35;1mPlatter::Package Load (1.0ms)[0m   [0mSELECT * FROM "packages" WHERE ("packages".parent_id = 12) ORDER BY name[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mINSERT INTO "packages" ("name", "parent_id") VALUES(E'Package Name', NULL) RETURNING "id"[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mINSERT INTO "packages" ("name", "parent_id") VALUES(E'Parent Name', NULL) RETURNING "id"[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mPlatter::Package Update (1.0ms)[0m   [0mUPDATE "packages" SET "parent_id" = 17 WHERE "id" = 16[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+  [4;35;1mPlatter::Package Load (3.0ms)[0m   [0mSELECT * FROM "packages" WHERE ("packages"."id" = 16) [0m
+  [4;36;1mPlatter::Package Load (1.0ms)[0m   [0;1mSELECT * FROM "packages" WHERE ("packages"."id" = 17) [0m
+  [4;35;1mSQL (1.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mSET client_min_messages TO 'panic'[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mSET client_min_messages TO 'notice'[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mSET client_encoding TO 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (2.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (2.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mSQL (2.0ms)[0m   [0mINSERT INTO "packages" ("name", "parent_id") VALUES(E'Package Name', NULL) RETURNING "id"[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mSQL (2.0ms)[0m   [0;1mINSERT INTO "features" ("package_id", "created_at", "title", "updated_at") VALUES(1, '2009-09-14 02:06:33.825844', E'Feature Title', '2009-09-14 02:06:33.825844') RETURNING "id"[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+  [4;36;1mSQL (2.0ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mINSERT INTO "packages" ("name", "parent_id") VALUES(E'Package Name', NULL) RETURNING "id"[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mINSERT INTO "features" ("package_id", "created_at", "title", "updated_at") VALUES(2, '2009-09-14 02:06:33.841844', E'Feature Title', '2009-09-14 02:06:33.841844') RETURNING "id"[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mPlatter::Scenario Load (3.0ms)[0m   [0mSELECT * FROM "scenarios" WHERE (feature_id = 2) ORDER BY position DESC LIMIT 1[0m
+  [4;36;1mSQL (2.0ms)[0m   [0;1mINSERT INTO "scenarios" ("position", "created_at", "title", "updated_at", "feature_id") VALUES(1, '2009-09-14 02:06:33.946844', E'Scenario Title', '2009-09-14 02:06:33.946844', 2) RETURNING "id"[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+  [4;36;1mSQL (2.0ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mSQL (4.0ms)[0m   [0mINSERT INTO "steps" ("position", "scenario_id", "created_at", "updated_at", "text") VALUES(3, 1, '2009-09-14 02:06:33.958844', '2009-09-14 02:06:33.958844', E'Step Text 1') RETURNING "id"[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mINSERT INTO "steps" ("position", "scenario_id", "created_at", "updated_at", "text") VALUES(2, 1, '2009-09-14 02:06:33.970844', '2009-09-14 02:06:33.970844', E'Step Text 2') RETURNING "id"[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mINSERT INTO "steps" ("position", "scenario_id", "created_at", "updated_at", "text") VALUES(1, 1, '2009-09-14 02:06:33.975844', '2009-09-14 02:06:33.975844', E'Step Text 3') RETURNING "id"[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+  [4;35;1mPlatter::Step Load (2.0ms)[0m   [0mSELECT * FROM "steps" WHERE ("steps".scenario_id = 1) ORDER BY position[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mINSERT INTO "packages" ("name", "parent_id") VALUES(E'Package Name', NULL) RETURNING "id"[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mINSERT INTO "features" ("package_id", "created_at", "title", "updated_at") VALUES(3, '2009-09-14 02:06:33.993844', E'Feature Title', '2009-09-14 02:06:33.993844') RETURNING "id"[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mINSERT INTO "packages" ("name", "parent_id") VALUES(E'Package Name', NULL) RETURNING "id"[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mINSERT INTO "features" ("package_id", "created_at", "title", "updated_at") VALUES(4, '2009-09-14 02:06:34.002844', E'Feature Title', '2009-09-14 02:06:34.002844') RETURNING "id"[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mPlatter::Scenario Load (2.0ms)[0m   [0mSELECT * FROM "scenarios" WHERE (feature_id = 4) ORDER BY position DESC LIMIT 1[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mINSERT INTO "scenarios" ("position", "created_at", "title", "updated_at", "feature_id") VALUES(1, '2009-09-14 02:06:34.010844', E'Scenario Title', '2009-09-14 02:06:34.010844', 4) RETURNING "id"[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mINSERT INTO "steps" ("position", "scenario_id", "created_at", "updated_at", "text") VALUES(3, 2, '2009-09-14 02:06:34.015844', '2009-09-14 02:06:34.015844', E'Step Text 1') RETURNING "id"[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mINSERT INTO "steps" ("position", "scenario_id", "created_at", "updated_at", "text") VALUES(2, 2, '2009-09-14 02:06:34.019844', '2009-09-14 02:06:34.019844', E'Step Text 2') RETURNING "id"[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mINSERT INTO "steps" ("position", "scenario_id", "created_at", "updated_at", "text") VALUES(1, 2, '2009-09-14 02:06:34.024844', '2009-09-14 02:06:34.024844', E'Step Text 3') RETURNING "id"[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+  [4;35;1mPlatter::Step Load (2.0ms)[0m   [0mSELECT * FROM "steps" WHERE ("steps".scenario_id = 2) ORDER BY position[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mINSERT INTO "packages" ("name", "parent_id") VALUES(E'Package Name', NULL) RETURNING "id"[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mINSERT INTO "features" ("package_id", "created_at", "title", "updated_at") VALUES(5, '2009-09-14 02:06:34.046844', E'Feature Title', '2009-09-14 02:06:34.046844') RETURNING "id"[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mPlatter::Scenario Load (1.0ms)[0m   [0mSELECT * FROM "scenarios" WHERE (feature_id = 5) ORDER BY position DESC LIMIT 1[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mINSERT INTO "scenarios" ("position", "created_at", "title", "updated_at", "feature_id") VALUES(1, '2009-09-14 02:06:34.053844', E'Some Title', '2009-09-14 02:06:34.053844', 5) RETURNING "id"[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+  [4;36;1mPlatter::Scenario Load (1.0ms)[0m   [0;1mSELECT "scenarios".id FROM "scenarios" WHERE ("scenarios"."id" = 3) LIMIT 1[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mINSERT INTO "packages" ("name", "parent_id") VALUES(E'Package Name', NULL) RETURNING "id"[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mINSERT INTO "features" ("package_id", "created_at", "title", "updated_at") VALUES(6, '2009-09-14 02:06:34.066844', E'Feature Title', '2009-09-14 02:06:34.066844') RETURNING "id"[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mPlatter::Scenario Load (1.0ms)[0m   [0;1mSELECT * FROM "scenarios" WHERE (feature_id = 6) ORDER BY position DESC LIMIT 1[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mINSERT INTO "scenarios" ("position", "created_at", "title", "updated_at", "feature_id") VALUES(1, '2009-09-14 02:06:34.072844', E'Scenario Title', '2009-09-14 02:06:34.072844', 6) RETURNING "id"[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mPlatter::Step Load (1.0ms)[0m   [0;1mSELECT * FROM "steps" WHERE (scenario_id = 4) ORDER BY position DESC LIMIT 1[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mINSERT INTO "steps" ("position", "scenario_id", "created_at", "updated_at", "text") VALUES(1, 4, '2009-09-14 02:06:34.079844', '2009-09-14 02:06:34.079844', E'Some Text') RETURNING "id"[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+  [4;35;1mPlatter::Step Load (1.0ms)[0m   [0mSELECT "steps".id FROM "steps" WHERE ("steps"."id" = 7) LIMIT 1[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mINSERT INTO "packages" ("name", "parent_id") VALUES(E'Package Name', NULL) RETURNING "id"[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+  [4;35;1mSQL (2.0ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mINSERT INTO "features" ("package_id", "created_at", "title", "updated_at") VALUES(7, '2009-09-14 02:06:34.094844', E'Feature Title', '2009-09-14 02:06:34.094844') RETURNING "id"[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mPlatter::FeatureLine Load (3.0ms)[0m   [0mSELECT * FROM "feature_lines" WHERE (feature_id = 7) ORDER BY position DESC LIMIT 1[0m
+  [4;36;1mSQL (2.0ms)[0m   [0;1mINSERT INTO "feature_lines" ("position", "created_at", "updated_at", "text", "feature_id") VALUES(1, '2009-09-14 02:06:34.102844', '2009-09-14 02:06:34.102844', E'Some Text', 7) RETURNING "id"[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+  [4;36;1mPlatter::FeatureLine Load (2.0ms)[0m   [0;1mSELECT "feature_lines".id FROM "feature_lines" WHERE ("feature_lines"."id" = 1) LIMIT 1[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (2.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mINSERT INTO "packages" ("name", "parent_id") VALUES(E'Package Name', NULL) RETURNING "id"[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mINSERT INTO "features" ("package_id", "created_at", "title", "updated_at") VALUES(8, '2009-09-14 02:06:34.126844', E'Feature Title', '2009-09-14 02:06:34.126844') RETURNING "id"[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mSQL (2.0ms)[0m   [0;1mINSERT INTO "scenarios" ("position", "created_at", "title", "updated_at", "feature_id") VALUES(3, '2009-09-14 02:06:34.132844', E'Scenario Title 1', '2009-09-14 02:06:34.132844', 8) RETURNING "id"[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mINSERT INTO "scenarios" ("position", "created_at", "title", "updated_at", "feature_id") VALUES(2, '2009-09-14 02:06:34.138844', E'Scenario Title 2', '2009-09-14 02:06:34.138844', 8) RETURNING "id"[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mINSERT INTO "scenarios" ("position", "created_at", "title", "updated_at", "feature_id") VALUES(1, '2009-09-14 02:06:34.143844', E'Scenario Title 3', '2009-09-14 02:06:34.143844', 8) RETURNING "id"[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+  [4;36;1mPlatter::Scenario Load (2.0ms)[0m   [0;1mSELECT * FROM "scenarios" WHERE ("scenarios".feature_id = 8) ORDER BY position[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mINSERT INTO "packages" ("name", "parent_id") VALUES(E'Package Name', NULL) RETURNING "id"[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mINSERT INTO "features" ("package_id", "created_at", "title", "updated_at") VALUES(9, '2009-09-14 02:06:34.160844', E'Feature Title', '2009-09-14 02:06:34.160844') RETURNING "id"[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mINSERT INTO "scenarios" ("position", "created_at", "title", "updated_at", "feature_id") VALUES(3, '2009-09-14 02:06:34.164844', E'Scenario Title 1', '2009-09-14 02:06:34.164844', 9) RETURNING "id"[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mINSERT INTO "scenarios" ("position", "created_at", "title", "updated_at", "feature_id") VALUES(2, '2009-09-14 02:06:34.170844', E'Scenario Title 2', '2009-09-14 02:06:34.170844', 9) RETURNING "id"[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+  [4;35;1mSQL (2.0ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mINSERT INTO "scenarios" ("position", "created_at", "title", "updated_at", "feature_id") VALUES(1, '2009-09-14 02:06:34.176844', E'Scenario Title 3', '2009-09-14 02:06:34.176844', 9) RETURNING "id"[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+  [4;36;1mPlatter::Scenario Load (2.0ms)[0m   [0;1mSELECT * FROM "scenarios" WHERE ("scenarios".feature_id = 9) ORDER BY position[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mINSERT INTO "packages" ("name", "parent_id") VALUES(E'Package Name', NULL) RETURNING "id"[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mINSERT INTO "features" ("package_id", "created_at", "title", "updated_at") VALUES(10, '2009-09-14 02:06:34.195844', E'Feature Title', '2009-09-14 02:06:34.195844') RETURNING "id"[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+  [4;35;1mSQL (2.0ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mINSERT INTO "feature_lines" ("position", "created_at", "updated_at", "text", "feature_id") VALUES(3, '2009-09-14 02:06:34.201844', '2009-09-14 02:06:34.201844', E'Feature Line Text 1', 10) RETURNING "id"[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mINSERT INTO "feature_lines" ("position", "created_at", "updated_at", "text", "feature_id") VALUES(2, '2009-09-14 02:06:34.205844', '2009-09-14 02:06:34.205844', E'Feature Line Text 2', 10) RETURNING "id"[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mINSERT INTO "feature_lines" ("position", "created_at", "updated_at", "text", "feature_id") VALUES(1, '2009-09-14 02:06:34.210844', '2009-09-14 02:06:34.210844', E'Feature Line Text 3', 10) RETURNING "id"[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+  [4;36;1mPlatter::FeatureLine Load (2.0ms)[0m   [0;1mSELECT * FROM "feature_lines" WHERE ("feature_lines".feature_id = 10) ORDER BY position[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mINSERT INTO "packages" ("name", "parent_id") VALUES(E'Package Name', NULL) RETURNING "id"[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mINSERT INTO "features" ("package_id", "created_at", "title", "updated_at") VALUES(11, '2009-09-14 02:06:34.226844', E'Feature Title', '2009-09-14 02:06:34.226844') RETURNING "id"[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mINSERT INTO "feature_lines" ("position", "created_at", "updated_at", "text", "feature_id") VALUES(3, '2009-09-14 02:06:34.231844', '2009-09-14 02:06:34.231844', E'Feature Line Text 1', 11) RETURNING "id"[0m
+  [4;35;1mSQL (2.0ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mINSERT INTO "feature_lines" ("position", "created_at", "updated_at", "text", "feature_id") VALUES(2, '2009-09-14 02:06:34.237844', '2009-09-14 02:06:34.237844', E'Feature Line Text 2', 11) RETURNING "id"[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mINSERT INTO "feature_lines" ("position", "created_at", "updated_at", "text", "feature_id") VALUES(1, '2009-09-14 02:06:34.241844', '2009-09-14 02:06:34.241844', E'Feature Line Text 3', 11) RETURNING "id"[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+  [4;36;1mPlatter::FeatureLine Load (1.0ms)[0m   [0;1mSELECT * FROM "feature_lines" WHERE ("feature_lines".feature_id = 11) ORDER BY position[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mINSERT INTO "packages" ("name", "parent_id") VALUES(E'Package Name', NULL) RETURNING "id"[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mINSERT INTO "packages" ("name", "parent_id") VALUES(E'Child 1 Name', NULL) RETURNING "id"[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mPlatter::Package Update (1.0ms)[0m   [0;1mUPDATE "packages" SET "parent_id" = 12 WHERE "id" = 13[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mINSERT INTO "packages" ("name", "parent_id") VALUES(E'Child 2 Name', NULL) RETURNING "id"[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mPlatter::Package Update (0.0ms)[0m   [0;1mUPDATE "packages" SET "parent_id" = 12 WHERE "id" = 14[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mINSERT INTO "packages" ("name", "parent_id") VALUES(E'Child 3 Name', NULL) RETURNING "id"[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mPlatter::Package Update (1.0ms)[0m   [0;1mUPDATE "packages" SET "parent_id" = 12 WHERE "id" = 15[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+  [4;36;1mPlatter::Package Load (1.0ms)[0m   [0;1mSELECT * FROM "packages" WHERE ("packages"."id" = 12) [0m
+  [4;35;1mPlatter::Package Load (2.0ms)[0m   [0mSELECT * FROM "packages" WHERE ("packages".parent_id = 12) ORDER BY name[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mSQL (2.0ms)[0m   [0mINSERT INTO "packages" ("name", "parent_id") VALUES(E'Package Name', NULL) RETURNING "id"[0m
+  [4;36;1mSQL (2.0ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mINSERT INTO "packages" ("name", "parent_id") VALUES(E'Parent Name', NULL) RETURNING "id"[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mPlatter::Package Update (1.0ms)[0m   [0mUPDATE "packages" SET "parent_id" = 17 WHERE "id" = 16[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+  [4;35;1mPlatter::Package Load (1.0ms)[0m   [0mSELECT * FROM "packages" WHERE ("packages"."id" = 16) [0m
+  [4;36;1mPlatter::Package Load (1.0ms)[0m   [0;1mSELECT * FROM "packages" WHERE ("packages"."id" = 17) [0m
+  [4;35;1mSQL (1.0ms)[0m   [0mROLLBACK[0m
