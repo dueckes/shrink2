@@ -31,7 +31,6 @@ class FeaturesController < ApplicationController
   end
 
   def update
-    puts "params[:commit]: #{params[:commit]}"
     if params[:commit] == "Update"
       @feature = Platter::Feature.find(params[:id])
       @feature.update_attributes!(params[:feature])

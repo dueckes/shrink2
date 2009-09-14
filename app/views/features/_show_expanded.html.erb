@@ -3,4 +3,4 @@ Feature: <%= feature.title %><br/>
 <%= render :partial => "scenarios/list", :locals => { :feature => feature } %>
 <br/>
 <%= link_to_remote "Shrink", :update => dom_id(feature), :url => { :action => :shrink, :id => feature.id }, :method => :get %>&nbsp;
-<%= render :partial => "show_common", :locals => { :feature => feature } %>
+<%= render :partial => "features/show_common", :locals => { :feature => feature } %>

@@ -1,0 +1,3 @@
+page.hide(:new_package)
+page.replace_html(:new_package, "")
+page.show(:add_package)

@@ -6,12 +6,27 @@ class PackagesController < ApplicationController
   end
 
   def new
-    puts "PackagesController.new: Entry"
+  end
+
+  def cancel_create
   end
 
   def create
     @package = Platter::Package.new(params[:package])
     @package.save!
+  end
+
+  def edit
+    @package = Platter::Package.find(params[:id])
+  end
+
+  def update
+    puts "params[:commit]: #{params[:commit]}"
+    if params[:commit] == "Update"
+      @package = Platter::Package.find(params[:id])
+      @package.update_attributes!(params[:package])
+      render(:partial => "packages/show", :locals => { :package => @package})
+    end
   end
 
   def show
@@ -20,6 +35,10 @@ class PackagesController < ApplicationController
 
   def shrink
     @package = Platter::Package.find(params[:id])
+  end
+
+  def destroy
+    Platter::Package.destroy(params[:id])
   end
 
 end
