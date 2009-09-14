@@ -1,10 +1,12 @@
 class PackagesController < ApplicationController
+  layout "main", :only => :index
 
   def index
     @packages = Platter::Package.roots
   end
 
   def new
+    puts "PackagesController.new: Entry"
   end
 
   def create

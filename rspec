@@ -1,0 +1,2 @@
+spec -O $PWD/spec/spec.opts $*
+

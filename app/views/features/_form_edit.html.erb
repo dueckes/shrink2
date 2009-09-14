@@ -1,5 +1,5 @@
 <%= error_messages_for :feature %>
-<% remote_form_for(:feature, feature, :url => feature_path(feature), :update => dom_id(feature), :html => { :method => :put }, :builder => FeatureFormBuilder) do |feature_form| -%>
+<% remote_form_for(:feature, feature, :url => package_feature_path(feature.package, feature), :update => dom_id(feature), :html => { :method => :put }, :builder => FeatureFormBuilder) do |feature_form| -%>
   <%= render :partial => "form_common", :locals => { :feature_form => feature_form } %>
   <%= feature_form.submit_button %>&nbsp;<%= feature_form.cancel_button %>
 <% end -%>

@@ -6,6 +6,7 @@ class FeaturesController < ApplicationController
   end
 
   def new
+    @package = Platter::Package.find(params[:package_id])
   end
 
   def cancel_create
