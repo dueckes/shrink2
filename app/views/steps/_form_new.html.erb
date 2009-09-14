@@ -1,5 +1,5 @@
 <%= error_messages_for :step %>
-<% remote_form_for(:step, Platter::Step.new(:scenario => scenario), :url => feature_scenario_steps_path(scenario.feature, scenario), :builder => StepFormBuilder) do |step_form| -%>
+<% remote_form_for(:step, Platter::Step.new(:scenario => scenario), :url => package_feature_scenario_steps_path(scenario.package, scenario.feature, scenario), :builder => StepFormBuilder) do |step_form| -%>
   <%= render :partial => "steps/form_common", :locals => { :step_form => step_form } %>
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= step_form.submit_button %>&nbsp;<%= step_form.cancel_button %>
 <% end -%>

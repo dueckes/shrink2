@@ -5,6 +5,15 @@ module Platter
     acts_as_list :scope => :scenario
 
     validates_presence_of :text
+
+    def feature
+      scenario.feature
+    end
+
+    def package
+      scenario.package
+    end
+    
   end
 
 end

@@ -17,6 +17,23 @@ describe Platter::Scenario do
     scenario.steps.should eql(steps)
   end
 
+  it "should belong to a feature" do
+    feature = Platter::Feature.new
+
+    scenario = Platter::Scenario.new(:feature => feature)
+
+    scenario.feature.should eql(feature)
+  end
+
+  it "should belong to a package" do
+    package = Platter::Package.new
+    feature = Platter::Feature.new(:package => package)
+
+    scenario = Platter::Scenario.new(:feature => feature)
+
+    scenario.package.should eql(package)
+  end
+
   describe "#valid?" do
 
     before(:each) do
