@@ -1,6 +1,6 @@
 Rails::Initializer.class_eval do
   EXTENDED_GEMS = %w(active_record)
-  EXTENDED_PLUGINS = %w(acts_as_list)
+  EXTENDED_PLUGINS = %w(acts_as_list auto_complete)
 
   alias_method :load_gems_without_extensions, :load_gems
   def load_gems

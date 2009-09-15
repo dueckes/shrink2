@@ -3,5 +3,4 @@ Longer Term:
 - Remote Backup
 
 Next:
-- Package support
-- Autocomplete steps
+- Focus on autocomplete text fields

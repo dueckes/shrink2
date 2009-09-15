@@ -6,6 +6,7 @@ class StepsController < ApplicationController
 
   def auto_complete_for_step_text
     user_text = params[:step][:text] ? params[:step][:text].downcase : ""
+    # TODO Script injection safe conditions clause appears to be failing for Postgres plugin?
     @steps = Platter::Step.find(:all, :conditions => "LOWER(text) LIKE '#{user_text}%'",
                                       :order => "text ASC", :limit => 10)
   end
