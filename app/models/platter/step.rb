@@ -13,7 +13,10 @@ module Platter
     def package
       scenario.package
     end
-    
+
+    def as_text
+      text
+    end
   end
 
 end

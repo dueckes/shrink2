@@ -1,100 +1,119 @@
-describe Platter::Scenario do
+module Platter
+  describe Scenario do
 
-  it "should have a title" do
-    scenario = Platter::Scenario.new(:title => "Some Title")
+    it "should have a title" do
+      scenario = Scenario.new(:title => "Some Title")
 
-    scenario.title.should eql("Some Title")
-  end
-
-  it "should have steps" do
-    scenario = Platter::Scenario.new
-    steps = (1..3).collect do |i|
-      step = create_step(:text => "Step#{i}")
-      scenario.steps << step
-      step
+      scenario.title.should eql("Some Title")
     end
 
-    scenario.steps.should eql(steps)
-  end
-
-  it "should belong to a feature" do
-    feature = Platter::Feature.new
-
-    scenario = Platter::Scenario.new(:feature => feature)
-
-    scenario.feature.should eql(feature)
-  end
-
-  it "should belong to a package" do
-    package = Platter::Package.new
-    feature = Platter::Feature.new(:package => package)
-
-    scenario = Platter::Scenario.new(:feature => feature)
-
-    scenario.package.should eql(package)
-  end
-
-  describe "#valid?" do
-
-    before(:each) do
-      @scenario = Platter::Scenario.new(:title => "Some Title")
-      @scenario.steps << create_step(:text => "Some Step")
-    end
-
-    describe "when a title is established" do
-
-      it "should return true" do
-        @scenario.should be_valid
+    it "should have steps" do
+      scenario = Scenario.new
+      steps = (1..3).collect do |i|
+        step = create_step(:text => "Step#{i}")
+        scenario.steps << step
+        step
       end
 
+      scenario.steps.should eql(steps)
     end
 
-    describe "when no title is established" do
+    it "should belong to a feature" do
+      feature = Feature.new
+
+      scenario = Scenario.new(:feature => feature)
+
+      scenario.feature.should eql(feature)
+    end
+
+    it "should belong to a package" do
+      package = Package.new
+      feature = Feature.new(:package => package)
+
+      scenario = Scenario.new(:feature => feature)
+
+      scenario.package.should eql(package)
+    end
+
+    describe "#valid?" do
 
       before(:each) do
-        @scenario.title = nil
+        @scenario = Scenario.new(:title => "Some Title")
+        @scenario.steps << create_step(:text => "Some Step")
       end
 
-      it "should return false" do
-        @scenario.should_not be_valid
+      describe "when a title is established" do
+
+        it "should return true" do
+          @scenario.should be_valid
+        end
+
+      end
+
+      describe "when no title is established" do
+
+        before(:each) do
+          @scenario.title = nil
+        end
+
+        it "should return false" do
+          @scenario.should_not be_valid
+        end
+
+      end
+
+      describe "when no steps have been added" do
+
+        before(:each) do
+          @scenario.steps.clear
+        end
+
+        it "should return true" do
+          @scenario.should be_valid
+        end
+
+      end
+
+      describe "when one step has been added" do
+
+        it "should return true" do
+          @scenario.should be_valid
+        end
+
+      end
+
+      describe "when many steps have been added" do
+
+        it "should return true" do
+          (1..3).collect { |i| @scenario.steps << create_step(:text => "Step#{i}") }
+
+          @scenario.should be_valid
+        end
+
       end
 
     end
-    
-    describe "when no steps have been added" do
 
-      before(:each) do
-        @scenario.steps.clear
+    describe '#as_text' do
+      it 'should include the scenario tile' do
+        title = 'scenario title'
+        scenario = Scenario.new(:title => title)
+        scenario.as_text.should include "Scenario: #{title}"
       end
 
-      it "should return true" do
-        @scenario.should be_valid
-      end
+      it 'should indent & include the as text for its child steps' do
+        scenario = Scenario.new(:title => 'some title')
+        scenario.steps << Step.new(:text => 'step one text') << Step.new(:text => 'step two text')
 
+        text = scenario.as_text
+        text.should include ('  step one text')
+        text.should include ('  step two text')
+      end
     end
 
-    describe "when one step has been added" do
 
-      it "should return true" do
-        @scenario.should be_valid
-      end
-
+    def create_step(attributes)
+      Step.new(attributes)
     end
-
-    describe "when many steps have been added" do
-
-      it "should return true" do
-        (1..3).collect { |i| @scenario.steps << create_step(:text => "Step#{i}") }
-
-        @scenario.should be_valid
-      end
-
-    end
-
   end
-
-  def create_step(attributes)
-    Platter::Step.new(attributes)
-  end
-
 end
