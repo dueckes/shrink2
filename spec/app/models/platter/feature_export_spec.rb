@@ -32,7 +32,7 @@ module Platter
     end
 
     it 'should drop all non alpha numeric characters' do
-      Feature.new(:title => 'Title !@#$%with non alpha numeric +)(*&^characters').export_name.should eql "title_with_non_alpha_numeric_characters"      
+      Feature.new(:title => 'T1tle !@#$%with n0n alph4 numeric +)(*&^characters and numb3rs').export_name.should eql "t1tle_with_n0n_alph4_numeric_characters_and_numb3rs"      
     end
   end
 end
