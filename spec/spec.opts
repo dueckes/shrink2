@@ -1,5 +1,5 @@
 --colour
---format progress
+--format specdoc
 --loadby mtime
 --reverse
 --require spec/spec_helper.rb
