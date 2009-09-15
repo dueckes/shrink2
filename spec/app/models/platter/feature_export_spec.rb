@@ -9,6 +9,8 @@ module Platter
       @feature = Feature.new(:title => @title)
       @feature.lines <<  FeatureLine.new(:text => 'first feature line')
       @feature.lines <<  FeatureLine.new(:text => 'second feature line')
+      @feature.scenarios <<  Scenario.new(:title => 'first scenario')
+      @feature.scenarios <<  Scenario.new(:title => 'second scenario')
       @feature.export @base_dir
       @feature_file_contents = @feature_file.readlines.map &:chomp!
     end
@@ -21,15 +23,22 @@ module Platter
       @feature_file.parent.should eql @base_dir
     end
 
-    it 'should include the feature title in the feature file as the first line' do
-      @feature_file_contents[0].should eql "Feature: #{@title}"
+    it 'the file should contain the feature title' do
+      @feature_file_contents.should include "Feature: #{@title}"
     end
 
-    it 'should include the feature lines with spaces at the beginning of the file' do
+    it 'the file should include & indent feature lines' do
       @feature.lines.each do | feature_line |
         @feature_file_contents.should include "  #{feature_line.text}"
       end
     end
+
+    it 'the file should include scenarios' do
+      @feature.scenarios.each do | scenario |
+        @feature_file_contents.should include "Scenario: #{scenario.title}"
+      end
+    end
+    
   end
 
   describe Feature, '#export_name'  do

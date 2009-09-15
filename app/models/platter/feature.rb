@@ -12,6 +12,9 @@ module Platter
       File.open(file, 'w') do | file_contents |
         file_contents.puts "Feature: #{title}"
         lines.each { | line | file_contents.puts "  #{line.text}" }
+        scenarios.each do | scenario |
+          file_contents.puts "Scenario: #{scenario.title}"
+        end
       end
     end
 
