@@ -13,6 +13,10 @@ module Platter
         file_contents << "blah"
       end
     end
+
+    def export_name
+      title.downcase.gsub(/\s/, '_').gsub(/\W/, '')
+    end
   end
 
 end
