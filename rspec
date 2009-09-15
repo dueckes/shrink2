@@ -1,2 +1,2 @@
-spec -O $PWD/spec/spec.opts $*
-
+#!/usr/bin/env bash
+spec -O $PWD/spec/spec.opts $* 
