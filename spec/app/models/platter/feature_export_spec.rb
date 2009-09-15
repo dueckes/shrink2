@@ -3,17 +3,32 @@ module Platter
   describe Feature, '#export' do
 
     before :all do
-      @title = 'some_title'
+      @title = 'feature_title'
       @base_dir = Pathname.new(Dir.tmpdir)
-      Feature.new(:title => @title).export @base_dir
-
+      @feature_file = Pathname.new(@base_dir + "#{@title}.feature")
+      @feature = Feature.new(:title => @title)
+      @feature.lines <<  FeatureLine.new(:text => 'first feature line')
+      @feature.lines <<  FeatureLine.new(:text => 'second feature line')
+      @feature.export @base_dir
+      @feature_file_contents = @feature_file.readlines.map &:chomp!
     end
+    
     it 'should create a file matching the feature title ' do
-      Pathname.new(@base_dir + "#{@title}.feature").should exist
+      @feature_file.should exist
     end
     
     it 'the file should be in the directory passed as an argument' do
-      Pathname.new(@base_dir + "#{@title}.feature").parent.should eql @base_dir
+      @feature_file.parent.should eql @base_dir
+    end
+
+    it 'should include the feature title in the feature file as the first line' do
+      @feature_file_contents[0].should eql "Feature: #{@title}"
+    end
+
+    it 'should include the feature lines with spaces at the beginning of the file' do
+      @feature.lines.each do | feature_line |
+        @feature_file_contents.should include "  #{feature_line.text}"
+      end
     end
   end
 

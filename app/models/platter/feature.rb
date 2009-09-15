@@ -8,9 +8,10 @@ module Platter
     validates_presence_of :package, :title
 
     def export base_dir
-      file = Pathname.new(base_dir + "#{title}.feature")
+      file = Pathname.new(base_dir + "#{export_name}.feature")
       File.open(file, 'w') do | file_contents |
-        file_contents << "blah"
+        file_contents.puts "Feature: #{title}"
+        lines.each { | line | file_contents.puts "  #{line.text}" }
       end
     end
 
