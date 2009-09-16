@@ -1,50 +1,62 @@
-describe Platter::FeatureLine do
+module Platter
+  describe FeatureLine do
 
-  it "should have text" do
-    line = Platter::FeatureLine.new(:text => "Some Text")
+    it "should have text" do
+      line = FeatureLine.new(:text => "Some Text")
 
-    line.text.should eql("Some Text")
-  end
+      line.text.should eql("Some Text")
+    end
 
-  it "should belong to a feature" do
-    feature = Platter::Feature.new
+    it "should belong to a feature" do
+      feature = Feature.new
 
-    line = Platter::FeatureLine.new(:feature => feature)
+      line = FeatureLine.new(:feature => feature)
+
+      line.feature.should eql(feature)
+    end
+
+    it "should belong to a package" do
+      package = Package.new
+      feature = Feature.new(:package => package)
+
+      line = FeatureLine.new(:feature => feature)
+
+      line.package.should eql(package)
+    end
     
-    line.feature.should eql(feature)
-  end
+    context "#valid?" do
+  
+      describe "when text has been provided" do
 
-  it "should belong to a package" do
-    package = Platter::Package.new
-    feature = Platter::Feature.new(:package => package)
+        before(:each) do
+          @line = FeatureLine.new(:text => "Some Text")
+        end
 
-    line = Platter::FeatureLine.new(:feature => feature)
+        it "should return true" do
+          @line.should be_valid
+        end
 
-    line.package.should eql(package)
-  end
-
-  context "#valid?" do
-
-    describe "when text has been provided" do
-
-      before(:each) do
-        @line = Platter::FeatureLine.new(:text => "Some Text")
       end
 
-      it "should return true" do
-        @line.should be_valid
+      describe "when no text has been provided" do
+
+        before(:each) do
+          @line = FeatureLine.new
+        end
+
+        it "should return false" do
+          @line.should_not be_valid
+        end
+
       end
 
     end
+  
+    context "#as_text" do
 
-    describe "when no text has been provided" do
-
-      before(:each) do
-        @line = Platter::FeatureLine.new
-      end
-
-      it "should return false" do
-        @line.should_not be_valid
+      it "should return the text attribute" do
+        text = "feature text"
+        FeatureLine.new(:text => text).as_text.should eql text
       end
 
     end

@@ -10,14 +10,20 @@ module Platter
 
     validates_presence_of :package, :title
 
+
+    def as_text
+      text_lines = []
+      text_lines << "Feature: #{title}"
+      lines.map(&:as_text).each { |line_text| text_lines << "  #{line_text}" }
+      scenario_lines = scenarios.map(&:as_text)
+      text_lines << scenario_lines.join("\n\n") 
+      text_lines.join("\n")
+    end
+    
     def export base_dir
       file = Pathname.new(base_dir + "#{export_name}.feature")
       File.open(file, 'w') do | file_contents |
-        file_contents.puts "Feature: #{title}"
-        lines.each { | line | file_contents.puts "  #{line.text}" }
-        scenarios.each do | scenario |
-          file_contents.puts "Scenario: #{scenario.title}"
-        end
+        file_contents << as_text
       end
     end
 

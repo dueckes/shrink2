@@ -1,69 +1,80 @@
-describe Platter::Step do
+module Platter
+  describe Step do
 
-  it "should have text" do
-    step = Platter::Step.new(:text => "Some Text")
+    it "should have text" do
+      step = Step.new(:text => "Some Text")
 
-    step.text.should eql("Some Text")
-  end
+      step.text.should eql("Some Text")
+    end
 
-  it "should belong to a scenario" do
-    scenario = Platter::Scenario.new
+    it "should belong to a scenario" do
+      scenario = Scenario.new
 
-    step = Platter::Step.new(:scenario => scenario)
+      step = Step.new(:scenario => scenario)
 
-    step.scenario.should eql(scenario)
-  end
+      step.scenario.should eql(scenario)
+    end
 
-  it "should belong to a feature" do
-    feature = Platter::Feature.new
-    scenario = Platter::Scenario.new(:feature => feature)
+    it "should belong to a feature" do
+      feature = Feature.new
+      scenario = Scenario.new(:feature => feature)
 
-    step = Platter::Step.new(:scenario => scenario)
+      step = Step.new(:scenario => scenario)
 
-    step.feature.should eql(feature)
-  end
+      step.feature.should eql(feature)
+    end
 
-  it "should belong to a package" do
-    package = Platter::Package.new
-    feature = Platter::Feature.new(:package => package)
-    scenario = Platter::Scenario.new(:feature => feature)
+    it "should belong to a package" do
+      package = Package.new
+      feature = Feature.new(:package => package)
+      scenario = Scenario.new(:feature => feature)
 
-    step = Platter::Step.new(:scenario => scenario)
+      step = Step.new(:scenario => scenario)
 
-    step.package.should eql(package)
-  end
+      step.package.should eql(package)
+    end
 
-  it "should be a Platter::Cucumber::Ast::StepConverter" do
-    Platter::Step.include?(Platter::Cucumber::Ast::StepConverter).should be_true
-  end
+    it "should be a Platter::Cucumber::Ast::StepConverter" do
+      Platter::Step.include?(Platter::Cucumber::Ast::StepConverter).should be_true
+    end
 
-  context "#valid?" do
+    context "#valid?" do
 
-    describe "when text has been provided" do
+      describe "when text has been provided" do
 
-      before(:each) do
-        @step = Platter::Step.new(:text => "Some Text")
+        before(:each) do
+          @step = Step.new(:text => "Some Text")
+        end
+
+        it "should return true" do
+          @step.should be_valid
+
+        end
+
       end
 
-      it "should return true" do
-        @step.should be_valid
+      describe "when no text has been provided" do
+
+        before(:each) do
+          @step = Step.new
+        end
+
+        it "should return false" do
+          @step.should_not be_valid
+        end
 
       end
 
     end
 
-    describe "when no text has been provided" do
+    context "#as_text" do
 
-      before(:each) do
-        @step = Platter::Step.new
-      end
-
-      it "should return false" do
-        @step.should_not be_valid
+      it "should return the text" do
+        text = "this is a feature step"
+        Step.new(:text => text).as_text.should eql text
       end
 
     end
 
   end
-
 end

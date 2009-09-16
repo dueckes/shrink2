@@ -9,6 +9,10 @@ module Platter
     def package
       feature.package
     end
+
+    def as_text
+      text
+    end
     
   end
 

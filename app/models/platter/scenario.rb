@@ -13,7 +13,14 @@ module Platter
     def package
       feature.package
     end
-    
+
+    def as_text
+      puts steps.first.as_text unless steps.empty?
+      text_lines = []
+      text_lines << "Scenario: #{title}"
+      steps.map(&:as_text).each { |step_text| text_lines << "  #{step_text}"}
+      text_lines.join("\n")
+    end
   end
 
 end
