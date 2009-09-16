@@ -2,19 +2,19 @@ class PackagesController < ApplicationController
   layout "main", :only => :index
 
   def index
-    @packages = Platter::Package.roots
+    @root_package = Platter::Package.root
   end
 
   def new
-    @parent = params[:parent_id] ? Platter::Package.find(params[:parent_id]) : nil
+    establish_parent
   end
 
   def cancel_create
-    @parent = params[:parent_id] ? Platter::Package.find(params[:parent_id]) : nil
+    establish_parent
   end
 
   def create
-    @parent = params[:parent_id] ? Platter::Package.find(params[:parent_id]) : nil
+    establish_parent
     @package = Platter::Package.new(params[:package].merge(:parent => @parent))
     @package.save!
   end
@@ -42,6 +42,11 @@ class PackagesController < ApplicationController
 
   def destroy
     Platter::Package.destroy(params[:id])
+  end
+
+  private
+  def establish_parent
+    @parent = params[:parent_id] ? Platter::Package.find(params[:parent_id]) : Platter::Package.root
   end
 
 end

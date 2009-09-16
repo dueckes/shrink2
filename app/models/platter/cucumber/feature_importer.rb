@@ -5,6 +5,10 @@ module Platter
 
       class << self
 
+        def import_file(file_path)
+          Platter::Cucumber::FeatureFileReader.read_files(file_path).first
+        end
+
         def import_directory(directory_path)
           feature_per_file(directory_path).collect do |file, feature|
             relative_directory = File.dirname(file).delete(directory_path)

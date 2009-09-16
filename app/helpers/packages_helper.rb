@@ -5,8 +5,7 @@ module PackagesHelper
   end
 
   def nested_dom_id(symbol, parent=nil)
-    resolved_parent = parent || @parent
-    resolved_parent ? "#{dom_id(resolved_parent)}_#{symbol}" : symbol
+    "#{dom_id(parent || @parent)}_#{symbol}"
   end
 
 end

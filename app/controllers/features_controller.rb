@@ -44,9 +44,10 @@ class FeaturesController < ApplicationController
     end
   end
 
-  def import
-    feature = Platter::Cucumber::FeatureImporter.import_file(params[:file_path])
-    feature.save!
+  def import_file
+    @feature = Platter::Cucumber::FeatureImporter.import_file(params[:path])
+    @feature.package = Platter::Package.find(params[:package_id])
+    @feature.save!
   end
 
 end

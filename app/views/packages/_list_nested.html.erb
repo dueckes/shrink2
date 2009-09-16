@@ -1,6 +1,0 @@
-<%= render :partial => "packages/list_common", :locals => { :packages => package.children } %>
-<div id="<%= nested_dom_id(:new_package, package) %>">
-</div>
-<div id="<%= nested_dom_id(:add_package, package) %>">
-  <%= link_to_remote "Add Package", :url => { :action => :new, :parent_id => package.id }, :method => :get %>
-</div>

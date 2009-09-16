@@ -8,8 +8,8 @@ describe String do
         @string = ""
       end
 
-      it "should return an array containing an empty string" do
-        @string.as_directory_names.should eql([@string])
+      it "should return an empty array" do
+        @string.as_directory_names.should eql([])
       end
 
     end

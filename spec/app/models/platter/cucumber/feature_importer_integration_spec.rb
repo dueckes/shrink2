@@ -1,14 +1,13 @@
 describe Platter::Cucumber::FeatureImporter do
 
-  context "#import_directory" do
+  context "#import_file" do
 
     describe "integrating with real converters and the file system" do
 
       describe "when the directory has one feature file" do
 
         before(:all) do
-          @features = Platter::Cucumber::FeatureImporter.import_directory("#{RAILS_ROOT}/spec/resources")
-          @feature = @features.first
+          @feature = Platter::Cucumber::FeatureImporter.import_file("#{RAILS_ROOT}/spec/resources/simple.feature")
         end
 
         it "should parse a Platter::Feature from the feature file" do

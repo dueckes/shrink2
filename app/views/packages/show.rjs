@@ -1,3 +1,3 @@
 page.replace("#{dom_id(@package)}_expand_link", link_to_remote("Shrink", { :url => { :action => :shrink, :id => @package.id } , :method => :get }, { :id => "#{dom_id(@package)}_shrink_link" }))
-page.replace_html("#{dom_id(@package)}_children", :partial => "packages/list_nested", :locals => { :package => @package })
+page.replace_html("#{dom_id(@package)}_children", :partial => "packages/list", :locals => { :package => @package })
 page.show("#{dom_id(@package)}_children")
