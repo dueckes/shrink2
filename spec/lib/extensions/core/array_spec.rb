@@ -28,4 +28,12 @@ describe Array do
 
   end
 
+  context "#collect_with_index" do
+
+    it "should create an array composed of elements evaluated from a block accepting each element and the elements position" do
+      [3, 2, 1].collect_with_index { |element, i| "#{element}#{i}" }.should eql(%w(30 21 12))
+    end
+
+  end
+
 end

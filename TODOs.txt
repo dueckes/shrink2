@@ -1,6 +1,5 @@
 Longer Term:
 - Foreign key support
-- Remote Backup
 
 Next:
-- Focus on autocomplete text fields
+- MU: Integration tests for import_directory

@@ -6,6 +6,14 @@ Array.class_eval do
     hash
   end
 
+  def collect_with_index(&block)
+    array = []
+    self.each_with_index do |element, i|
+      array << block.call(element, i)
+    end
+    array
+  end
+
   private
   def element_to_hash(element, position, &hash_block)
     key, value = nil
