@@ -48,7 +48,4 @@ Spec::Runner.configure do |config|
   # == Notes
   #
   # For more information take a look at Spec::Runner::Configuration and Spec::Runner
-
-  #Not A Mock support
-  config.mock_with NotAMock::RspecMockFrameworkAdapter
 end

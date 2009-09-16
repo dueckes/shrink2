@@ -1,6 +1,8 @@
 module Platter
 
   class Step < ActiveRecord::Base
+    include Platter::Cucumber::Ast::StepConverter
+
     belongs_to :scenario, :class_name => "Platter::Scenario"
     acts_as_list :scope => :scenario
 

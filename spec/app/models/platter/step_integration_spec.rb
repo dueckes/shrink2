@@ -6,7 +6,7 @@ describe Platter::Step do
       @scenario = DatabaseModelFixture.create_scenario!
     end
 
-    describe "#create!" do
+    context "#create!" do
 
       it "should not require a position" do
         step = Platter::Step.create!(:text => "Some Text", :scenario => @scenario)

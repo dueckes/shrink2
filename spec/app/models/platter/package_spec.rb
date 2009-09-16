@@ -36,7 +36,7 @@ describe Platter::Package do
     @package.children.should eql(children)
   end
 
-  describe "#valid?" do
+  context "#valid?" do
 
     describe "when a name is established" do
 

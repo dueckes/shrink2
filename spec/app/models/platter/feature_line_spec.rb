@@ -23,7 +23,7 @@ describe Platter::FeatureLine do
     line.package.should eql(package)
   end
 
-  describe "#valid?" do
+  context "#valid?" do
 
     describe "when text has been provided" do
 

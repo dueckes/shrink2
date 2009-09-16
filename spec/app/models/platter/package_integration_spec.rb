@@ -6,7 +6,7 @@ describe Platter::Package do
       @package = DatabaseModelFixture.create_package!
     end
 
-    describe "#parent" do
+    context "#parent" do
 
       it "should be assignable" do
         parent = DatabaseModelFixture.create_package!(:name => "Parent Name")
@@ -19,7 +19,7 @@ describe Platter::Package do
 
     end
 
-    describe "#children" do
+    context "#children" do
 
       it "should be assignable" do
         children = (1..3).collect do |i|

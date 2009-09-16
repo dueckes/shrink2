@@ -33,7 +33,11 @@ describe Platter::Step do
     step.package.should eql(package)
   end
 
-  describe "#valid?" do
+  it "should be a Platter::Cucumber::Ast::StepConverter" do
+    Platter::Step.include?(Platter::Cucumber::Ast::StepConverter).should be_true
+  end
+
+  context "#valid?" do
 
     describe "when text has been provided" do
 

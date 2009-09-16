@@ -6,7 +6,7 @@ describe Platter::Feature do
       @feature = DatabaseModelFixture.create_feature!
     end
 
-    describe "#lines" do
+    context "#lines" do
 
       describe "when lines have been added" do
 
@@ -31,7 +31,7 @@ describe Platter::Feature do
 
     end
 
-    describe "#scenarios" do
+    context "#scenarios" do
 
       describe "when scenarios have been added" do
 

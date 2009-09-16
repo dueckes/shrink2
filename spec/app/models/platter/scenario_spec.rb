@@ -34,7 +34,11 @@ describe Platter::Scenario do
     scenario.package.should eql(package)
   end
 
-  describe "#valid?" do
+  it "should be a Platter::Cucumber::Ast::ScenarioConverter" do
+    Platter::Scenario.include?(Platter::Cucumber::Ast::ScenarioConverter).should be_true
+  end
+
+  context "#valid?" do
 
     before(:each) do
       @scenario = Platter::Scenario.new(:title => "Some Title")

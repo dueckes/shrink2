@@ -2,32 +2,35 @@ module Platter
   module Cucumber
     module Ast
 
-      class FeatureConverter
+      module FeatureConverter
 
-        def initialize(cucumber_ast_feature)
-          @cucumber_ast_feature = cucumber_ast_feature
+        def self.included(obj)
+          obj.extend(ClassMethods)
         end
 
-        def convert
-          feature = Platter::Feature.new(:title => parse_title)
-          parse_lines.each { |parsed_line| feature.lines << parsed_line }
-          feature
-        end
+        module ClassMethods
 
-        private
-        def parse_title
-          title = (colon_match = lines.first.match(/:(.*)$/)) ? colon_match[1] : lines.first
-          title.strip
-        end
+          def set_scenario_converter(converter)
+            @scenario_converter = converter
+          end
 
-        def parse_lines
-          lines[1..-1].collect { |line| Platter::FeatureLine.new(:text => line.strip) }
-        end
+          def scenario_converter
+            raise "scenario_converter must be established" if !@scenario_converter
+            @scenario_converter
+          end
 
-        def lines
-          @lines ||= @cucumber_ast_feature.name.split("\n").collect(&:strip)
-        end
+          def from(cucumber_ast_feature)
+            parser = FeatureParser.new(cucumber_ast_feature)
+            feature = Platter::Feature.new(:title => parser.title)
+            feature.lines.concat(
+                    parser.lines_text.collect { |line_text| Platter::FeatureLine.new(:text => line_text) })
+            feature.scenarios.concat(
+                    cucumber_ast_feature.feature_elements.collect { |scenario| scenario_converter.from(scenario) })
+            feature
+          end
 
+        end
+        
       end
 
     end

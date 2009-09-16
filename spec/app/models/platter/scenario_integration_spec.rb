@@ -6,7 +6,7 @@ describe Platter::Scenario do
       @feature = DatabaseModelFixture.create_feature!
     end
 
-    describe "#create!" do
+    context "#create!" do
 
       it "should not require a position" do
         scenario = Platter::Scenario.create!(:title => "Some Title", :feature => @feature)
@@ -16,7 +16,7 @@ describe Platter::Scenario do
 
     end
 
-    describe "#steps" do
+    context "#steps" do
 
       before(:each) do
         @scenario = DatabaseModelFixture.create_scenario!

@@ -3,15 +3,21 @@ module Platter
 
     class ImportService
 
-      def self.import_file(file_path)
-        features = []
-        step_mother = ::Cucumber::StepMother.new
-        step_mother.log = SilentLog.new
-        cucumber_ast_features = step_mother.load_plain_text_features([file_path])
-        cucumber_ast_features.each do |cucumber_ast_feature|
-          features << Platter::Cucumber::Ast::FeatureConverter.new(cucumber_ast_feature).convert
+      class << self
+
+        def import_file(file_path)
+          cucumber_ast_features = create_step_mother.load_plain_text_features([file_path])
+          features = cucumber_ast_features.collect { |cucumber_ast_feature| Platter::Feature.from(cucumber_ast_feature) }
+          features.empty? ? [] : features.first
         end
-        features.first
+
+        private
+        def create_step_mother
+          step_mother = ::Cucumber::StepMother.new
+          step_mother.log = SilentLog.new
+          step_mother
+        end
+
       end
 
     end

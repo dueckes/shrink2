@@ -38,7 +38,11 @@ describe Platter::Feature do
     feature.scenarios.should eql(scenarios)
   end
 
-  describe "#valid?" do
+  it "should be a Platter::Cucumber::Ast::FeatureConverter" do
+    Platter::Feature.include?(Platter::Cucumber::Ast::FeatureConverter).should be_true
+  end
+
+  context "#valid?" do
 
     before(:each) do
       @feature = Platter::Feature.new(:package => Platter::Package.new(:name => "Some package"), :title => "Some Title")

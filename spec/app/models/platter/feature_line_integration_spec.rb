@@ -6,7 +6,7 @@ describe Platter::FeatureLine do
       @feature = DatabaseModelFixture.create_feature!
     end
 
-    describe "#create!" do
+    context "#create!" do
 
       it "should not require a position" do
         feature_line = Platter::FeatureLine.create!(:text => "Some Text", :feature => @feature)
