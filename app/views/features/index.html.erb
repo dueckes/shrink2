@@ -1,4 +1,19 @@
 <h1><%= @package.name.capitalize %>: Features</h1>
+<ul>
+  <li id="menu-import"><a href="javascript:showImportForm();" title="import">import</a>
+    <div id="importform" style="display:none">
+      <div>
+      <form>
+        <p>This is the import form</p>
+        <fieldset>
+          <label for="somefield">Some field</label><input type="text" name="somefield" /><p />
+          <input type="submit" value="Submit" />
+        </fieldset>
+      </form>
+      </div>
+    </div>
+  </li>
+</ul>
 <div id="features">
   <% @package.features.each do |feature| -%>
     <%= render :partial => "features/show_shrunk_with_div", :locals => { :feature => feature } %>
