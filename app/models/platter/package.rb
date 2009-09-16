@@ -4,7 +4,28 @@ module Platter
     acts_as_tree :order => :name
     has_many :features, :class_name => "Platter::Feature"
 
-    validates_presence_of :name
+    validates_length_of :name, :maximum => 256
+
+    class << self
+
+      def find_or_create!(name)
+        package = nil
+        name.as_directory_names.each do |package_name|
+          package = self.find_or_create_by_name_and_parent!(package_name, package)
+        end
+        package
+      end
+
+      def find_or_create_by_name_and_parent!(name, parent)
+        package = self.find_by_name_and_parent_id(name, parent ? parent.id : nil)
+        if package.nil?
+          package = Platter::Package.create!(:name => name, :parent => parent)
+        end
+        package
+      end
+
+    end
+
   end
 
 end
