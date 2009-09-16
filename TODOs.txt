@@ -2,4 +2,4 @@ Longer Term:
 - Foreign key support
 
 Next:
-- MU: Integration tests for import_directory
+- MU: Import feature file via UI

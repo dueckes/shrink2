@@ -5,7 +5,8 @@
   </head>
   <body>
     <p>
-      Import
+      <%= image_tag("logo.png") %>
+      <%= link_to "Packages", packages_path %>
     </p>
     <% if flash[:error] -%>
       Error: <%= flash[:error] %>
