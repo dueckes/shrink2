@@ -94,20 +94,18 @@ module Platter
       end
 
       it 'should indent & include feature lines' do
-        pending
         feature = Feature.new
-        feature.lines << FeatureLine.stub_instance('as_text' => 'first feature line')
-        feature.lines << FeatureLine.stub_instance('as_text' => 'second feature line')
+        feature.lines << StubModelFixture.create_model(FeatureLine, :as_text => 'first feature line')
+        feature.lines << StubModelFixture.create_model(FeatureLine, :as_text => 'second feature line')
         text = feature.as_text
         text.should include '  first feature line'
         text.should include '  second feature line'
       end
 
       it 'should include scenarios' do
-        pending
         feature = Feature.new
-        feature.scenarios << Scenario.stub_instance('as_text' => 'first scenario')
-        feature.scenarios << Scenario.stub_instance('as_text' => 'second scenario')
+        feature.scenarios << StubModelFixture.create_model(Scenario, :as_text => 'first scenario')
+        feature.scenarios << StubModelFixture.create_model(Scenario, :as_text => 'second scenario')
         text = feature.as_text
         text.should include 'first scenario'
         text.should include 'second scenario'

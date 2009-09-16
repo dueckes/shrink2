@@ -11,8 +11,9 @@ module Platter
     def as_text
       text_lines = []
       text_lines << "Feature: #{title}"
-      lines.map(&:as_text).each { |line_text| text_lines << line_text }
-      scenarios.map(&:as_text).each { |scenario_text| text_lines << scenario_text }
+      lines.map(&:as_text).each { |line_text| text_lines << "  #{line_text}" }
+      scenario_lines = scenarios.map(&:as_text)
+      text_lines << scenario_lines.join("\n\n") 
       text_lines.join("\n")
     end
     
