@@ -6,7 +6,7 @@ module Platter
       class << self
 
         def import_file(file_path)
-          Platter::Cucumber::FeatureFileReader.read_files(file_path).first
+          Platter::Cucumber::FeatureFileReader.read(file_path).first
         end
 
         def import_directory(directory_path)
@@ -21,7 +21,7 @@ module Platter
         private
         def feature_per_file(directory_path)
           files = Dir.glob("#{directory_path}/**/*.feature")
-          features = Platter::Cucumber::FeatureFileReader.read_files(files)
+          features = Platter::Cucumber::FeatureFileReader.read(files)
           files.hasherize { |file, i| [file, features[i]] }
         end
 
