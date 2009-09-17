@@ -1,6 +1,6 @@
 class SilentLog
 
-  def debug(*args, &block)
+  def self.debug(*args, &block)
     # Intentionally do nothing
   end
 

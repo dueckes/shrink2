@@ -47,10 +47,8 @@ describe Platter::Cucumber::FeatureFileReader do
         Platter::Cucumber::FeatureFileReader.read(@files)
       end
 
-      it "should establish a SilentLog in the Cucumber::StepMother instance" do
-        silent_log = mock("SilentLog")
-        SilentLog.should_receive(:new).and_return(silent_log)
-        @step_mother.should_receive(:log=).with(silent_log)
+      it "should log via the SilentLog in the Cucumber::StepMother instance" do
+        @step_mother.should_receive(:log=).with(SilentLog)
 
         Platter::Cucumber::FeatureFileReader.read(@files)
       end

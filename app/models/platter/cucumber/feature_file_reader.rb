@@ -13,7 +13,7 @@ module Platter
         private
         def create_step_mother
           step_mother = ::Cucumber::StepMother.new
-          step_mother.log = SilentLog.new
+          step_mother.log = SilentLog
           step_mother
         end
         

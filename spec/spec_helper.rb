@@ -9,6 +9,8 @@ require 'spec/rails'
 # in ./support/ and its subdirectories.
 Dir.glob(File.expand_path(File.dirname(__FILE__) + "/support/**/*.rb")).each { |f| require(f) }
 
+require "#{RAILS_ROOT}/rake_initializer"
+
 Spec::Runner.configure do |config|
   # If you're not using ActiveRecord you should remove these
   # lines, delete config/database.yml and disable :active_record
