@@ -5,4 +5,4 @@ Questions:
 - Field Sets for all forms?
 
 Next:
-- MU: Import feature file via UI
+- MU: Introduce Rake task for importing directory
