@@ -1,6 +1,7 @@
-<h2><%= feature.title %></h2>
-<%= render :partial => "lines/list", :locals => { :feature => feature } %>
-<%= render :partial => "scenarios/list", :locals => { :feature => feature } %>
-<br/>
-<%= link_to_remote "Shrink", :update => dom_id(feature), :url => { :action => :shrink, :id => feature.id }, :method => :get %>&nbsp;
-<%= render :partial => "features/show_common", :locals => { :feature => feature } %>
+<% content_tag(:div, :class => "feature-name" ) do -%>
+  <%= link_to_remote feature.title, { :update => dom_id(feature), :url => { :action => :shrink, :id => feature.id }, :method => :get }, { :class => "list-title" } %>
+  <%= render :partial => "lines/list", :locals => { :feature => feature } %>
+  <%= render :partial => "scenarios/list", :locals => { :feature => feature } %>
+  <br/>
+  <%= render :partial => "features/show_common", :locals => { :feature => feature } %>
+<% end -%>

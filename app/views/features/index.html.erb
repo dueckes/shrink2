@@ -1,12 +1,15 @@
 <h1>FEATURES: <%= @package.name.capitalize %></h1>
-<div id="features">
+<ul id="features">
   <% @package.features.each do |feature| -%>
     <%= render :partial => "features/show_shrunk_with_div", :locals => { :feature => feature } %>
   <% end -%>
+</ul>
+<% unless @package.features.empty? -%>
   <br style="clear:left;" />
-  <div id="new_feature">
-  </div>
-  <div id="add_feature">
-    <%= link_to_remote "Add Feature", :url => new_package_feature_path(@package), :method => :get %>
-  </div>
+  <br style="clear:left;" />
+<% end -%>
+<div id="new_feature">
+</div>
+<div id="add_feature">
+  <%= link_to_remote "Add Feature", :url => new_package_feature_path(@package), :method => :get %>
 </div>
