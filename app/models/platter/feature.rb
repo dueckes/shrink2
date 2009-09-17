@@ -10,6 +10,8 @@ module Platter
 
     validates_presence_of :package, :title
 
+    UPLOAD_DIRECTORY = "#{RAILS_ROOT}/tmp/uploaded_features"
+
     def as_text
       text_lines = []
       text_lines << "Feature: #{title}"

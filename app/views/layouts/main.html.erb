@@ -27,14 +27,9 @@
             <li id="menu-packages">
               <%= link_to "Packages", packages_path, :title => "Packages" %>
             </li>
-            <li id="menu-import">
-              <%= link_to "Import Feature", "javascript:showImportForm();", :title => "Import Feature" %>
-              <div id="importform" style="display:none">
-                <div>
-                  <%= render :partial => "features/form_import" %>
-                </div>
-              </div>
-            </li>
+            <% if controller.class.render_menu_extras? -%>
+              <%= render :partial => "#{controller.controller_name}/menu_extras" %>
+            <% end -%>
           </ul>
         </div>
       </div>

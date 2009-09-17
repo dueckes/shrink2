@@ -7,4 +7,13 @@ class ApplicationController < ActionController::Base
 
   # Scrub sensitive parameters from your log
   # filter_parameter_logging :password
+
+  def self.render_menu_extras(flag)
+    @render_menu_extras = flag
+  end
+
+  def self.render_menu_extras?
+    !!@render_menu_extras
+  end
+
 end

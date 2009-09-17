@@ -1,7 +1,9 @@
-<form>
-  <p>This is the import form</p>
-    <fieldset>
-      <label for="somefield">Some field</label><input type="text" name="somefield" /><p />
-      <input type="submit" value="Submit" />
-    </fieldset>
-</form>
+<% form_tag({ :action => :import, :package_id => @package.id }, { :multipart => true, :target => "upload_frame" }) do -%>
+  <% field_set_tag do -%>
+    <%= label(:feature_file, "Feature To Upload") %><%= file_field_tag(:feature_file) %>
+    <br style="clear:left;" />
+    <br style="clear:left;" />
+    <%= submit_tag "Import" %>
+  <% end -%>
+<% end -%>
+<iframe id="upload_frame" name="upload_frame" style="display: none"></iframe>

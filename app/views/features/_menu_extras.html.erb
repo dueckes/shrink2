@@ -1,0 +1,8 @@
+<li id="menu-import">
+  <%= link_to "Import Feature", "javascript:showImportForm();", :title => "Import Feature" %>
+  <div id="importform" style="display:none">
+    <div>
+      <%= render :partial => "features/form_import" %>
+    </div>
+  </div>
+</li>
