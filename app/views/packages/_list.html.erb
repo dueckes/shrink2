@@ -1,6 +1,7 @@
-<% package.children.each do |package| -%>
-  <%= render :partial => "packages/show_with_div", :locals => { :package => package } %>
+<% package.children.each do |child_package| -%>
+  <%= render :partial => "packages/show_with_div", :locals => { :package => child_package } %>
 <% end -%>
+<br style="clear:left;" />
 <div id="<%= nested_dom_id(:new_package, package) %>">
 </div>
 <div id="<%= nested_dom_id(:add_package, package) %>">
