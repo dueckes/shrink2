@@ -8,6 +8,7 @@ class ApplicationController < ActionController::Base
   # Scrub sensitive parameters from your log
   # filter_parameter_logging :password
 
+  # TODO Improve on this approach
   def self.render_menu_extras(flag)
     @render_menu_extras = flag
   end

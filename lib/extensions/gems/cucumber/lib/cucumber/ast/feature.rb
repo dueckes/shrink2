@@ -1,12 +1,15 @@
-module Cucumber
-  module Ast
+module Platter
+  module Cucumber
+    module Ast
+      module Feature
 
-    # Patch description
-    # Exposes feature_elements (aka scenarios)
-    #
-    Feature.instance_eval do
-      attr_reader :feature_elements
+        def self.included(feature)
+          feature.instance_eval do
+            attr_reader :feature_elements
+          end
+        end
+
+      end
     end
-
   end
 end

@@ -1,12 +1,17 @@
-module Cucumber
-  module Ast
+module Platter
+  module Cucumber
+    module Ast
 
-    # Patch description
-    # Exposes steps
-    #
-    Scenario.instance_eval do
-      attr_reader :steps
+      module Scenario
+
+        def self.included(scenario)
+          scenario.instance_eval do
+            attr_reader :steps
+          end
+        end
+
+      end
+
     end
-
   end
 end

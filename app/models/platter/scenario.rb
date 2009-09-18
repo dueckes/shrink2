@@ -1,6 +1,6 @@
 module Platter
 
-  class Scenario < ActiveRecord::Base
+  class Scenario < ::ActiveRecord::Base
     include Platter::Cucumber::Ast::ScenarioConverter
     set_step_converter(Platter::Step)
 

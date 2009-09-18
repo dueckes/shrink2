@@ -1,6 +1,6 @@
 module Platter
 
-  class FeatureLine < ActiveRecord::Base
+  class FeatureLine < ::ActiveRecord::Base
     belongs_to :feature, :class_name => "Platter::Feature"
     acts_as_list :scope => :feature
 

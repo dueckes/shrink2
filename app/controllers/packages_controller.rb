@@ -28,7 +28,7 @@ class PackagesController < ApplicationController
     if params[:commit] == "Update"
       @package = Platter::Package.find(params[:id])
       @package.update_attributes!(params[:package])
-      render(:partial => "packages/show", :locals => { :package => @package})
+      render(:partial => "packages/show_wtihout_li", :locals => { :package => @package})
     end
   end
 
@@ -41,7 +41,8 @@ class PackagesController < ApplicationController
   end
 
   def destroy
-    Platter::Package.destroy(params[:id])
+    @package = Platter::Package.find(params[:id])
+    @package.destroy
   end
 
   private

@@ -1,4 +1,4 @@
 page.hide(nested_dom_id(:new_package))
 page.replace_html(nested_dom_id(:new_package), "")
-page.insert_html(:before, nested_dom_id(:new_package), :partial => "packages/show_with_div", :locals => { :package => @package })
+page.insert_html(:bottom, nested_dom_id(:children), :partial => "packages/show_with_li", :locals => { :package => @package })
 page.show(nested_dom_id(:add_package))

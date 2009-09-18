@@ -6,4 +6,8 @@ module ApplicationHelper
     content_tag_for(:li, record, *args, &block)
   end
 
+  def pad_after_list(array)
+    array.empty? ? "" : "<br style='clear:left;' /><br style='clear:left;' />"
+  end
+
 end

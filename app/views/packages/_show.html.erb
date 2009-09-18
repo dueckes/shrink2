@@ -1,8 +1,0 @@
-<h2><%= package.name %></h2>
-<%= expand_link(package) %>&nbsp;
-<%= link_to "Features", package_features_path(package) %>&nbsp;
-<%= link_to_remote "Edit", :update => dom_id(package), :url => edit_package_path(package), :method => :get %>&nbsp;
-<%= link_to_remote "Delete", :confirm => "Are you sure you want to delete this package?", :loading => visual_effect(:fade, dom_id(package)), :url => package_path(package), :method => :delete %>&nbsp;
-<div id="<%= dom_id(package) %>_children" style="display: none;">
-</div>
-<br/>

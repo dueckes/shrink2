@@ -1,6 +1,6 @@
 module Platter
 
-  class Feature < ActiveRecord::Base
+  class Feature < ::ActiveRecord::Base
     include Platter::Cucumber::Ast::FeatureConverter
     set_scenario_converter(Platter::Scenario)
 
