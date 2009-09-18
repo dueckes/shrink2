@@ -1,5 +1,5 @@
 class FeaturesController < ApplicationController
-  layout "main", :only => :index, :menu_extras => true
+  layout "main", :only => :index, :extra_menu_items => true
 
   def index
     @package = Platter::Package.find(params[:package_id])

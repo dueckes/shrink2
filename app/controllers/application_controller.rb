@@ -8,13 +8,19 @@ class ApplicationController < ActionController::Base
   # Scrub sensitive parameters from your log
   # filter_parameter_logging :password
 
-  # TODO Improve on this approach
-  def self.render_menu_extras(flag)
-    @render_menu_extras = flag
-  end
+  class << self
 
-  def self.render_menu_extras?
-    !!@render_menu_extras
+    def layout_with_menu_support(template_name, conditions={}, auto=false)
+      resolved_conditions = {}.merge(conditions)
+      @render_extra_menu_items = resolved_conditions.delete(:extra_menu_items)
+      layout_without_menu_support(template_name, resolved_conditions, auto)
+    end
+    alias_method_chain :layout, :menu_support
+
+    def render_extra_menu_items?
+      !!@render_extra_menu_items
+    end
+
   end
 
 end

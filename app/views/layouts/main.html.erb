@@ -27,8 +27,8 @@
             <li id="menu-packages">
               <%= link_to "Packages", packages_path, :title => "Packages" %>
             </li>
-            <% if controller.class.render_menu_extras? -%>
-              <%= render :partial => "#{controller.controller_name}/menu_extras" %>
+            <% if controller.class.render_extra_menu_items? -%>
+              <%= render :partial => "#{controller.controller_name}/menu_items" %>
             <% end -%>
           </ul>
         </div>
