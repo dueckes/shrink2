@@ -1,9 +1,9 @@
 <h1>FEATURES: <%= @package.name.capitalize %></h1>
-<% content_tag(:ul, :id => :features) do -%>
+<ul id="features">
   <% @package.features.each do |feature| -%>
     <%= render :partial => "features/show_shrunk_with_li", :locals => { :feature => feature } %>
   <% end -%>
-<% end -%>
+</ul>
 <%= pad_after_list(@package.features) -%>
 <div id="new_feature">
 </div>

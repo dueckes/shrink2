@@ -1,8 +1,8 @@
-<div id="<%= dom_id(scenario, :steps) %>">
+<ul id="<%= dom_id(scenario, :steps) %>">
   <% scenario.steps.each do |step| -%>
-    <%= render :partial => "steps/show_with_div", :locals => { :step => step } %>
+    <%= render :partial => "steps/show_with_li", :locals => { :step => step } %>
   <% end -%>
-</div>
+</ul>
 <div id="<%= dom_id(scenario, :new_step) %>">
 </div>
 <div id="<%= dom_id(scenario, :add_step) %>">

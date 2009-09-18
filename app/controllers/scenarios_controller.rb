@@ -31,9 +31,8 @@ class ScenariosController < ApplicationController
   end
 
   def destroy
-    Platter::Scenario.transaction do
-      Platter::Scenario.destroy(params[:id])
-    end
+    @scenario = Platter::Scenario.find(params[:id])
+    @scenario.destroy
   end
 
 end

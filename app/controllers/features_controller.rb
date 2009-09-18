@@ -19,6 +19,19 @@ class FeaturesController < ApplicationController
     @feature.save!
   end
 
+  def import
+    responds_to_parent do
+      @feature = Platter::Cucumber::FeatureImporter.import_file(write_feature_file(params[:feature_file]))
+      @feature.package = Platter::Package.find(params[:package_id])
+      @feature.save!
+      render(:update) do |page|
+        page.insert_html(:bottom, :features, :partial => "features/show_shrunk_with_li", :locals => { :feature => @feature })
+        page.visual_effect(:toggle_blind, "importform")
+        page["feature_file"].clear
+      end
+    end
+  end
+
   def shrink
     @feature = Platter::Feature.find(params[:id])
   end
@@ -40,22 +53,8 @@ class FeaturesController < ApplicationController
   end
 
   def destroy
-    Platter::Feature.transaction do
-      Platter::Feature.destroy(params[:id])
-    end
-  end
-
-  def import
-    responds_to_parent do
-      @feature = Platter::Cucumber::FeatureImporter.import_file(write_feature_file(params[:feature_file]))
-      @feature.package = Platter::Package.find(params[:package_id])
-      @feature.save!
-      render(:update) do |page|
-        page.insert_html(:bottom, :features, :partial => "features/show_shrunk_with_li", :locals => { :feature => @feature })
-        page.visual_effect(:toggle_blind, "importform")
-        page["feature_file"].clear
-      end
-    end
+    @feature = Platter::Feature.find(params[:id])
+    @feature.destroy
   end
 
   private

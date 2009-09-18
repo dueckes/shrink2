@@ -21,12 +21,6 @@ class StepsController < ApplicationController
     @step.save!
   end
 
-  def destroy
-    Platter::Step.transaction do
-      Platter::Step.destroy(params[:id])
-    end
-  end
-
   def edit
     @step = Platter::Step.find(params[:id])
   end
@@ -39,4 +33,9 @@ class StepsController < ApplicationController
     render(:action => :show)
   end
   
+  def destroy
+    @step = Platter::Step.find(params[:id])
+    @step.destroy
+  end
+
 end

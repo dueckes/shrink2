@@ -1,8 +1,8 @@
-<% content_tag(:ul, :id => "#{dom_id(package)}_children") do -%>
+<ul id="<%= dom_id(package) %>_children">
   <% package.children.each do |child_package| -%>
     <%= render :partial => "packages/show_with_li", :locals => { :package => child_package } %>
   <% end -%>
-<% end -%>
+</ul>
 <%= pad_after_list(package.children) -%>
 <div id="<%= nested_dom_id(:new_package, package) %>">
 </div>

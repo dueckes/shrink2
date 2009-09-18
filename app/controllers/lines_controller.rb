@@ -34,9 +34,8 @@ class LinesController < ApplicationController
   end
 
   def destroy
-    Platter::FeatureLine.transaction do
-      Platter::FeatureLine.destroy(params[:id])
-    end
+    @line = Platter::FeatureLine.find(params[:id])
+    @line.destroy
   end
 
 end
