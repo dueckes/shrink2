@@ -41,7 +41,7 @@ class PlatterFormBuilder < ActionView::Helpers::FormBuilder
   end
 
   def text_field_tag_options(field_as_symbol)
-    { :size => 256, :maxlength => 256, :id => "#{element_id_prefix}_#{field_as_symbol}" }
+    { :size => 80, :maxlength => 256, :id => "#{element_id_prefix}_#{field_as_symbol}" }
   end
 
 end

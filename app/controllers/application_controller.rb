@@ -10,15 +10,8 @@ class ApplicationController < ActionController::Base
 
   class << self
 
-    def layout_with_menu_support(template_name, conditions={}, auto=false)
-      resolved_conditions = {}.merge(conditions)
-      @render_extra_menu_items = resolved_conditions.delete(:extra_menu_items)
-      layout_without_menu_support(template_name, resolved_conditions, auto)
-    end
-    alias_method_chain :layout, :menu_support
-
     def render_extra_menu_items?
-      !!@render_extra_menu_items
+      @render_extra_menu_items ||= File.exists?("#{RAILS_ROOT}/app/views/#{self.controller_name}/_menu_items.html.erb")
     end
 
   end

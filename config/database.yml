@@ -23,6 +23,6 @@ test:
 
 production:
   <<: *common
-  username: platter
+  username: kunal_platter
   password: pl4tt3r
   database: kunal_platter

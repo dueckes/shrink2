@@ -1,9 +1,9 @@
 describe ":import" do
 
-  context ":directory" do
+  context ":features" do
 
     before(:each) do
-      @task = Rake::Task["import:directory"]
+      @task = Rake::Task["import:features"]
       SimpleLog.stub!(:info)
     end
 
@@ -38,7 +38,7 @@ describe ":import" do
       end
 
       it "should raise an error" do
-        lambda { @task.execute }.should raise_error("path must be provided")
+        lambda { @task.execute }.should raise_error("path to feature directory must be provided")
       end
 
     end
