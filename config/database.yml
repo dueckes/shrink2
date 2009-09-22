@@ -21,8 +21,16 @@ test:
   password: platter_test
   database: platter_test
 
+
+showcase:
+  <<: *common
+  username: kunal_platter
+  password: pl4tt3r
+  database: kunal_showcase
+
 production:
   <<: *common
   username: kunal_platter
   password: pl4tt3r
   database: kunal_platter
+  
