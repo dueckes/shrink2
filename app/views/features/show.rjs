@@ -1,0 +1,2 @@
+page.replace_html(dom_id(@feature), :partial => "features/show_expanded", :locals => { :feature => @feature })
+page["#{dom_id(@feature)}_details"].addClassName("expanded")

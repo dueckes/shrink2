@@ -1,221 +1,312 @@
-/*** TAGS  ***/
-
+/*** TAGS ***/
 body {
-    background-color: #ffffff;
-    font-family: Helvetica, "Lucida Grande", "Trebuchet MS", "Sans-Serif";
-    font-size: 0.8em;
-    line-height: 1.53em;
-	color: #202020;
-    margin: 0 40px;
-    padding: 0;
+  background-color: #ffffff;
+  font-family: Helvetica, "Lucida Grande", "Trebuchet MS", "Sans-Serif";
+  font-size: 0.8em;
+  line-height: 1.53em;
+  color: #202020;
+  margin: 0 40px;
+  padding: 0;
 }
 
 a {
-    color: #32bd7a;
+  color: #32bd7a;
 }
 
 abbr {
-    border-bottom: 1px dashed;
-    cursor:help;
+  border-bottom: 1px dashed;
+  cursor: help;
 }
 
 h1, h2, h3 {
-    font-family: "Trebuchet MS", Tahoma, Verdana, Arial;
-    padding-top: 10px;
+  font-family: "Trebuchet MS", Tahoma, Verdana, Arial;
+  padding-top: 10px;
 }
 
 h1 {
-    font-size: 1.8em;
-    margin-bottom: 40px;
+  font-size: 1.8em;
+  margin-bottom: 40px;
 }
 
 h2 {
-    font-size: 1.3em;
-    margin-top: 15px;
-    padding-bottom: 5px;
+  font-size: 1.3em;
+  margin-top: 15px;
+  padding-bottom: 5px;
 }
 
-
 h3 {
-    padding-top: 0;
-    color: #6c9301;
+  padding-top: 0;
+  color: #6c9301;
 }
 
 input, select, textarea {
-    border-width: 1px;
-    border-color: #cccccc;
-    vertical-align: middle;
-    margin-right: 5px;
+  border-width: 1px;
+  border-color: #cccccc;
+  vertical-align: middle;
+  margin-right: 5px;
 }
 
 /*** NAMED ELEMENTS  ***/
 #container {
-	width: 100%;
-	margin: auto;
-	background-color: #fafdfc;
+  width: 100%;
+  margin: auto;
+  background-color: #fafdfc;
 }
 
 #header {
-    height: 126px;
-    background: url(../images/bg-header.png) top left repeat-x;
+  height: 126px;
+  background: url(../images/bg-header.png) top left repeat-x;
 }
 
 #logo {
-	padding-top: 17px;
-	padding-left: 23px;
-	height: 57px;
+  padding-top: 17px;
+  padding-left: 23px;
+  height: 57px;
 }
 
 #menu {
-    min-height: 36px;
-    vertical-align: middle;
-    text-transform: uppercase;
-    padding-left: 13px;
+  min-height: 36px;
+  vertical-align: middle;
+  text-transform: uppercase;
+  padding-left: 13px;
 }
 
 #menu ul {
-	float: right;
-    margin: 0;
-    font-family: "Trebuchet MS";
-    display: block;
-    padding: 0;
-    list-style: none;
-    margin-top: 5px;
+  float: right;
+  margin: 0;
+  font-family: "Trebuchet MS";
+  display: block;
+  padding: 0;
+  list-style: none;
+  margin-top: 5px;
 }
 
 #menu li {
-    float: left;
-    position: relative;
+  float: left;
+  position: relative;
 }
 
-#menu li:hover, #menu li.current  {
-	background-color: #69e7aa;
+#menu li:hover, #menu div.expanded {
+  background-color: #69e7aa;
 }
 
 #menu li a {
-    color: #fff;
-    text-decoration: none;
-    height: 22px;
-    display: block;
-	padding: 5px 10px;
-	line-height: 22px;
+  color: #fff;
+  text-decoration: none;
+  height: 22px;
+  display: block;
+  padding: 5px 10px;
+  line-height: 22px;
 }
-
-#features {
-	border-top: 1px solid #ccc;
-	float: left;
-	width: 100%;
-}
-
-#features ul {
-	border-top: 1px solid #ccc;
-}
-
-#features li {
-	float: left;
-	width: 100%;
-	border-bottom: 1px solid #ccc;
-}
-
-#features li div.feature-name {
-	border-left: 1px solid #ccc;
-	border-right: 1px solid #ccc;
-	background: url(../images/bg-features.png) top left repeat-x;
-}
-
-#features li div.feature-details div {
-	margin: 10px 55px 5px;
-	background-color: #fff;
-	padding: 10px;
-}
-
-#features li a.list-title {
-	padding: 13px;
-	display: block;
-	text-decoration: none;
-	padding-left: 44px;
-	height: 34px;
-	line-height: 17px;
-	margin-left: 13px;
-	font-size: 110%;
-	color: #202020;
-	font-family: "Trebuchet MS";
-}
-
-#features li a.list-title .editText {font-weight:bold;}
-
-#features li a:hover, #features li.current a.list-title:hover {text-decoration: none; color: #5d5d5d}
-
-#features li a.list-title span.condition {text-decoration: none; color: #5d5d5d; font-size: 70%; font-style: italic; font-family: "Helvetica";}
-
-#features ul {border-top: 1px solid #ccc;}
-
-#features li li {margin: 0 10%; width: 80%; padding: 13px; background-color: #fff;	border-left: 1px solid #ccc; border-right: 1px solid #ccc; }
-
-#features li li a.list-title {float: left;}
-#features li li div.row-actions {width: 245px; float: right; padding-top: 6px; padding-right: 15px; text-align: right;}
-#features li li div.row-actions a:hover {color: #48a7eb;}
-
-#features li li a.list-title, #features li.current li a.list-title {margin-left: 20px; color: #3075da ;}
-
-#features li.current a.list-title, #features li li.current a.list-title  {color: #000;}
-
-#features li a.list-title {background: url(../images/icon-arrow-closed-off.png) center left no-repeat ;}
-#features li a.list-title:hover {background: url(../images/icon-arrow-closed-on.png) center left no-repeat;}
-#features li.current a.list-title {background: url(../images/icon-arrow-open-off.png) center left no-repeat;}
-#features li.current a.list-title:hover{background: url(../images/icon-arrow-open-on.png) center left no-repeat;}
-#features li.current li a.list-title {background: url(../images/icon-arrow-closed-off.png) center left no-repeat;}
-#features li.current li a.list-title:hover{background: url(../images/icon-arrow-closed-on.png) center left no-repeat;}
-
-#features li li a.list-title {background: url(../images/icon-arrow-closed-off.png) center left no-repeat;}
-#features li li a.list-title:hover {background: url(../images/icon-arrow-closed-on.png) center left no-repeat;}
-#features li li.current a.list-title {background: url(../images/icon-arrow-open-off.png) center left no-repeat; !important}
-#features li li.current a.list-title:hover{background: url(../images/icon-arrow-open-on.png) center left no-repeat; !important}
-#features li.current li.current a.list-title {background: url(../images/icon-arrow-open-off.png) center left no-repeat; !important}
-#features li.current li.current a.list-title:hover{background: url(../images/icon-arrow-open-on.png) center left no-repeat; !important}
 
 #content {
-    width: auto;
-    padding: 30px 23px;
-    border-left: 1px solid #f6f5f5;
-    border-right: 1px solid #f6f5f5;
+  width: auto;
+  padding: 30px 23px;
+  border-left: 1px solid #f6f5f5;
+  border-right: 1px solid #f6f5f5;
 }
 
 #footer {
-	background-color: #32bd7a;
-    clear: both;
-    min-height: 23px;
-    font-size: 80%;
-    color: #fff;
-    padding: 10px 23px 10px 23px;
+  background-color: #32bd7a;
+  clear: both;
+  min-height: 23px;
+  font-size: 80%;
+  color: #fff;
+  padding: 10px 23px 10px 23px;
 }
 
 #footer a {
-    color: #474747;
+  color: #474747;
 }
 
 #importform {
-	position: absolute;
-	top: 32px;
-	right: 0;
-	background-color: transparent;
+  position: absolute;
+  top: 32px;
+  right: 0;
+  background-color: transparent;
 }
 
 #importform div {
-	width: 250px;
-	height: 120px;
-	background-color: #69e7aa;
-	color: #fff;
-	text-transform: none;
+  width: 250px;
+  height: 120px;
+  background-color: #69e7aa;
+  color: #fff;
+  text-transform: none;
 }
 
 #importform form {
-	padding: 20px;
+  padding: 20px;
 }
 
 /*** CLASSES ***/
-.text-only {
-	display: none;
+.root_list {
+  border-top: 1px solid #ccc;
+  float: left;
+  width: 100%;
 }
 
-.editText {font-style: italic; padding: 2px;}
+.root_list li {
+  border-right: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  border-left: 1px solid #ccc;
+  float: left;
+  width: 100%;
+}
+
+.root_list li div.root-element-name {
+  background: url(../images/bg-root-element.png) left top repeat-x;
+}
+
+.root_list li div.root-element-details div {
+  margin: 10px 55px 5px;
+  background-color: #fff;
+  padding: 10px;
+}
+
+.root_list li a {
+  display: block;
+  float: left;
+  padding: 5px;
+  padding-top: 30px;
+  padding-bottom: 20px;
+  font-size: 175%;
+}
+
+.root_list li a.list-title {
+  padding-left: 44px;
+  padding-right: 44px;
+  text-decoration: none;
+  height: 25px;
+  line-height: 17px;
+  margin-left: 8px;
+  color: #202020;
+  font-family: "Trebuchet MS";
+}
+
+.root_list li a.list-title .edit-text {
+  font-weight: bold;
+}
+
+.root_list li a:hover, .root_list div.expanded a.list-title:hover {
+  text-decoration: none;
+  color: #5d5d5d
+}
+
+.root_list li a.list-title span.condition {
+  text-decoration: none;
+  color: #5d5d5d;
+  font-size: 70%;
+  font-style: italic;
+  font-family: "Helvetica";
+}
+
+.root_list li li {
+  margin: 0 2% 0 2%;
+  border: none;
+  width: 90%;
+  padding: 13px;
+  background-color: #fff;
+}
+
+.root_list li li a.list-title {
+  float: left;
+}
+
+.root_list li li div.row-actions {
+  width: 245px;
+  float: right;
+  padding-top: 6px;
+  padding-right: 15px;
+  text-align: right;
+}
+
+.root_list li li div.row-actions a:hover {
+  color: #48a7eb;
+}
+
+.root_list li li a.list-title, .root_list div.expanded li a.list-title {
+  margin-left: 20px;
+  color: #000;
+}
+
+.root_list div.expanded a.list-title, .root_list li div.expanded a.list-title {
+  color: #000;
+}
+
+.root_list li a.list-title {
+  background: url(../images/icon-arrow-shrunk-off.png) center left no-repeat;
+}
+
+.root_list li a.list-title:hover {
+  background: url(../images/icon-arrow-shrunk-on.png) center left no-repeat;
+}
+
+.root_list div.expanded a.list-title {
+  background: url(../images/icon-arrow-expanded-off.png) center left no-repeat;
+}
+
+.root_list div.expanded a.list-title:hover {
+  background: url(../images/icon-arrow-expanded-on.png) center left no-repeat;
+}
+
+.root_list div.expanded li a.list-title {
+  background: url(../images/icon-arrow-shrunk-off.png) center left no-repeat;
+}
+
+.root_list div.expanded li a.list-title:hover {
+  background: url(../images/icon-arrow-shrunk-on.png) center left no-repeat;
+}
+
+.root_list li li a.list-title {
+  background: url(../images/icon-arrow-shrunk-off.png) center left no-repeat;
+}
+
+.root_list li li a.list-title:hover {
+  background: url(../images/icon-arrow-shrunk-on.png) center left no-repeat;
+}
+
+.root_list li div.expanded a.list-title {
+  background: url(../images/icon-arrow-expanded-off.png) center left no-repeat;
+!important
+}
+
+.root_list li div.expanded a.list-title:hover {
+  background: url(../images/icon-arrow-expanded-on.png) center left no-repeat;
+!important
+}
+
+.root_list div.expanded div.expanded a.list-title {
+  background: url(../images/icon-arrow-expanded-off.png) center left no-repeat;
+!important
+}
+
+.root_list div.expanded div.expanded a.list-title:hover {
+  background: url(../images/icon-arrow-expanded-on.png) center left no-repeat;
+!important
+}
+
+.text-only {
+  display: none;
+}
+
+.edit-text {
+  display: block;
+  float: left;
+  font-style: italic;
+  padding: 2px;
+}
+
+.inner_list li, .leaf_list li {
+  font-size: 140%;
+}
+
+.inner_list li a, .leaf_list li a {
+  display: block;
+  float: left;
+  padding: 0 5px 0 5px;
+  font-size: 100%;
+}
+
+.inner_list li li {
+  font-size: 100%;
+}

@@ -84,7 +84,15 @@ namespace :spec do
     t.spec_files = FileList['vendor/plugins/**/spec/**/*_spec.rb'].exclude('vendor/plugins/rspec/*')
   end
 
-  [:models, :controllers, :views, :helpers, :lib, :integration].each do |sub|
+  [:models, :controller, :views].each do |sub|
+    desc "Run the code examples in spec/app/#{sub}"
+    Spec::Rake::SpecTask.new(sub => spec_prereq) do |t|
+      t.spec_opts = ['--options', "\"#{RAILS_ROOT}/spec/spec.opts\""]
+      t.spec_files = FileList["spec/app/#{sub}/**/*_spec.rb"]
+    end
+  end
+
+  [:helpers, :lib, :integration].each do |sub|
     desc "Run the code examples in spec/#{sub}"
     Spec::Rake::SpecTask.new(sub => spec_prereq) do |t|
       t.spec_opts = ['--options', "\"#{RAILS_ROOT}/spec/spec.opts\""]

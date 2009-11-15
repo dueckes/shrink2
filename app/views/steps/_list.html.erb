@@ -1,10 +1,10 @@
-<ul id="<%= dom_id(scenario, :steps) %>">
+<ul id="<%= dom_id(scenario, :steps) %>" class="leaf_list">
   <% scenario.steps.each do |step| -%>
     <%= render :partial => "steps/show_with_li", :locals => { :step => step } %>
   <% end -%>
+  <li id="<%= dom_id(scenario, :new_step) %>" style="display: none;">
+  </li>
+  <li id="<%= dom_id(scenario, :add_step) %>">
+    <%= link_to_remote("Add Step", :url => new_package_feature_scenario_step_path(scenario.package, scenario.feature, scenario), :method => :get) %>
+  </li>
 </ul>
-<div id="<%= dom_id(scenario, :new_step) %>">
-</div>
-<div id="<%= dom_id(scenario, :add_step) %>">
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= link_to_remote("Add Step", :url => new_package_feature_scenario_step_path(scenario.package, scenario.feature, scenario), :method => :get) %>
-</div>

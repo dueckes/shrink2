@@ -1,3 +1,4 @@
-page.replace("#{dom_id(@package)}_expand_link", link_to_remote("Shrink", { :url => { :action => :shrink, :id => @package.id } , :method => :get }, { :id => "#{dom_id(@package)}_shrink_link" }))
+page.replace("#{dom_id(@package)}_expand_link", shrink_link(@package))
+page["#{dom_id(@package)}_details"].addClassName("expanded")
 page.replace_html("#{dom_id(@package)}_expand", :partial => "packages/list", :locals => { :package => @package })
 page.show("#{dom_id(@package)}_expand")

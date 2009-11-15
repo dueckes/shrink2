@@ -1,4 +1,4 @@
-<% content_tag(:div, :class => "feature-name" ) do -%>
-  <%= link_to_remote feature.title, { :update => dom_id(feature), :url => package_feature_path(feature.package, feature), :method => :get }, { :class => "list-title" } %>
+<div id="<%= "#{dom_id(feature)}_details" %>" class="root-element-name">
+  <%= link_to_remote feature.title, { :url => package_feature_path(feature.package, feature), :method => :get }, { :class => "list-title" } %>
   <%= render :partial => "features/show_common", :locals => { :feature => feature } %>
-<% end -%>
+</div>

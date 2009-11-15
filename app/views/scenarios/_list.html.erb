@@ -1,10 +1,10 @@
-<ul id="<%= dom_id(feature, :scenarios) %>">
+<ul id="<%= dom_id(feature, :scenarios) %>" class="inner_list">
   <% feature.scenarios.each do |scenario| -%>
     <%= render :partial => "scenarios/show_with_li", :locals => { :scenario => scenario } %>
   <% end -%>
+  <li id="<%= dom_id(feature, :new_scenario) %>" style="display: none;">
+  </li>
+  <li id="<%= dom_id(feature, :add_scenario) %>">
+    &nbsp;&nbsp;&nbsp;&nbsp;<%= link_to_remote("Add Scenario", :url => new_package_feature_scenario_path(feature.package, feature), :method => :get) %>
+  </li>
 </ul>
-<div id="<%= dom_id(feature, :new_scenario) %>">
-</div>
-<div id="<%= dom_id(feature, :add_scenario) %>">
-  &nbsp;&nbsp;&nbsp;&nbsp;<%= link_to_remote("Add Scenario", :url => new_package_feature_scenario_path(feature.package, feature), :method => :get) %>
-</div>

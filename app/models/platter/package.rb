@@ -5,6 +5,10 @@ module Platter
     has_many :features, :class_name => "Platter::Feature"
 
     validates_length_of :name, :maximum => 256
+    
+    def tree_path
+      ancestors.reverse - [self.root] + [self]
+    end
 
     class << self
 

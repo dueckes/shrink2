@@ -1,6 +1,4 @@
-&nbsp;&nbsp;&nbsp;&nbsp;Scenario: <%= scenario.title %><br/>
+<div class="edit-text">Scenario: <%= scenario.title %></div>
+<%= link_to_remote "Edit", { :update => dom_id(scenario), :url => edit_package_feature_scenario_path(scenario.package, scenario.feature, scenario), :method => :get }, { :class => "edit-link" } %>
+<%= link_to_remote "Delete", { :confirm => "Are you sure you want to delete this scenario?", :url => package_feature_scenario_path(scenario.package, scenario.feature, scenario), :method => :delete }, { :class => "delete-link" } %>
 <%= render :partial => "steps/list", :locals => { :scenario => scenario } %>
-&nbsp;&nbsp;&nbsp;&nbsp;<%= link_to_remote "Edit", :update => dom_id(scenario), :url => edit_package_feature_scenario_path(scenario.package, scenario.feature, scenario), :method => :get %>&nbsp;
-<%= link_to_remote "Delete", :confirm => "Are you sure you want to delete this scenario?", :url => package_feature_scenario_path(scenario.package, scenario.feature, scenario), :method => :delete %>&nbsp;
-<br/>
-<br/>

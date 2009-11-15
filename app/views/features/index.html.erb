@@ -1,12 +1,16 @@
-<h1>FEATURES: <%= @package.name.capitalize %></h1>
-<ul id="features">
+<h1>
+  <%= link_to "Packages", packages_path, :title => "Packages" %>
+  <% @package.tree_path.each do |package| -%>
+    &nbsp;->&nbsp;<%= package.name.capitalize %>
+  <% end -%>
+</h1>
+<ul class="root_list">
   <% @package.features.each do |feature| -%>
     <%= render :partial => "features/show_shrunk_with_li", :locals => { :feature => feature } %>
   <% end -%>
+  <li id="new_feature" style="display: none;">
+  </li>
+  <li id="add_feature">
+    <%= link_to_remote "Add Feature", :url => new_package_feature_path(@package), :method => :get %>
+  </li>
 </ul>
-<%= pad_after_list(@package.features) -%>
-<div id="new_feature">
-</div>
-<div id="add_feature">
-  <%= link_to_remote "Add Feature", :url => new_package_feature_path(@package), :method => :get %>
-</div>

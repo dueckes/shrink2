@@ -1,4 +1,3 @@
-&nbsp;&nbsp;&nbsp;&nbsp;<%= line.text %>
-&nbsp;<%= link_to_remote "Edit", :update => dom_id(line), :url => edit_package_feature_line_path(line.package, line.feature, line), :method => :get %>
-&nbsp;<%= link_to_remote "Delete", :confirm => "Are you sure you want to delete this feature line?", :url => package_feature_line_path(line.package, line.feature, line), :method => :delete %>
-<br/>
+<div class="edit-text"><%= line.text %></div>
+<%= link_to_remote "Edit", { :update => dom_id(line), :url => edit_package_feature_line_path(line.package, line.feature, line), :method => :get }, { :class => "edit-link" } %>
+<%= link_to_remote "Delete", { :confirm => "Are you sure you want to delete this feature line?", :url => package_feature_line_path(line.package, line.feature, line), :method => :delete }, { :class => "edit-link" } %>

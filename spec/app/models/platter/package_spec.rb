@@ -36,6 +36,58 @@ describe Platter::Package do
     @package.children.should eql(children)
   end
 
+  context "#tree_path" do
+
+    before(:each) do
+      @root_package = Platter::Package.new(:name => "Root Package Name")
+      Platter::Package.stub!(:root).and_return(@root_package)
+      @package = Platter::Package.new(:name => "Package Name")
+    end
+
+    describe "when the package is a child of the root node" do
+
+      before(:each) do
+        @package.parent = @root_package
+      end
+
+      it "should only return the package" do
+        @package.tree_path.should eql([@package])
+      end
+
+    end
+
+    describe "when the package is sibling two levels deep from the root node" do
+
+      before(:each) do
+        @root_descendant = Platter::Package.new(
+                :name => "Root Descendant Package Name", :parent => @root_package)
+        @package.parent = @root_descendant
+      end
+
+      it "should return the siblings starting with the most mature" do
+        @package.tree_path.should eql([@root_descendant, @package])
+      end
+
+    end
+
+    describe "when the package is a sibling three levels deep from the root node" do
+
+      before(:each) do
+        @root_descendant = Platter::Package.new(
+                :name => "Root Descendant Package Name", :parent => @root_package)
+        @inner_root_descendant = Platter::Package.new(
+                :name => "Inner Root Descendant Package Name", :parent => @root_descendant)
+        @package.parent = @inner_root_descendant
+      end
+
+      it "should return the siblings starting with the most mature" do
+        @package.tree_path.should eql([@root_descendant, @inner_root_descendant, @package])
+      end
+
+    end
+
+  end
+
   context "#find_or_create!" do
 
     before(:each) do
