@@ -296,6 +296,11 @@ input, select, textarea {
   padding: 2px;
 }
 
+.editable-text-link {
+  color: #000;
+  text-decoration: none;
+}
+
 .inner_list li, .leaf_list li {
   font-size: 140%;
 }
