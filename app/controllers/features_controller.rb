@@ -17,14 +17,14 @@ class FeaturesController < ApplicationController
     @feature.package = Platter::Package.find(params[:package_id])
     @feature.save!
   end
-
+               
   def import
     responds_to_parent do
       @feature = Platter::Cucumber::FeatureImporter.import_file(write_feature_file(params[:feature_file]))
       @feature.package = Platter::Package.find(params[:package_id])
       @feature.save!
       render(:update) do |page|
-        page.insert_html(:bottom, :features, :partial => "features/show_shrunk_with_li", :locals => { :feature => @feature })
+        page.insert_html(:before, :new_feature, :partial => "features/show_shrunk_with_li", :locals => { :feature => @feature })
         page.visual_effect(:toggle_blind, "importform")
         page["feature_file"].clear
       end
