@@ -25,7 +25,7 @@ h1, h2, h3 {
 
 h1 {
   font-size: 1.8em;
-  margin-bottom: 40px;
+  padding-bottom: 40px;
 }
 
 h2 {
@@ -40,8 +40,7 @@ h3 {
 }
 
 input, select, textarea {
-  border-width: 1px;
-  border-color: #cccccc;
+  border: 1px #cccccc;
   vertical-align: middle;
   margin-right: 5px;
   font-style: inherit;
@@ -74,13 +73,12 @@ input, select, textarea {
 }
 
 #menu ul {
-  float: right;
-  margin: 0;
-  font-family: "Trebuchet MS";
   display: block;
+  float: right;
+  margin: 5px 0 0;
   padding: 0;
   list-style: none;
-  margin-top: 5px;
+  font-family: "Trebuchet MS";
 }
 
 #menu li {
@@ -140,12 +138,29 @@ input, select, textarea {
   padding: 20px;
 }
 
+#packages_area, #features_area {
+  display: block;
+  float: left;
+}
+
+#packages_area {
+  width: 25%;
+}
+
+#features_area {
+  width: 75%;
+}
+
 #packages li {
   padding-top: 30px;
 }
 
 #packages ul li ul {
   padding-top: 0;
+}
+
+#features {
+  margin-left: 30px;
 }
 
 #features li ul li ul {
@@ -171,8 +186,14 @@ input, select, textarea {
 /*** CLASSES ***/
 .root_list {
   border-top: 1px solid #ccc;
+  display: block;
   float: left;
   width: 100%;
+}
+
+.root_list h1 {
+  padding-bottom: 10px;
+  text-align: center;
 }
 
 .root_list ul, .root_list li, .root_list div, .root_list span, .root_list a {
@@ -184,19 +205,22 @@ input, select, textarea {
   width: 100%;
 }
 
-.root_list li {
+.root_list li, .root_list h1 {
   width: 100%;
-  padding-top: 30px;
-  padding-bottom: 30px;
   padding-left: 5px;
   border-right: 1px solid #ccc;
   border-bottom: 1px solid #ccc;
   border-left: 1px solid #ccc;
+  line-height: 34px;
+  font-family: "Trebuchet MS";
+}
+
+.root_list li {
+  padding-top: 30px;
+  padding-bottom: 30px;
   background: url(../images/bg-root-element.png) left top repeat-x;
   text-decoration: none;
-  font-family: "Trebuchet MS";
-  font-size: 175%;
-  line-height: 34px;
+  font-size: 125%;
 }
 
 .root_list li a, .root_list li span {
@@ -206,7 +230,7 @@ input, select, textarea {
 
 .root_list li a.toggle_link {
   padding-left: 44px;
-  padding-right: 0px;
+  padding-right: 0;
   height: 34px;
   text-decoration: none;
   color: #202020;
@@ -234,7 +258,7 @@ input, select, textarea {
 }
 
 .root_list div.edit_controls {
-  padding-left: 44px;
+  padding-left: 20px;
 }
 
 .root_list li li {
@@ -243,8 +267,7 @@ input, select, textarea {
   padding-bottom: 0;
   margin: 0 3% 0 3%;
   border: none;
-  background-color: #fff;
-  background-image: none;
+  background: #fff none;
   font-size: 100%;
 }
 

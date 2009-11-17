@@ -1,10 +1,14 @@
-<h1>
-  <%= link_to "Packages", packages_path, :title => "Packages" %>
-  <% @package.tree_path.each do |package| -%>
-    &nbsp;->&nbsp;<%= package.name.capitalize %>
+<ul>
+  <h1>
+    <% package_name_rendered = false -%>
+    <% @package.tree_path.each do |package| -%>
+      <% if package_name_rendered -%>
+        &nbsp;->&nbsp;
+      <% end -%>
+      <%= package.name.capitalize %>
+      <% package_name_rendered = true %>
   <% end -%>
-</h1>
-<ul id="features" class="root_list">
+  </h1>
   <% @package.features.each do |feature| -%>
     <%= render :partial => "features/show_collapsed", :locals => { :feature => feature } %>
   <% end -%>

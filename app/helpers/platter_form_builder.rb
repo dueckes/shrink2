@@ -12,12 +12,12 @@ class PlatterFormBuilder < ActionView::Helpers::FormBuilder
     submit(verb.to_s.capitalize, :id => "#{element_id_prefix}_#{verb}")
   end
 
-  def text_field_for(field_as_symbol)
-    generate_text_field_for(field_as_symbol, :standard)
+  def text_field_for(field_as_symbol, options={})
+    generate_text_field_for(field_as_symbol, options.merge({ :type => :standard }))
   end
 
-  def auto_complete_text_field_for(field_as_symbol)
-    generate_text_field_for(field_as_symbol, :auto_complete)
+  def auto_complete_text_field_for(field_as_symbol, options={})
+    generate_text_field_for(field_as_symbol, options.merge({ :type => :auto_complete }))
   end
 
   private
@@ -25,23 +25,24 @@ class PlatterFormBuilder < ActionView::Helpers::FormBuilder
     name.gsub(/FormBuilder/, "").lowercase.symbolize
   end
 
-  def generate_text_field_for(field_as_symbol, type)
+  def generate_text_field_for(field_as_symbol, options)
     %{
-      #{self.send("#{type}_text_field", field_as_symbol)}
+      #{self.send("#{options[:type]}_text_field", field_as_symbol, options)}
       #{@template.javascript_tag("$(\"#{element_id_prefix}_#{field_as_symbol}\").focus();")}
     }
   end
 
-  def standard_text_field(field_as_symbol)
-    text_field(field_as_symbol, text_field_tag_options(field_as_symbol))
+  def standard_text_field(field_as_symbol, options)
+    text_field(field_as_symbol, text_field_tag_options(field_as_symbol, options))
   end
 
-  def auto_complete_text_field(field_as_symbol)
-    @template.text_field_with_auto_complete(self.object_name, field_as_symbol, text_field_tag_options(field_as_symbol))
+  def auto_complete_text_field(field_as_symbol, options)
+    @template.text_field_with_auto_complete(
+            self.object_name, field_as_symbol, text_field_tag_options(field_as_symbol, options))
   end
 
-  def text_field_tag_options(field_as_symbol)
-    { :size => 80, :maxlength => 256, :id => "#{element_id_prefix}_#{field_as_symbol}" }
+  def text_field_tag_options(field_as_symbol, options)
+    { :size => 80, :maxlength => 256, :id => "#{element_id_prefix}_#{field_as_symbol}" }.merge(options)
   end
 
 end

@@ -7,7 +7,7 @@
     </div>
     <div id="<%= dom_id(package) %>_edit_form" style="display: none;">
     </div>
-    <%= link_to "Features", package_features_path(package) %>
+    <%= link_to_remote "Features", :update => :features, :url => package_features_path(package), :method => :get, :complete => "$('features').show();" %>
   </div>
   <div id="<%= dom_id(package) %>_expand_area" class="expand_area" style="display: none;">
   </div>

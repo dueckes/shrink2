@@ -1,5 +1,4 @@
 class FeaturesController < ApplicationController
-  layout "main", :only => :index
   helper :root_element
 
   def index
