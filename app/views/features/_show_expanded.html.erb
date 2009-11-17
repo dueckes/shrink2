@@ -1,7 +1,2 @@
-<div id="<%= "#{dom_id(feature)}_details" %>" class="root-element-name">
-  <%= link_to_remote feature.title, { :url => { :action => :shrink, :id => feature.id }, :method => :get }, { :class => "list-title" } %>
-  <%= render :partial => "features/show_common", :locals => { :feature => feature } %>
-
-  <%= render :partial => "lines/list", :locals => { :feature => feature } %>
-  <%= render :partial => "scenarios/list", :locals => { :feature => feature } %>
-</div>
+<%= render :partial => "lines/list", :locals => { :feature => feature } %>
+<%= render :partial => "scenarios/list", :locals => { :feature => feature } %>

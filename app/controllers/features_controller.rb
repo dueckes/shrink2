@@ -48,7 +48,6 @@ class FeaturesController < ApplicationController
       @feature = Platter::Feature.find(params[:id])
       @feature.update_attributes!(params[:feature])
     end
-    render(:action => :shrink)
   end
 
   def destroy

@@ -10,6 +10,10 @@ module Platter
       ancestors.reverse - [self.root] + [self]
     end
 
+    def root_sibling?
+      parent == self.root
+    end
+
     class << self
 
       def find_or_create!(name_or_path)

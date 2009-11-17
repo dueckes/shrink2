@@ -1,6 +1,8 @@
-<div class="edit-text">Scenario:</div>
-<div id="<%= dom_id(scenario) %>_details">
-  <%= editable_text_link scenario.title, { :update => "#{dom_id(scenario)}_details", :url => edit_package_feature_scenario_path(scenario.package, scenario.feature, scenario) } %>
-  <%= link_to_remote "Delete", { :confirm => "Are you sure you want to delete this scenario?", :url => package_feature_scenario_path(scenario.package, scenario.feature, scenario), :method => :delete }, { :class => "delete-link" } %>
+<div class="inner_element_heading">
+  <span>Scenario:</span>
+  <div id="<%= dom_id(scenario) %>_details">
+    <%= editable_text_link scenario.title, { :update => "#{dom_id(scenario)}_details", :url => edit_package_feature_scenario_path(scenario.package, scenario.feature, scenario) } %>
+    <%= link_to_remote "Delete", { :confirm => "Are you sure you want to delete this scenario?", :url => package_feature_scenario_path(scenario.package, scenario.feature, scenario), :method => :delete }, { :class => "delete-link" } %>
+  </div>
 </div>
 <%= render :partial => "steps/list", :locals => { :scenario => scenario } %>

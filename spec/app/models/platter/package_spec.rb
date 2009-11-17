@@ -1,6 +1,8 @@
 describe Platter::Package do
 
   before(:each) do
+    @root_package = Platter::Package.new(:name => "Root Package")
+    Platter::Package.stub!(:root).and_return(@root_package)
     @package = Platter::Package.new(:name => "Some Name")
   end
 
@@ -20,10 +22,9 @@ describe Platter::Package do
 
   it "should have a parent" do
     parent = Platter::Package.new(:name => "Parent Package Name")
+    @package.parent = parent
 
-    package = Platter::Package.new(:parent => parent)
-
-    package.parent.should eql(parent)
+    @package.parent.should eql(parent)
   end
 
   it "should have children" do
@@ -37,12 +38,6 @@ describe Platter::Package do
   end
 
   context "#tree_path" do
-
-    before(:each) do
-      @root_package = Platter::Package.new(:name => "Root Package Name")
-      Platter::Package.stub!(:root).and_return(@root_package)
-      @package = Platter::Package.new(:name => "Package Name")
-    end
 
     describe "when the package is a child of the root node" do
 
@@ -82,6 +77,34 @@ describe Platter::Package do
 
       it "should return the siblings starting with the most mature" do
         @package.tree_path.should eql([@root_descendant, @inner_root_descendant, @package])
+      end
+
+    end
+
+  end
+
+  context "#root_silbing?" do
+
+    describe "when the package is a sibling of the root package" do
+
+      before(:each) do
+        @package.parent = @root_package
+      end
+
+      it "should return true" do
+        @package.should be_root_sibling
+      end
+
+    end
+
+    describe "when the package is a sibling of a sibling of the root package" do
+
+      before(:each) do
+        @package.parent = Platter::Package.new(:name => "Root Sibling Package", :parent => @root_package)
+      end
+
+      it "should return false" do
+        @package.should_not be_root_sibling
       end
 
     end

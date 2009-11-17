@@ -1,4 +1,4 @@
-<ul id="<%= dom_id(feature, :scenarios) %>" class="inner_list">
+<ul id="<%= dom_id(feature, :scenarios) %>" class="scenarios inner_list">
   <% feature.scenarios.each do |scenario| -%>
     <%= render :partial => "scenarios/show_with_li", :locals => { :scenario => scenario } %>
   <% end -%>

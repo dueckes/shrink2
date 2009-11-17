@@ -1,4 +1,4 @@
-<ul id="<%= dom_id(scenario, :steps) %>" class="leaf_list">
+<ul id="<%= dom_id(scenario, :steps) %>" class="leaf_list steps">
   <% scenario.steps.each do |step| -%>
     <%= render :partial => "steps/show_with_li", :locals => { :step => step } %>
   <% end -%>

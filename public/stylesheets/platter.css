@@ -44,6 +44,8 @@ input, select, textarea {
   border-color: #cccccc;
   vertical-align: middle;
   margin-right: 5px;
+  font-style: inherit;
+  font-size: inherit;
 }
 
 /*** NAMED ELEMENTS  ***/
@@ -138,6 +140,34 @@ input, select, textarea {
   padding: 20px;
 }
 
+#packages li {
+  padding-top: 30px;
+}
+
+#packages ul li ul {
+  padding-top: 0;
+}
+
+#features li ul li ul {
+  padding-top: 0;
+}
+
+#features li ul li ul li {
+  padding-top: 10px;
+}
+
+#features .scenarios {
+  padding-top: 0;
+}
+
+#features .scenarios li {
+  padding-top: 23px;
+}
+
+#features .steps li {
+  padding-top: 10px;
+}
+
 /*** CLASSES ***/
 .root_list {
   border-top: 1px solid #ccc;
@@ -145,71 +175,77 @@ input, select, textarea {
   width: 100%;
 }
 
-.root_list li {
-  border-right: 1px solid #ccc;
-  border-bottom: 1px solid #ccc;
-  border-left: 1px solid #ccc;
+.root_list ul, .root_list li, .root_list div, .root_list span, .root_list a {
+  display: block;
   float: left;
+}
+
+.root_list ul {
   width: 100%;
 }
 
-.root_list li div.root-element-name {
-  background: url(../images/bg-root-element.png) left top repeat-x;
-}
-
-.root_list li div.root-element-details div {
-  margin: 10px 55px 5px;
-  background-color: #fff;
-  padding: 10px;
-}
-
-.root_list li a {
-  display: block;
-  float: left;
-  padding: 5px;
+.root_list li {
+  width: 100%;
   padding-top: 30px;
-  padding-bottom: 20px;
-  font-size: 175%;
-}
-
-.root_list li a.list-title {
-  padding-left: 44px;
-  padding-right: 44px;
+  padding-bottom: 30px;
+  padding-left: 5px;
+  border-right: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  border-left: 1px solid #ccc;
+  background: url(../images/bg-root-element.png) left top repeat-x;
   text-decoration: none;
-  height: 25px;
-  line-height: 17px;
-  margin-left: 8px;
-  color: #202020;
   font-family: "Trebuchet MS";
+  font-size: 175%;
+  line-height: 34px;
 }
 
-.root_list li a.list-title .edit-text {
-  font-weight: bold;
+.root_list li a, .root_list li span {
+  padding-left: 5px;
+  padding-right: 5px;
 }
 
-.root_list li a:hover, .root_list div.expanded a.list-title:hover {
+.root_list li a.toggle_link {
+  padding-left: 44px;
+  padding-right: 0px;
+  height: 34px;
+  text-decoration: none;
+  color: #202020;
+}
+
+.root_list li a:hover, .root_list li a.toggle_link:hover {
   text-decoration: none;
   color: #5d5d5d
 }
 
-.root_list li a.list-title span.condition {
-  text-decoration: none;
-  color: #5d5d5d;
-  font-size: 70%;
-  font-style: italic;
-  font-family: "Helvetica";
+.root_list a.toggle_link {
+  background: url(../images/icon-arrow-shrunk-off.png) center left no-repeat;
+}
+
+.root_list a.toggle_link:hover {
+  background: url(../images/icon-arrow-shrunk-on.png) center left no-repeat;
+}
+
+.root_list div.expanded a.toggle_link {
+  background: url(../images/icon-arrow-expanded-off.png) center left no-repeat;
+}
+
+.root_list div.expanded a.toggle_link:hover {
+  background: url(../images/icon-arrow-expanded-on.png) center left no-repeat;
+}
+
+.root_list div.edit_controls {
+  padding-left: 44px;
 }
 
 .root_list li li {
-  margin: 0 2% 0 2%;
+  width: 94%;
+  padding-top: 10px;
+  padding-bottom: 0;
+  margin: 0 3% 0 3%;
   border: none;
-  width: 90%;
-  padding: 13px;
   background-color: #fff;
-}
-
-.root_list li li a.list-title {
-  float: left;
+  background-image: none;
+  font-size: 100%;
 }
 
 .root_list li li div.row-actions {
@@ -220,69 +256,8 @@ input, select, textarea {
   text-align: right;
 }
 
-.root_list li li div.row-actions a:hover {
-  color: #48a7eb;
-}
-
-.root_list li li a.list-title, .root_list div.expanded li a.list-title {
-  margin-left: 20px;
+.root_list li li a.toggle_link, .root_list div.expanded li a.toggle_link {
   color: #000;
-}
-
-.root_list div.expanded a.list-title, .root_list li div.expanded a.list-title {
-  color: #000;
-}
-
-.root_list li a.list-title {
-  background: url(../images/icon-arrow-shrunk-off.png) center left no-repeat;
-}
-
-.root_list li a.list-title:hover {
-  background: url(../images/icon-arrow-shrunk-on.png) center left no-repeat;
-}
-
-.root_list div.expanded a.list-title {
-  background: url(../images/icon-arrow-expanded-off.png) center left no-repeat;
-}
-
-.root_list div.expanded a.list-title:hover {
-  background: url(../images/icon-arrow-expanded-on.png) center left no-repeat;
-}
-
-.root_list div.expanded li a.list-title {
-  background: url(../images/icon-arrow-shrunk-off.png) center left no-repeat;
-}
-
-.root_list div.expanded li a.list-title:hover {
-  background: url(../images/icon-arrow-shrunk-on.png) center left no-repeat;
-}
-
-.root_list li li a.list-title {
-  background: url(../images/icon-arrow-shrunk-off.png) center left no-repeat;
-}
-
-.root_list li li a.list-title:hover {
-  background: url(../images/icon-arrow-shrunk-on.png) center left no-repeat;
-}
-
-.root_list li div.expanded a.list-title {
-  background: url(../images/icon-arrow-expanded-off.png) center left no-repeat;
-!important
-}
-
-.root_list li div.expanded a.list-title:hover {
-  background: url(../images/icon-arrow-expanded-on.png) center left no-repeat;
-!important
-}
-
-.root_list div.expanded div.expanded a.list-title {
-  background: url(../images/icon-arrow-expanded-off.png) center left no-repeat;
-!important
-}
-
-.root_list div.expanded div.expanded a.list-title:hover {
-  background: url(../images/icon-arrow-expanded-on.png) center left no-repeat;
-!important
 }
 
 .text-only {
@@ -290,8 +265,6 @@ input, select, textarea {
 }
 
 .edit-text {
-  display: block;
-  float: left;
   font-style: italic;
   padding: 2px;
 }
@@ -306,12 +279,18 @@ input, select, textarea {
 }
 
 .inner_list li a, .leaf_list li a {
-  display: block;
-  float: left;
   padding: 0 5px 0 5px;
   font-size: 100%;
 }
 
 .inner_list li li {
   font-size: 100%;
+}
+
+.root_list li ul {
+  padding-top: 30px;
+}
+
+.root_list div.element_heading, .root_list div.expand_area {
+  width: 100%;
 }

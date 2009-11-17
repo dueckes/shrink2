@@ -4,7 +4,7 @@
     &nbsp;->&nbsp;<%= package.name.capitalize %>
   <% end -%>
 </h1>
-<ul class="root_list">
+<ul id="features" class="root_list">
   <% @package.features.each do |feature| -%>
     <%= render :partial => "features/show_shrunk_with_li", :locals => { :feature => feature } %>
   <% end -%>

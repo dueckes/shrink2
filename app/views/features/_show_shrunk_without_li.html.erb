@@ -1,4 +1,6 @@
-<div id="<%= "#{dom_id(feature)}_details" %>" class="root-element-name">
-  <%= link_to_remote feature.title, { :url => package_feature_path(feature.package, feature), :method => :get }, { :class => "list-title" } %>
+<div id="<%= dom_id(feature) %>_details" class="element_heading">
+  <%= link_to_remote feature.title, { :url => package_feature_path(feature.package, feature), :method => :get }, { :id => "#{dom_id(feature)}_toggle_link", :class => "toggle_link" } %>
   <%= render :partial => "features/show_common", :locals => { :feature => feature } %>
+</div>
+<div id="<%= dom_id(feature) %>_expand_area" class="expand_area" style="display: none;">
 </div>

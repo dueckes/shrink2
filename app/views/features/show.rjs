@@ -1,2 +1,4 @@
-page.replace_html(dom_id(@feature), :partial => "features/show_expanded", :locals => { :feature => @feature })
+page.replace_html("#{dom_id(@feature)}_expand_area", :partial => "features/show_expanded", :locals => { :feature => @feature })
+page.show("#{dom_id(@feature)}_expand_area")
 page["#{dom_id(@feature)}_details"].addClassName("expanded")
+page["#{dom_id(@feature)}_toggle_link"].setAttribute("onclick", remote_function(:url => { :action => :shrink, :id => @feature.id }, :method => :get))

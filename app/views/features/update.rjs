@@ -1,0 +1,4 @@
+page.hide("#{dom_id(@feature)}_edit_form")
+page.replace_html("#{dom_id(@feature)}_edit_form", "")
+page.replace_html("#{dom_id(@feature)}_toggle_link", @feature.title)
+page.show("#{dom_id(@feature)}_edit_controls")

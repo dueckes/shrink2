@@ -11,7 +11,7 @@ module ApplicationHelper
   end
 
   def editable_text_link(text, options)
-    link_to_remote text, { :method => :get }.merge(options), { :class => "edit-text editable-text-link", :title => "Click To Edit" }
+    link_to_remote text, { :method => :get }.merge(options), { :class => "editable-text-link", :title => "Click To Edit" }
   end
 
 end

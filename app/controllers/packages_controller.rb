@@ -28,7 +28,6 @@ class PackagesController < ApplicationController
     if params[:commit] == "Update"
       @package = Platter::Package.find(params[:id])
       @package.update_attributes!(params[:package])
-      render(:partial => "packages/show_wtihout_li", :locals => { :package => @package})
     end
   end
 
