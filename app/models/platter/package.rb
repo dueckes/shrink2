@@ -5,11 +5,13 @@ module Platter
     has_many :features, :class_name => "Platter::Feature"
 
     validates_length_of :name, :maximum => 256
-    
+
+    #TODO Candidate for tree plugin extension
     def tree_path
       ancestors.reverse - [self.root] + [self]
     end
 
+    #TODO Candidate for tree plugin extension
     def root_sibling?
       parent == self.root
     end

@@ -6,7 +6,7 @@
 </h1>
 <ul id="features" class="root_list">
   <% @package.features.each do |feature| -%>
-    <%= render :partial => "features/show_shrunk_with_li", :locals => { :feature => feature } %>
+    <%= render :partial => "features/show_shrunk", :locals => { :feature => feature } %>
   <% end -%>
   <li id="new_feature" style="display: none;">
   </li>

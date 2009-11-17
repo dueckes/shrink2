@@ -1,5 +1,6 @@
 class PackagesController < ApplicationController
   layout "main", :only => :index
+  helper :root_element
 
   def index
     @root_package = Platter::Package.root

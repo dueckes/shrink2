@@ -1,4 +1,1 @@
-page.hide("#{dom_id(@feature)}_expand_area")
-page["#{dom_id(@feature)}_toggle_link"].setAttribute("onclick", remote_function(:url => package_feature_path(@feature.package, @feature), :method => :get))
-page["#{dom_id(@feature)}_details"].removeClassName("expanded")
-page.replace_html("#{dom_id(@feature)}_expand_area", "")
+shrink_root_element(page, :model => @feature, :url => package_feature_path(@feature.package, @feature))

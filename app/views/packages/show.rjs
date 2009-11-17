@@ -1,4 +1,1 @@
-page.replace_html("#{dom_id(@package)}_expand_area", :partial => "packages/list", :locals => { :package => @package })
-page.show("#{dom_id(@package)}_expand_area")
-page["#{dom_id(@package)}_details"].addClassName("expanded")
-page["#{dom_id(@package)}_toggle_link"].setAttribute("onclick", remote_function({ :url => { :action => :shrink, :id => @package.id }, :method => :get }))
+show_root_element(page, :model => @package)
