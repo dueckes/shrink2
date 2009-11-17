@@ -1,4 +1,4 @@
 page.hide(nested_dom_id(:new_package))
 page.replace_html(nested_dom_id(:new_package), "")
-page.insert_html(:before, nested_dom_id(:new_package), :partial => "packages/show_shrunk", :locals => { :package => @package })
+page.insert_html(:before, nested_dom_id(:new_package), :partial => "packages/show_collapsed", :locals => { :package => @package })
 page.show(nested_dom_id(:add_package))

@@ -1,1 +1,0 @@
-shrink_root_element(page, :model => @package, :url => package_path(@package))

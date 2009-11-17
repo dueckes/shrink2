@@ -25,14 +25,14 @@ class FeaturesController < ApplicationController
       @feature.package = Platter::Package.find(params[:package_id])
       @feature.save!
       render(:update) do |page|
-        page.insert_html(:before, :new_feature, :partial => "features/show_shrunk_with_li", :locals => { :feature => @feature })
+        page.insert_html(:before, :new_feature, :partial => "features/show_collapsed", :locals => { :feature => @feature })
         page.visual_effect(:toggle_blind, "importform")
         page["feature_file"].clear
       end
     end
   end
 
-  def shrink
+  def collapse
     @feature = Platter::Feature.find(params[:id])
   end
 

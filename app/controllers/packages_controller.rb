@@ -36,7 +36,7 @@ class PackagesController < ApplicationController
     @package = Platter::Package.find(params[:id])
   end
 
-  def shrink
+  def collapse
     @package = Platter::Package.find(params[:id])
   end
 

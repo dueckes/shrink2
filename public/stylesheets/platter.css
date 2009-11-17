@@ -218,11 +218,11 @@ input, select, textarea {
 }
 
 .root_list a.toggle_link {
-  background: url(../images/icon-arrow-shrunk-off.png) center left no-repeat;
+  background: url(../images/icon-arrow-collapsed-off.png) center left no-repeat;
 }
 
 .root_list a.toggle_link:hover {
-  background: url(../images/icon-arrow-shrunk-on.png) center left no-repeat;
+  background: url(../images/icon-arrow-collapsed-on.png) center left no-repeat;
 }
 
 .root_list div.expanded a.toggle_link {

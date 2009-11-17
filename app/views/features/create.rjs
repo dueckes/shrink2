@@ -1,4 +1,4 @@
 page.hide(:new_feature)
 page.replace_html(:new_feature, "")
-page.insert_html(:before, :new_feature, :partial => "features/show_shrunk", :locals => { :feature => @feature })
+page.insert_html(:before, :new_feature, :partial => "features/show_collapsed", :locals => { :feature => @feature })
 page.show(:add_feature)
