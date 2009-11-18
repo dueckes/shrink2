@@ -47,7 +47,11 @@ class FeaturesController < ApplicationController
   def update
     if params[:commit] == "Update"
       @feature = Platter::Feature.find(params[:id])
-      @feature.update_attributes!(params[:feature])
+      if !@feature.update_attributes(params[:feature])
+        render(:update) do |page|
+          page.replace_html("#{dom_id(@feature)}_errors", :partial => "common/show_errors", :locals => { :errors => @feature.errors })
+        end
+      end
     end
   end
 

@@ -210,7 +210,7 @@ label {
   width: 100%;
 }
 
-.outer_list ul, .outer_list li, .outer_list div, .outer_list span, .outer_list a {
+.outer_list ul, .outer_list li, .outer_list div, .outer_list span, .outer_list a, .outer_list label, .outer_list input {
   display: block;
   float: left;
 }
@@ -338,4 +338,10 @@ label {
 
 .outer_list div.element_heading, .outer_list div.expand_area {
   width: 100%;
+}
+
+.errors {
+  width: auto;
+  color: #ff4444;
+  font-size: 0.7em;
 }

@@ -1,1 +1,2 @@
 page.replace_html("#{dom_id(@feature)}_heading_area", :partial => "features/show_heading", :locals => { :feature => @feature })
+page.replace("#{dom_id(@feature)}_link_area", :partial => "features/show_link", :locals => { :feature => @feature })
