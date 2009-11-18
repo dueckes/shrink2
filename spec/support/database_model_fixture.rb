@@ -6,8 +6,10 @@ class DatabaseModelFixture
     Platter::Package.create!(combined_options)
   end
 
-  def self.create_feature!
-    Platter::Feature.create!(:package => create_package!, :title => "Feature Title")
+  def self.create_feature!(options={})
+    combined_options = { :title => "Feature Title" }.merge(options)
+    combined_options[:package] = create_package! unless combined_options[:package]
+    Platter::Feature.create!(combined_options)
   end
 
   def self.create_scenario!

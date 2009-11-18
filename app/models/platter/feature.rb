@@ -9,6 +9,8 @@ module Platter
     has_many :scenarios, :class_name => "Platter::Scenario", :order => :position
 
     validates_presence_of :package, :title
+    validates_length_of :title, :maximum => 255
+    validates_uniqueness_of :title, :scope => :package_id
 
     UPLOAD_DIRECTORY = "#{RAILS_ROOT}/tmp/uploaded_features"
 

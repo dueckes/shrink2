@@ -6,6 +6,41 @@ describe Platter::Feature do
       @feature = DatabaseModelFixture.create_feature!
     end
 
+    context "#valid?" do
+
+      describe "when a title is established" do
+
+        describe "and the title is the same as another features title in the same package" do
+
+          before(:each) do
+            DatabaseModelFixture.create_feature!(:title => "Same Title", :package => @feature.package)
+            @feature.title = "Same Title"
+          end
+
+          it "should return false" do
+            @feature.should_not be_valid
+          end
+
+        end
+
+        describe "and the title is the same as another features title in a different package" do
+
+          before(:each) do
+            different_package = DatabaseModelFixture.create_package!(:name => "Different Package")
+            DatabaseModelFixture.create_feature!(:title => "Same Title", :package => different_package)
+            @feature.title = "Same Title"
+          end
+
+          it "should return true" do
+            @feature.should be_valid
+          end
+
+        end
+
+      end
+
+    end
+
     context "#lines" do
 
       describe "when lines have been added" do

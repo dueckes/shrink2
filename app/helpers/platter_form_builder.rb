@@ -42,7 +42,7 @@ class PlatterFormBuilder < ActionView::Helpers::FormBuilder
   end
 
   def text_field_tag_options(field_as_symbol, options)
-    { :size => 80, :maxlength => 256, :id => "#{element_id_prefix}_#{field_as_symbol}" }.merge(options)
+    { :size => 80, :maxlength => 255, :id => "#{element_id_prefix}_#{field_as_symbol}" }.merge(options)
   end
 
 end

@@ -51,8 +51,40 @@ module Platter
 
       describe "when a title is established" do
 
-        it "should return true" do
-          @feature.should be_valid
+        describe "and the title is less than 256 characters in length" do
+
+          before(:each) do
+            @feature.title = "a" * 255
+          end
+
+          it "should return true" do
+            @feature.should be_valid
+          end
+
+        end
+
+        describe "and the title is 256 characters in length" do
+
+          before(:each) do
+            @feature.title = "a" * 256
+          end
+
+          it "should return false" do
+            @feature.should_not be_valid
+          end
+
+        end
+
+        describe "and the title is greater than 256 characters in length" do
+          
+          before(:each) do
+            @feature.title = "a" * 257
+          end
+
+          it "should return false" do
+            @feature.should_not be_valid
+          end
+
         end
 
       end
