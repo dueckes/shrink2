@@ -1,0 +1,2 @@
+<%= link_to_remote feature.title, { :update => "#{dom_id(feature)}_heading_area", :url => edit_package_feature_path(feature.package, feature), :method => :get }, { :class => "editable-text-link" } %>
+<%= link_to_remote "Delete", { :confirm => "Are you sure you want to delete this feature?", :url => package_feature_path(feature.package, feature), :method => :delete }, { :class => "delete-link" }%>

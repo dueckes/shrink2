@@ -1,4 +1,4 @@
-<ul id="<%= dom_id(feature, :lines) %>" class="leaf_list">
+<ul id="<%= dom_id(feature, :lines) %>" class="leaf_list lines">
   <% feature.lines.each do |line| -%>
     <%= render :partial => "lines/show_with_li", :locals => { :line => line } %>
   <% end -%>

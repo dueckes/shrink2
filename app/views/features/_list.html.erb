@@ -1,0 +1,9 @@
+<% package.features.each do |feature| -%>
+  <%= render :partial => "features/show_link", :locals => { :feature => feature } %>
+<% end -%>
+<li id="<%= dom_id(package) %>_new_feature" style="display: none;">
+</li>
+<li id="<%= dom_id(package) %>_new_feature_controls">
+  <%= link_to_remote "Add Feature", :url => new_package_feature_path(package), :method => :get %>
+  <%= link_to_remote "Import Feature", :url => { :controller => :features, :action => :import_gesture, :package_id => package.id }, :method => :get %>
+</li>

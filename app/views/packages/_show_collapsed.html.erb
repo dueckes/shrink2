@@ -1,5 +1,5 @@
 <% li_for(package) do -%>
-  <div id="<%= dom_id(package) %>_details" class="element_heading">
+  <div id="<%= dom_id(package) %>_heading_area" class="element_heading">
     <%= link_to_remote(package.name, { :url => package_path(package), :method => :get }, { :id => "#{dom_id(package)}_toggle_link", :class => "toggle_link" }) %>
     <div id="<%= dom_id(package) %>_edit_controls" class="edit_controls">
       <%= link_to_remote "Edit", :url => edit_package_path(package), :method => :get %>
@@ -7,7 +7,6 @@
     </div>
     <div id="<%= dom_id(package) %>_edit_form" style="display: none;">
     </div>
-    <%= link_to_remote "Features", :update => :features, :url => package_features_path(package), :method => :get, :complete => "$('features').show();" %>
   </div>
   <div id="<%= dom_id(package) %>_expand_area" class="expand_area" style="display: none;">
   </div>

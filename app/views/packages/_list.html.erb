@@ -2,6 +2,7 @@
   <% package.children.each do |child_package| -%>
     <%= render :partial => "packages/show_collapsed", :locals => { :package => child_package } %>
   <% end -%>
+  <%= render :partial => "features/list", :locals => { :package => package } %>
   <li id="<%= nested_dom_id(:new_package, package) %>" style="display: none;">
   </li>
   <li id="<%= nested_dom_id(:add_package, package) %>">

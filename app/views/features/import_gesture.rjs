@@ -1,3 +1,3 @@
 page.hide("#{dom_id(@package)}_new_feature_controls")
-page.replace_html("#{dom_id(@package)}_new_feature", :partial => "features/form_new")
+page.replace_html("#{dom_id(@package)}_new_feature", :partial => "features/form_import")
 page.show("#{dom_id(@package)}_new_feature")

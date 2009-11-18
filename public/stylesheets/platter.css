@@ -47,6 +47,10 @@ input, select, textarea {
   font-size: inherit;
 }
 
+label {
+  padding-right: 10px;
+}
+
 /*** NAMED ELEMENTS  ***/
 #container {
   width: 100%;
@@ -138,7 +142,7 @@ input, select, textarea {
   padding: 20px;
 }
 
-#packages_area, #features_area {
+#packages_area, #feature_area {
   display: block;
   float: left;
 }
@@ -147,65 +151,80 @@ input, select, textarea {
   width: 25%;
 }
 
-#features_area {
+#feature_area {
   width: 75%;
 }
 
 #packages li {
-  padding-top: 30px;
+  background: url(../images/bg-outer-element.png) left top repeat-x;
 }
 
 #packages ul li ul {
   padding-top: 0;
 }
 
-#features {
+#feature {
   margin-left: 30px;
 }
 
-#features li ul li ul {
+#feature .list_title {
+  text-align: left;
+}
+
+#feature ul li ul li {
+  border-bottom: none;
+}
+
+#feature li li {
+  border-left: 5px;
+  margin-left: 0;
+}
+
+#feature li li li {
+  margin-left: 30px;
+}
+
+#feature .inner_list {
   padding-top: 0;
 }
 
-#features li ul li ul li {
-  padding-top: 10px;
-}
-
-#features .scenarios {
+#feature .leaf_list {
   padding-top: 0;
 }
 
-#features .scenarios li {
-  padding-top: 23px;
-}
-
-#features .steps li {
+#feature .leaf_list li {
   padding-top: 10px;
+  padding-bottom: 0;
 }
 
 /*** CLASSES ***/
-.root_list {
+.list_title {
+  text-align: center;
+  font-size: 1.8em;
+}
+
+.outer_list {
   border-top: 1px solid #ccc;
   display: block;
   float: left;
   width: 100%;
 }
 
-.root_list h1 {
-  padding-bottom: 10px;
-  text-align: center;
-}
-
-.root_list ul, .root_list li, .root_list div, .root_list span, .root_list a {
+.outer_list ul, .outer_list li, .outer_list div, .outer_list span, .outer_list a {
   display: block;
   float: left;
 }
 
-.root_list ul {
+.outer_list .list_title {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.outer_list ul {
   width: 100%;
 }
 
-.root_list li, .root_list h1 {
+.outer_list li, .outer_list .list_title {
   width: 100%;
   padding-left: 5px;
   border-right: 1px solid #ccc;
@@ -215,20 +234,19 @@ input, select, textarea {
   font-family: "Trebuchet MS";
 }
 
-.root_list li {
-  padding-top: 30px;
-  padding-bottom: 30px;
-  background: url(../images/bg-root-element.png) left top repeat-x;
+.outer_list li {
+  padding-top: 15px;
+  padding-bottom: 15px;
   text-decoration: none;
   font-size: 125%;
 }
 
-.root_list li a, .root_list li span {
+.outer_list a, .outer_list span, .outer_list form {
   padding-left: 5px;
   padding-right: 5px;
 }
 
-.root_list li a.toggle_link {
+.outer_list a.toggle_link {
   padding-left: 44px;
   padding-right: 0;
   height: 34px;
@@ -236,32 +254,32 @@ input, select, textarea {
   color: #202020;
 }
 
-.root_list li a:hover, .root_list li a.toggle_link:hover {
+.outer_list a:hover, .outer_list a.toggle_link:hover {
   text-decoration: none;
   color: #5d5d5d
 }
 
-.root_list a.toggle_link {
+.outer_list a.toggle_link {
   background: url(../images/icon-arrow-collapsed-off.png) center left no-repeat;
 }
 
-.root_list a.toggle_link:hover {
+.outer_list a.toggle_link:hover {
   background: url(../images/icon-arrow-collapsed-on.png) center left no-repeat;
 }
 
-.root_list div.expanded a.toggle_link {
+.outer_list div.expanded a.toggle_link {
   background: url(../images/icon-arrow-expanded-off.png) center left no-repeat;
 }
 
-.root_list div.expanded a.toggle_link:hover {
+.outer_list div.expanded a.toggle_link:hover {
   background: url(../images/icon-arrow-expanded-on.png) center left no-repeat;
 }
 
-.root_list div.edit_controls {
+.outer_list div.edit_controls {
   padding-left: 20px;
 }
 
-.root_list li li {
+.outer_list li li {
   width: 94%;
   padding-top: 10px;
   padding-bottom: 0;
@@ -271,7 +289,7 @@ input, select, textarea {
   font-size: 100%;
 }
 
-.root_list li li div.row-actions {
+.outer_list li li div.row-actions {
   width: 245px;
   float: right;
   padding-top: 6px;
@@ -279,7 +297,7 @@ input, select, textarea {
   text-align: right;
 }
 
-.root_list li li a.toggle_link, .root_list div.expanded li a.toggle_link {
+.outer_list li li a.toggle_link, .outer_list div.expanded li a.toggle_link {
   color: #000;
 }
 
@@ -310,10 +328,14 @@ input, select, textarea {
   font-size: 100%;
 }
 
-.root_list li ul {
+.outer_list li ul {
   padding-top: 30px;
 }
 
-.root_list div.element_heading, .root_list div.expand_area {
+.inner_list li ul {
+  padding-top: 0;
+}
+
+.outer_list div.element_heading, .outer_list div.expand_area {
   width: 100%;
 }

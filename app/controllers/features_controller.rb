@@ -1,5 +1,4 @@
 class FeaturesController < ApplicationController
-  helper :root_element
 
   def index
     @package = Platter::Package.find(params[:package_id])
@@ -10,12 +9,17 @@ class FeaturesController < ApplicationController
   end
 
   def cancel_create
+    @package = Platter::Package.find(params[:package_id])
   end
 
   def create
     @feature = Platter::Feature.new(params[:feature])
     @feature.package = Platter::Package.find(params[:package_id])
     @feature.save!
+  end
+
+  def import_gesture
+    @package = Platter::Package.find(params[:package_id])
   end
                
   def import
@@ -24,15 +28,12 @@ class FeaturesController < ApplicationController
       @feature.package = Platter::Package.find(params[:package_id])
       @feature.save!
       render(:update) do |page|
-        page.insert_html(:before, :new_feature, :partial => "features/show_collapsed", :locals => { :feature => @feature })
-        page.visual_effect(:toggle_blind, "importform")
-        page["feature_file"].clear
+        page.insert_html(:before, "#{dom_id(@feature.package)}_new_feature", :partial => "features/show_link", :locals => { :feature => @feature })
+        page.hide("#{dom_id(@feature.package)}_new_feature")
+        page.replace_html("#{dom_id(@feature.package)}_new_feature", "")
+        page.show("#{dom_id(@feature.package)}_new_feature_controls")
       end
     end
-  end
-
-  def collapse
-    @feature = Platter::Feature.find(params[:id])
   end
 
   def show

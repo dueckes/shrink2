@@ -1,4 +1,1 @@
-page.hide("#{dom_id(@feature)}_edit_form")
-page.replace_html("#{dom_id(@feature)}_edit_form", "")
-page.replace_html("#{dom_id(@feature)}_toggle_link", @feature.title)
-page.show("#{dom_id(@feature)}_edit_controls")
+page.replace_html("#{dom_id(@feature)}_heading_area", :partial => "features/show_heading", :locals => { :feature => @feature })
