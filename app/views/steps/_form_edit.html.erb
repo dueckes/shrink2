@@ -1,7 +1,6 @@
-<%= error_messages_for :step %>
-<% remote_form_for(:step, step, :url => package_feature_scenario_step_path(step.package, step.feature, step.scenario, step), :update => dom_id(step), :html => { :method => :put }, :builder => StepFormBuilder) do |step_form| -%>
+<% remote_form_for(:step, step, :url => package_feature_scenario_step_path(step.package, step.feature, step.scenario, step), :html => { :method => :put }, :builder => StepFormBuilder) do |step_form| -%>
   <% form_element_prefix = "feature_#{step.scenario.feature.id}_scenario_#{step.scenario.id}_step_#{step.id}" -%>
   <%= render :partial => "steps/form_common", :locals => { :step_form => step_form, :form_element_prefix => form_element_prefix } %>
-  <%= step_form.submit "Update", :id => "#{form_element_prefix}_update" %>
-  <%= step_form.submit "Cancel", :id => "#{form_element_prefix}_cancel" %>
+  <div id="<%= dom_id(step) %>_errors" class="errors">
+  </div>
 <% end -%>

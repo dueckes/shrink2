@@ -1,0 +1,1 @@
+page.replace_html("#{dom_id(@scenario)}_heading_area", :partial => "scenarios/show_heading", :locals => { :scenario => @scenario })

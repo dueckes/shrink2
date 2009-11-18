@@ -31,9 +31,12 @@ class StepsController < ApplicationController
   def update
     if params[:commit] == "Update"
       @step = Platter::Step.find(params[:id])
-      @step.update_attributes!(params[:step])
+      if !@step.update_attributes(params[:step])
+        render(:update) do |page|
+          page.replace_html("#{dom_id(@step)}_errors", :partial => "common/show_errors", :locals => { :errors => @step.errors })
+        end
+      end
     end
-    render(:action => :show)
   end
   
   def destroy

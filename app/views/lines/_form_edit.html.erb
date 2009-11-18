@@ -1,6 +1,5 @@
-<%= error_messages_for :line %>
-<% remote_form_for(:line, line, :url => package_feature_line_path(line.package, line.feature, line), :update => dom_id(line), :html => { :method => :put }, :builder => FeatureLineFormBuilder) do |line_form| -%>
+<% remote_form_for(:line, line, :url => package_feature_line_path(line.package, line.feature, line), :html => { :method => :put }, :builder => FeatureLineFormBuilder) do |line_form| -%>
   <%= render :partial => "lines/form_common", :locals => { :line_form => line_form } %>
-  <%= line_form.commit_button %>
-  <%= line_form.cancel_button %>
+  <div id="<%= dom_id(line) %>_errors" class="errors">
+  </div>
 <% end -%>

@@ -1,0 +1,2 @@
+<%= editable_text_link scenario.title, :update => "#{dom_id(scenario)}_heading_area", :url => edit_package_feature_scenario_path(scenario.package, scenario.feature, scenario) %>
+<%= link_to_remote "Delete", { :confirm => "Are you sure you want to delete this scenario?", :url => package_feature_scenario_path(scenario.package, scenario.feature, scenario), :method => :delete }, { :class => "delete-link" } %>

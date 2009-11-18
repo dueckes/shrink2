@@ -16,6 +16,53 @@ describe Platter::Scenario do
 
     end
 
+    context "#valid?" do
+
+      describe "when a title is established" do
+
+        describe "and the title is not the same as any other scenarios title in the same feature" do
+
+          before(:each) do
+            Platter::Scenario.create!(:title => "Different Title", :feature => @feature)
+            @scenario = Platter::Scenario.new(:title => "Title", :feature => @feature)
+          end
+
+          it "should return true" do
+            @scenario.should be_valid
+          end
+
+        end
+
+        describe "and the title is the same as another scenarios title in the same feature" do
+
+          before(:each) do
+            Platter::Scenario.create!(:title => "Same Title", :feature => @feature)
+            @scenario = Platter::Scenario.new(:title => "Same Title", :feature => @feature)
+          end
+
+          it "should return false" do
+            @scenario.should_not be_valid
+          end
+
+        end
+
+        describe "and the title is the same as another scenarios title in a different feature" do
+
+          before(:each) do
+            other_feature = DatabaseModelFixture.create_feature!(:title => "Other Feature")
+            Platter::Scenario.create!(:title => "Same Title", :feature => other_feature)
+            @scenario = Platter::Scenario.new(:title => "Same Title", :feature => @feature)
+          end
+
+          it "should return true" do
+            @scenario.should be_valid
+          end
+        end
+
+      end
+
+    end
+
     context "#steps" do
 
       before(:each) do

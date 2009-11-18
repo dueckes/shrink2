@@ -48,8 +48,40 @@ module Platter
 
       describe "when a title is established" do
 
-        it "should return true" do
-          @scenario.should be_valid
+        describe "and the length of the title is less than 256 characters" do
+
+          before(:each) do
+            @scenario.title = "a" * 255
+          end
+
+          it "should return true" do
+            @scenario.should be_valid
+          end
+
+        end
+
+        describe "and the length of the title is 256 characters" do
+          
+          before(:each) do
+            @scenario.title = "a" * 256
+          end
+
+          it "should return false" do
+            @scenario.should_not be_valid
+          end
+
+        end
+
+        describe "and the length of the title is greater than 256 characters" do
+
+          before(:each) do
+            @scenario.title = "a" * 257
+          end
+
+          it "should return false" do
+            @scenario.should_not be_valid
+          end
+
         end
 
       end

@@ -32,8 +32,40 @@ module Platter
           @line = FeatureLine.new(:text => "Some Text")
         end
 
-        it "should return true" do
-          @line.should be_valid
+        describe "and the length of the text is less that 256 characters" do
+
+          before(:each) do
+            @line.text = "a" * 255
+          end
+
+          it "should return true" do
+            @line.should be_valid
+          end
+
+        end
+
+        describe "and the length of the text is 256 characters" do
+
+          before(:each) do
+            @line.text = "a" * 256
+          end
+
+          it "should return false" do
+            @line.should_not be_valid
+          end
+
+        end
+
+        describe "and the length of the text is greater than 256 characters" do
+
+          before(:each) do
+            @line.text = "a" * 257
+          end
+
+          it "should return false" do
+            @line.should_not be_valid
+          end
+
         end
 
       end

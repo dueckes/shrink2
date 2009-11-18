@@ -9,6 +9,8 @@ module Platter
     acts_as_list :scope => :feature
 
     validates_presence_of :title
+    validates_length_of :title, :maximum => 255
+    validates_uniqueness_of :title, :scope => :feature_id
 
     def package
       feature.package

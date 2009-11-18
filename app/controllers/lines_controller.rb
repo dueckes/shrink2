@@ -28,9 +28,12 @@ class LinesController < ApplicationController
   def update
     if params[:commit] == "Update"
       @line = Platter::FeatureLine.find(params[:id])
-      @line.update_attributes!(params[:line])
+      if !@line.update_attributes(params[:line])
+        render(:update) do |page|
+          page.replace_html("#{dom_id(@line)}_errors", :partial => "common/show_errors", :locals => { :errors => @line.errors })
+        end
+      end
     end
-    render(:action => :show)
   end
 
   def destroy

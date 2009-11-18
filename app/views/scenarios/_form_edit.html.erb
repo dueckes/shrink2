@@ -1,6 +1,5 @@
-<%= error_messages_for :scenario %>
-<% remote_form_for(:scenario, scenario, :url => package_feature_scenario_path(scenario.package, scenario.feature, scenario), :update => dom_id(scenario), :html => { :method => :put }, :builder => ScenarioFormBuilder) do |scenario_form| -%>
+<% remote_form_for(:scenario, scenario, :url => package_feature_scenario_path(scenario.package, scenario.feature, scenario), :html => { :method => :put }, :builder => ScenarioFormBuilder) do |scenario_form| -%>
   <%= render :partial => "scenarios/form_common", :locals => { :scenario_form => scenario_form } %>
-  <%= scenario_form.commit_button %>
-  <%= scenario_form.cancel_button %>
+  <div id="<%= dom_id(scenario) %>_errors" class="errors">
+  </div>
 <% end -%>

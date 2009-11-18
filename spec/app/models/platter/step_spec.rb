@@ -46,8 +46,39 @@ module Platter
           @step = Step.new(:text => "Some Text")
         end
 
-        it "should return true" do
-          @step.should be_valid
+        describe "and the length of the text is less that 256 characters" do
+
+          before(:each) do
+            @step.text = "a" * 255
+          end
+
+          it "should return true" do
+            @step.should be_valid
+          end
+
+        end
+
+        describe "and the length of the text is 256 characters" do
+
+          before(:each) do
+            @step.text = "a" * 256
+          end
+
+          it "should return false" do
+            @step.should_not be_valid
+          end
+
+        end
+
+        describe "and the length of the text is greater than 256 characters" do
+
+          before(:each) do
+            @step.text = "a" * 257
+          end
+
+          it "should return false" do
+            @step.should_not be_valid
+          end
 
         end
 

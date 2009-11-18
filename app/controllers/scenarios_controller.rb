@@ -25,9 +25,12 @@ class ScenariosController < ApplicationController
   def update
     if params[:commit] == "Update"
       @scenario = Platter::Scenario.find(params[:id])
-      @scenario.update_attributes!(params[:scenario])
+      if !@scenario.update_attributes(params[:scenario])
+        render(:update) do |page|
+          page.replace_html("#{dom_id(@scenario)}_errors", :partial => "common/show_errors", :locals => { :errors => @scenario.errors })
+        end
+      end
     end
-    render(:action => :show)
   end
 
   def destroy
