@@ -193,8 +193,52 @@ describe Platter::Package do
 
     describe "when a name is established" do
 
-      it "should return true" do
-        @package.should be_valid
+      describe "and the name is empty" do
+
+        before(:each) do
+          @package.name = ""
+        end
+
+        it "should return false" do
+          @package.should_not be_valid
+        end
+
+      end
+
+      describe "and the name is less than 255 character in length" do
+
+        before(:each) do
+          @package.name = "a" * 254
+        end
+
+        it "should return true" do
+          @package.should be_valid
+        end
+
+      end
+
+      describe "and the name is 255 character in length" do
+
+        before(:each) do
+          @package.name = "a" * 255
+        end
+
+        it "should return true" do
+          @package.should be_valid
+        end
+
+      end
+
+      describe "and the name is greater than 255 character in length" do
+
+        before(:each) do
+          @package.name = "a" * 256
+        end
+
+        it "should return false" do
+          @package.should_not be_valid
+        end
+
       end
 
     end

@@ -4,7 +4,9 @@ module Platter
     acts_as_tree :order => :name
     has_many :features, :class_name => "Platter::Feature"
 
+    validates_presence_of :name
     validates_length_of :name, :maximum => 255
+    validates_uniqueness_of :name, :scope => :parent_id
 
     #TODO Candidate for tree plugin extension
     def tree_path

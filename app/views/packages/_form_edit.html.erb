@@ -1,6 +1,4 @@
-<%= error_messages_for :package %>
-<% remote_form_for(:package, package, :url => package_path(package), :html => { :method => :put }, :builder => PackageFormBuilder) do |form| -%>
-  <%= render :partial => "packages/form_common", :locals => { :form => form } %>
-  <%= form.commit_button %>
-  <%= form.cancel_button %>
-<% end -%>
+<%= render(:partial => "common/form_edit", :locals => { :model_name => :package,
+                                                        :model => package,
+                                                        :url => package_path(package),
+                                                        :form_builder => PackageFormBuilder }) %>

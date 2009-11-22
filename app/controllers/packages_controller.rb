@@ -14,18 +14,9 @@ class PackagesController < ApplicationController
     establish_parent
   end
 
-  def create
+  def establish_model_for_create
     establish_parent
-    @package = Platter::Package.new(params[:package].merge(:parent => @parent))
-    @package.save!
-  end
-
-  def update
-    puts "params[:commit]: #{params[:commit]}"
-    if params[:commit] == "Update"
-      @package = Platter::Package.find(params[:id])
-      @package.update_attributes!(params[:package])
-    end
+    set_model Platter::Package.new(params[:package].merge(:parent => @parent))
   end
 
   def collapse

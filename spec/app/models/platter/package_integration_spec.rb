@@ -53,6 +53,40 @@ describe Platter::Package do
       
     end
 
+    context "#valid?" do
+
+      before(:each) do
+        @parent = DatabaseModelFixture.create_package!(:name => "Parent Package")
+        @package.parent = @parent
+        @package.name = "Package Name"
+      end
+
+      describe "when the name does not match the name of a package with the same parent" do
+
+        before(:each) do
+          DatabaseModelFixture.create_package!(:parent => @parent, :name => "Another Package Name")
+        end
+
+        it "should return true" do
+          @package.should be_valid
+        end
+
+      end
+
+      describe "when the name matches the name of another package with the same parent" do
+
+        before(:each) do
+          DatabaseModelFixture.create_package!(:parent => @parent, :name => "Package Name")
+        end
+
+        it "should return false" do
+          @package.should_not be_valid
+        end
+        
+      end
+
+    end
+
   end
 
 end

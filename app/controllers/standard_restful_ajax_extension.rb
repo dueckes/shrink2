@@ -37,10 +37,7 @@ module StandardRestfulAjaxExtension
     end
 
     def create
-      set_model self.class.model_class.new(params[self.class.model_name_in_view])
-      self.class.model_class.belongs_to_associations.each do |association|
-        @model.send("#{association.name}=", association.model_class.find(params["#{association.name}_id"]))
-      end
+      establish_model_for_create
       if !@model.save
         id_prefix = new_id_prefix(@model)
         model_name_in_view = self.class.model_name_in_view
@@ -71,9 +68,21 @@ module StandardRestfulAjaxExtension
       end
     end
 
+    def establish_model_for_create
+      set_model self.class.model_class.new(params[self.class.model_name_in_view])
+      self.class.model_class.belongs_to_associations.each do |association|
+        @model.send("#{association.name}=", association.model_class.find(params["#{association.name}_id"]))
+      end
+    end
+
     def new_id_prefix(model)
       association_names = self.class.model_class.belongs_to_associations.collect { |association| association.name }
       association_names.collect { |name| dom_id(model.send(name)) }.join("_")
+    end
+
+    def set_model(model)
+      @model = model
+      instance_variable_set("@#{self.class.model_name_in_view}", model)
     end
 
     private
@@ -81,11 +90,6 @@ module StandardRestfulAjaxExtension
       self.class.model_class.belongs_to_associations.each do |association|
         instance_variable_set("@#{association.name}", association.model_class.find(params["#{association.name}_id"]))
       end
-    end
-
-    def set_model(model)
-      @model = model
-      instance_variable_set("@#{self.class.model_name_in_view}", model)
     end
 
     def find_model(params)
