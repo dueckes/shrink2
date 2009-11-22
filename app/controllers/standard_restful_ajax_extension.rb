@@ -1,4 +1,3 @@
-require 'pp'
 module StandardRestfulAjaxExtension
 
   def self.included(base)
@@ -57,8 +56,8 @@ module StandardRestfulAjaxExtension
     end
 
     def update
-      if params[:commit] == "Update"
-        set_model find_model(params)
+      set_model find_model(params)
+      unless params[:cancel_edit] == "true"
         if !@model.update_attributes(params[self.class.model_name_in_view])
           render(:update) do |page|
             page.replace_html("#{dom_id(@model)}_errors",

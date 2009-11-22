@@ -5,11 +5,11 @@ class PlatterFormBuilder < ActionView::Helpers::FormBuilder
   end
 
   def cancel_button
-    @object.new_record? ? cancel_add_button : submit_button_for(:cancel)
+    @object.new_record? ? cancel_add_button : submit_button_for(:cancel, :onclick => "this.form['cancel_edit'].value = true;")
   end
 
-  def submit_button_for(verb)
-    submit(verb.to_s.capitalize, :id => "#{element_id_prefix}_#{verb}")
+  def submit_button_for(verb, options={})
+    submit(verb.to_s.capitalize, { :id => "#{element_id_prefix}_#{verb}" }.merge(options))
   end
 
   def text_field_for(field_as_symbol, options={})
