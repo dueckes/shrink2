@@ -5,6 +5,6 @@
   <li id="<%= dom_id(feature, :new_scenario) %>" style="display: none;">
   </li>
   <li id="<%= dom_id(feature, :add_scenario) %>">
-    &nbsp;&nbsp;&nbsp;&nbsp;<%= link_to_remote("Add Scenario", :url => new_package_feature_scenario_path(feature.package, feature), :method => :get) %>
+    <%= link_to_remote("Add Scenario", :url => new_package_feature_scenario_path(feature.package, feature), :method => :get) %>
   </li>
 </ul>

@@ -2,7 +2,7 @@ module Platter
 
   class Feature < ::ActiveRecord::Base
     include Platter::Cucumber::Ast::FeatureConverter
-    set_scenario_converter(Platter::Scenario)
+    set_scenario_converter Platter::Scenario
 
     belongs_to :package, :class_name => "Platter::Package"
     has_many :lines, :class_name => "Platter::FeatureLine", :order => :position

@@ -1,6 +1,7 @@
 <div id="add_line">
   <% remote_form_for(:line, Platter::FeatureLine.new, :url => package_feature_lines_path(@feature.package, @feature), :update => :add_line) do |line| -%>
-    &nbsp;&nbsp;&nbsp;&nbsp;Text: <%= line.text_field :text %>
-    <%= line.submit "Add" %>&nbsp;<%= button_to_remote "Cancel", :url => { :action => :cancel_create, :feature_id => @feature.id }, :update => "add_line" %>
+    Text: <%= line.text_field :text %>
+    <%= line.submit "Add" %>
+    <%= button_to_remote "Cancel", :url => { :action => :cancel_create, :feature_id => @feature.id }, :update => "add_line" %>
   <% end -%>
 </div>

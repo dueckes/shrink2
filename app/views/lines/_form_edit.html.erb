@@ -1,5 +1,4 @@
-<% remote_form_for(:line, line, :url => package_feature_line_path(line.package, line.feature, line), :html => { :method => :put }, :builder => FeatureLineFormBuilder) do |line_form| -%>
-  <%= render :partial => "lines/form_common", :locals => { :line_form => line_form } %>
-  <div id="<%= dom_id(line) %>_errors" class="errors">
-  </div>
-<% end -%>
+<%= render(:partial => "common/form_edit", :locals => { :model_name => :line,
+                                                        :model => line,
+                                                        :url => package_feature_line_path(line.package, line.feature, line),
+                                                        :form_builder => FeatureLineFormBuilder }) %>

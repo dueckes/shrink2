@@ -1,5 +1,4 @@
-<% remote_form_for(:scenario, Platter::Scenario.new(:feature => feature), :url => package_feature_scenarios_path(feature.package, feature), :builder => ScenarioFormBuilder) do |scenario_form| -%>
-  <%= render :partial => "scenarios/form_common", :locals => { :scenario_form => scenario_form } %>
-  <div id="<%= dom_id(feature) %>_new_scenario_errors" class="errors">
-  </div>
-<% end -%>
+<%= render(:partial => "common/form_new", :locals => { :model_name => :scenario,
+                                                       :model => Platter::Scenario.new(:feature => feature),
+                                                       :url => package_feature_scenarios_path(feature.package, feature),
+                                                       :form_builder => ScenarioFormBuilder }) %>

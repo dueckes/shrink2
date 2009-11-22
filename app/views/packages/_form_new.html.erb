@@ -1,5 +1,6 @@
 <%= error_messages_for :package %>
-<% remote_form_for(:package, Platter::Package.new(:parent => parent), :url => { :action => :create, :parent_id => parent.id }, :builder => PackageFormBuilder) do |package_form| -%>
-  <%= render :partial => "packages/form_common", :locals => { :package_form => package_form } %>
-  <%= package_form.commit_button %>&nbsp;<%= package_form.cancel_button %>
+<% remote_form_for(:package, Platter::Package.new(:parent => parent), :url => { :action => :create, :parent_id => parent.id }, :builder => PackageFormBuilder) do |form| -%>
+  <%= render :partial => "packages/form_common", :locals => { :form => form } %>
+  <%= form.commit_button %>
+  <%= form.cancel_button %>
 <% end -%>

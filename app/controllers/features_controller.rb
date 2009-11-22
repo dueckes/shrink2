@@ -4,20 +4,6 @@ class FeaturesController < ApplicationController
     @package = Platter::Package.find(params[:package_id])
   end
 
-  def new
-    @package = Platter::Package.find(params[:package_id])
-  end
-
-  def cancel_create
-    @package = Platter::Package.find(params[:package_id])
-  end
-
-  def create
-    @feature = Platter::Feature.new(params[:feature])
-    @feature.package = Platter::Package.find(params[:package_id])
-    @feature.save!
-  end
-
   def import_gesture
     @package = Platter::Package.find(params[:package_id])
   end
@@ -32,25 +18,6 @@ class FeaturesController < ApplicationController
         page.hide("#{dom_id(@feature.package)}_new_feature")
         page.replace_html("#{dom_id(@feature.package)}_new_feature", "")
         page.show("#{dom_id(@feature.package)}_new_feature_controls")
-      end
-    end
-  end
-
-  def show
-    @feature = Platter::Feature.find(params[:id])
-  end
-
-  def edit
-    @feature = Platter::Feature.find(params[:id])
-  end
-
-  def update
-    if params[:commit] == "Update"
-      @feature = Platter::Feature.find(params[:id])
-      if !@feature.update_attributes(params[:feature])
-        render(:update) do |page|
-          page.replace_html("#{dom_id(@feature)}_errors", :partial => "common/show_errors", :locals => { :errors => @feature.errors })
-        end
       end
     end
   end

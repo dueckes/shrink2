@@ -20,20 +20,12 @@ class PackagesController < ApplicationController
     @package.save!
   end
 
-  def edit
-    @package = Platter::Package.find(params[:id])
-  end
-
   def update
     puts "params[:commit]: #{params[:commit]}"
     if params[:commit] == "Update"
       @package = Platter::Package.find(params[:id])
       @package.update_attributes!(params[:package])
     end
-  end
-
-  def show
-    @package = Platter::Package.find(params[:id])
   end
 
   def collapse
