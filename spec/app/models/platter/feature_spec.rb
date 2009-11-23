@@ -121,6 +121,30 @@ module Platter
 
       end
 
+      describe "when an invalid line is added" do
+
+        before(:each) do
+          @feature.lines << Platter::FeatureLine.new(:text => "")
+        end
+
+        it "should return false" do
+          @feature.should_not be_valid
+        end
+
+      end
+
+      describe "when an invalid scenario is added" do
+
+        before(:each) do
+          @feature.scenarios << Platter::Scenario.new(:title => "")
+        end
+
+        it "should return false" do
+          @feature.should_not be_valid
+        end
+
+      end
+
     end
 
     context "#as_text" do

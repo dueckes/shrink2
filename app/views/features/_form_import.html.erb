@@ -3,6 +3,8 @@
     <%= label(dom_id(@package), :feature_file, "Import Feature") %><%= file_field_tag(:feature_file, :id => "#{dom_id(@package)}_feature_file") %>
     <%= submit_tag "Import" %>
     <%= button_to_remote("Cancel", :url => { :action => :cancel_create, :package_id => @package.id }, :id => "#{dom_id(@package)}_cancel_import") %>
+    <div id="<%= dom_id(@package) %>_import_feature_errors" class="errors" style="display: none;">
+    </div>
   <% end -%>
 <% end -%>
 <iframe id="<%= dom_id(@package) %>_upload_frame" name="<%= dom_id(@package) %>_upload_frame" style="display: none"></iframe>

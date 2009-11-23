@@ -128,6 +128,18 @@ module Platter
 
       end
 
+      describe "when an invalid step has been added" do
+
+        before(:each) do
+          @scenario.steps << Platter::Step.new(:text => "")
+        end
+
+        it "should return false" do
+          @scenario.should_not be_valid
+        end
+
+      end
+
     end
 
     context "#as_text" do
