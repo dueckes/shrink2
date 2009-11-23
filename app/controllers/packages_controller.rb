@@ -1,35 +1,22 @@
-class PackagesController < ApplicationController
+class PackagesController < RestfulAjaxApplicationController
   layout "main", :only => :index
+
+  before_filter :establish_model_via_id_param, :only => [:show, :collapse, :edit, :update, :destroy]
 
   def index
     @root_package = Platter::Package.root
   end
 
-  def new
-    establish_parent
+  def collapse
   end
 
-  def cancel_create
-    establish_parent
+  def establish_parents_via_params
+    @parent = params[:parent_id] ? Platter::Package.find(params[:parent_id]) : Platter::Package.root
   end
 
   def establish_model_for_create
-    establish_parent
+    establish_parents_via_params
     set_model Platter::Package.new(params[:package].merge(:parent => @parent))
-  end
-
-  def collapse
-    @package = Platter::Package.find(params[:id])
-  end
-
-  def destroy
-    @package = Platter::Package.find(params[:id])
-    @package.destroy
-  end
-
-  private
-  def establish_parent
-    @parent = params[:parent_id] ? Platter::Package.find(params[:parent_id]) : Platter::Package.root
   end
 
 end

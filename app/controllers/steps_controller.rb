@@ -1,4 +1,4 @@
-class StepsController < ApplicationController
+class StepsController < RestfulAjaxApplicationController
 
   def auto_complete_for_step_text
     user_text = params[:step][:text] ? params[:step][:text].downcase : ""
@@ -8,11 +8,6 @@ class StepsController < ApplicationController
               WHERE LOWER(text) LIKE '#{user_text}%'
               ORDER BY text ASC
               LIMIT 10})
-  end
-
-  def destroy
-    @step = Platter::Step.find(params[:id])
-    @step.destroy
   end
 
 end

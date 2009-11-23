@@ -1,24 +1,27 @@
-class FeaturesController < ApplicationController
+class FeaturesController < RestfulAjaxApplicationController
+  layout "main", :only => :show
 
-  def index
-    @package = Platter::Package.find(params[:package_id])
+  before_filter :establish_parents_via_params, :only => [:new, :cancel_create, :import_gesture]
+  before_filter :establish_model_via_id_param, :only => [:show, :show_detail, :edit, :update, :destroy]
+
+  def show
+    @root_package = Platter::Package.root
   end
 
+  def show_detail
+    #Intentionally blank
+  end
+  
   def import_gesture
-    @package = Platter::Package.find(params[:package_id])
+    #Intentionally blank
   end
-               
+
   def import
     responds_to_parent do
       feature = Platter::Cucumber::FeatureImporter.import_file(write_feature_file(params[:feature_file]))
       feature.package = Platter::Package.find(params[:package_id])
       feature.save ? render_successful_import(feature) : render_import_error(feature)
     end
-  end
-
-  def destroy
-    @feature = Platter::Feature.find(params[:id])
-    @feature.destroy
   end
 
   private

@@ -1,11 +1,6 @@
-<div id="<%= dom_id(@feature) %>_heading_area" class="list_title">
-  <%= render :partial => "features/show_heading", :locals => { :feature => @feature } %>
+<%= render :partial => "packages/show_packages_area", :locals => { :root_package => @root_package } %>
+<div id="feature_area">
+  <div id="feature" class="outer_list">
+    <%= render :partial => "features/show_feature_area", :locals => { :feature => @feature } %>
+  </div>
 </div>
-<ul>
-  <li>
-    <%= render :partial => "lines/list", :locals => { :feature => @feature } %>
-  </li>
-  <li>
-    <%= render :partial => "scenarios/list", :locals => { :feature => @feature } %>
-  </li>
-</ul>
