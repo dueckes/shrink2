@@ -20,8 +20,8 @@ describe Platter::Package do
         @root_package.parent.should be_nil
       end
 
-      it "should return a package whose name is ROOT" do
-        @root_package.name.should eql("ROOT")
+      it "should return a package whose name is 'Root Package'" do
+        @root_package.name.should eql("Root Package")
       end
 
     end

@@ -1,7 +1,9 @@
 <div id="packages_area">
   <div id="packages" class="outer_list">
     <div class="list_title">Packages & Features</div>
-    <%= render :partial => "packages/list", :locals => { :package => @root_package } %>
+    <ul id="root_packages">
+      <%= render :partial => "packages/show_expanded", :locals => { :package => @root_package, :interactive => false } %>
+    </ul>
   </div>
 </div>
 <div id="feature_area">

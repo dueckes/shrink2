@@ -2,7 +2,7 @@ namespace :db do
 
   redefine_task(:load_config => :rails_env) do
     require 'active_record'
-    require File.expand_path("#{RAILS_ROOT}/lib/extensions/gems/active_record/active_record")
+    require File.expand_path("#{RAILS_ROOT}/lib/extensions/frameworks/active_record/init")
     ActiveRecord::Base.configurations = Rails::Configuration.new.database_configuration
   end
 

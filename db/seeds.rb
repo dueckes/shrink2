@@ -1,1 +1,1 @@
-Platter::Package.create!(:name => "ROOT")
+Platter::Package.create!(:name => "Root Package")

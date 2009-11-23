@@ -1,1 +1,6 @@
-<%= render :partial => "packages/list", :locals => { :package => package } %>
+<% li_for(package) do -%>
+  <%= render :partial => "packages/show_heading", :locals => { :package => package, :interactive => interactive } %>
+  <div id="<%= dom_id(package) %>_expand_area" class="expand_area">
+    <%= render :partial => "packages/list", :locals => { :package => package } %>
+  </div>
+<% end -%>

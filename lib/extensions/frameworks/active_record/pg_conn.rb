@@ -1,6 +1,10 @@
 module Platter
   module PGconn
 
+    def self.included(pg_conn)
+      pg_conn.extend(ClassMethods)
+    end
+
     module ClassMethods
 
       def quote_ident(name)
@@ -8,6 +12,5 @@ module Platter
       end
 
     end
-
   end
 end
