@@ -1,0 +1,9 @@
+<% li_for(package) do -%>
+  <div id="<%= dom_id(package) %>_heading_area" class="element_heading">
+    <%= link_to(package.name, "javascript:void(0);", { :id => "#{dom_id(package)}_toggle_link", :class => "toggle_link" }) %>
+    <%= render :partial => "packages/show_expanded_controls", :locals => { :package => package } %>
+  </div>
+  <div id="<%= dom_id(package) %>_expand_area" class="expand_area">
+    <%= render :partial => "packages/list", :locals => { :package => package } %>
+  </div>
+<% end -%>
