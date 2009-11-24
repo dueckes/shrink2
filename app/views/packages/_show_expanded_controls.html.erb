@@ -1,5 +1,5 @@
 <div id="<%= nested_dom_id(:add_package, package) %>">
-  <%= link_to_remote "Add Package", :url => { :action => :new, :parent_id => package.id }, :method => :get %>
+  <%= link_to_remote "Add Package", :url => { :controller => :packages, :action => :new, :parent_id => package.id }, :method => :get %>
 </div>
 <div id="<%= dom_id(package) %>_new_feature_controls">
   <%= link_to_remote "Add Feature", :url => new_package_feature_path(package), :method => :get %>

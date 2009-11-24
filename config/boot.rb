@@ -1,7 +1,10 @@
 # Don't change this file!
 # Configure your app in config/environment.rb and config/environments/*.rb
 
-RAILS_ROOT = "#{File.dirname(__FILE__)}/.." unless defined?(RAILS_ROOT)
+unless defined?(RAILS_ROOT)
+  # ENV['PLATTER_RAILS_ROOT'] circumvents Cygwin using conventional Windows paths
+  RAILS_ROOT = ENV['PLATTER_RAILS_ROOT'] ? "#{ENV['PLATTER_RAILS_ROOT']}" : "#{File.dirname(__FILE__)}/.."
+end
 
 module Rails
   class << self

@@ -194,7 +194,7 @@ module Platter
       end
 
     end
-
+    
     def create_mock_line(stubs)
       StubModelFixture.create_model(FeatureLine, stubs)
     end

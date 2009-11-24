@@ -340,6 +340,10 @@ label {
   width: 100%;
 }
 
+.show_url_area {
+  position: relative;
+}
+
 .errors {
   width: auto;
   color: #ff4444;

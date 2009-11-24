@@ -1,0 +1,2 @@
+<span><%= package_feature_url(feature.package, feature) %></span>
+<%= link_to_remote "Close", { :url => { :action => :close_url, :id => feature.id }, :method => :get } %>

@@ -1,8 +1,9 @@
 class FeaturesController < RestfulAjaxApplicationController
   layout "main", :only => :show
 
+  #TODO extend filters
   before_filter :establish_parents_via_params, :only => [:new, :cancel_create, :import_gesture]
-  before_filter :establish_model_via_id_param, :only => [:show, :show_detail, :edit, :update, :destroy]
+  before_filter :establish_model_via_id_param, :only => [:show, :show_detail, :show_url, :close_url, :edit, :update, :destroy]
 
   def show
     @root_package = Platter::Package.root
@@ -11,7 +12,15 @@ class FeaturesController < RestfulAjaxApplicationController
   def show_detail
     #Intentionally blank
   end
+
+  def show_url
+    #Intentionally blank
+  end
   
+  def close_url
+    #Intentionally blank
+  end
+
   def import_gesture
     #Intentionally blank
   end

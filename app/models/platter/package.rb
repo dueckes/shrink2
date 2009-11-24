@@ -18,6 +18,10 @@ module Platter
       parent == self.root
     end
 
+    def in_tree_path_until?(package)
+      self == package || package.ancestors.include?(self)
+    end
+
     class << self
 
       def find_or_create!(name_or_path)

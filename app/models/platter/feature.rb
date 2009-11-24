@@ -14,6 +14,10 @@ module Platter
 
     UPLOAD_DIRECTORY = "#{RAILS_ROOT}/tmp/uploaded_features".freeze
 
+    def in_package_hierarchy?(package)
+      package.in_hierarchy?(self.package)
+    end
+
     def as_text
       text_lines = []
       text_lines << "Feature: #{title}"
@@ -23,7 +27,7 @@ module Platter
       text_lines.join("\n")
     end
     
-    def export base_dir
+    def export(base_dir)
       file = Pathname.new(base_dir + "#{export_name}.feature")
       File.open(file, 'w') do | file_contents |
         file_contents << as_text
@@ -33,6 +37,7 @@ module Platter
     def export_name
       title.downcase.gsub(/\s/, '_').gsub(/\W/, '')
     end
+
   end
 
 end

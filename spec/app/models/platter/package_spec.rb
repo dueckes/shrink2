@@ -273,4 +273,64 @@ describe Platter::Package do
 
   end
 
+  context "#in_tree_path_until?" do
+
+    before(:each) do
+      @package.parent = @root_package
+    end
+
+    describe "when the package is the same as the parameterized package" do
+
+      it "should return true" do
+        @package.should be_in_tree_path_until(@package)
+      end
+
+    end
+
+    describe "when the package is in an ancestor of the parameterized package" do
+
+      before(:each) do
+        @sibling_package = Platter::Package.new(:name => "Other Package", :parent => @package)
+      end
+
+      it "should return true" do
+        @package.should be_in_tree_path_until(@sibling_package)
+      end
+
+    end
+
+    describe "when the package is the root package" do
+
+      it "should return true" do
+        @root_package.should be_in_tree_path_until(@package)
+      end
+
+    end
+
+    describe "when the package is a sibling of the parameterized package" do
+
+      before(:each) do
+        @sibling_package = Platter::Package.new(:name => "Other Package", :parent => @package)
+      end
+
+      it "should return false" do
+        @sibling_package.should_not be_in_tree_path_until(@package)
+      end
+
+    end
+
+    describe "when the package is not in the same tree path as the parameterized package" do
+
+      before(:each) do
+        @package_not_in_tree_path = Platter::Package.new(:name => "Package Not In Tree Path", :parent => @root_package)
+      end
+
+      it "should return false" do
+        @package.should_not be_in_tree_path_until(@package_not_in_tree_path)
+      end
+
+    end
+
+  end
+
 end

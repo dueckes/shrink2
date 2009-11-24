@@ -1,0 +1,2 @@
+page.hide("#{dom_id(@feature)}_show_url")
+page.replace_html("#{dom_id(@feature)}_show_url", "")

@@ -1,0 +1,17 @@
+<% li_for(package) do -%>
+  <div id="<%= dom_id(package) %>_heading_area" class="element_heading expanded">
+    <%= link_to_remote(package.name, { :url => { :controller => :packages, :action => :collapse, :id => package.id }, :method => :get }, { :id => "#{dom_id(package)}_toggle_link", :class => "toggle_link" }) %>
+    <div id="<%= dom_id(package) %>_edit_controls" class="edit_controls">
+      <%= link_to_remote "Edit", :url => edit_package_path(package), :method => :get %>
+      <%= link_to_remote "Delete", :confirm => "Are you sure you want to delete this package?", :url => package_path(package), :method => :delete %>
+    </div>
+    <div id="<%= dom_id(package) %>_edit_form" style="display: none;">
+    </div>
+    <div id="<%= dom_id(package) %>_expand_controls">
+      <%= render :partial => "packages/show_expanded_controls", :locals => { :package => package } %>
+    </div>
+  </div>
+  <div id="<%= dom_id(package) %>_expand_area" class="expand_area">
+    <%= render :partial => "packages/list", :locals => { :package => package, :feature => feature } %> 
+  </div>
+<% end -%>
