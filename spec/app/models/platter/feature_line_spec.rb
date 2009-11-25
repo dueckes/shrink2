@@ -25,59 +25,91 @@ module Platter
     end
     
     context "#valid?" do
-  
-      describe "when text has been provided" do
 
-        before(:each) do
-          @line = FeatureLine.new(:text => "Some Text")
-        end
-
-        describe "and the length of the text is less that 256 characters" do
-
-          before(:each) do
-            @line.text = "a" * 255
-          end
-
-          it "should return true" do
-            @line.should be_valid
-          end
-
-        end
-
-        describe "and the length of the text is 256 characters" do
-
-          before(:each) do
-            @line.text = "a" * 256
-          end
-
-          it "should return false" do
-            @line.should_not be_valid
-          end
-
-        end
-
-        describe "and the length of the text is greater than 256 characters" do
-
-          before(:each) do
-            @line.text = "a" * 257
-          end
-
-          it "should return false" do
-            @line.should_not be_valid
-          end
-
-        end
-
+      before(:each) do
+        @line = FeatureLine.new(:text => "Some Text", :feature => Feature.new)
       end
 
-      describe "when no text has been provided" do
+      describe "when a feature" do
 
-        before(:each) do
-          @line = FeatureLine.new
+        describe "has been provided" do
+
+          describe "and text has been provided" do
+
+            describe "whose length is less than 256 characters" do
+
+              before(:each) do
+                @line.text = "a" * 255
+              end
+
+              it "should return true" do
+                @line.should be_valid
+              end
+
+            end
+
+            describe "whose length is 256 characters" do
+
+              before(:each) do
+                @line.text = "a" * 256
+              end
+
+              it "should return false" do
+                @line.should_not be_valid
+              end
+
+            end
+
+            describe "whose length is greater than 256 characters" do
+
+              before(:each) do
+                @line.text = "a" * 257
+              end
+
+              it "should return false" do
+                @line.should_not be_valid
+              end
+
+            end
+
+            describe "that is empty" do
+
+              before(:each) do
+                @line.text = ""
+              end
+
+              it "should return false" do
+                @line.should_not be_valid
+              end
+
+            end
+
+          end
+
+          describe "and no text has been provided" do
+
+            before(:each) do
+              @line.text = nil
+            end
+
+            it "should return false" do
+              @line.should_not be_valid
+            end
+
+          end
+
         end
 
-        it "should return false" do
-          @line.should_not be_valid
+        describe "has not been provided" do
+
+          before(:each) do
+            @line.feature = nil
+          end
+
+          it "should return false" do
+            @line.should_not be_valid
+          end
+
         end
 
       end

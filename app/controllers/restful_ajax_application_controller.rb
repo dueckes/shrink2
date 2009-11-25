@@ -35,10 +35,7 @@ class RestfulAjaxApplicationController < ApplicationController
     if !@model.save
       id_prefix = new_id_prefix(@model)
       model_name_in_view = self.class.model_name_in_view
-      render(:update) do |page|
-        page.replace_html("#{id_prefix}_new_#{model_name_in_view}_errors",
-                          :partial => "common/show_errors", :locals => { :errors => @model.errors })
-      end
+      render_errors("#{id_prefix}_new_#{model_name_in_view}_errors", @model.errors)
     end
   end
 
@@ -53,10 +50,7 @@ class RestfulAjaxApplicationController < ApplicationController
   def update
     unless params[:cancel_edit] == "true"
       if !@model.update_attributes(params[self.class.model_name_in_view])
-        render(:update) do |page|
-          page.replace_html("#{dom_id(@model)}_errors",
-                            :partial => "common/show_errors", :locals => { :errors => @model.errors })
-        end
+        render_errors("#{dom_id(@model)}_errors", @model.errors)
       end
     end
   end
@@ -90,6 +84,13 @@ class RestfulAjaxApplicationController < ApplicationController
   def set_model(model)
     @model = model
     instance_variable_set("@#{self.class.model_name_in_view}", model)
+  end
+
+  def render_errors(element_id, errors)
+    error_messages = errors.respond_to?(:full_messages) ? errors.full_messages : errors
+    render(:update) do |page|
+      page.replace_html(element_id, :partial => "common/show_errors", :locals => { :error_messages => error_messages })
+    end
   end
 
   private

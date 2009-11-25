@@ -40,40 +40,68 @@ module Platter
 
     context "#valid?" do
 
-      describe "when text has been provided" do
+      before(:each) do
+        @step = Step.new(:scenario => Scenario.new, :text => "Some Text")
+      end
 
-        before(:each) do
-          @step = Step.new(:text => "Some Text")
+      describe "when a scenario has been provided" do
+
+        describe "and text has been provided" do
+
+          describe "whose length is less that 256 characters" do
+
+            before(:each) do
+              @step.text = "a" * 255
+            end
+
+            it "should return true" do
+              @step.should be_valid
+            end
+
+          end
+
+          describe "whose length is 256 characters" do
+
+            before(:each) do
+              @step.text = "a" * 256
+            end
+
+            it "should return false" do
+              @step.should_not be_valid
+            end
+
+          end
+
+          describe "whose length is greater than 256 characters" do
+
+            before(:each) do
+              @step.text = "a" * 257
+            end
+
+            it "should return false" do
+              @step.should_not be_valid
+            end
+
+          end
+
+          describe "that is empty" do
+
+            before(:each) do
+              @step.text = ""
+            end
+
+            it "should return false" do
+              @step.should_not be_valid
+            end
+
+          end
+
         end
 
-        describe "and the length of the text is less that 256 characters" do
+        describe "when text has not been provided" do
 
           before(:each) do
-            @step.text = "a" * 255
-          end
-
-          it "should return true" do
-            @step.should be_valid
-          end
-
-        end
-
-        describe "and the length of the text is 256 characters" do
-
-          before(:each) do
-            @step.text = "a" * 256
-          end
-
-          it "should return false" do
-            @step.should_not be_valid
-          end
-
-        end
-
-        describe "and the length of the text is greater than 256 characters" do
-
-          before(:each) do
-            @step.text = "a" * 257
+            @step.text = nil
           end
 
           it "should return false" do
@@ -84,10 +112,10 @@ module Platter
 
       end
 
-      describe "when no text has been provided" do
+      describe "when a scenario has not been provided" do
 
         before(:each) do
-          @step = Step.new
+          @step.scenario = nil
         end
 
         it "should return false" do

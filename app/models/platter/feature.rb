@@ -7,6 +7,7 @@ module Platter
     belongs_to :package, :class_name => "Platter::Package"
     has_many :lines, :class_name => "Platter::FeatureLine", :order => :position
     has_many :scenarios, :class_name => "Platter::Scenario", :order => :position
+    has_and_belongs_to_many :tags, :class_name => "Platter::Tag", :order => :name
 
     validates_presence_of :package, :title
     validates_length_of :title, :maximum => 255

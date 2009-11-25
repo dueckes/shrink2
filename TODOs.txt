@@ -6,6 +6,7 @@ Questions:
 
 Next:
 - MU: Cucumber specific names for import/export tasks?
+      Show Link consistent behaviour as Add Tags
       Validation errors causes height change - discuss with Pam
       Fix package background
       Validation error messages to be discussed

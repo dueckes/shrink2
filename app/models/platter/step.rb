@@ -6,7 +6,7 @@ module Platter
     belongs_to :scenario, :class_name => "Platter::Scenario"
     acts_as_list :scope => :scenario
 
-    validates_presence_of :text
+    validates_presence_of :scenario, :text
     validates_length_of :text, :maximum => 255
 
     def feature

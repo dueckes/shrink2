@@ -1,0 +1,3 @@
+page.visual_effect(:blind_up, "#{dom_id(@feature)}_add_tags_form_area", :duration => 0.5)
+page.replace_html("#{dom_id(@feature)}_add_tags_form_area", "")
+

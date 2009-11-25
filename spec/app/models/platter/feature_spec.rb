@@ -15,6 +15,18 @@ module Platter
       feature.title.should eql("Some Title")
     end
 
+    it "should have tags" do
+      feature = Feature.new
+
+      tags = (1..3).collect do |i|
+        tag = create_mock_tag(:name => "Tag#{i}")
+        feature.tags << tag
+        tag
+      end
+
+      feature.tags.should eql(tags)
+    end
+
     it "should have feature lines" do
       feature = Feature.new
 
@@ -49,24 +61,64 @@ module Platter
         @feature = Feature.new(:package => Package.new(:name => "Some package"), :title => "Some Title")
       end
 
-      describe "when a title is established" do
+      describe "when a package has been provided" do
 
-        describe "and the title is less than 256 characters in length" do
+        describe "and a title has been provided" do
 
-          before(:each) do
-            @feature.title = "a" * 255
+          describe "whose length is less than 256 characters" do
+
+            before(:each) do
+              @feature.title = "a" * 255
+            end
+
+            it "should return true" do
+              @feature.should be_valid
+            end
+
           end
 
-          it "should return true" do
-            @feature.should be_valid
+          describe "whose length is 256 characters" do
+
+            before(:each) do
+              @feature.title = "a" * 256
+            end
+
+            it "should return false" do
+              @feature.should_not be_valid
+            end
+
+          end
+
+          describe "whose length is greater than 256 characters" do
+
+            before(:each) do
+              @feature.title = "a" * 257
+            end
+
+            it "should return false" do
+              @feature.should_not be_valid
+            end
+
+          end
+
+          describe "that is empty" do
+
+            before(:each) do
+              @feature.title = ""
+            end
+
+            it "should return false" do
+              @feature.should_not be_valid
+            end
+
           end
 
         end
 
-        describe "and the title is 256 characters in length" do
+        describe "and a title has not been provided" do
 
           before(:each) do
-            @feature.title = "a" * 256
+            @feature.title = nil
           end
 
           it "should return false" do
@@ -75,41 +127,9 @@ module Platter
 
         end
 
-        describe "and the title is greater than 256 characters in length" do
-          
-          before(:each) do
-            @feature.title = "a" * 257
-          end
-
-          it "should return false" do
-            @feature.should_not be_valid
-          end
-
-        end
-
       end
 
-      describe "when no title is established" do
-
-        before(:each) do
-          @feature.title = nil
-        end
-
-        it "should return false" do
-          @feature.should_not be_valid
-        end
-
-      end
-
-      describe "when a package is established" do
-
-        it "should return true" do
-          @feature.should be_valid
-        end
-
-      end
-
-      describe "when no package is established" do
+      describe "when a package has not been provided" do
 
         before(:each) do
           @feature.package = nil
@@ -121,7 +141,7 @@ module Platter
 
       end
 
-      describe "when an invalid line is added" do
+      describe "when an invalid line has been added" do
 
         before(:each) do
           @feature.lines << Platter::FeatureLine.new(:text => "")
@@ -133,7 +153,7 @@ module Platter
 
       end
 
-      describe "when an invalid scenario is added" do
+      describe "when an invalid scenario has been added" do
 
         before(:each) do
           @feature.scenarios << Platter::Scenario.new(:title => "")
@@ -195,6 +215,10 @@ module Platter
 
     end
     
+    def create_mock_tag(stubs)
+      StubModelFixture.create_model(Tag, stubs)
+    end
+
     def create_mock_line(stubs)
       StubModelFixture.create_model(FeatureLine, stubs)
     end

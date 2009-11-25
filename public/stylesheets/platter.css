@@ -340,7 +340,7 @@ label {
   width: 100%;
 }
 
-.show_url_area {
+.show_url_area, .add_tags_area {
   position: relative;
 }
 
@@ -366,6 +366,17 @@ label {
 .show_url a {
   display: block;
   float: right;
+}
+
+.add_tags_form_area {
+  position: absolute;
+  top: 33px;
+  left: 0;
+  width: 400px;
+  padding: 5px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  font-size: 0.6em;
 }
 
 .errors {

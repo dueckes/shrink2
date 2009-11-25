@@ -5,3 +5,8 @@
   <div id="<%= dom_id(feature) %>_show_url" style="display: none;" class="show_url">
   </div>  
 </div>
+<div id="<%= dom_id(feature) %>_add_tags_area" class="add_tags_area">
+  <%= link_to_remote "Add Tags", { :url => { :action => :new_tags, :id => feature.id }, :method => :get } %>
+  <div id="<%= dom_id(feature) %>_add_tags_form_area" class="add_tags_form_area" style="display: none;">
+  </div>
+</div>

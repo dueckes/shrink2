@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090911071012) do
+ActiveRecord::Schema.define(:version => 20091125064045) do
 
   create_table "feature_lines", :force => true do |t|
     t.integer  "feature_id", :null => false
@@ -24,6 +24,13 @@ ActiveRecord::Schema.define(:version => 20090911071012) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "package_id", :null => false
+  end
+
+  create_table "features_tags", :id => false, :force => true do |t|
+    t.integer  "feature_id", :null => false
+    t.integer  "tag_id",     :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "packages", :force => true do |t|
@@ -43,6 +50,12 @@ ActiveRecord::Schema.define(:version => 20090911071012) do
     t.integer  "scenario_id", :null => false
     t.integer  "position",    :null => false
     t.string   "text",        :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "tags", :force => true do |t|
+    t.string   "name",       :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
