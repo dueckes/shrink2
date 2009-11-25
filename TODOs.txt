@@ -1,9 +1,11 @@
 Longer Term:
-- Foreign key support
+- Foreign key support?
 
 Questions:
 - Field Sets for all forms?
 
 Next:
-- MU: Add new entities to bottom of li
-      Cucumber specific names for import/export tasks?
+- MU: Cucumber specific names for import/export tasks?
+      Validation errors causes height change - discuss with Pam
+      Fix package background
+      Validation error messages to be discussed

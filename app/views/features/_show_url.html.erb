@@ -1,2 +1,2 @@
-<span><%= package_feature_url(feature.package, feature) %></span>
-<%= link_to_remote "Close", { :url => { :action => :close_url, :id => feature.id }, :method => :get } %>
+<span id="<%= dom_id(feature) %>_show_url_text"><%= package_feature_url(feature.package, feature) %></span>
+<%= link_to_remote image_tag("close_small.png", :alt => ""), { :url => { :action => :close_url, :id => feature.id }, :method => :get } %>
