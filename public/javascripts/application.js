@@ -31,3 +31,15 @@ function showImportForm() {
 	Effect.toggle("importform", "blind");
 	menuToggle("menu-import");
 }
+
+function commaDelimitedStringIncludesElement(string, element) {
+  var stingWithConsistentCommaSpacing = string.replace(/\s*,\s*/g, ",");
+  var elementMatchRegularExpression = new RegExp("(^" + element + ",)|(," + element + ",)|(," + element + "$)");
+  return stingWithConsistentCommaSpacing.match(elementMatchRegularExpression) != null;
+}
+
+function addTag(textFieldId, tagName) {
+  if (!commaDelimitedStringIncludesElement($(textFieldId).value, tagName)) {
+    $(textFieldId).value = $(textFieldId).value + ", " + tagName;
+  }
+}

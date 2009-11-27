@@ -13,14 +13,6 @@ module Platter
         @tag = Tag.new(:name => "Some Name")
       end
 
-      describe "when a name has been established" do
-
-        it "should return true" do
-          @tag.should be_valid
-        end
-
-      end
-
       describe "when a name has not been established" do
 
         before(:each) do

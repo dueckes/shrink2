@@ -15,8 +15,18 @@ module Platter
 
     UPLOAD_DIRECTORY = "#{RAILS_ROOT}/tmp/uploaded_features".freeze
 
-    def in_package_hierarchy?(package)
-      package.in_hierarchy?(self.package)
+    def tag_line
+      tags.collect(&:name).join(", ")
+    end
+
+    def tag_line=(tag_line)
+      tag_names = tag_line.split(",").collect(&:strip).uniq
+      add_tags(tag_names)
+      remove_tags(tag_names)
+    end
+
+    def unused_tags
+      Tag.find(:all, :order => "name") - tags
     end
 
     def as_text
@@ -37,6 +47,18 @@ module Platter
 
     def export_name
       title.downcase.gsub(/\s/, '_').gsub(/\W/, '')
+    end
+
+    private
+    def add_tags (tag_names)
+      feature_tag_names = tags.collect(&:name)
+      added_tag_names = tag_names.find_all { |tag_name| !feature_tag_names.include?(tag_name) }
+      added_tag_names.each { |tag_name| tags << Platter::Tag.find_or_create!(:name => tag_name) }
+    end
+
+    def remove_tags(tag_names)
+      removed_tags = tags.find_all { |tag| !tag_names.include?(tag.name) }
+      removed_tags.each { |tag| tags.delete(tag) }
     end
 
   end

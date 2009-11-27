@@ -1,0 +1,14 @@
+<% form_remote_tag(:url => { :action => :modify_tags, :id => feature.id }) do -%>
+  <%= text_field_tag :text, nil, :value => feature.tag_line, :id => "#{dom_id(feature)}_tags_text", :size => 50, :maxlength => 255 %>
+  <div id="<%= dom_id(feature) %>_tags_errors" class="errors" style="display: none;">
+  </div>
+  <span>Available tags:</span>
+  <% all_tags.each do |tag| -%>
+    <%= link_to tag.name, "#", :onclick => "javascript:addTag('#{dom_id(feature)}_tags_text', '#{tag.name}');" %>
+  <% end -%>
+  <span>Comma delimited list supported, e.g. in_progress, billing</span>
+  <div class="form_buttons">
+    <%= submit_tag "OK", :id => "#{dom_id(feature)}_tags_submit" %>
+    <%= button_to_remote "Cancel", :url => { :action => :cancel_modify_tags, :id => feature.id }, :id => "#{dom_id(feature)}_tags_cancel" %>
+  </div>
+<% end -%>

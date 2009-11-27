@@ -40,7 +40,6 @@ h3 {
 }
 
 input, select, textarea {
-  border: 1px #cccccc;
   vertical-align: middle;
   margin-right: 5px;
   font-style: inherit;
@@ -169,6 +168,7 @@ label {
 
 #feature .list_title {
   text-align: left;
+  padding-bottom: 20px;
 }
 
 #feature ul li ul li {
@@ -340,22 +340,28 @@ label {
   width: 100%;
 }
 
-.show_url_area, .add_tags_area {
+.show_url_area, .tags_area {
   position: relative;
 }
 
-.show_url {
+.feature_heading_popup, .tag_list_area {
   position: absolute;
+  top: 32px;
   left: 0;
-  top: 0;
   width: 450px;
-  height: 30px;
-  padding-top: 5px;
-  padding-left: 5px;
-  font-size: 0.8em;
-  line-height: 25px;
+  font-size: 0.6em;
+}
+
+.feature_heading_popup {
   background-color: #fff;
   border: 1px solid #ccc;
+}
+
+.show_url {
+  z-index: 1;
+  line-height: 25px;
+  padding-top: 2px;
+  padding-bottom: 2px;
 }
 
 .show_url span {
@@ -368,15 +374,29 @@ label {
   float: right;
 }
 
-.add_tags_form_area {
-  position: absolute;
-  top: 33px;
-  left: 0;
-  width: 400px;
+.tag_list_area {
+  line-height: 20px;
+}
+
+.tags_form_area {
   padding: 5px;
-  background-color: #fff;
-  border: 1px solid #ccc;
-  font-size: 0.6em;
+}
+
+.tags_form_area span, .tags_form_area .form_buttons {
+  padding-left: 0;
+  display: block;
+  clear: left;
+  float: left;
+}
+
+.tags_form_area a {
+  display: block;
+  float: left;
+}
+
+.tags_form_area input {
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 
 .errors {

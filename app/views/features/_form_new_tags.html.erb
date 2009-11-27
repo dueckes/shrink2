@@ -1,8 +1,0 @@
-<% form_remote_tag(:url => { :action => :create_tags, :id => feature.id }) do -%>
-  <%= text_field_tag :text, nil, :size => 30, :maxlength => 255, :id => "#{dom_id(feature)}_add_tags_text" %>
-  <span>Comma delimited list supported, e.g. in_progress, billing</span>
-  <%= submit_tag "Add", :id => "#{dom_id(feature)}_add_tags_submit" %>
-  <%= button_to_remote "Cancel", :url => { :action => :cancel_create_tags, :id => feature.id }, :id => "#{dom_id(feature)}_add_tags_cancel" %>
-  <div id="<%= dom_id(feature) %>_add_tags_errors" class="errors">
-  </div>
-<% end -%>

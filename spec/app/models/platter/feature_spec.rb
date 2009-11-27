@@ -167,6 +167,134 @@ module Platter
 
     end
 
+    context "#tag_line" do
+
+      before(:each) do
+        @feature = Feature.new
+      end
+
+      describe "when no tag is associated with the feature" do
+
+        it "should return an empty string" do
+          @feature.tag_line.should eql("")
+        end
+
+      end
+
+      describe "when one tag is associated with the feature" do
+
+        before(:each) do
+          @feature.tags << Tag.new(:name => "Some Tag")
+        end
+
+        it "should return the name of the tag" do
+          @feature.tag_line.should eql("Some Tag")
+        end
+
+      end
+
+      describe "when many tags are associated with the feature" do
+
+        before(:each) do
+          (1..3).each { |i| @feature.tags << Tag.new(:name => "Tag#{i}") }
+        end
+
+        it "should return a string with a comma delimited list of tag names" do
+          @feature.tag_line.should eql("Tag1, Tag2, Tag3")
+        end
+
+      end
+      
+    end
+
+    context "#unused_tags" do
+
+      before(:each) do
+        @feature = Feature.new
+        @all_tags = (1..3).collect { |i| Tag.new(:name => "Tag#{i}") }
+      end
+
+      it "should return unused tags ordered by name" do
+        all_tags = %w(a b c).collect { |letter| Tag.new(:name => letter) }
+        Tag.should_receive(:find).with(:all, :order => "name").and_return(all_tags)
+
+        @feature.tags << all_tags[1]
+        
+        @feature.unused_tags.should eql([all_tags[0], all_tags[2]])
+      end
+
+      describe "when no tags exist" do
+
+        before(:each) do
+          Tag.stub!(:find).and_return([])
+        end
+
+        it "should be empty" do
+          @feature.unused_tags.should be_empty
+        end
+
+      end
+
+      describe "when tags exist" do
+
+        before(:each) do
+          Tag.stub!(:find).and_return(@all_tags)
+        end
+
+        describe "and the feature is associated with no tags" do
+
+          it "should return all tags" do
+            @feature.unused_tags.should eql(@all_tags)
+          end
+
+        end
+
+        describe "and the feature is associated with a tag" do
+
+          before(:each) do
+            @feature.tags << @all_tags[0]
+          end
+
+          it "should return all tags excluding the tag associated with the feature" do
+            @feature.unused_tags.should eql(@all_tags[1..2])
+          end
+
+        end
+
+        describe "and the feature is associated with many tags" do
+
+          before(:each) do
+            @all_tags[0..1].each { |tag| @feature.tags << tag }
+          end
+
+          it "should return all tags excluding the tags associated with feature" do
+            @feature.unused_tags.should eql([@all_tags[2]])
+          end
+        
+        end
+
+        describe "and the feature is associated with all tags" do
+
+          before(:each) do
+            @all_tags.each { |tag| @feature.tags << tag }
+          end
+
+          it "should be empty" do
+            @feature.unused_tags.should be_empty
+          end
+
+        end
+
+      end
+
+    end
+
+    context "#add_and_remove_tags" do
+
+      #TODO Complete
+
+    end
+
     context "#as_text" do
 
       it "should include the feature title" do

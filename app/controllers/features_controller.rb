@@ -3,7 +3,7 @@ class FeaturesController < RestfulAjaxApplicationController
 
   #TODO extend filters
   before_filter :establish_parents_via_params, :only => [:new, :cancel_create, :import_gesture]
-  before_filter :establish_model_via_id_param, :only => [:show, :show_detail, :show_url, :close_url, :new_tags, :cancel_create_tags, :create_tags, :edit, :update, :destroy]
+  before_filter :establish_model_via_id_param, :only => [:show, :show_detail, :show_url, :close_url, :manage_tags, :cancel_modify_tags, :modify_tags, :edit, :update, :destroy]
 
   def show
     @root_package = Platter::Package.root
@@ -21,23 +21,16 @@ class FeaturesController < RestfulAjaxApplicationController
     #Intentionally blank
   end
 
-  def new_tags
+  def manage_tags
+    @all_tags = Platter::Tag.find(:all, :order => "name")
+  end
+
+  def cancel_modify_tags
     #Intentionally blank
   end
 
-  def cancel_create_tags
-    #Intentionally blank
-  end
-
-  def create_tags
-    if params[:text].empty?
-      render_errors("#{dom_id(@feature)}_add_tags_errors", ["Tags must be provided"])
-    else
-      tag_names = params[:text].split(",").collect(&:strip).uniq
-      feature_tag_names = @feature.tags.collect(&:name)
-      unassociated_tag_names = tag_names.find_all { |tag_name| !feature_tag_names.include?(tag_name) }
-      unassociated_tag_names.each { |tag_name| @feature.tags << Platter::Tag.find_or_create!(:name => tag_name) }
-    end
+  def modify_tags
+    @feature.tag_line = params[:text]
   end
 
   def import_gesture

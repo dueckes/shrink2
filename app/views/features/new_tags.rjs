@@ -1,2 +1,0 @@
-page.replace_html("#{dom_id(@feature)}_add_tags_form_area", :partial => "features/form_new_tags", :locals => { :feature => @feature })
-page.visual_effect(:blind_down, "#{dom_id(@feature)}_add_tags_form_area", :duration => 0.5, :afterFinish => "function() { $('#{dom_id(@feature)}_add_tags_text').focus(); }")

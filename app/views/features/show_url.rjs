@@ -1,2 +1,2 @@
 page.replace_html("#{dom_id(@feature)}_show_url", :partial => "features/show_url", :locals => { :feature => @feature })
-page.show("#{dom_id(@feature)}_show_url")
+page.visual_effect(:blind_down, "#{dom_id(@feature)}_show_url", :duration => 0.5)

@@ -1,0 +1,4 @@
+page.hide("#{dom_id(@feature)}_tags_list_area")
+page.replace_html("#{dom_id(@feature)}_tags_list_area", "")
+page.replace_html("#{dom_id(@feature)}_tags_form_area", :partial => "features/form_tags", :locals => { :feature => @feature, :all_tags => @all_tags })
+page.visual_effect(:blind_down, "#{dom_id(@feature)}_tags_form_area", :duration => 0.5, :afterFinish => "function() { $('#{dom_id(@feature)}_tags_text').focus(); }")

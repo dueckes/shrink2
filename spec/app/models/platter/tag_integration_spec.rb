@@ -3,6 +3,38 @@ module Platter
 
     describe "integrating with the database" do
 
+      context "#valid?" do
+
+        before(:each) do
+          @tag = Tag.new(:name => "Some Name")
+        end
+
+        describe "when a name has been established" do
+
+          describe "and no other tag has the same name" do
+
+            it "should return true" do
+              @tag.should be_valid
+            end
+
+          end
+
+          describe "and another tag has the same name" do
+
+            before(:each) do
+              Tag.create!(:name => @tag.name)
+            end
+
+            it "should return false" do
+              @tag.should_not be_valid
+            end
+
+          end
+
+        end
+
+      end
+
       context "#find_or_create!" do
 
         describe "when a tag with the same name" do

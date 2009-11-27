@@ -1,2 +1,1 @@
-page.hide("#{dom_id(@feature)}_show_url")
-page.replace_html("#{dom_id(@feature)}_show_url", "")
+page.visual_effect(:blind_up, "#{dom_id(@feature)}_show_url", :duration => 0.5, :afterFinish => "function() { $('#{dom_id(@feature)}_show_url').innerHTML = ''; }")
