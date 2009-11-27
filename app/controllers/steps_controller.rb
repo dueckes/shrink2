@@ -10,4 +10,10 @@ class StepsController < RestfulAjaxApplicationController
               LIMIT 10})
   end
 
+  def reorder
+    scenario = Platter::Scenario.find(params['add_step_platter_scenario'][0])
+    scenario.order_steps(params['platter_step'].collect(&:to_i))
+    render :nothing => true
+  end
+
 end

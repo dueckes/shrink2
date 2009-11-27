@@ -94,4 +94,41 @@ describe Platter::Scenario do
 
   end
 
+  context "#order_steps" do
+
+    describe "when provided a list of all step ids" do
+
+      before(:each) do
+        @scenario = DatabaseModelFixture.create_scenario!
+        @steps = (1..3).collect { |i| Platter::Step.create!(:scenario => @scenario, :text => "Step#{i}") }
+      end
+
+      describe "whose order corresponds with the position of the steps" do
+
+        before(:each) do
+          @scenario.order_steps(@steps.collect(&:id))
+        end
+
+        it "should leave the order of the steps unchanged" do
+          @scenario.steps.should eql(@steps)
+        end
+
+      end
+
+      describe "whose order does not correspond with the position of the steps" do
+
+        before(:each) do
+          @scenario.order_steps(@steps.collect(&:id).reverse)
+        end
+
+        it "should order the steps based on the position of their id in the list" do
+          @scenario.steps.should eql(@steps.reverse)
+        end
+
+      end
+
+    end
+
+  end
+
 end

@@ -196,6 +196,10 @@ label {
   padding-bottom: 0;
 }
 
+#feature .platter_step {
+  border: 1px #ccc dashed;
+}
+
 #tag_detail li div {
   display: block;
   clear: left;
@@ -270,7 +274,7 @@ label {
 
 .outer_list a:hover, .outer_list a.toggle_link:hover {
   text-decoration: none;
-  color: #5d5d5d
+  color: #5d5d5d;
 }
 
 .outer_list a.toggle_link {
@@ -415,6 +419,11 @@ label {
 .tags_form_area input {
   margin-top: 5px;
   margin-bottom: 5px;
+}
+
+.drag_placeholder {
+  border: 1px #5d5d5d solid;
+  background-color: #ccc;
 }
 
 .errors {

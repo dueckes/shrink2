@@ -8,3 +8,4 @@
     <%= link_to_remote("Add Step", :url => new_package_feature_scenario_step_path(scenario.package, scenario.feature, scenario), :method => :get) %>
   </li>
 </ul>
+<%= render :partial => "steps/script_drag_and_drop", :locals => { :scenario => scenario } %>

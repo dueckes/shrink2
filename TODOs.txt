@@ -6,7 +6,9 @@ Questions:
 
 Next:
 - MU: Cucumber specific names for import/export tasks?
-      Show Link consistent behaviour as Add Tags
+      Focus on text field during add
+      Add controls must be outside of list so that they do not interfere with drag and drop
+      acts_as_list performance - is another alternative available that stores the order of the complete list in a single column
       Script injection protection
       Investigate Javascript test framework
       Validation errors causes height change - discuss with Pam

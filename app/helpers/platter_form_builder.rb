@@ -28,7 +28,7 @@ class PlatterFormBuilder < ActionView::Helpers::FormBuilder
   def generate_text_field_for(field_as_symbol, options)
     %{
       #{self.send("#{options[:type]}_text_field", field_as_symbol, options)}
-      #{@template.javascript_tag("$(\"#{element_id_prefix}_#{field_as_symbol}\").focus();")}
+      #{@template.javascript_tag("$(\"##{element_id_prefix}_#{field_as_symbol}\").focus();")}
     }
   end
 
