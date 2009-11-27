@@ -1,0 +1,16 @@
+<div id="<%= dom_id(tag) %>_detail_heading_area" class="list_title">
+  <%= render :partial => "tags/show_heading", :locals => { :tag => tag } %>
+</div>
+<ul>
+  <% tag.features.each do |feature| -%>
+    <li>
+      <div>
+        <span>Feature: <%= feature.title %></span>
+        <%= link_to "Open", package_feature_path(feature.package, feature), :id => "#{dom_id(tag)}_#{dom_id(feature)}_open_link" %>
+      </div>
+      <div>
+        <span>Current Tags: <%= feature.tag_line %></span>
+      </div>
+    </li>
+  <% end -%>
+</ul>

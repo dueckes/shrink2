@@ -32,14 +32,19 @@ function showImportForm() {
 	menuToggle("menu-import");
 }
 
-function commaDelimitedStringIncludesElement(string, element) {
-  var stingWithConsistentCommaSpacing = string.replace(/\s*,\s*/g, ",");
+function commaDelimitedStringIncludesElement(commaDelimitedString, element) {
+  var commaDelimitedStringWithConsistentCommaSpacing = commaDelimitedString.gsub(/\s*,\s*/, ",");
   var elementMatchRegularExpression = new RegExp("(^" + element + ",)|(," + element + ",)|(," + element + "$)");
-  return stingWithConsistentCommaSpacing.match(elementMatchRegularExpression) != null;
+  return commaDelimitedStringWithConsistentCommaSpacing.match(elementMatchRegularExpression) != null;
 }
 
-function addTag(textFieldId, tagName) {
-  if (!commaDelimitedStringIncludesElement($(textFieldId).value, tagName)) {
-    $(textFieldId).value = $(textFieldId).value + ", " + tagName;
+function addTag(tagLineTextFieldId, tagName) {
+  var tagLine = $(tagLineTextFieldId).value;
+  if (!commaDelimitedStringIncludesElement(tagLine, tagName)) {
+    var appendString = tagName;
+    if (!tagLine.blank()) {
+      appendString = ", " + appendString
+    }
+    $(tagLineTextFieldId).value = tagLine + appendString;
   }
 }

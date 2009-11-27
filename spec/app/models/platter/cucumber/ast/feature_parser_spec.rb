@@ -1,5 +1,23 @@
 describe Platter::Cucumber::Ast::FeatureParser do
 
+  context "#tag_names" do
+
+    describe "when source_tag_names are in the Cucumber::Ast::Feature" do
+
+      before(:each) do
+        source_tag_names = (1..3).collect { |i| "@tag_#{i}" }
+        cucumber_ast_feature = mock("Cucumber::Ast::Feature", :source_tag_names => source_tag_names)
+        @feature_parser = Platter::Cucumber::Ast::FeatureParser.new(cucumber_ast_feature)
+      end
+
+      it "should return the source_tag_names with leading '@' characters removed from the Cucumber::Ast::Feature" do
+        @feature_parser.tag_names.should eql((1..3).collect { |i| "tag_#{i}" })
+      end
+
+    end
+
+  end
+
   context "#title" do
 
     describe "when the first line in the Cucumber::Ast::Feature contains a colon-delimited prefix" do

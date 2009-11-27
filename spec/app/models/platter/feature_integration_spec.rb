@@ -41,6 +41,28 @@ describe Platter::Feature do
 
     end
 
+    context "#tags" do
+      
+      describe "when tags have been added" do
+
+        before(:each) do
+          %w(a_name z_name m_name).each do |tag_name|
+            @feature.tags << Platter::Tag.find_or_create!(:name => tag_name)
+          end
+        end
+
+        it "should have the same amount of lines that have been added" do
+          @feature.tags.should have(3).tags
+        end
+
+        it "should be ordered by tag name" do
+          @feature.tags.collect(&:name).should eql(%w(a_name m_name z_name))
+        end
+
+      end
+
+    end
+
     context "#lines" do
 
       describe "when lines have been added" do

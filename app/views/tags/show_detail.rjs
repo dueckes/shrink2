@@ -1,0 +1,2 @@
+page.replace_html("tag_detail", :partial => "tags/show_details", :locals => { :tag => @tag } )
+page.show("tag_detail")

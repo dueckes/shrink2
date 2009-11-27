@@ -27,83 +27,51 @@ module Platter
     context "#valid?" do
 
       before(:each) do
-        @line = FeatureLine.new(:text => "Some Text", :feature => Feature.new)
+        @line = FeatureLine.new
       end
 
-      describe "when a feature" do
+      describe "when text has been provided" do
 
-        describe "has been provided" do
+        describe "whose length is less than 256 characters" do
 
-          describe "and text has been provided" do
-
-            describe "whose length is less than 256 characters" do
-
-              before(:each) do
-                @line.text = "a" * 255
-              end
-
-              it "should return true" do
-                @line.should be_valid
-              end
-
-            end
-
-            describe "whose length is 256 characters" do
-
-              before(:each) do
-                @line.text = "a" * 256
-              end
-
-              it "should return false" do
-                @line.should_not be_valid
-              end
-
-            end
-
-            describe "whose length is greater than 256 characters" do
-
-              before(:each) do
-                @line.text = "a" * 257
-              end
-
-              it "should return false" do
-                @line.should_not be_valid
-              end
-
-            end
-
-            describe "that is empty" do
-
-              before(:each) do
-                @line.text = ""
-              end
-
-              it "should return false" do
-                @line.should_not be_valid
-              end
-
-            end
-
+          before(:each) do
+            @line.text = "a" * 255
           end
 
-          describe "and no text has been provided" do
-
-            before(:each) do
-              @line.text = nil
-            end
-
-            it "should return false" do
-              @line.should_not be_valid
-            end
-
+          it "should return true" do
+            @line.should be_valid
           end
 
         end
 
-        describe "has not been provided" do
+        describe "whose length is 256 characters" do
 
           before(:each) do
-            @line.feature = nil
+            @line.text = "a" * 256
+          end
+
+          it "should return false" do
+            @line.should_not be_valid
+          end
+
+        end
+
+        describe "whose length is greater than 256 characters" do
+
+          before(:each) do
+            @line.text = "a" * 257
+          end
+
+          it "should return false" do
+            @line.should_not be_valid
+          end
+
+        end
+
+        describe "that is empty" do
+
+          before(:each) do
+            @line.text = ""
           end
 
           it "should return false" do
@@ -114,8 +82,20 @@ module Platter
 
       end
 
+      describe "and no text has been provided" do
+
+        before(:each) do
+          @line.text = nil
+        end
+
+        it "should return false" do
+          @line.should_not be_valid
+        end
+
+      end
+
     end
-  
+
     context "#as_text" do
 
       it "should return the text attribute" do

@@ -1,0 +1,1 @@
+page.replace_html("#{dom_id(@tag)}_detail_heading_area", :partial => "tags/show_heading", :locals => { :tag => @tag })

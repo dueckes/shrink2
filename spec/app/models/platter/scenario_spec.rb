@@ -42,112 +42,96 @@ module Platter
     context "#valid?" do
 
       before(:each) do
-        @scenario = Scenario.new(:feature => Feature.new, :title => "Some Title")
+        @scenario = Scenario.new(:title => "Some Title")
         @scenario.steps << create_step(:scenario => @scenario, :text => "Some Step")
       end
 
-      describe "when a feature has been provided" do
+      describe "when a title has been provided" do
 
-        describe "and a title has been provided" do
+        describe "whose length is less than 256 characters" do
 
-          describe "whose length is less than 256 characters" do
-
-            before(:each) do
-              @scenario.title = "a" * 255
-            end
-
-            it "should return true" do
-              @scenario.should be_valid
-            end
-
+          before(:each) do
+            @scenario.title = "a" * 255
           end
 
-          describe "whose length is 256 characters" do
-
-            before(:each) do
-              @scenario.title = "a" * 256
-            end
-
-            it "should return false" do
-              @scenario.should_not be_valid
-            end
-
-          end
-
-          describe "whose length is greater than 256 characters" do
-
-            before(:each) do
-              @scenario.title = "a" * 257
-            end
-
-            it "should return false" do
-              @scenario.should_not be_valid
-            end
-
-          end
-
-          describe "that is empty" do
-
-            before(:each) do
-              @scenario.title = ""
-            end
-
-            it "should return false" do
-              @scenario.should_not be_valid
-            end
-
-          end
-
-          describe "and no steps have been added" do
-
-            before(:each) do
-              @scenario.steps.clear
-            end
-
-            it "should return true" do
-              @scenario.should be_valid
-            end
-
-          end
-
-          describe "and one step has been added" do
-
-            it "should return true" do
-              @scenario.should be_valid
-            end
-
-          end
-
-          describe "and many steps have been added" do
-
-            before(:each) do
-              (1..3).collect { |i| @scenario.steps << create_step(:scenario => @scenario, :text => "Step#{i}") }
-            end
-
-            it "should return true" do
-              @scenario.should be_valid
-            end
-
-          end
-
-          describe "and an invalid step has been added" do
-
-            before(:each) do
-              @scenario.steps << Platter::Step.new(:text => "")
-            end
-
-            it "should return false" do
-              @scenario.should_not be_valid
-            end
-
+          it "should return true" do
+            @scenario.should be_valid
           end
 
         end
 
-        describe "and a title has not been provided" do
+        describe "whose length is 256 characters" do
 
           before(:each) do
-            @scenario.title = nil
+            @scenario.title = "a" * 256
+          end
+
+          it "should return false" do
+            @scenario.should_not be_valid
+          end
+
+        end
+
+        describe "whose length is greater than 256 characters" do
+
+          before(:each) do
+            @scenario.title = "a" * 257
+          end
+
+          it "should return false" do
+            @scenario.should_not be_valid
+          end
+
+        end
+
+        describe "that is empty" do
+
+          before(:each) do
+            @scenario.title = ""
+          end
+
+          it "should return false" do
+            @scenario.should_not be_valid
+          end
+
+        end
+
+        describe "and no steps have been added" do
+
+          before(:each) do
+            @scenario.steps.clear
+          end
+
+          it "should return true" do
+            @scenario.should be_valid
+          end
+
+        end
+
+        describe "and one step has been added" do
+
+          it "should return true" do
+            @scenario.should be_valid
+          end
+
+        end
+
+        describe "and many steps have been added" do
+
+          before(:each) do
+            (1..3).collect { |i| @scenario.steps << create_step(:scenario => @scenario, :text => "Step#{i}") }
+          end
+
+          it "should return true" do
+            @scenario.should be_valid
+          end
+
+        end
+
+        describe "and an invalid step has been added" do
+
+          before(:each) do
+            @scenario.steps << Platter::Step.new(:text => "")
           end
 
           it "should return false" do
@@ -158,14 +142,14 @@ module Platter
 
       end
 
-      describe "when a feature has not been provided" do
+      describe "and a title has not been provided" do
 
         before(:each) do
-          @scenario.feature = nil
+          @scenario.title = nil
         end
 
         it "should return false" do
-           @scenario.should_not be_valid
+          @scenario.should_not be_valid
         end
 
       end

@@ -8,6 +8,10 @@ module Platter
           @cucumber_ast_feature = cucumber_ast_feature
         end
 
+        def tag_names
+          @cucumber_ast_feature.source_tag_names.collect { |tag_name| tag_name.gsub(/^@/, "") }
+        end
+
         def title
           title = (colon_match = lines.first.match(/:(.*)$/)) ? colon_match[1] : lines.first
           title.strip

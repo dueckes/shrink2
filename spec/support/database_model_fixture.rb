@@ -10,6 +10,12 @@ class DatabaseModelFixture
     Platter::Package.find(:first) || create_package!(options)
   end
 
+  def self.create_tag!(options={})
+    default_options = { :name => "Tag Name" }
+    combined_options = default_options.merge(options)
+    Platter::Tag.create!(combined_options)
+  end
+
   def self.create_feature!(options={})
     combined_options = { :title => "Feature Title" }.merge(options)
     combined_options[:package] = find_or_create_package! unless combined_options[:package]

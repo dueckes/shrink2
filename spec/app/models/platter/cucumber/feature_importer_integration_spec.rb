@@ -4,7 +4,7 @@ describe Platter::Cucumber::FeatureImporter do
 
     describe "integrating with real converters and the file system" do
 
-      describe "when the directory has one feature file" do
+      describe "when provided with the path to a valid feature file" do
 
         before(:all) do
           @feature = Platter::Cucumber::FeatureImporter.import_file("#{RAILS_ROOT}/spec/resources/simple.feature")
@@ -15,7 +15,11 @@ describe Platter::Cucumber::FeatureImporter do
           @feature.title.should eql("Some Simple Feature")
         end
 
-        it "should parse Platter::FeatureLine's from a feature file" do
+        it "should parse Platter::Tag's from the feature file" do
+          @feature.tags.collect(&:name).should eql(%w(tag_one tag_two tag_three))
+        end
+
+        it "should parse Platter::FeatureLine's from the feature file" do
           @feature.lines.should have(3).elements
 
           ["As a developer",
@@ -25,7 +29,7 @@ describe Platter::Cucumber::FeatureImporter do
           end
         end
 
-        it "should parse Platter:Scenario's from a feature file" do
+        it "should parse Platter:Scenario's from the feature file" do
           @feature.scenarios.should have(3).elements
 
           ["First Scenario", "Second Scenario", "Third Scenario"].each_with_index do |expected_scenario_title, i|

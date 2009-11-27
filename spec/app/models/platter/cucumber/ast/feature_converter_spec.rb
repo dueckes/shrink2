@@ -8,7 +8,7 @@ describe Platter::Cucumber::Ast::FeatureConverter do
 
     before(:each) do
       @cucumber_ast_feature = mock("Cucumber::Ast::Feature", :feature_elements => [])
-      @feature_parser = mock("Platter::Cucumber::Ast::FeatureParser", :title => "", :lines_text => [])
+      @feature_parser = mock("Platter::Cucumber::Ast::FeatureParser", :tag_names => [], :title => "", :lines_text => [])
       Platter::Cucumber::Ast::FeatureParser.stub!(:new).with(@cucumber_ast_feature).and_return(@feature_parser)
 
       @scenario_converter = mock("Platter::Cucumber::Ast::ScenarioConverter", :null_object => true)
@@ -17,6 +17,19 @@ describe Platter::Cucumber::Ast::FeatureConverter do
 
     describe "creates a Platter::Feature when provided a Cucumber::Ast::Feature that" do
       
+      it "should have tags whose names are retrieved from the Platter::Cucumber::Ast::FeatureParser" do
+        tag_names = (1..3).collect { |i| "tag_#{i}" }
+        @feature_parser.stub!(:tag_names => tag_names)
+        tags = tag_names.collect do |tag_name|
+          tag = Platter::Tag.new(:name => tag_name)
+          Platter::Tag.should_receive(:find_or_create!).with(:name => tag_name).and_return(tag)
+          tag
+        end
+        @feature = TestableFeatureConverter.from(@cucumber_ast_feature)
+
+        @feature.tags.should eql(tags)
+      end
+
       it "should have a title retrieved from the Platter::Cucumber::Ast::FeatureParser" do
         @feature_parser.stub!(:title => "Some Feature Title")
 

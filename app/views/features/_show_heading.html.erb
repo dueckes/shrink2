@@ -7,7 +7,7 @@
 </div>
 <div id="<%= dom_id(feature) %>_tags_area" class="tags_area">
   <%= link_to_remote "Manage Tags", { :url => { :action => :manage_tags, :id => feature.id }, :method => :get } %>
-  <div id="<%= dom_id(feature) %>_tags_list_area" class="tag_list_area">
+  <div id="<%= dom_id(feature) %>_tags_list_area" class="tags_list_area">
     <%= render :partial => "features/show_tags", :locals => { :feature => feature } %>
   </div>
   <div id="<%= dom_id(feature) %>_tags_form_area" class="feature_heading_popup tags_form_area" style="display: none;">

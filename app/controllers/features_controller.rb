@@ -54,7 +54,8 @@ class FeaturesController < RestfulAjaxApplicationController
 
   def render_successful_import(feature)
     render(:update) do |page|
-      page.insert_html(:before, "#{dom_id(feature.package)}_new_feature", :partial => "features/show_link", :locals => { :feature => feature })
+      page.insert_html(:before, "#{dom_id(feature.package)}_new_feature",
+                       :partial => "features/show_package_area_link", :locals => { :feature => feature })
       page.hide("#{dom_id(feature.package)}_new_feature")
       page.replace_html("#{dom_id(feature.package)}_new_feature", "")
       page.show("#{dom_id(feature.package)}_new_feature_controls")
@@ -62,10 +63,7 @@ class FeaturesController < RestfulAjaxApplicationController
   end
 
   def render_import_error(feature)
-    render(:update) do |page|
-      page.replace_html("#{dom_id(feature.package)}_import_feature_errors", :partial => "common/show_errors", :locals => { :errors => feature.errors })
-      page.show("#{dom_id(feature.package)}_import_feature_errors")
-    end
+    render_errors("#{dom_id(feature.package)}_import_feature_errors", feature.errors)
   end
 
 end

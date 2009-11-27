@@ -3,6 +3,32 @@ module Platter
 
     describe "integrating with the database" do
 
+      context "#features" do
+
+        before(:each) do
+          @tag = DatabaseModelFixture.create_tag!
+        end
+
+        describe "when feature have been added" do
+
+          before(:each) do
+            %w(a_title z_title m_title).each do |feature_title|
+              @tag.features << DatabaseModelFixture.create_feature!(:title => feature_title)
+            end
+          end
+
+          it "should have the same amount of lines that have been added" do
+            @tag.features.should have(3).features
+          end
+
+          it "should be ordered by feature title" do
+            @tag.features.collect(&:title).should eql(%w(a_title m_title z_title))
+          end
+
+        end
+
+      end
+
       context "#valid?" do
 
         before(:each) do

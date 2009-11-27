@@ -8,7 +8,7 @@ module Platter
     has_many :steps, :class_name => "Platter::Step", :order => :position
     acts_as_list :scope => :feature
 
-    validates_presence_of :feature, :title
+    validates_presence_of :title
     validates_length_of :title, :maximum => 255
     validates_uniqueness_of :title, :scope => :feature_id
 

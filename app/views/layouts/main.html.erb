@@ -24,8 +24,11 @@
         </div>
         <div id="menu">
           <ul>
-            <li id="menu-packages">
+            <li id="menu_packages">
               <%= link_to "Packages", packages_path, :title => "Packages" %>
+            </li>
+            <li id="menu_tags">
+              <%= link_to "Tags", tags_path, :title => "Tags" %>
             </li>
             <% if controller.class.render_extra_menu_items? -%>
               <%= render :partial => "#{controller.controller_name}/menu_items" %>

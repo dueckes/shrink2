@@ -1,3 +1,4 @@
+@tag_one @tag_two @tag_three
 Feature: Some Simple Feature
   As a developer
   I want to test feature importing

@@ -90,6 +90,7 @@ class RestfulAjaxApplicationController < ApplicationController
     error_messages = errors.respond_to?(:full_messages) ? errors.full_messages : errors
     render(:update) do |page|
       page.replace_html(element_id, :partial => "common/show_errors", :locals => { :error_messages => error_messages })
+      page.show(element_id)
     end
   end
 

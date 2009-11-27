@@ -7,6 +7,18 @@ module Platter
       tag.name.should eql("Some Tag")
     end
 
+    it "should have features" do
+      tag = Tag.new
+
+      features = (1..3).collect do |i|
+        feature = Feature.new(:title => "Title#{i}")
+        tag.features << feature
+        feature
+      end
+
+      tag.features.should eql(features)
+    end
+
     context "#valid?" do
 
       before(:each) do

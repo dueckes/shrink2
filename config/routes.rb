@@ -48,6 +48,7 @@ ActionController::Routing::Routes.draw do |map|
       end
     end
   end
+  map.resources :tags
 
   # Defaults
   map.connect ':controller/:action/:id'
