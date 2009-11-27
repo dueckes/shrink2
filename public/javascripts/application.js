@@ -13,12 +13,12 @@ function toggleStyle(id) {
 }
 
 function toggle(id) {
-	Effect.toggle(id, "blind");
+	$(id).toggle("blind");
 	toggleStyle(id);
 }
 
 function menuToggle(id) {
-	menuObject =  $(id);
+	menuObject = $(id);
 
 	if (menuObject.className.indexOf("current") == -1) {
 		menuObject.className = "current";
@@ -27,24 +27,19 @@ function menuToggle(id) {
 	}
 }
 
-function showImportForm() {
-	Effect.toggle("importform", "blind");
-	menuToggle("menu-import");
-}
-
 function commaDelimitedStringIncludesElement(commaDelimitedString, element) {
-  var commaDelimitedStringWithConsistentCommaSpacing = commaDelimitedString.gsub(/\s*,\s*/, ",");
+  var commaDelimitedStringWithConsistentCommaSpacing = commaDelimitedString.replace(/\s*,\s*/g, ",");
   var elementMatchRegularExpression = new RegExp("(^" + element + ",)|(," + element + ",)|(," + element + "$)");
   return commaDelimitedStringWithConsistentCommaSpacing.match(elementMatchRegularExpression) != null;
 }
 
-function addTag(tagLineTextFieldId, tagName) {
-  var tagLine = $(tagLineTextFieldId).value;
+function addTag(tagLineTextFieldMatcher, tagName) {
+  var tagLine = $(tagLineTextFieldMatcher).val();
   if (!commaDelimitedStringIncludesElement(tagLine, tagName)) {
     var appendString = tagName;
-    if (!tagLine.blank()) {
+    if (tagLine.replace(/\s*/g, "").length > 0) {
       appendString = ", " + appendString
     }
-    $(tagLineTextFieldId).value = tagLine + appendString;
+    $(tagLineTextFieldMatcher).val(tagLine + appendString);
   }
 }

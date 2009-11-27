@@ -1,5 +1,5 @@
-page["#{dom_id(@package)}_toggle_link"].setAttribute("onclick", remote_function(:url => package_path(@package), :method => :get))
-page["#{dom_id(@package)}_heading_area"].removeClassName("expanded")
+page["#{dom_id(@package)}_toggle_link"].attr("onclick", remote_function(:url => package_path(@package), :method => :get))
+page["#{dom_id(@package)}_heading_area"].removeClass("expanded")
 page.hide("#{dom_id(@package)}_expand_area")
 page.hide("#{dom_id(@package)}_expand_controls")
 page.replace_html("#{dom_id(@package)}_expand_area", "")

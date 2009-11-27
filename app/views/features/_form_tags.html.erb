@@ -4,7 +4,7 @@
   </div>
   <span>Available tags:</span>
   <% all_tags.each do |tag| -%>
-    <%= link_to tag.name, "#", :onclick => "javascript:addTag('#{dom_id(feature)}_tags_text', '#{tag.name}');" %>
+    <%= link_to tag.name, "#", :onclick => "javascript:addTag('##{dom_id(feature)}_tags_text', '#{tag.name}');" %>
   <% end -%>
   <span>Comma delimited list supported, e.g. billing, important</span>
   <div class="form_buttons">
