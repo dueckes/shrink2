@@ -37,14 +37,7 @@
         </div>
       </div>
       <div id="content">
-        <% if flash[:error] -%>
-          Error: <%= flash[:error] %>
-        <% end -%>
-        <% if flash[:message] -%>
-          Message: <%= flash[:message] %>
-        <% end -%>
         <%= yield %>
-        <br style="clear:left;" />
       </div>
       <div id="footer">
         &copy; Copyright 2009

@@ -1,3 +1,2 @@
-page.hide(nested_dom_id(:add_package))
 page.replace_html(nested_dom_id(:new_package), :partial => "packages/form_new", :locals => { :parent => @parent })
-page.show(nested_dom_id(:new_package))
+page << "new AddSimpleForm('##{nested_dom_id(:new_package)}', '##{nested_dom_id(:add_link)}').open()"

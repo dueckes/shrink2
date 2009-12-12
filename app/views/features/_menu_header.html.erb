@@ -1,0 +1,18 @@
+<div id="menu">
+  <ul>
+    <li id="menu_add_feature">
+      <%= link_to_remote "Add Feature", { :url => { :controller => :features, :action => :add_gesture } }, { :title => "Add Feature", :id => "add_feature_link" } %>
+      <div id="menu_add_feature_expand_area" class="expand_area" style="display: none;">
+      </div>
+    </li>
+    <li id="menu_import_feature">
+      <%= link_to_remote "Import Feature", { :url => { :controller => :features, :action => :import_gesture } }, { :title => "Import Feature", :id => "import_feature_link" } %>
+      <div id="menu_import_feature_expand_area" class="expand_area" style="display: none;">
+      </div>
+      <iframe id="import_feature_upload_frame" name="import_feature_upload_frame" style="display: none"></iframe>
+    </li>
+    <% if controller.class.render_extra_menu_items? -%>
+      <%= render :partial => "#{controller.controller_name}/menu_items" %>
+    <% end -%>
+  </ul>
+</div>

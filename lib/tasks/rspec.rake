@@ -117,9 +117,9 @@ namespace :spec do
   # Setup specs for stats
   task :statsetup do
     require 'code_statistics'
-    ::STATS_DIRECTORIES << %w(Model\ specs spec/models) if File.exist?('spec/models')
-    ::STATS_DIRECTORIES << %w(View\ specs spec/views) if File.exist?('spec/views')
-    ::STATS_DIRECTORIES << %w(Controller\ specs spec/controllers) if File.exist?('spec/controllers')
+    ::STATS_DIRECTORIES << %w(Model\ specs spec/app/models) if File.exist?('spec/app/models')
+    ::STATS_DIRECTORIES << %w(View\ specs spec/app/views) if File.exist?('spec/app/views')
+    ::STATS_DIRECTORIES << %w(Controller\ specs spec/app/controllers) if File.exist?('spec/app/controllers')
     ::STATS_DIRECTORIES << %w(Helper\ specs spec/helpers) if File.exist?('spec/helpers')
     ::STATS_DIRECTORIES << %w(Library\ specs spec/lib) if File.exist?('spec/lib')
     ::STATS_DIRECTORIES << %w(Routing\ specs spec/routing) if File.exist?('spec/routing')

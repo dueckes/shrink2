@@ -7,7 +7,7 @@ module Platter
 
         def read(*files)
           cucumber_ast_features = create_step_mother.load_plain_text_features(files.flatten)
-          cucumber_ast_features.collect { |cucumber_ast_feature| Platter::Feature.from(cucumber_ast_feature) }
+          cucumber_ast_features.collect { |cucumber_ast_feature| Platter::Feature.adapt(cucumber_ast_feature) }
         end
 
         private

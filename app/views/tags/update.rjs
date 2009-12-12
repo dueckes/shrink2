@@ -1,1 +1,2 @@
-page.replace_html("#{dom_id(@tag)}_detail_heading_area", :partial => "tags/show_heading", :locals => { :tag => @tag })
+update_inline(page, @tag, :tag, :name)
+update_feature_tag_lines(page, @tag)

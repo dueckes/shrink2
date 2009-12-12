@@ -1,1 +1,1 @@
-page.replace_html("#{dom_id(@step)}", :partial => "steps/show_without_li", :locals => { :step => @step })
+update_inline(page, @step, :step, :text)

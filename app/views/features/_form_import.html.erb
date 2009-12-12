@@ -1,10 +1,12 @@
-<% form_tag({ :action => :import, :package_id => @package.id }, { :multipart => true, :target => "#{dom_id(@package)}_upload_frame" }) do -%>
+<% form_tag({ :controller => :features, :action => :import }, { :multipart => true, :target => "import_feature_upload_frame" }) do -%>
   <% field_set_tag do -%>
-    <%= label(dom_id(@package), :feature_file, "Import Feature") %><%= file_field_tag(:feature_file, :id => "#{dom_id(@package)}_feature_file") %>
-    <%= submit_tag "Import" %>
-    <%= button_to_remote("Cancel", :url => { :action => :cancel_create, :package_id => @package.id }, :id => "#{dom_id(@package)}_cancel_import") %>
-    <div id="<%= dom_id(@package) %>_import_feature_errors" class="errors" style="display: none;">
+    <%= label_tag "import_feature_file", "Import Feature" %><%= file_field_tag :feature_file, :id => "import_feature_file" %>
+    <%= label_tag "import_feature_package_id", "Package" %><%= select_tag "package_id", options_from_collection_for_select(packages, :id, :name), :id => "import_feature_package_id" %>
+    <div class="buttons">
+      <%= submit_tag "Import", :id => "import_feature_submit" %>
+      <%= button_to_function "Cancel", :id => "import_feature_cancel" %>
+    </div>
+    <div id="import_feature_errors" class="errors" style="display: none;">
     </div>
   <% end -%>
 <% end -%>
-<iframe id="<%= dom_id(@package) %>_upload_frame" name="<%= dom_id(@package) %>_upload_frame" style="display: none"></iframe>

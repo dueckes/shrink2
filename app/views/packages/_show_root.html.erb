@@ -1,9 +1,11 @@
-<% li_for(package) do -%>
-  <div id="<%= dom_id(package) %>_heading_area" class="element_heading">
-    <%= link_to(package.name, "javascript:void(0);", { :id => "#{dom_id(package)}_toggle_link", :class => "toggle_link" }) %>
-    <%= render :partial => "packages/show_expanded_controls", :locals => { :package => package } %>
+<div id="root_package">
+  <div id="<%= dom_id(root_package) %>_header" class="header root_package_header highlight_controls_area">
+    <span><%= root_package.name %></span>
+    <div class="highlight_controls">
+      <%= link_to "v", "#", { :id => "root_package_expand_link", :title => "Expand All" } %>
+      <%= link_to "^", "#", { :id => "root_package_collapse_link", :title => "Collapse All" } %>
+      <%= link_to_remote "+", { :url => { :controller => :packages, :action => :new, :parent_id => root_package.id }, :method => :get }, { :id => dom_id(root_package, :add_link), :title => "Add Sub-Package" } %>
+    </div>
   </div>
-  <div id="<%= dom_id(package) %>_expand_area" class="expand_area">
-    <%= render :partial => "packages/list", :locals => { :package => package, :feature => feature } %>
-  </div>
-<% end -%>
+  <%= render :partial => "packages/list", :locals => { :package => root_package, :feature => feature, :expanded => true } %>
+</div>

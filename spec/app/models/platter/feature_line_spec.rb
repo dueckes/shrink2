@@ -1,10 +1,12 @@
 module Platter
   describe FeatureLine do
 
-    it "should have text" do
-      line = FeatureLine.new(:text => "Some Text")
+    before(:each) do
+      @line = FeatureLine.new(:text => "Some Text")
+    end
 
-      line.text.should eql("Some Text")
+    it "should have text" do
+      @line.text.should eql("Some Text")
     end
 
     it "should belong to a feature" do
@@ -23,7 +25,15 @@ module Platter
 
       line.package.should eql(package)
     end
-    
+
+    it "should be a Platter::FeatureSummaryChangeObserver" do
+      FeatureLine.include?(Platter::FeatureSummaryChangeObserver).should be_true
+    end
+
+    it "should be a Platter::Cucumber::Formatter::TextFormatter" do
+      FeatureLine.include?(Platter::Cucumber::Formatter::TextFormatter).should be_true
+    end
+
     context "#valid?" do
 
       before(:each) do
@@ -50,8 +60,8 @@ module Platter
             @line.text = "a" * 256
           end
 
-          it "should return false" do
-            @line.should_not be_valid
+          it "should return true" do
+            @line.should be_valid
           end
 
         end
@@ -96,11 +106,10 @@ module Platter
 
     end
 
-    context "#as_text" do
+    context "#summarize" do
 
-      it "should return the text attribute" do
-        text = "feature text"
-        FeatureLine.new(:text => text).as_text.should eql text
+      it "should return the text" do
+       @line.summarize.should eql("Some Text")
       end
 
     end

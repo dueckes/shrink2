@@ -1,4 +1,5 @@
-class LinesController < RestfulAjaxApplicationController
+class LinesController < CrudApplicationController
+  include CrudApplicationControllerAddAnywhereSupport
   set_model_class Platter::FeatureLine
-  set_model_name_in_view :line
+  set_short_model_name :line
 end

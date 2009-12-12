@@ -1,2 +1,0 @@
-<%= link_to_remote tag.name, { :update => "#{dom_id(tag)}_detail_heading_area", :url => edit_tag_path(tag), :method => :get }, { :id => "#{dom_id(tag)}_edit_link", :class => "editable-text-link", :title => "Click To Edit" } %>
-<%= link_to_remote "Delete", { :confirm => "Deleting the tag will remove it from all features.  Are you sure you want to delete this tag?", :url => tag_path(tag), :method => :delete } %>

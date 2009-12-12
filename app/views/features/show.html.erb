@@ -1,6 +1,5 @@
-<%= render :partial => "packages/show_packages_area", :locals => { :root_package => @root_package, :feature => @feature } %>
-<div id="feature_area" class="right_area">
-  <div id="feature" class="right outer_list">
-    <%= render :partial => "features/show_feature_area", :locals => { :feature => @feature } %>
+<div id="content_outer_area">
+  <div id="content_inner_area">
+    <%= render :partial => "features/show_all", :locals => { :features => [@feature], :minimized => false } %>
   </div>
 </div>

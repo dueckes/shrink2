@@ -1,45 +1,28 @@
-// Place your application-specific JavaScript functions and classes here
-// This file is automatically included by javascript_include_tag :defaults
-
-function toggleStyle(id) {
-	titleObj = id + "-title";
-
-	titleObject = $(titleObj);
-	if (titleObject.className.indexOf("current") == -1) {
-		titleObject.className = "current";
-	} else {
-		titleObject.className = "";
-	}
-}
-
-function toggle(id) {
-	$(id).toggle("blind");
-	toggleStyle(id);
-}
-
-function menuToggle(id) {
-	menuObject = $(id);
-
-	if (menuObject.className.indexOf("current") == -1) {
-		menuObject.className = "current";
-	} else {
-		menuObject.className = "";
-	}
-}
-
-function commaDelimitedStringIncludesElement(commaDelimitedString, element) {
-  var commaDelimitedStringWithConsistentCommaSpacing = commaDelimitedString.replace(/\s*,\s*/g, ",");
-  var elementMatchRegularExpression = new RegExp("(^" + element + ",)|(," + element + ",)|(," + element + "$)");
-  return commaDelimitedStringWithConsistentCommaSpacing.match(elementMatchRegularExpression) != null;
-}
-
-function addTag(tagLineTextFieldMatcher, tagName) {
-  var tagLine = $(tagLineTextFieldMatcher).val();
-  if (!commaDelimitedStringIncludesElement(tagLine, tagName)) {
-    var appendString = tagName;
-    if (tagLine.replace(/\s*/g, "").length > 0) {
-      appendString = ", " + appendString
+$(document).ready(function() {
+  $('#fold_menu .expand_link').click(function () {
+    var foldItemObject = $(this).closest('.fold_item');
+    FoldMenuItemFactory.createFromObject(foldItemObject).toggle();
+  }),
+  $('body').keyup(function(event) {
+    var targetObject = $(event.target);
+    if (event.keyCode == 27 && targetObject.is('input')) {
+      FormFactory.createFromEvent(event).cancel();
     }
-    $(tagLineTextFieldMatcher).val(tagLine + appendString);
-  }
-}
+  }),
+  $('body').click(function(event) {
+    var eventObject = $(event.target);
+    if (eventObject.is('input[id*=cancel]')) {
+      FormFactory.createFromEvent(event).cancel();
+    } else if (eventObject.is('a[id=root_package_expand_link]')) {
+      Packages.expandAll();
+    } else if (eventObject.is('a[id=root_package_collapse_link]')) {
+      Packages.collapseAll();
+    } else if (eventObject.is('a[class=package_expand_collapse_link]')) {
+      new Package(eventObject.closest('.platter_package')).toggle();
+    } else if (eventObject.is('a[id*=expand_collapse_link]')) {
+      new Feature(eventObject.closest(".feature_area")).toggle();
+    } else if (eventObject.is('a[class=add_tag_link]')) {
+      new Feature(eventObject.closest(".feature_area")).addTag(eventObject.html());
+    }
+  })
+});

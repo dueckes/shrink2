@@ -1,1 +1,1 @@
-page.replace_html("#{dom_id(@line)}", :partial => "lines/show_without_li", :locals => { :line => @line})
+update_inline(page, @line, :line, :text)

@@ -1,10 +1,12 @@
 module Platter
   describe Step do
 
-    it "should have text" do
-      step = Step.new(:text => "Some Text")
+    before(:each) do
+      @step = Step.new(:text => "Some Text")
+    end
 
-      step.text.should eql("Some Text")
+    it "should have text" do
+      @step.text.should eql("Some Text")
     end
 
     it "should belong to a scenario" do
@@ -34,8 +36,16 @@ module Platter
       step.package.should eql(package)
     end
 
-    it "should be a Platter::Cucumber::Ast::StepConverter" do
-      Platter::Step.include?(Platter::Cucumber::Ast::StepConverter).should be_true
+    it "should be a Platter::FeatureSummaryChangeObserver" do
+      Step.include?(Platter::FeatureSummaryChangeObserver).should be_true
+    end
+
+    it "should be a Platter::Cucumber::Adapter::AstStepAdapter" do
+      Step.include?(Platter::Cucumber::Adapter::AstStepAdapter).should be_true
+    end
+
+    it "should be a Platter::Cucumber::Formatter::TextFormatter" do
+      Step.include?(Platter::Cucumber::Formatter::TextFormatter).should be_true
     end
 
     context "#valid?" do
@@ -46,7 +56,7 @@ module Platter
 
       describe "when text has been provided" do
 
-        describe "whose length is less that 256 characters" do
+        describe "whose length is less than 256 characters" do
 
           before(:each) do
             @step.text = "a" * 255
@@ -64,8 +74,8 @@ module Platter
             @step.text = "a" * 256
           end
 
-          it "should return false" do
-            @step.should_not be_valid
+          it "should return true" do
+            @step.should be_valid
           end
 
         end
@@ -110,11 +120,10 @@ module Platter
 
     end
 
-    context "#as_text" do
+    context "#summarize" do
 
       it "should return the text" do
-        text = "this is a feature step"
-        Step.new(:text => text).as_text.should eql text
+        @step.summarize.should eql("Some Text")
       end
 
     end

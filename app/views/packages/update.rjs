@@ -1,4 +1,1 @@
-page.hide("#{dom_id(@package)}_edit_form")
-page.replace_html("#{dom_id(@package)}_edit_form", "")
-page.replace_html("#{dom_id(@package)}_toggle_link", @package.name)
-page.show("#{dom_id(@package)}_edit_controls")
+update_inline(page, @package, :package, :name)

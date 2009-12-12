@@ -1,10 +1,8 @@
 <ul id="<%= dom_id(feature, :scenarios) %>" class="scenarios inner_list">
   <% feature.scenarios.each do |scenario| -%>
-    <%= render :partial => "scenarios/show_with_li", :locals => { :scenario => scenario } %>
+    <%= render :partial => "scenarios/show", :locals => { :scenario => scenario, :hidden => false } %>
   <% end -%>
-  <li id="<%= dom_id(feature, :new_scenario) %>" style="display: none;">
-  </li>
-  <li id="<%= dom_id(feature, :add_scenario) %>">
-    <%= link_to_remote("Add Scenario", :url => new_package_feature_scenario_path(feature.package, feature), :method => :get) %>
+  <li id="<%= dom_id(feature, :add_scenario_link_area) %>">
+    <%= add_at_end_link(:model_name => :scenario, :parent => feature, :url => new_package_feature_scenario_path(feature.package, feature)) %>
   </li>
 </ul>

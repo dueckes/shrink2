@@ -1,4 +1,10 @@
-<%= render(:partial => "common/form_new", :locals => { :model_name => :package,
-                                                       :model => Platter::Package.new(:parent => parent),
-                                                       :url => { :action => :create, :parent_id => parent.id },
-                                                       :form_builder => PackageFormBuilder }) %>
+<% package = Platter::Package.new(:parent => parent) -%>
+<% remote_form_for(:package, package, :url => { :controller => :packages, :action => :create, :parent_id => parent.id },
+                   :html => { :class => "add" }, :builder => PackageFormBuilder) do |form| -%>
+  <% field_set_tag do -%>
+    <%= form.hidden_field_tag(:clicked_add_link_id, dom_id(parent, :add_link)) %>
+    <%= render :partial => "packages/form_common", :locals => { :form => form } %>
+    <div id="<%= controller.new_id_prefix(package) %>_new_package_errors" class="errors" style="display: none;">
+    </div>
+  <% end -%>
+<% end -%>

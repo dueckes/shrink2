@@ -4,11 +4,11 @@
   </div>
   <span>Available tags:</span>
   <% all_tags.each do |tag| -%>
-    <%= link_to tag.name, "#", :onclick => "javascript:addTag('##{dom_id(feature)}_tags_text', '#{tag.name}');" %>
+    <%= link_to tag.name, "#", :class => "add_tag_link" %>
   <% end -%>
   <span>Comma delimited list supported, e.g. billing, important</span>
   <div class="form_buttons">
     <%= submit_tag "OK", :id => "#{dom_id(feature)}_tags_submit" %>
-    <%= button_to_remote "Cancel", :url => { :action => :cancel_modify_tags, :id => feature.id }, :id => "#{dom_id(feature)}_tags_cancel" %>
+    <%= button_to_function "Cancel", :id => "#{dom_id(feature)}_tags_cancel" %>
   </div>
 <% end -%>

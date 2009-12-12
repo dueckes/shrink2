@@ -12,50 +12,51 @@
 ActiveRecord::Schema.define(:version => 20091125064045) do
 
   create_table "feature_lines", :force => true do |t|
-    t.integer  "feature_id", :null => false
-    t.integer  "position",   :null => false
-    t.string   "text",       :null => false
+    t.integer  "feature_id",                :null => false
+    t.integer  "position",                  :null => false
+    t.string   "text",       :limit => 256, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "features", :force => true do |t|
-    t.string   "title",      :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "package_id", :null => false
-  end
-
-  create_table "features_tags", :id => false, :force => true do |t|
+  create_table "feature_tags", :force => true do |t|
     t.integer  "feature_id", :null => false
     t.integer  "tag_id",     :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
+  create_table "features", :force => true do |t|
+    t.string   "title",      :limit => 256,  :null => false
+    t.string   "summary",    :limit => 4000, :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "package_id",                 :null => false
+  end
+
   create_table "packages", :force => true do |t|
     t.integer "parent_id"
-    t.string  "name",      :null => false
+    t.string  "name",      :limit => 256, :null => false
   end
 
   create_table "scenarios", :force => true do |t|
-    t.integer  "feature_id", :null => false
-    t.integer  "position",   :null => false
-    t.string   "title",      :null => false
+    t.integer  "feature_id",                :null => false
+    t.integer  "position",                  :null => false
+    t.string   "title",      :limit => 256, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "steps", :force => true do |t|
-    t.integer  "scenario_id", :null => false
-    t.integer  "position",    :null => false
-    t.string   "text",        :null => false
+    t.integer  "scenario_id",                :null => false
+    t.integer  "position",                   :null => false
+    t.string   "text",        :limit => 256, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "tags", :force => true do |t|
-    t.string   "name",       :null => false
+    t.string   "name",       :limit => 256, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

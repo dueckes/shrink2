@@ -1,3 +1,0 @@
-page.hide(dom_id(@feature, :new_scenario))
-page.replace_html(dom_id(@feature, :new_scenario), "")
-page.show(dom_id(@feature, :add_scenario))

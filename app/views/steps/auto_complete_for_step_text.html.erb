@@ -1,1 +1,1 @@
-<%= auto_complete_result(@steps, :text) %>
+<%= @steps.collect(&:text).join("\n") %>

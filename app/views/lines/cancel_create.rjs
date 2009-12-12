@@ -1,3 +1,0 @@
-page.hide(dom_id(@feature, :new_line))
-page.replace_html(dom_id(@feature, :new_line), "")
-page.show(dom_id(@feature, :add_line))

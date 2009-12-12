@@ -1,0 +1,2 @@
+page.replace_html("content_inner_area", :partial => "features/show_all", :locals => { :features => [@feature], :minimized => false })
+page << "FoldMenu.hideAllItems()"

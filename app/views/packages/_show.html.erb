@@ -1,0 +1,14 @@
+<% li_for(package, :style => element_style(:hidden => hidden)) do -%>
+  <div id="<%= dom_id(package) %>_header" class="header highlight_controls_area">
+    <div id="<%= dom_id(package) %>_name">
+      <%= render :partial => "packages/show_name", :locals => { :package => package } %>
+    </div>
+    <div class="highlight_controls">
+      <%= link_to "^", "#", { :id => dom_id(package, :expand_collapse_link), :class => "package_expand_collapse_link", :title => "Expand" } %>
+      <%= link_to_remote "+", { :url => { :controller => :packages, :action => :new, :parent_id => package.id }, :method => :get }, { :id => dom_id(package, :add_link), :title => "Add Sub-Package" } %>
+      <%= link_to_remote "X", { :confirm => "Are you sure you want to delete this package?", :url => package_path(package), :method => :delete }, { :id => dom_id(package, :delete_link), :title => "Delete" } %>
+    </div>
+  </div>
+  <% expanded = !feature || package.child_in_tree_path_until?(feature.package) -%>
+  <%= render :partial => "packages/list", :locals => { :package => package, :feature => feature, :expanded => expanded } %>
+<% end -%>

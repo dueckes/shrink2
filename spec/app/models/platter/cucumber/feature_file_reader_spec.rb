@@ -59,7 +59,7 @@ describe Platter::Cucumber::FeatureFileReader do
         (1..3).each do |i|
           cucumber_ast_features << cucumber_ast_feature = mock("Cucumber::Ast::Feature#{i}")
           expected_features << feature = mock("Platter::Feature#{i}")
-          Platter::Feature.should_receive(:from).with(cucumber_ast_feature).and_return(feature)
+          Platter::Feature.should_receive(:adapt).with(cucumber_ast_feature).and_return(feature)
         end
 
         @step_mother.stub!(:load_plain_text_features).with(@files).and_return(cucumber_ast_features)

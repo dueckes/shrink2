@@ -1,3 +1,1 @@
-page.hide("feature")
-page.replace_html("feature", "")
-page.visual_effect(:fade_and_remove, "#{dom_id(@feature)}_link_area")
+page << "new Feature('##{dom_id(@feature, :area)}').remove()"

@@ -1,0 +1,1 @@
+edit_inline(page, @tag, :tag, :name)

@@ -1,5 +1,0 @@
-<% remote_form_for(model_name, model, :url => url, :builder => form_builder) do |form| -%>
-  <%= render :partial => "#{model_name.to_s.pluralize}/form_common", :locals => { :form => form } %>
-  <div id="<%= controller.new_id_prefix(model) %>_new_<%= model_name %>_errors" class="errors">
-  </div>
-<% end -%>

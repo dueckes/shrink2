@@ -1,4 +1,1 @@
-page.hide("#{dom_id(@feature.package)}_new_feature")
-page.replace_html("#{dom_id(@feature.package)}_new_feature", "")
-page.insert_html(:before, "#{dom_id(@feature.package)}_new_feature", :partial => "features/show_package_area_link", :locals => { :feature => @feature })
-page.show("#{dom_id(@feature.package)}_new_feature_controls")
+hide_top_menu_and_show_feature(page, @feature, "add")

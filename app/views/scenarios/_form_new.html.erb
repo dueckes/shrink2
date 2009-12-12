@@ -1,4 +1,7 @@
-<%= render(:partial => "common/form_new", :locals => { :model_name => :scenario,
-                                                       :model => Platter::Scenario.new(:feature => feature),
-                                                       :url => package_feature_scenarios_path(feature.package, feature),
-                                                       :form_builder => ScenarioFormBuilder }) %>
+<%= render(:partial => "common/form_area_new_add_anywhere", :locals => { :model_name => :scenario,
+                                                                         :model => Platter::Scenario.new(:feature => feature),
+                                                                         :url => { :controller => :scenarios,
+                                                                                   :action => :create,
+                                                                                   :feature_id => feature.id },
+                                                                         :form_builder => ScenarioFormBuilder,
+                                                                         :add_anywhere_presenter => add_anywhere_presenter }) %>

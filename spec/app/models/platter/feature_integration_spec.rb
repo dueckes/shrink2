@@ -49,6 +49,7 @@ describe Platter::Feature do
           %w(a_name z_name m_name).each do |tag_name|
             @feature.tags << Platter::Tag.find_or_create!(:name => tag_name)
           end
+          @feature.tags(true)
         end
 
         it "should have the same amount of lines that have been added" do
@@ -71,6 +72,7 @@ describe Platter::Feature do
           (1..3).each do |i|
             @feature.lines << Platter::FeatureLine.new(:text => "Feature Line Text #{i}", :position => 4 - i)
           end
+          @feature.lines(true)
         end
 
         it "should have the same amount of lines that have been added" do
@@ -78,10 +80,7 @@ describe Platter::Feature do
         end
 
         it "should be ordered by position" do
-          @feature.lines.each_with_index do |line, i|
-            line.position.should eql(i + 1)
-            line.text.should eql("Feature Line Text #{3 - i}")
-          end
+          @feature.lines.each_with_index { |line, i| line.text.should eql("Feature Line Text #{3 - i}") }
         end
 
       end
@@ -96,6 +95,7 @@ describe Platter::Feature do
           (1..3).each do |i|
             @feature.scenarios << Platter::Scenario.new(:title => "Scenario Title #{i}", :position => 4 - i)
           end
+          @feature.scenarios(true)
         end
 
         it "should have the same amount of scenarios that have been added" do
@@ -103,12 +103,33 @@ describe Platter::Feature do
         end
 
         it "should be ordered by position" do
-          @feature.scenarios.each_with_index do |scenario, i|
-            scenario.position.should eql(i + 1)
-            scenario.title.should eql("Scenario Title #{3 - i}")
-          end
+          @feature.scenarios.each_with_index { |scenario, i| scenario.title.should eql("Scenario Title #{3 - i}") }
         end
 
+      end
+
+    end
+
+    context "when saved" do
+
+      it "should evaluate and establish the summary once" do
+        @feature.should_receive(:summarize).once.and_return("Some Summary")
+
+        @feature.update_attributes!(:title => "Some Updated Title")
+
+        @feature.summary.should eql("Some Summary")
+      end
+
+    end
+
+    context "#update_summary!" do
+
+      it "should evaluate and establish the summary once" do
+        @feature.should_receive(:summarize).once.and_return("Some Summary")
+
+        @feature.update_summary!
+
+        @feature.summary.should eql("Some Summary")
       end
 
     end

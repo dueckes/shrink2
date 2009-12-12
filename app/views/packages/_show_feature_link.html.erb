@@ -1,0 +1,3 @@
+<li id="<%= dom_id(feature) %>_package_link_area">
+  <%= link_to_remote feature.title, { :url => { :controller => :features, :action => :show_detail, :id => feature.id } }, { :id => dom_id(feature, :package_link), :title => "View Feature" } %>
+</li>

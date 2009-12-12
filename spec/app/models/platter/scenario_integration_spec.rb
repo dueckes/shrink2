@@ -75,6 +75,7 @@ describe Platter::Scenario do
           (1..3).each do |i|
             @scenario.steps << Platter::Step.new(:text => "Step Text #{i}", :position => 4 - i)
           end
+          @scenario.steps(true)
         end
 
         it "should have the same amount of steps that have been added" do
@@ -82,10 +83,7 @@ describe Platter::Scenario do
         end
 
         it "should retrieve steps ordered by position" do
-          @scenario.steps.each_with_index do |step, i|
-            step.text.should eql("Step Text #{3 - i}")
-            step.position.should eql(i + 1)
-          end
+          @scenario.steps.each_with_index { |step, i| step.text.should eql("Step Text #{3 - i}") }
         end
 
       end

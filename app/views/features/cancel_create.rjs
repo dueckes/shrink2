@@ -1,3 +1,0 @@
-page.hide("#{dom_id(@package)}_new_feature")
-page.replace_html("#{dom_id(@package)}_new_feature", "")
-page.show("#{dom_id(@package)}_new_feature_controls")

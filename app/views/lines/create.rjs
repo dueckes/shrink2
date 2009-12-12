@@ -1,4 +1,2 @@
-page.hide(dom_id(@line.feature, :new_line))
-page.replace_html(dom_id(@line.feature, :new_line), "")
-page.insert_html(:before, dom_id(@line.feature, :new_line), :partial => "lines/show_with_li", :locals => { :line => @line })
-page.show(dom_id(@line.feature, :add_line))
+page.insert_html(:before, @add_anywhere_presenter.form_container_dom_id, :partial => "lines/show", :locals => { :line => @line, :hidden => true })
+page << @add_anywhere_presenter.show_model_js

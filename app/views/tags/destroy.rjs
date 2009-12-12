@@ -1,1 +1,2 @@
-page.visual_effect(:fade_and_remove, "#{dom_id(@tag)}_area")
+update_feature_tag_lines(page, @tag)
+page << "$('##{dom_id(@tag)}_content').fadeOutAndRemove()"

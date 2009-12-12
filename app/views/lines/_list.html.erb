@@ -1,10 +1,8 @@
 <ul id="<%= dom_id(feature, :lines) %>" class="leaf_list lines">
   <% feature.lines.each do |line| -%>
-    <%= render :partial => "lines/show_with_li", :locals => { :line => line } %>
+    <%= render :partial => "lines/show", :locals => { :line => line, :hidden => false } %>
   <% end -%>
-  <li id="<%= dom_id(feature, :new_line) %>" style="display: none;">
-  </li>
-  <li id="<%= dom_id(feature, :add_line) %>">
-    <%= link_to_remote("Add Line", :url => new_package_feature_line_path(feature.package, feature), :method => :get) %>
+  <li id="<%= dom_id(feature, :add_line_link_area) %>">
+    <%= add_at_end_link(:model_name => :line, :parent => feature, :url => new_package_feature_line_path(feature.package, feature)) %>
   </li>
 </ul>

@@ -6,12 +6,12 @@ module ApplicationHelper
     content_tag_for(:li, record, *args, &block)
   end
 
-  def editable_text_link(text, options)
-    link_to_remote text, { :method => :get }.merge(options), { :class => "editable-text-link", :title => "Click To Edit" }
+  def nested_dom_id(symbol, parent=nil)
+    dom_id(parent || @parent, symbol)
   end
 
-  def nested_dom_id(symbol, parent=nil)
-    "#{dom_id(parent || @parent)}_#{symbol}"
+  def element_style(options)
+    options[:hidden] ? "display: none;" : ""
   end
 
 end

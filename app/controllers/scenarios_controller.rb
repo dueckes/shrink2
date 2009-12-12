@@ -1,2 +1,3 @@
-class ScenariosController < RestfulAjaxApplicationController
+class ScenariosController < CrudApplicationController
+  include CrudApplicationControllerAddAnywhereSupport
 end

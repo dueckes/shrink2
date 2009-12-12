@@ -4,7 +4,7 @@ class CreateTableFeatureLines < ActiveRecord::Migration
     create_table(:feature_lines) do |table|
       table.integer :feature_id, :null => false
       table.integer :position, :null => false
-      table.string :text, :size => 256, :null => false
+      table.string :text, :limit => 256, :null => false
       table.timestamps
     end
   end

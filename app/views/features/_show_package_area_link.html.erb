@@ -1,3 +1,0 @@
-<li id="<%= dom_id(feature) %>_link_area">
-  <%= link_to_remote feature.title, { :update => :feature, :url => { :controller => :features, :action => :show_detail, :id => feature.id }, :complete => "$('#feature').show();" }, { :id => "#{dom_id(feature)}_link" } %>
-</li>

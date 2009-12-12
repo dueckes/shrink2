@@ -1,3 +1,2 @@
-page.hide("#{dom_id(@package)}_new_feature_controls")
-page.replace_html("#{dom_id(@package)}_new_feature", :partial => "features/form_import")
-page.show("#{dom_id(@package)}_new_feature")
+page.replace_html("#menu_import_feature_expand_area", :partial => "features/form_import", :locals => { :packages => @packages })
+page << "new TopMenuItem('import_feature').toggle()"

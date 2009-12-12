@@ -51,8 +51,12 @@ module Platter
       feature.scenarios.should eql(scenarios)
     end
 
-    it "should be a Platter::Cucumber::Ast::FeatureConverter" do
-      Platter::Feature.include?(Platter::Cucumber::Ast::FeatureConverter).should be_true
+    it "should be a Platter::Cucumber::Adapter::AstFeatureAdapter" do
+      Feature.include?(Platter::Cucumber::Adapter::AstFeatureAdapter).should be_true
+    end
+
+    it "should be a Platter::Cucumber::Formatter::FeatureFormatter" do
+      Feature.include?(Platter::Cucumber::Formatter::FeatureFormatter).should be_true
     end
 
     context "#valid?" do
@@ -83,8 +87,8 @@ module Platter
               @feature.title = "a" * 256
             end
 
-            it "should return false" do
-              @feature.should_not be_valid
+            it "should return true" do
+              @feature.should be_valid
             end
 
           end
@@ -144,7 +148,7 @@ module Platter
       describe "when an invalid line has been added" do
 
         before(:each) do
-          @feature.lines << Platter::FeatureLine.new(:text => "")
+          @feature.lines << FeatureLine.new(:text => "")
         end
 
         it "should return false" do
@@ -156,7 +160,7 @@ module Platter
       describe "when an invalid scenario has been added" do
 
         before(:each) do
-          @feature.scenarios << Platter::Scenario.new(:title => "")
+          @feature.scenarios << Scenario.new(:title => "")
         end
 
         it "should return false" do
@@ -205,6 +209,86 @@ module Platter
 
       end
       
+    end
+
+    context "#tag_line=" do
+
+      before(:each) do
+        @feature = Feature.new
+        @feature.stub!(:update_summary!)
+        @tag_name = "Some Tag"
+        @tag = Tag.new(:name => @tag_name)
+        Tag.stub!(:find_or_create!).and_return(@tag)
+      end
+
+      describe "when a tag is added" do
+
+        it "should find or create the tag" do
+          Tag.should_receive(:find_or_create!).with(:name => @tag_name)
+
+          @feature.tag_line = @tag_name
+        end
+
+        it "should associate the tag with the feature" do
+          @feature.tag_line = @tag_name
+
+          @feature.tags.should include(@tag)
+        end
+
+      end
+
+      describe "when a tag is removed" do
+
+        before(:each) do
+          @feature.tags << @tag
+        end
+
+        it "should not delete the tag" do
+          @tag.should_not_receive(:destroy)
+
+          @feature.tag_line = ""
+        end
+
+        it "should disassociate the tag from the feature" do
+          @feature.tag_line = ""
+
+          @feature.tags.should be_empty
+        end
+
+      end
+
+      describe "when multiple tags are added and removed" do
+
+        before(:each) do
+          @tags = (1..6).collect do |i|
+            tag = Tag.new(:name => "Tag#{i}")
+            Tag.stub!(:find_or_create!).with(:name => tag.name).and_return(tag)
+            tag
+          end
+          @tags_to_remove = @tags[0..2]
+          @tags_to_add = @tags[3..5]
+
+          @tags_to_remove.each { |tag| @feature.tags << tag }
+
+          @feature.tag_line = @tags_to_add.collect(&:name).join(", ")
+        end
+
+        it "should associate those tags that have been added to the feature" do
+          @tags_to_add.each { |associated_tag| @feature.tags.should include(associated_tag) }
+        end
+
+        it "should dissociate those tags that have been removed from the feature" do
+          @tags_to_remove.each { |disassociated_tag| @feature.tags.should_not include(disassociated_tag) }
+        end
+
+      end
+
+      it "should update the feature summary" do
+        @feature.should_receive(:update_summary!)
+
+        @feature.tag_line = ""
+      end
+
     end
 
     context "#unused_tags" do
@@ -289,60 +373,91 @@ module Platter
 
     end
 
-    context "#add_and_remove_tags" do
+    context "#update_summary!" do
 
-      #TODO Complete
-
-    end
-
-    context "#as_text" do
-
-      it "should include the feature title" do
-        title = "this is a feature title"
-        Feature.new(:title => title).as_text.should include "Feature: #{title}"
+      before(:each) do
+        @feature = Feature.new
       end
 
-      it "should indent & include feature lines" do
-        feature = Feature.new
-        feature.lines << StubModelFixture.create_model(FeatureLine, :as_text => "first feature line")
-        feature.lines << StubModelFixture.create_model(FeatureLine, :as_text => "second feature line")
-        text = feature.as_text
-        text.should include "  first feature line"
-        text.should include "  second feature line"
+      it "should invoke update_attributes!" do
+        @feature.should_receive(:update_attributes!)
+
+        @feature.update_summary!
       end
 
-      it "should include scenarios" do
-        feature = Feature.new
-        feature.scenarios << StubModelFixture.create_model(Scenario, :as_text => "first scenario")
-        feature.scenarios << StubModelFixture.create_model(Scenario, :as_text => "second scenario")
-        text = feature.as_text
-        text.should include "first scenario"
-        text.should include "second scenario"
+      it "should update the summary to a value retrieved from summarizing the feature" do
+        @feature.stub!(:summarize).and_return("Some Summary")
+        @feature.stub!(:update_attributes!).with(:summary => "Some Summary")
+
+        @feature.update_summary!
       end
 
     end
 
-    context "#export_name"  do
+    context "#search_result_preview_lines" do
+      #TODO
+    end
 
-      it "should use the title" do
-        title = "some_title"
-        Feature.new(:title => title).export_name.should eql title
+    context "#summarize" do
+
+      before(:each) do
+        @feature = Feature.new(:title => "Some Feature Title")
       end
 
-      it "should replace spaces with underscores" do
-        Feature.new(:title => "title with spaces").export_name.should eql "title_with_spaces"
-      end
+      describe "when the feature is fully populated" do
 
-      it "should downcase the title" do
-        Feature.new(:title => "Title WITH MIXED cAse").export_name.should eql "title_with_mixed_case"
-      end
+        before(:each) do
+          @tags = (1..3).collect { |i| mock("Tag#{i}", :summarize => "tag_#{i}") }
+          @feature.stub!(:tags).and_return(@tags)
+          @lines = (1..3).collect { |i| mock("FeatureLine#{i}", :summarize => "feature line #{i}") }
+          @feature.stub!(:lines).and_return(@lines)
+          @scenarios = (1..3).collect { |i| mock("Scenario#{i}", :summarize => "scenario #{i}") }
+          @feature.stub!(:scenarios).and_return(@scenarios)
+          
+          @summary_lines = @feature.summarize.split("\n")
+        end
 
-      it "should drop all non alpha numeric characters" do
-        Feature.new(:title => 'T1tle !@#$%with n0n alph4 numeric +)(*&^characters and numb3rs').export_name.should eql "t1tle_with_n0n_alph4_numeric_characters_and_numb3rs"
+        describe "the feature title" do
+
+          it "should be on the first line of text" do
+            @summary_lines.first.should include("Some Feature Title")
+          end
+
+        end
+
+        describe "the tag summaries" do
+
+          it "should be space delimited on the second line of text" do
+            @summary_lines.second.should eql("tag_1 tag_2 tag_3")
+          end
+
+        end
+
+
+        describe "the line summaries" do
+
+          it "should occupy a line each and by prefixed by spaces and displayed directly after the feature title" do
+            @summary_lines[2..4].should eql(["  feature line 1", "  feature line 2", "  feature line 3"])
+          end
+
+        end
+
+        describe "the scenario summaries" do
+
+          it "should be divided from the feature lines by an empty line" do
+            @summary_lines[5].should be_empty
+          end
+
+          it "should occupy a line each divided by an empty line" do
+            @summary_lines[6..10].should eql(["scenario 1", "", "scenario 2", "", "scenario 3"])
+          end
+
+        end
+
       end
 
     end
-    
+
     def create_mock_tag(stubs)
       StubModelFixture.create_model(Tag, stubs)
     end

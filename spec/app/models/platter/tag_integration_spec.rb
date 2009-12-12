@@ -9,7 +9,7 @@ module Platter
           @tag = DatabaseModelFixture.create_tag!
         end
 
-        describe "when feature have been added" do
+        describe "when features have been added" do
 
           before(:each) do
             %w(a_title z_title m_title).each do |feature_title|
@@ -17,12 +17,9 @@ module Platter
             end
           end
 
-          it "should have the same amount of lines that have been added" do
-            @tag.features.should have(3).features
-          end
-
-          it "should be ordered by feature title" do
-            @tag.features.collect(&:title).should eql(%w(a_title m_title z_title))
+          it "should contain the features that have been added" do
+            @tag.features.should have(3).feature
+            @tag.features.collect(&:title).should include("a_title", "m_title", "z_title")
           end
 
         end

@@ -1,3 +1,2 @@
-page.replace_html("#{dom_id(@feature)}_tags_form_area", :partial => "features/form_tags", :locals => { :feature => @feature, :all_tags => @all_tags })
-page.visual_effect(:blind_down, "#{dom_id(@feature)}_tags_form_area", :duration => 0.5,
-                   :afterFinish => "function() { var listAreaElement = $('##{dom_id(@feature)}_tags_list_area'); listAreaElement.hide(); listAreaElement.innerHTML = ''; $('##{dom_id(@feature)}_tags_text').focus(); }")
+page.replace_html("#{dom_id(@feature)}_tags_form", :partial => "features/form_tags", :locals => { :feature => @feature, :all_tags => @all_tags })
+page << "new TagForm('##{dom_id(@feature)}_tags_area').open()"

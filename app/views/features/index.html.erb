@@ -1,0 +1,11 @@
+<div id="content_outer_area">
+  <div id="content_inner_area">
+    <% if @count == 0 -%>
+      <span>There are no features in the system.  Use the top menu items to add features.</span>
+    <% else -%>
+      <span>
+        The system currently contains <%= pluralize(@count, "feature") %>.  Use left control to navigate to a feature.
+      </span>
+    <% end -%>
+  </div>
+</div>

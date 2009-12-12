@@ -1,2 +1,0 @@
-<%= editable_text_link step.text, :update => dom_id(step), :url => edit_package_feature_scenario_step_path(step.package, step.feature, step.scenario, step) %>
-<%= link_to_remote "Delete", { :confirm => "Are you sure you want to delete this step?", :url => package_feature_scenario_step_path(step.package, step.feature, step.scenario, step), :method => :delete }, { :class => "edit-link" } %>

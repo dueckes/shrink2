@@ -1,1 +1,1 @@
-page.visual_effect(:fade_and_remove, dom_id(@scenario))
+page << "$('##{dom_id(@scenario)}').fadeOutAndRemove('fast')"

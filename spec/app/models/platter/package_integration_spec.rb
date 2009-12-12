@@ -53,6 +53,30 @@ describe Platter::Package do
       
     end
 
+    context "#features" do
+
+      describe "when features have been added" do
+
+        before(:each) do
+          %w(c b a).each do |character|
+            @package.features << Platter::Feature.new(:title => "Feature Title #{character}")
+          end
+          @package.features(true)
+        end
+
+        it "should have the same amount of features that have been added" do
+          @package.features.should have(3).features
+        end
+
+        it "should be ordered by descending order of title" do
+          expected_titles_in_order = %w(a b c).collect { |character| "Feature Title #{character}" }
+          @package.features.collect(&:title).should eql(expected_titles_in_order)
+        end
+
+      end
+
+    end
+
     context "#valid?" do
 
       before(:each) do

@@ -1,11 +1,9 @@
 <ul id="<%= dom_id(scenario, :steps) %>" class="leaf_list steps">
   <% scenario.steps.each do |step| -%>
-    <%= render :partial => "steps/show_with_li", :locals => { :step => step } %>
+    <%= render :partial => "steps/show", :locals => { :step => step, :hidden => false } %>
   <% end -%>
-  <li id="<%= dom_id(scenario, :new_step) %>" style="display: none;">
-  </li>
-  <li id="<%= dom_id(scenario, :add_step) %>">
-    <%= link_to_remote("Add Step", :url => new_package_feature_scenario_step_path(scenario.package, scenario.feature, scenario), :method => :get) %>
+  <li id="<%= dom_id(scenario, :add_step_link_area) %>" class="add_last_link_area">
+    <%= add_at_end_link(:model_name => :step, :parent => scenario, :url => new_package_feature_scenario_step_path(scenario.package, scenario.feature, scenario)) %>
   </li>
 </ul>
 <%= render :partial => "steps/script_drag_and_drop", :locals => { :scenario => scenario } %>

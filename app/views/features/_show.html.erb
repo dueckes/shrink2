@@ -1,0 +1,32 @@
+<div id="<%= dom_id(feature, :area) %>" class="feature_area">
+  <div id="<%= dom_id(feature) %>_header" class="header highlight_controls_area">
+    <div class="feature_title_and_tags">
+      <div id="<%= dom_id(feature) %>_title">
+        <%= render :partial => "features/show_title", :locals => { :feature => feature } %>
+      </div>
+      <div id="<%= dom_id(feature) %>_tags_area" class="tags_area">
+        <%= link_to_remote "Tags", { :url => { :controller => :features, :action => :manage_tags, :id => feature.id }, :method => :get } %>
+        <div id="<%= dom_id(feature) %>_tags_list_area" class="tags_list_area">
+          <div id="<%= dom_id(feature) %>_tags_list">
+            <%= render :partial => "features/show_tags", :locals => { :feature => feature } %>
+          </div>
+          <div id="<%= dom_id(feature) %>_tags_form" class="feature_heading_popup tags_form_area" style="display: none;">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="highlight_controls">
+      <%= link_to "^", {}, { :href => "#", :id => dom_id(feature, :expand_collapse_link), :title => "Expand/Collapse" } %>
+      <%= link_to "->", package_feature_path(feature.package, feature), { :popup => true, :id => dom_id(feature, :show_link), :title => "Permalink" } %>
+      <%= link_to_remote "X", { :confirm => "Are you sure you want to delete this feature?", :url => package_feature_path(feature.package, feature), :method => :delete }, { :id => dom_id(feature, :delete_link), :title => "Delete" } %>
+    </div>
+  </div>
+  <ul class="detail" style="<%= element_style(:hidden => minimized) %>">
+    <li>
+      <%= render :partial => "lines/list", :locals => { :feature => feature } %>
+    </li>
+    <li>
+      <%= render :partial => "scenarios/list", :locals => { :feature => feature } %>
+    </li>
+  </ul>
+</div>

@@ -1,1 +1,1 @@
-page.replace_html("#{dom_id(@feature)}_heading_area", :partial => "features/show_heading", :locals => { :feature => @feature })
+update_inline(page, @feature, :feature, :title)

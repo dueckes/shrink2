@@ -2,10 +2,10 @@ module Platter
 
   class Package < ::ActiveRecord::Base
     acts_as_tree :order => :name
-    has_many :features, :class_name => "Platter::Feature"
+    has_many :features, :class_name => "Platter::Feature", :order => :title
 
     validates_presence_of :name
-    validates_length_of :name, :maximum => 255
+    validates_length_of :name, :maximum => 256
     validates_uniqueness_of :name, :scope => :parent_id
 
     #TODO Candidate for tree plugin extension
@@ -18,8 +18,8 @@ module Platter
       parent == self.root
     end
 
-    def in_tree_path_until?(package)
-      self == package || package.ancestors.include?(self)
+    def child_in_tree_path_until?(package)
+      !!children.find { |child| child == package || package.ancestors.include?(child) }
     end
 
     class << self

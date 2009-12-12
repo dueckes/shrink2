@@ -1,3 +1,0 @@
-page.hide(dom_id(@scenario, :new_step))
-page.replace_html(dom_id(@scenario, :new_step), "")
-page.show(dom_id(@scenario, :add_step))

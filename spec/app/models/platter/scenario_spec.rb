@@ -35,8 +35,16 @@ module Platter
       scenario.package.should eql(package)
     end
 
-    it "should be a Platter::Cucumber::Ast::ScenarioConverter" do
-      Platter::Scenario.include?(Platter::Cucumber::Ast::ScenarioConverter).should be_true
+    it "should be a Platter::FeatureSummaryChangeObserver" do
+      Scenario.include?(Platter::FeatureSummaryChangeObserver).should be_true
+    end
+
+    it "should be a Platter::Cucumber::Adapter::AstScenarioAdapter" do
+      Scenario.include?(Platter::Cucumber::Adapter::AstScenarioAdapter).should be_true
+    end
+
+    it "should be a Platter::Cucumber::Formatter::ScenarioFormatter" do
+      Scenario.include?(Platter::Cucumber::Formatter::ScenarioFormatter).should be_true
     end
 
     context "#valid?" do
@@ -66,8 +74,8 @@ module Platter
             @scenario.title = "a" * 256
           end
 
-          it "should return false" do
-            @scenario.should_not be_valid
+          it "should return true" do
+            @scenario.should be_valid
           end
 
         end
@@ -156,21 +164,34 @@ module Platter
 
     end
 
-    context "#as_text" do
+    context "#summarize" do
 
-      it "should include the scenario tile" do
-        title = "scenario title"
-        scenario = Scenario.new(:title => title)
-        scenario.as_text.should include "Scenario: #{title}"
-      end
+      describe "when the scenario is fully populated" do
 
-      it "should indent & include the as text for its child steps" do
-        scenario = Scenario.new(:title => "some title")
-        scenario.steps << Step.new(:text => "step one text") << Step.new(:text => "step two text")
+        before(:each) do
+          @scenario = Scenario.new(:title => "Some Title")
+          @steps = (1..3).collect { |i| mock("Step#{i}", :summarize => "step #{i}") }
+          @scenario.stub!(:steps).and_return(@steps)
 
-        text = scenario.as_text
-        text.should include("  step one text")
-        text.should include("  step two text")
+          @summary_lines = @scenario.summarize.split("\n")
+        end
+
+        describe "the scenario title" do
+
+          it "should be on the first line" do
+            @summary_lines.first.should eql("Some Title")
+          end
+
+        end
+
+        describe "the steps" do
+
+          it "should be summarized on the following lines prefixed by spaces" do
+            @summary_lines[1..3].should eql(["  step 1", "  step 2", "  step 3"])
+          end
+
+        end
+
       end
 
     end

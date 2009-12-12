@@ -1,16 +1,16 @@
-<div id="<%= dom_id(tag) %>_detail_heading_area" class="list_title">
-  <%= render :partial => "tags/show_heading", :locals => { :tag => tag } %>
+<div id="<%= dom_id(tag) %>_content" class="tag_content_area">
+  <div id="<%= dom_id(tag) %>_header" class="header highlight_controls_area">
+    <div id="<%= dom_id(tag) %>_name">
+      <%= render :partial => "tags/show_name", :locals => { :tag => tag } %>
+    </div>
+    <div class="highlight_controls">
+      <%= link_to_remote "X", { :confirm => "Deleting the tag will remove it from all features.  Are you sure you want to delete this tag?", :url => tag_path(tag), :method => :delete } %>
+    </div>
+  </div>
+  <div class="divider">
+    Tagged Features
+  </div>
 </div>
-<ul>
-  <% tag.features.each do |feature| -%>
-    <li>
-      <div>
-        <span>Feature: <%= feature.title %></span>
-        <%= link_to "Open", package_feature_path(feature.package, feature), :id => "#{dom_id(tag)}_#{dom_id(feature)}_open_link" %>
-      </div>
-      <div>
-        <span>Current Tags: <%= feature.tag_line %></span>
-      </div>
-    </li>
-  <% end -%>
-</ul>
+<div id="<%= dom_id(tag) %>_features" class="tag_features_area">
+  <%= render :partial => "features/show_all", :locals => { :features => tag.features, :minimized => true } %>
+</div>
