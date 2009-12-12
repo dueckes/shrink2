@@ -17,8 +17,8 @@ module Platter
       scenario.feature
     end
 
-    def package
-      scenario.package
+    def folder
+      scenario.folder
     end
     
   end

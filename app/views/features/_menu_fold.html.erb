@@ -5,10 +5,10 @@
     </div>
     <%= link_to image_tag("fold_menu_search.png"), "#", { :id => "expand_search_link", :class => "expand_link", :title => "Search Features and Tags" } %>
   </div>
-  <div id="fold_menu_packages" class="fold_item">
-    <div id="packages_area" class="fold_menu_expand_area">
-      <%= render :partial => "packages/show_root", :locals => { :root_package => root_package, :feature => nil } %>
+  <div id="fold_menu_folders" class="fold_item">
+    <div id="folders_area" class="fold_menu_expand_area">
+      <%= render :partial => "folders/show_root", :locals => { :root_folder => root_folder, :feature => nil } %>
     </div>
-    <%= link_to image_tag("fold_menu_packages.png"), "#", { :id => "expand_packages_link", :class => "expand_link", :title => "Manage Packages" } %>
+    <%= link_to image_tag( "fold_menu_folders.png" ), "#", { :id => "expand_folders_link", :class => "expand_link", :title => "Manage Folders" } %>
   </div>
 </div>

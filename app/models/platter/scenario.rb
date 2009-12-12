@@ -19,8 +19,8 @@ module Platter
       reload_steps
     end
     
-    def package
-      feature.package
+    def folder
+      feature.folder
     end
 
     def summarize

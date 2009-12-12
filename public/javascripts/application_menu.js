@@ -38,10 +38,22 @@ var TopMenuItem = $.klass({
 });
 
 var _FoldMenu = $.klass({
+  hideOtherItems: function(foldMenuItem) {
+    this._onAllMenuItems(function(currentFoldMenuItem) {
+      if (foldMenuItem.id() != currentFoldMenuItem.id()) {
+        currentFoldMenuItem.hide();
+      }
+    });
+  },
   hideAllItems: function() {
+    this._onAllMenuItems(function(foldMenuItem) {
+      foldMenuItem.hide();
+    });
+  },
+  _onAllMenuItems: function(callback) {
     $('#fold_menu .fold_item').each(function(i, itemObject) {
-      FoldMenuItemFactory.createFromObject($(itemObject)).hide();
-    })
+      callback(FoldMenuItemFactory.createFromObject($(itemObject)));
+    });
   }
 });
 var FoldMenu = new _FoldMenu();
@@ -53,6 +65,7 @@ var FoldMenuItem = $.klass({
     this._maximizedWidth = '0px';
   },
   toggle: function() {
+    FoldMenu.hideOtherItems(this);
     var targetWidth = this._maximizedWidth;
     if (this._itemObject.css('left') == this._maximizedWidth) {
       targetWidth = this._minimizedWidth;
@@ -61,6 +74,9 @@ var FoldMenuItem = $.klass({
   },
   hide: function() {
     this._itemObject.animate({ left: this._minimizedWidth }, 500);
+  },
+  id: function() {
+    return this._itemObject.attr('id');
   }
 });
 

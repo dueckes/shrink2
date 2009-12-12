@@ -1,0 +1,8 @@
+<ul id="<%= dom_id(folder) %>_expand_area" class="expand_area" style="<%= element_style(:hidden => !expanded) %>">
+  <% folder.children.each do |child_folder| -%>
+    <%= render :partial => "folders/show", :locals => { :folder => child_folder, :feature => feature, :hidden => false } %>
+  <% end -%>
+  <li id="<%= nested_dom_id(:new_folder, folder) %>" style="display: none;">
+  </li>
+  <%= render :partial => "folders/list_features", :locals => { :folder => folder } %>
+</ul>

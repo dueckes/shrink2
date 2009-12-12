@@ -12,8 +12,8 @@ module Platter
 
     alias_attribute :summarize, :text
 
-    def package
-      feature.package
+    def folder
+      feature.folder
     end
 
   end

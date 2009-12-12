@@ -1,2 +1,2 @@
-page.replace_html("#menu_import_feature_expand_area", :partial => "features/form_import", :locals => { :packages => @packages })
+page.replace_html("#menu_import_feature_expand_area", :partial => "features/form_import", :locals => { :folders => @folders })
 page << "new TopMenuItem('import_feature').toggle()"

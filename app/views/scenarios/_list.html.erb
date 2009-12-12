@@ -3,6 +3,6 @@
     <%= render :partial => "scenarios/show", :locals => { :scenario => scenario, :hidden => false } %>
   <% end -%>
   <li id="<%= dom_id(feature, :add_scenario_link_area) %>">
-    <%= add_at_end_link(:model_name => :scenario, :parent => feature, :url => new_package_feature_scenario_path(feature.package, feature)) %>
+    <%= add_at_end_link(:model_name => :scenario, :parent => feature, :url => new_folder_feature_scenario_path(feature.folder, feature)) %>
   </li>
 </ul>

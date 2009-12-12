@@ -26,14 +26,14 @@ module Platter
       step.feature.should eql(feature)
     end
 
-    it "should belong to a package" do
-      package = Package.new
-      feature = Feature.new(:package => package)
+    it "should belong to a folder" do
+      folder = Folder.new
+      feature = Feature.new(:folder => folder)
       scenario = Scenario.new(:feature => feature)
 
       step = Step.new(:scenario => scenario)
 
-      step.package.should eql(package)
+      step.folder.should eql(folder)
     end
 
     it "should be a Platter::FeatureSummaryChangeObserver" do

@@ -66,10 +66,10 @@ describe Platter::Cucumber::FeatureImporter do
         @features.collect(&:title).should eql(["First Feature", "Second Feature", "Third Feature"])
       end
 
-      it "should create features whose package is the root package" do
-        root_package = Platter::Package.root
+      it "should create features whose folder is the root folder" do
+        root_folder = Platter::Folder.root
 
-        @features.each { |feature| feature.package.should eql(root_package)}
+        @features.each { |feature| feature.folder.should eql(root_folder)}
       end
 
     end
@@ -85,18 +85,18 @@ describe Platter::Cucumber::FeatureImporter do
         @features.collect(&:title).should eql(["First Feature", "Second Feature", "Third Feature"])
       end
 
-      it "should create features whose package has a name matching the sub-directory name" do
-        @features.each { |feature| feature.package.name.should eql("child_feature_directory") }
+      it "should create features whose folder has a name matching the sub-directory name" do
+        @features.each { |feature| feature.folder.name.should eql("child_feature_directory") }
       end
 
-      it "should create features who share the same package" do
-        @features.collect(&:package_id).uniq.size.should eql(1)
+      it "should create features who share the same folder" do
+        @features.collect(&:folder_id).uniq.size.should eql(1)
       end
 
-      it "should create features whose package has a parent package that is the root package" do
-        root_package = Platter::Package.root
+      it "should create features whose folder has a parent folder that is the root folder" do
+        root_folder = Platter::Folder.root
 
-        @features.each { |feature| feature.package.parent.should eql(root_package)}
+        @features.each { |feature| feature.folder.parent.should eql(root_folder)}
       end
 
     end

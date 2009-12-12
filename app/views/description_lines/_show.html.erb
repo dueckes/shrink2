@@ -4,6 +4,6 @@
   </div>
   <div class="highlight_controls">
     <%= add_before_link(:model => description_line, :url => { :controller => :description_lines, :action => :new, :feature_id => description_line.feature.id }) %>
-    <%= link_to_remote "X", { :confirm => "Are you sure you want to delete this description line?", :url => package_feature_description_line_path(description_line.package, description_line.feature, description_line), :method => :delete }, { :id => dom_id(description_line, :delete_link), :title => "Delete" } %>
+    <%= link_to_remote "X", { :confirm => "Are you sure you want to delete this description line?", :url => folder_feature_description_line_path(description_line.folder, description_line.feature, description_line), :method => :delete }, { :id => dom_id(description_line, :delete_link), :title => "Delete" } %>
   </div>
 <% end -%>

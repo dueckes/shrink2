@@ -1,4 +1,4 @@
 <%= render(:partial => "common/form_edit", :locals => { :model_name => :step,
                                                         :model => step,
-                                                        :url => package_feature_scenario_step_path(step.package, step.feature, step.scenario, step),
+                                                        :url => folder_feature_scenario_step_path(step.folder, step.feature, step.scenario, step),
                                                         :form_builder => StepFormBuilder }) %>

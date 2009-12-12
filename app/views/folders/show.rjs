@@ -1,0 +1,6 @@
+page["#{dom_id(@folder)}_toggle_link"].attr("onclick", remote_function(:url => { :controller => :folders, :action => :collapse, :id => @folder.id }, :method => :get))
+page["#{dom_id(@folder)}_header"].addClass("expanded")
+page.replace_html("#{dom_id(@folder)}_expand_area", :partial => "folders/list", :locals => { :folder => @folder, :feature => nil })
+page.replace_html("#{dom_id(@folder)}_expand_controls", :partial => "folders/show_expanded_controls", :locals => { :folder => @folder })
+page.show("#{dom_id(@folder)}_expand_area")
+page.show("#{dom_id(@folder)}_expand_controls")

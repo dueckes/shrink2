@@ -5,15 +5,15 @@ module Platter
     include Platter::Cucumber::Formatter::FeatureFormatter
     set_scenario_adapter Platter::Scenario
 
-    belongs_to :package, :class_name => "Platter::Package"
+    belongs_to :folder, :class_name => "Platter::Folder"
     has_many :description_lines, :class_name => "Platter::FeatureDescriptionLine", :order => :position
     has_many :scenarios, :class_name => "Platter::Scenario", :order => :position
     has_many :feature_tags, :class_name => "Platter::FeatureTag"
     has_many :tags, :through => :feature_tags, :order => :name
 
-    validates_presence_of :package, :title
+    validates_presence_of :folder, :title
     validates_length_of :title, :maximum => 256
-    validates_uniqueness_of :title, :scope => :package_id
+    validates_uniqueness_of :title, :scope => :folder_id
 
     before_save { |feature| feature.summary = feature.summarize unless feature.updating_summary? }
 

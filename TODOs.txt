@@ -15,7 +15,7 @@ Next:
       Script injection protection
       Investigate Javascript test framework
       Validation errors causes height change - discuss with Pam
-      Fix package background
+      Fix folder background
       Validation error messages to be discussed
       form_common is no longer 'common' as multiple forms do not use it - views/features is the best example
       dom_id(model, :something) or "dom_id(model)_something"?

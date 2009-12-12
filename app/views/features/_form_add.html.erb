@@ -1,7 +1,7 @@
 <% form_remote_tag(:url => { :controller => :features, :action => :create }) do -%>
   <% field_set_tag do -%>
     <%= label_tag "add_feature_title", "Title" %><%= text_field_tag "feature[title]", nil, :size => 120, :id => "add_feature_title" %>
-    <%= label_tag "add_feature_package_id", "Package" %><%= select_tag "package_id", options_from_collection_for_select(packages, :id, :name), :id => "add_feature_package_id" %>
+    <%= label_tag "add_feature_folder_id", "Folder" %><%= select_tag "folder_id", options_from_collection_for_select(folders, :id, :name), :id => "add_feature_folder_id" %>
     <div class="buttons">
       <%= submit_tag "Add", :id => "add_feature_submit", :class => "submit" %>
       <%= button_to_function "Cancel", :id => "add_feature_cancel" %>

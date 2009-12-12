@@ -27,29 +27,29 @@ var Feature = $.klass({
   }
 });
 
-var _Packages = $.klass({
+var _Folders = $.klass({
   expandAll: function() {
-    this._onRootDescendantPackageObjects(function(object) {
+    this._onRootDescendantFolderObjects(function(object) {
       object.expand();
     });
   },
   collapseAll: function() {
-    this._onRootDescendantPackageObjects(function(object) {
+    this._onRootDescendantFolderObjects(function(object) {
       object.collapse();
     });
   },
-  _onRootDescendantPackageObjects : function(callback) {
-    $('#packages_area li').each(function(i, object) {
-       callback(new Package(object));
+  _onRootDescendantFolderObjects : function(callback) {
+    $('#folders_area li').each(function(i, object) {
+       callback(new Folder(object));
     });
   }
 });
-var Packages = new _Packages();
+var Folders = new _Folders();
 
-var Package = $.klass({
+var Folder = $.klass({
   initialize: function(objectSelector) {
     var object = $(objectSelector);
-    this._expandCollapseLink = object.find(".package_expand_collapse_link");
+    this._expandCollapseLink = object.find(".folder_expand_collapse_link");
     this._expandArea = object.find(".expand_area");
   },
   toggle: function() {

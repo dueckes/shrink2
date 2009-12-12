@@ -5,7 +5,7 @@ class FeaturesController < CrudApplicationController
   before_filter :establish_parents_via_params, :only => [:new, :create, :import]
   before_filter :establish_model_via_id_param, :only => [:show, :show_detail, :manage_tags, :modify_tags,
                                                          :edit, :update, :destroy]
-  before_filter :establish_root_package, :only => [:index, :show]
+  before_filter :establish_root_folder, :only => [:index, :show]
   before_filter :verify_search_text, :only => [:search]
   before_filter :verify_feature_file, :only => [:import]
 
@@ -33,28 +33,28 @@ class FeaturesController < CrudApplicationController
   end
 
   def add_gesture
-    @packages = Platter::Package.find(:all)
+    @folders = Platter::Folder.find(:all)
   end
 
   def import_gesture
-    @packages = Platter::Package.find(:all)
+    @folders = Platter::Folder.find(:all)
   end
 
   def import
     responds_to_parent do
       feature = Platter::Cucumber::FeatureImporter.import_file(write_feature_file(params[:feature_file]))
-      feature.package = @package
+      feature.folder = @folder
       feature.save ? render_successful_import(feature) : render_import_errors(feature.errors)
     end
   end
 
   def new_id_prefix(model=nil)
-    "package"
+    "folder"
   end
 
   private
-  def establish_root_package
-    @root_package = Platter::Package.root
+  def establish_root_folder
+    @root_folder = Platter::Folder.root
   end
 
   def verify_search_text

@@ -1,2 +1,2 @@
-page.replace_html("#menu_add_feature_expand_area", :partial => "features/form_add", :locals => { :packages => @packages })
+page.replace_html("#menu_add_feature_expand_area", :partial => "features/form_add", :locals => { :folders => @folders })
 page << "new TopMenuItem('add_feature').toggle()"

@@ -8,7 +8,7 @@
     </div>
     <div class="highlight_controls">
       <%= add_before_link(:model => scenario, :url => { :controller => :scenarios, :action => :new, :feature_id => scenario.feature.id }) %>
-      <%= link_to_remote "X", { :confirm => "Are you sure you want to delete this scenario?", :url => package_feature_scenario_path(scenario.package, scenario.feature, scenario), :method => :delete }, { :id => dom_id(scenario, :delete_link), :title => "Delete" } %>
+      <%= link_to_remote "X", { :confirm => "Are you sure you want to delete this scenario?", :url => folder_feature_scenario_path(scenario.folder, scenario.feature, scenario), :method => :delete }, { :id => dom_id(scenario, :delete_link), :title => "Delete" } %>
     </div>
   </div>
   <%= render :partial => "steps/list", :locals => { :scenario => scenario } %>

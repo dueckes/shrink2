@@ -1,0 +1,11 @@
+<div id="root_folder">
+  <div id="<%= dom_id(root_folder) %>_header" class="header root_folder_header highlight_controls_area">
+    <span><%= root_folder.name %></span>
+    <div class="highlight_controls">
+      <%= link_to "v", "#", { :id => "root_folder_expand_link", :title => "Expand All" } %>
+      <%= link_to "^", "#", { :id => "root_folder_collapse_link", :title => "Collapse All" } %>
+      <%= link_to_remote "+", { :url => { :controller => :folders, :action => :new, :parent_id => root_folder.id }, :method => :get }, { :id => dom_id(root_folder, :add_link), :title => "Add Sub-Folder" } %>
+    </div>
+  </div>
+  <%= render :partial => "folders/list", :locals => { :folder => root_folder, :feature => feature, :expanded => true } %>
+</div>

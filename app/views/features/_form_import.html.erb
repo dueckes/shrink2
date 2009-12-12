@@ -1,7 +1,7 @@
 <% form_tag({ :controller => :features, :action => :import }, { :multipart => true, :target => "import_feature_upload_frame" }) do -%>
   <% field_set_tag do -%>
     <%= label_tag "import_feature_file", "Import Feature" %><%= file_field_tag :feature_file, :id => "import_feature_file" %>
-    <%= label_tag "import_feature_package_id", "Package" %><%= select_tag "package_id", options_from_collection_for_select(packages, :id, :name), :id => "import_feature_package_id" %>
+    <%= label_tag "import_feature_folder_id", "Folder" %><%= select_tag "folder_id", options_from_collection_for_select(folders, :id, :name), :id => "import_feature_folder_id" %>
     <div class="buttons">
       <%= submit_tag "Import", :id => "import_feature_submit" %>
       <%= button_to_function "Cancel", :id => "import_feature_cancel" %>

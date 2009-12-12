@@ -10,10 +10,10 @@ describe Platter::Feature do
 
       describe "when a title is established" do
 
-        describe "and the title is the same as another features title in the same package" do
+        describe "and the title is the same as another features title in the same folder" do
 
           before(:each) do
-            DatabaseModelFixture.create_feature!(:title => "Same Title", :package => @feature.package)
+            DatabaseModelFixture.create_feature!(:title => "Same Title", :folder => @feature.folder)
             @feature.title = "Same Title"
           end
 
@@ -23,11 +23,11 @@ describe Platter::Feature do
 
         end
 
-        describe "and the title is the same as another features title in a different package" do
+        describe "and the title is the same as another features title in a different folder" do
 
           before(:each) do
-            different_package = DatabaseModelFixture.create_package!(:name => "Different Package")
-            DatabaseModelFixture.create_feature!(:title => "Same Title", :package => different_package)
+            different_folder = DatabaseModelFixture.create_folder!(:name => "Different Folder")
+            DatabaseModelFixture.create_feature!(:title => "Same Title", :folder => different_folder)
             @feature.title = "Same Title"
           end
 

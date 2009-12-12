@@ -31,7 +31,7 @@ ActionController::Routing::Routes.draw do |map|
   #   end
 
   # You can have the root of your site routed with map.root -- just remember to delete public/index.html.
-   map.root :controller => "packages"
+   map.root :controller => "folders"
 
   # See how all your routes lay out with "rake routes"
 
@@ -40,8 +40,8 @@ ActionController::Routing::Routes.draw do |map|
   # consider removing or commenting them out if you're using named routes and resources.
 
   # Custom
-  map.resources :packages do |packages|
-    packages.resources :features do |features|
+  map.resources :folders do |folders|
+    folders.resources :features do |features|
       features.resources :description_lines
       features.resources :scenarios do |scenarios|
         scenarios.resources :steps

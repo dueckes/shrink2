@@ -1,2 +1,0 @@
-page.insert_html(:before, nested_dom_id(:new_package), :partial => "packages/show", :locals => { :package => @package, :feature => nil, :hidden => true })
-page << "new AddSimpleForm('##{nested_dom_id(:new_package)}', '##{nested_dom_id(:add_link)}', '##{dom_id(@package)}').close()"

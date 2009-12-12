@@ -31,10 +31,10 @@ ActiveRecord::Schema.define(:version => 20091125064045) do
     t.string   "summary",    :limit => 4000, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "package_id",                 :null => false
+    t.integer  "folder_id",                  :null => false
   end
 
-  create_table "packages", :force => true do |t|
+  create_table "folders", :force => true do |t|
     t.integer "parent_id"
     t.string  "name",      :limit => 256, :null => false
   end

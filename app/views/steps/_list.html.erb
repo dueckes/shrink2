@@ -3,7 +3,7 @@
     <%= render :partial => "steps/show", :locals => { :step => step, :hidden => false } %>
   <% end -%>
   <li id="<%= dom_id(scenario, :add_step_link_area) %>" class="add_last_link_area">
-    <%= add_at_end_link(:model_name => :step, :parent => scenario, :url => new_package_feature_scenario_step_path(scenario.package, scenario.feature, scenario)) %>
+    <%= add_at_end_link(:model_name => :step, :parent => scenario, :url => new_folder_feature_scenario_step_path(scenario.folder, scenario.feature, scenario)) %>
   </li>
 </ul>
 <%= render :partial => "steps/script_drag_and_drop", :locals => { :scenario => scenario } %>

@@ -1,1 +1,1 @@
-Platter::Package.create!(:name => "Root Package")
+Platter::Folder.create!(:name => "Root Folder")

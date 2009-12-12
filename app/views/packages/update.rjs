@@ -1,1 +1,0 @@
-update_inline(page, @package, :package, :name)

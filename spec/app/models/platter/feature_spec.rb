@@ -1,12 +1,12 @@
 module Platter
   describe Feature do
 
-    it "should belong to a package" do
-      package = Package.new(:name => "Some package")
+    it "should belong to a folder" do
+      folder = Folder.new(:name => "Some folder")
 
-      feature = Feature.new(:package => package)
+      feature = Feature.new(:folder => folder)
 
-      feature.package.should eql(package)
+      feature.folder.should eql(folder)
     end
 
     it "should have a title" do
@@ -62,10 +62,10 @@ module Platter
     context "#valid?" do
 
       before(:each) do
-        @feature = Feature.new(:package => Package.new(:name => "Some package"), :title => "Some Title")
+        @feature = Feature.new(:folder => Folder.new(:name => "Some folder"), :title => "Some Title")
       end
 
-      describe "when a package has been provided" do
+      describe "when a folder has been provided" do
 
         describe "and a title has been provided" do
 
@@ -133,10 +133,10 @@ module Platter
 
       end
 
-      describe "when a package has not been provided" do
+      describe "when a folder has not been provided" do
 
         before(:each) do
-          @feature.package = nil
+          @feature.folder = nil
         end
 
         it "should return false" do

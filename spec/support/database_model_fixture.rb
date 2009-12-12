@@ -1,13 +1,13 @@
 class DatabaseModelFixture
 
-  def self.create_package!(options={})
-    default_options = { :name => "Package Name" }
+  def self.create_folder!(options={})
+    default_options = { :name => "Folder Name" }
     combined_options = default_options.merge(options)
-    Platter::Package.create!(combined_options)
+    Platter::Folder.create!(combined_options)
   end
 
-  def self.find_or_create_package!(options={})
-    Platter::Package.find(:first) || create_package!(options)
+  def self.find_or_create_folder!(options={})
+    Platter::Folder.find(:first) || create_folder!(options)
   end
 
   def self.create_tag!(options={})
@@ -18,7 +18,7 @@ class DatabaseModelFixture
 
   def self.create_feature!(options={})
     combined_options = { :title => "Feature Title" }.merge(options)
-    combined_options[:package] = find_or_create_package! unless combined_options[:package]
+    combined_options[:folder] = find_or_create_folder! unless combined_options[:folder]
     Platter::Feature.create!(combined_options)
   end
 

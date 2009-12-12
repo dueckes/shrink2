@@ -202,31 +202,31 @@ label {
   margin-left: 30px;
 }
 
-#root_package {
+#root_folder {
   width: 100%;
 }
 
-#features a, #features span, #features form, #packages_area a {
+#features a, #features span, #features form, #folders_area a {
   padding-left: 5px;
   padding-right: 5px;
 }
 
-#packages_area .root_package_header, #packages_area li {
+#folders_area .root_folder_header, #folders_area li {
   padding-bottom: 5px;
 }
 
-#packages_area a.edit_link {
+#folders_area a.edit_link {
   text-decoration: none;
 }
 
-#packages_area .expand_area {
+#folders_area .expand_area {
   display: block;
   float: left;
   width: auto;
   margin-left: 10px;
 }
 
-#content a:hover, #packages_area a.edit_link:hover {
+#content a:hover, #folders_area a.edit_link:hover {
   text-decoration: none;
   color: #5d5d5d;
 }
@@ -263,7 +263,11 @@ label {
   display: block;
 }
 
-#fold_menu .highlight_controls_area:hover, #content .highlight_controls_area:hover {
+#fold_menu .highlight_controls_area:hover {
+  background-color: #32bd7a;
+}
+
+#content .highlight_controls_area:hover {
   background-color: #EEE;
 }
 
@@ -402,7 +406,7 @@ label {
   top: 0;
 }
 
-#fold_menu_packages {
+#fold_menu_folders {
   top: 100px;
 }
 

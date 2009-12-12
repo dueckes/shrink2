@@ -12,8 +12,8 @@ module Platter
         def import_directory(directory_path)
           feature_per_file(directory_path).collect do |file, feature|
             relative_directory = File.dirname(file).gsub(/^#{Regexp.escape(directory_path)}/, "")
-            package = Platter::Package.find_or_create!(relative_directory)
-            package.features << feature
+            folder = Platter::Folder.find_or_create!(relative_directory)
+            folder.features << feature
             feature
           end
         end

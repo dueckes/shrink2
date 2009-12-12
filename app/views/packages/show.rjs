@@ -1,6 +1,0 @@
-page["#{dom_id(@package)}_toggle_link"].attr("onclick", remote_function(:url => { :controller => :packages, :action => :collapse, :id => @package.id }, :method => :get))
-page["#{dom_id(@package)}_header"].addClass("expanded")
-page.replace_html("#{dom_id(@package)}_expand_area", :partial => "packages/list", :locals => { :package => @package, :feature => nil })
-page.replace_html("#{dom_id(@package)}_expand_controls", :partial => "packages/show_expanded_controls", :locals => { :package => @package })
-page.show("#{dom_id(@package)}_expand_area")
-page.show("#{dom_id(@package)}_expand_controls")

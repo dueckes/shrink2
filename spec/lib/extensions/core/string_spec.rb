@@ -1,6 +1,6 @@
 describe String do
 
-  context "#as_directory_names" do
+  context "#as_folder_names" do
 
     describe "when the string is empty" do
 
@@ -9,43 +9,43 @@ describe String do
       end
 
       it "should return an empty array" do
-        @string.as_directory_names.should eql([])
+        @string.as_folder_names.should eql([])
       end
 
     end
 
-    describe "when the string contains a single directory name" do
+    describe "when the string contains a single folder name" do
 
       before(:each) do
-        @string = "directory"
+        @string = "folder"
       end
 
-      it "should return an array containing the directory name" do
-        @string.as_directory_names.should eql([@string])
+      it "should return an array containing the folder name" do
+        @string.as_folder_names.should eql([@string])
       end
 
     end
 
-    describe "when the string starts and ends in a path seperator" do
+    describe "when the string starts and ends in a path separator" do
 
       before(:each) do
-        @string = "/directory/"
+        @string = "/folder/"
       end
 
-      it "should return an array containing the string without the seperators" do
-        @string.as_directory_names.should eql(["directory"])
+      it "should return an array containing the string without the separators" do
+        @string.as_folder_names.should eql(["folder"])
       end
 
     end
 
-    describe "when the string contains a directory structure" do
+    describe "when the string contains a folder structure" do
 
       before(:each) do
         @string = "first/second/third"
       end
 
-      it "should return the names of the directories in order of appearance in the string" do
-        @string.as_directory_names.should eql(%w(first second third))
+      it "should return the names of the folders in order of appearance in the string" do
+        @string.as_folder_names.should eql(%w(first second third))
       end
 
     end
