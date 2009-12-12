@@ -394,8 +394,8 @@ label {
 
 #fold_menu .fold_item {
   position: absolute;
-  left: -421px;
-  width: 446px;
+  left: -401px;
+  width: 426px;
 }
 
 #fold_menu a {
@@ -412,11 +412,11 @@ label {
 
 #fold_menu .fold_menu_expand_area {
   z-index: 1;
-  width: 375px;
+  width: 350px;
   height: 500px;
   overflow-y: auto;
   background-color: #69e7aa;
-  padding: 10px 10px 10px 35px;
+  padding: 10px 10px 10px 40px;
   border-top: 1px #CCC solid ;
   border-right: 1px #CCC solid;
   border-bottom: 1px #CCC solid;

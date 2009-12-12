@@ -1,3 +1,4 @@
+//TODO Consolidate menu hide/toggle logic.  Consider moving to one menu.
 var _TopMenu = $.klass({
   hideOtherItems: function(topMenuItem) {
     $('#menu .expand_area:visible').each(function(i, areaObject) {
@@ -61,7 +62,7 @@ var FoldMenu = new _FoldMenu();
 var FoldMenuItem = $.klass({
   initialize: function(itemObject) {
     this._itemObject = itemObject;
-    this._minimizedWidth = '-421px';
+    this._minimizedWidth = '-401px';
     this._maximizedWidth = '0px';
   },
   toggle: function() {
