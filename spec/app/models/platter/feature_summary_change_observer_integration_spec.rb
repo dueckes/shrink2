@@ -4,7 +4,7 @@ module Platter
     describe "when it observes a change to one feature" do
 
       before(:all) do
-        @feature_member_class = Platter::FeatureLine
+        @feature_member_class = Platter::FeatureDescriptionLine
       end
 
       before(:each) do

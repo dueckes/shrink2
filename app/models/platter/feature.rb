@@ -6,7 +6,7 @@ module Platter
     set_scenario_adapter Platter::Scenario
 
     belongs_to :package, :class_name => "Platter::Package"
-    has_many :lines, :class_name => "Platter::FeatureLine", :order => :position
+    has_many :description_lines, :class_name => "Platter::FeatureDescriptionLine", :order => :position
     has_many :scenarios, :class_name => "Platter::Scenario", :order => :position
     has_many :feature_tags, :class_name => "Platter::FeatureTag"
     has_many :tags, :through => :feature_tags, :order => :name
@@ -18,7 +18,7 @@ module Platter
     before_save { |feature| feature.summary = feature.summarize unless feature.updating_summary? }
 
     UPLOAD_DIRECTORY = "#{RAILS_ROOT}/tmp/uploaded_features".freeze
-    SUMMARIZED_ASSOCIATIONS = [:tags, :lines, :scenarios]
+    SUMMARIZED_ASSOCIATIONS = [:tags, :description_lines, :scenarios]
 
     def tag_line
       tags.collect(&:name).join(", ")
@@ -43,7 +43,7 @@ module Platter
 
     def summarize
       header = [title, tags.collect(&:summarize).join(" "),
-                lines.collect { |line| "  #{line.summarize}" }].flatten.join("\n")
+                description_lines.collect { |line| "  #{line.summarize}" }].flatten.join("\n")
       [header, scenarios.collect(&:summarize)].join("\n\n")
     end
 

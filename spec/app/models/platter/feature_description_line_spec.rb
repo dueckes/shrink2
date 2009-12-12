@@ -1,8 +1,8 @@
 module Platter
-  describe FeatureLine do
+  describe FeatureDescriptionLine do
 
     before(:each) do
-      @line = FeatureLine.new(:text => "Some Text")
+      @line = FeatureDescriptionLine.new(:text => "Some Text")
     end
 
     it "should have text" do
@@ -12,7 +12,7 @@ module Platter
     it "should belong to a feature" do
       feature = Feature.new
 
-      line = FeatureLine.new(:feature => feature)
+      line = FeatureDescriptionLine.new(:feature => feature)
 
       line.feature.should eql(feature)
     end
@@ -21,23 +21,23 @@ module Platter
       package = Package.new
       feature = Feature.new(:package => package)
 
-      line = FeatureLine.new(:feature => feature)
+      line = FeatureDescriptionLine.new(:feature => feature)
 
       line.package.should eql(package)
     end
 
     it "should be a Platter::FeatureSummaryChangeObserver" do
-      FeatureLine.include?(Platter::FeatureSummaryChangeObserver).should be_true
+      FeatureDescriptionLine.include?(Platter::FeatureSummaryChangeObserver).should be_true
     end
 
     it "should be a Platter::Cucumber::Formatter::TextFormatter" do
-      FeatureLine.include?(Platter::Cucumber::Formatter::TextFormatter).should be_true
+      FeatureDescriptionLine.include?(Platter::Cucumber::Formatter::TextFormatter).should be_true
     end
 
     context "#valid?" do
 
       before(:each) do
-        @line = FeatureLine.new
+        @line = FeatureDescriptionLine.new
       end
 
       describe "when text has been provided" do

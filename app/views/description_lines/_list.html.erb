@@ -1,0 +1,8 @@
+<ul id="<%= dom_id(feature, :description_lines) %>" class="leaf_list lines">
+  <% feature.description_lines.each do |description_line| -%>
+    <%= render :partial => "description_lines/show", :locals => { :description_line => description_line, :hidden => false } %>
+  <% end -%>
+  <li id="<%= dom_id(feature, :add_description_line_link_area) %>">
+    <%= add_at_end_link(:model_name => :description_line, :parent => feature, :url => new_package_feature_description_line_path(feature.package, feature)) %>
+  </li>
+</ul>

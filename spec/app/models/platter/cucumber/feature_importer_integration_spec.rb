@@ -19,13 +19,13 @@ describe Platter::Cucumber::FeatureImporter do
           @feature.tags.collect(&:name).should eql(%w(tag_one tag_two tag_three))
         end
 
-        it "should parse Platter::FeatureLine's from the feature file" do
-          @feature.lines.should have(3).elements
+        it "should parse Platter::FeatureDescriptionLine's from the feature file" do
+          @feature.description_lines.should have(3).elements
 
           ["As a developer",
            "I want to test feature importing",
            "So that I have confidence it works for real users"].each_with_index do |expected_line_text, i|
-            @feature.lines[i].text.should eql(expected_line_text)
+            @feature.description_lines[i].text.should eql(expected_line_text)
           end
         end
 

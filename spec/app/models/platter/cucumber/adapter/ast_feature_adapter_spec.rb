@@ -38,15 +38,15 @@ describe Platter::Cucumber::Adapter::AstFeatureAdapter do
         @feature.title.should eql("Some Feature Title")
       end
 
-      it "should have lines retrieved from the Platter::Cucumber::Adapter::AstFeatureParser" do
+      it "should have description lines retrieved from the Platter::Cucumber::Adapter::AstFeatureParser" do
         lines_text = ["First Line Text", "Second Line Text", "Third Line Text"]
         @feature_parser.stub!(:lines_text => lines_text)
 
         @feature = TestableAstFeatureAdapter.adapt(@cucumber_ast_feature)
 
-        @feature.lines.each_with_index do |line, i|
-          line.should be_a(Platter::FeatureLine)
-          line.text.should eql(lines_text[i])
+        @feature.description_lines.each_with_index do |description_line, i|
+          description_line.should be_a(Platter::FeatureDescriptionLine)
+          description_line.text.should eql(lines_text[i])
         end
       end
 

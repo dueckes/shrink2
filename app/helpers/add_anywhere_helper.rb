@@ -6,7 +6,7 @@ module AddAnywhereHelper
   end
 
   def add_at_end_link(options)
-    add_anywhere_link("Add #{options[:model_name].to_s.capitalize}",
+    add_anywhere_link("Add #{options[:model_name].to_s.humanize.titleize}",
                       :id => dom_id(options[:parent], "add_#{options[:model_name]}_end_link"),
                       :url => options[:url], :title => "Add Here")
   end

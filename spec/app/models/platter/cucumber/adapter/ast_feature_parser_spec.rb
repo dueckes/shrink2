@@ -71,8 +71,8 @@ describe Platter::Cucumber::Adapter::AstFeatureParser do
         FEATURE_NAME
       end
 
-      it "should return the text for each line after the first" do
-        expected_feature_lines = []
+      it "should return the text for each description line after the first line" do
+        expected_feature_description_lines = []
         @feature_parser.lines_text.should eql(["First Line Text", "Second Line Text", "Third Line Text"])
       end
 

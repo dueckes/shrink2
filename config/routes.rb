@@ -42,7 +42,7 @@ ActionController::Routing::Routes.draw do |map|
   # Custom
   map.resources :packages do |packages|
     packages.resources :features do |features|
-      features.resources :lines
+      features.resources :description_lines
       features.resources :scenarios do |scenarios|
         scenarios.resources :steps
       end

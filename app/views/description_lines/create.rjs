@@ -1,0 +1,2 @@
+page.insert_html(:before, @add_anywhere_presenter.form_container_dom_id, :partial => "description_lines/show", :locals => { :description_line => @description_line, :hidden => true })
+page << @add_anywhere_presenter.show_model_js

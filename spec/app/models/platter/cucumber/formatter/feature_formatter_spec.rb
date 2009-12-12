@@ -4,7 +4,7 @@ describe Platter::Cucumber::Formatter::FeatureFormatter do
     include Platter::Cucumber::Formatter::FeatureFormatter
     attr_accessor :title
     attr_accessor :tags
-    attr_accessor :lines
+    attr_accessor :description_lines
     attr_accessor :scenarios
   end
 
@@ -15,10 +15,10 @@ describe Platter::Cucumber::Formatter::FeatureFormatter do
       @testable_feature_formatter.title = "Some Feature Title"
       @testable_feature_formatter.tags = @tags =
               (1..3).collect { |i| mock("Tag#{i}", :to_cucumber_file_format => "tag_#{i}") }
-      @testable_feature_formatter.lines = @lines =
-              (1..3).collect { |i| mock("FeatureLine#{i}", :to_cucumber_file_format => "feature line #{i}") }
+      @testable_feature_formatter.description_lines = @description_lines =
+              (1..3).collect { |i| mock("FeatureDescriptionLine#{i}", :to_cucumber_file_format => "Description Line #{i}") }
       @testable_feature_formatter.scenarios = @scenarios =
-              (1..3).collect { |i| mock("Scenario#{i}", :to_cucumber_file_format => "scenario #{i}") }
+              (1..3).collect { |i| mock("Scenario#{i}", :to_cucumber_file_format => "Scenario #{i}") }
 
       @formatted_lines = @testable_feature_formatter.to_cucumber_file_format.split("\n")
     end
@@ -39,18 +39,18 @@ describe Platter::Cucumber::Formatter::FeatureFormatter do
 
     end
 
-    describe "the lines" do
+    describe "the description lines" do
 
       it "should occupy the formatted lines directly after the feature title and have their formatted output prefixed by spaces for readability" do
-        @formatted_lines[2..4].should eql(["  feature line 1", "  feature line 2", "  feature line 3"])
+        @formatted_lines[2..4].should eql(["  Description Line 1", "  Description Line 2", "  Description Line 3"])
       end
 
     end
 
     describe "the scenarios" do
 
-      it "should occupy the formatted lines directly after the feature lines and should each be prefixed by an empty line for readability" do
-        @formatted_lines[5..10].should eql(["", "scenario 1", "", "scenario 2", "", "scenario 3"])
+      it "should occupy the formatted lines directly after the description lines and should each be prefixed by an empty line for readability" do
+        @formatted_lines[5..10].should eql(["", "Scenario 1", "", "Scenario 2", "", "Scenario 3"])
       end
 
     end

@@ -1,7 +1,0 @@
-<%= render(:partial => "common/form_area_new_add_anywhere", :locals => { :model_name => :line,
-                                                                         :model => Platter::FeatureLine.new(:feature => feature),
-                                                                         :url => { :controller => :lines,
-                                                                                   :action => :create,
-                                                                                   :feature_id => feature.id },
-                                                                         :form_builder => FeatureLineFormBuilder,
-                                                                         :add_anywhere_presenter => add_anywhere_presenter }) %>

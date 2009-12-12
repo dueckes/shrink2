@@ -52,11 +52,11 @@ describe Platter::Feature do
           @feature.tags(true)
         end
 
-        it "should have the same amount of lines that have been added" do
+        it "should have the same amount of tags that have been added" do
           @feature.tags.should have(3).tags
         end
 
-        it "should be ordered by tag name" do
+        it "should be ordered in descending order of tag name" do
           @feature.tags.collect(&:name).should eql(%w(a_name m_name z_name))
         end
 
@@ -64,23 +64,25 @@ describe Platter::Feature do
 
     end
 
-    context "#lines" do
+    context "#description_lines" do
 
-      describe "when lines have been added" do
+      describe "when description lines have been added" do
 
         before(:each) do
           (1..3).each do |i|
-            @feature.lines << Platter::FeatureLine.new(:text => "Feature Line Text #{i}", :position => 4 - i)
+            @feature.description_lines << Platter::FeatureDescriptionLine.new(:text => "Description Line Text #{i}", :position => 4 - i)
           end
-          @feature.lines(true)
+          @feature.description_lines(true)
         end
 
-        it "should have the same amount of lines that have been added" do
-          @feature.lines.should have(3).lines
+        it "should have the same amount of description lines that have been added" do
+          @feature.description_lines.should have(3).description_lines
         end
 
         it "should be ordered by position" do
-          @feature.lines.each_with_index { |line, i| line.text.should eql("Feature Line Text #{3 - i}") }
+          @feature.description_lines.each_with_index do |description_line, i|
+            description_line.text.should eql("Description Line Text #{3 - i}")
+          end
         end
 
       end

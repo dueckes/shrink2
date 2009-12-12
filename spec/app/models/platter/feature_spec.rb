@@ -27,23 +27,23 @@ module Platter
       feature.tags.should eql(tags)
     end
 
-    it "should have feature lines" do
+    it "should have feature description lines" do
       feature = Feature.new
 
-      lines = (1..3).collect do |i|
-        line = create_mock_line(:text => "Line#{i}")
-        feature.lines << line
-        line
+      description_lines = (1..3).collect do |i|
+        description_line = create_mock_description_line(:text => "Description Line #{i}")
+        feature.description_lines << description_line
+        description_line
       end
 
-      feature.lines.should eql(lines)
+      feature.description_lines.should eql(description_lines)
     end
 
     it "should have scenarios" do
       feature = Feature.new
 
       scenarios = (1..3).collect do |i|
-        scenario = create_mock_scenario(:title => "Scenario#{i}")
+        scenario = create_mock_scenario(:title => "Scenario #{i}")
         feature.scenarios << scenario
         scenario
       end
@@ -145,10 +145,10 @@ module Platter
 
       end
 
-      describe "when an invalid line has been added" do
+      describe "when an invalid description line has been added" do
 
         before(:each) do
-          @feature.lines << FeatureLine.new(:text => "")
+          @feature.description_lines << FeatureDescriptionLine.new(:text => "")
         end
 
         it "should return false" do
@@ -409,9 +409,9 @@ module Platter
         before(:each) do
           @tags = (1..3).collect { |i| mock("Tag#{i}", :summarize => "tag_#{i}") }
           @feature.stub!(:tags).and_return(@tags)
-          @lines = (1..3).collect { |i| mock("FeatureLine#{i}", :summarize => "feature line #{i}") }
-          @feature.stub!(:lines).and_return(@lines)
-          @scenarios = (1..3).collect { |i| mock("Scenario#{i}", :summarize => "scenario #{i}") }
+          @description_lines = (1..3).collect { |i| mock("FeatureDescriptionLine#{i}", :summarize => "Feature Description Line #{i}") }
+          @feature.stub!(:description_lines).and_return(@description_lines)
+          @scenarios = (1..3).collect { |i| mock("Scenario#{i}", :summarize => "Scenario #{i}") }
           @feature.stub!(:scenarios).and_return(@scenarios)
           
           @summary_lines = @feature.summarize.split("\n")
@@ -434,22 +434,22 @@ module Platter
         end
 
 
-        describe "the line summaries" do
+        describe "the description line summaries" do
 
-          it "should occupy a line each and by prefixed by spaces and displayed directly after the feature title" do
-            @summary_lines[2..4].should eql(["  feature line 1", "  feature line 2", "  feature line 3"])
+          it "should occupy a line each and be prefixed by spaces and displayed directly after the feature title" do
+            @summary_lines[2..4].should eql(["  Feature Description Line 1", "  Feature Description Line 2", "  Feature Description Line 3"])
           end
 
         end
 
         describe "the scenario summaries" do
 
-          it "should be divided from the feature lines by an empty line" do
+          it "should be divided from the feature description lines by an empty line" do
             @summary_lines[5].should be_empty
           end
 
           it "should occupy a line each divided by an empty line" do
-            @summary_lines[6..10].should eql(["scenario 1", "", "scenario 2", "", "scenario 3"])
+            @summary_lines[6..10].should eql(["Scenario 1", "", "Scenario 2", "", "Scenario 3"])
           end
 
         end
@@ -462,8 +462,8 @@ module Platter
       StubModelFixture.create_model(Tag, stubs)
     end
 
-    def create_mock_line(stubs)
-      StubModelFixture.create_model(FeatureLine, stubs)
+    def create_mock_description_line (stubs)
+      StubModelFixture.create_model(FeatureDescriptionLine, stubs)
     end
 
     def create_mock_scenario(stubs)

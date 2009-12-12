@@ -1,7 +1,7 @@
-class CreateTableFeatureLines < ActiveRecord::Migration
+class CreateTableFeatureDescriptionLines < ActiveRecord::Migration
 
   def self.up
-    create_table(:feature_lines) do |table|
+    create_table(:feature_description_lines) do |table|
       table.integer :feature_id, :null => false
       table.integer :position, :null => false
       table.string :text, :limit => 256, :null => false
@@ -10,7 +10,7 @@ class CreateTableFeatureLines < ActiveRecord::Migration
   end
 
   def self.down
-    drop_table(:feature_lines)
+    drop_table(:feature_description_lines)
   end
 
 end

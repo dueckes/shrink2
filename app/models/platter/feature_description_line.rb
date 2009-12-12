@@ -1,6 +1,6 @@
 module Platter
 
-  class FeatureLine < ::ActiveRecord::Base
+  class FeatureDescriptionLine < ::ActiveRecord::Base
     include Platter::FeatureSummaryChangeObserver
     include Platter::Cucumber::Formatter::TextFormatter
 

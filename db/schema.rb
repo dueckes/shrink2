@@ -11,7 +11,7 @@
 
 ActiveRecord::Schema.define(:version => 20091125064045) do
 
-  create_table "feature_lines", :force => true do |t|
+  create_table "feature_description_lines", :force => true do |t|
     t.integer  "feature_id",                :null => false
     t.integer  "position",                  :null => false
     t.string   "text",       :limit => 256, :null => false

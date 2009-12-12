@@ -263,6 +263,10 @@ label {
   display: block;
 }
 
+#fold_menu .highlight_controls_area:hover, #content .highlight_controls_area:hover {
+  background-color: #EEE;
+}
+
 #fold_menu .header {
   width: 100%;
 }
