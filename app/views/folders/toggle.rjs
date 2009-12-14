@@ -1,1 +1,0 @@
-page << "new Folder('##{dom_id(@folder)}_expand_area').toggle()"
