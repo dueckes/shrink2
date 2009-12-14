@@ -1,1 +1,1 @@
-page << "$('##{dom_id(@folder)}').fadeOutAndRemove('fast')"
+page << "$('##{dom_id(@folder)}').fadeOutAndRemove()"

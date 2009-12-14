@@ -1,2 +1,2 @@
-page << "$('##{dom_id(@feature)}_folder_link_area').fadeOutAndRemove('fast')"
+page << "$('##{dom_id(@feature)}_folder_link_area').fadeOutAndRemove()"
 refresh_folder(page, @folder)

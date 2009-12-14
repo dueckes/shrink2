@@ -1,12 +1,19 @@
+//TODO Eliminate propogation of speed: 'fast'
 jQuery.fn.extend({
-  fadeOutAndRemove: function(speed) {
-    return this.fadeOut(speed, function() {
+  fadeOutAndRemove: function() {
+    return this.fadeOut('fast', function() {
       jQuery(this).remove();
     });
   },
   fadeOutAndBlank: function(speed) {
     return this.fadeOut(speed, function() {
       jQuery(this).html('');
+    });
+  },
+  fadeOutAndIn: function(callback) {
+    return this.fadeOut('fast', function() {
+      callback(jQuery(this));
+      jQuery(this).fadeIn('fast');
     });
   },
   hideAndBlank: function() {

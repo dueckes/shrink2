@@ -1,1 +1,6 @@
 update_inline(page, @feature, :feature, :title)
+page << %{
+  $('##{dom_id(@feature)}_folder_link_area').fadeOutAndIn(function() {
+    $('##{dom_id(@feature, :folder_link)}').html('#{@feature.title}')
+  })
+}

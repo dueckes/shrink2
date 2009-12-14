@@ -1,2 +1,2 @@
-page << "$('##{dom_id(@source_folder)}').fadeOutAndRemove('fast')"
+page << "$('##{dom_id(@source_folder)}').fadeOutAndRemove()"
 refresh_folder(page, @destination_folder)

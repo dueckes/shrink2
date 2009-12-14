@@ -1,1 +1,1 @@
-page << "$('##{dom_id(@description_line)}').fadeOutAndRemove('fast')"
+page << "$('##{dom_id(@description_line)}').fadeOutAndRemove()"
