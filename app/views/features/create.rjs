@@ -1,1 +1,6 @@
 hide_top_menu_and_show_feature(page, @feature, "add")
+page.insert_html(:before, @description_line_add_anywhere_presenter.clicked_item_dom_id,
+                 :partial => "description_lines/form_new",
+                 :locals => { :feature => @feature,
+                              :add_anywhere_presenter => @description_line_add_anywhere_presenter })
+page << @description_line_add_anywhere_presenter.show_form_js

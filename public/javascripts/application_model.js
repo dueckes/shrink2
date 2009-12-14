@@ -17,7 +17,6 @@ var ModelObject = $.klass({
 var Feature = $.klass({
   initialize: function(areaSelector) {
     this._area = $(areaSelector);
-    this._detailArea = $(areaSelector).find('.detail:first');
   },
   addTag: function(tagName) {
     var tagTextField = this._area.find('.tags_form_area input:visible:enabled:first');
@@ -35,11 +34,21 @@ var Feature = $.klass({
   },
   remove: function() {
     this._area.fadeOutAndRemove();
+    this._folderFeatureArea().fadeOutAndRemove();
   },
   _commaDelimitedStringIncludesElement: function(commaDelimitedString, element) {
     var commaDelimitedStringWithConsistentCommaSpacing = commaDelimitedString.replace(/\s*,\s*/g, ',');
     var elementMatchRegularExpression = new RegExp('(^' + element + ',)|(,' + element + ',)|(,' + element + '$)');
     return commaDelimitedStringWithConsistentCommaSpacing.match(elementMatchRegularExpression) != null;
+  },
+  _detailArea: function() {
+    return this._area.find('.detail:first');
+  },
+  _folderFeatureArea: function() {
+    return $('#platter_feature_' + this._modelId(this._area) + '_folder_link_area');
+  },
+  _modelId: function() {
+    return this._area.attr('id').match(/^area_platter_feature_(.*)$/)[1];
   }
 });
 

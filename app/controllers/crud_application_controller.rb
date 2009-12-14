@@ -93,6 +93,10 @@ class CrudApplicationController < ApplicationController
     instance_variable_set("@#{self.class.short_model_name}", model)
   end
 
+  def next_form_number
+    session[:form_number] = session[:form_number] ? session[:form_number] + 1 : 1
+  end
+
   def render_errors(element_id, errors)
     error_messages = errors.respond_to?(:full_messages) ? errors.full_messages : errors
     render(:update) do |page|

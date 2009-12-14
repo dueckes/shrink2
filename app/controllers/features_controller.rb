@@ -36,6 +36,11 @@ class FeaturesController < CrudApplicationController
     @folders = Platter::Folder.find(:all)
   end
 
+  def create
+    super
+    establish_new_description_line_add_anywhere_presenter
+  end
+
   def import_gesture
     @folders = Platter::Folder.find(:all)
   end
@@ -63,6 +68,12 @@ class FeaturesController < CrudApplicationController
   
   def verify_feature_file
     responds_to_parent { render_import_errors(["Feature to import required"]) } unless params[:feature_file]
+  end
+
+  def establish_new_description_line_add_anywhere_presenter
+    @description_line_add_anywhere_presenter = AddAnywherePresenter.new(
+            :template => @template, :parent_models => [@feature], :short_model_name => :description_line,
+            :form_number => next_form_number, :clicked_item_dom_id => dom_id(@feature, :add_description_line_link_area))
   end
 
   def write_feature_file(uploaded_feature_file)
