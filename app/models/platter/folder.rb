@@ -18,6 +18,10 @@ module Platter
       parent == self.root
     end
 
+    def root?
+      parent == nil
+    end
+
     def child_in_tree_path_until?(folder)
       !!children.find { |child| child == folder || folder.ancestors.include?(child) }
     end

@@ -12,5 +12,17 @@ jQuery.fn.extend({
   hideAndBlank: function() {
     this.hide();
     return this.html('');
+  },
+  makeDraggable: function(containment, startCallback) {
+    this.draggable({
+      containment: containment,
+      revert: 'invalid',
+      start: function(event, ui) {
+        this.dragged = true;
+        if (startCallback) {
+          startCallback(this);
+        }
+      }
+    });
   }
 });

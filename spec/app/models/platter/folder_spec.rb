@@ -112,6 +112,30 @@ module Platter
 
     end
 
+    context "#root?" do
+
+      describe "when the folder is the root folder" do
+
+        it "should return true" do
+          @root_folder.should be_root
+        end
+
+      end
+
+      describe "when the folder is not the root folder" do
+
+        before(:each) do
+          @folder.parent = @root_folder
+        end
+
+        it "should return false" do
+          @folder.should_not be_root
+        end
+
+      end
+      
+    end
+
     context "#find_or_create!" do
 
       before(:each) do

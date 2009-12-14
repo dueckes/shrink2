@@ -1,0 +1,9 @@
+page << "$('##{dom_id(@source_folder)}').fadeOutAndRemove('fast')"
+if @destination_folder.root?
+  page.replace("#{dom_id(@destination_folder)}", :partial => "folders/show_root", :locals => { :root_folder => @destination_folder, :feature => nil})
+else
+  page.replace("#{dom_id(@destination_folder)}", :partial => "folders/show", :locals => { :folder => @destination_folder, :feature => nil, :hidden => true})
+end
+page << "$('##{dom_id(@destination_folder)}').fadeIn('fast')"
+page << "Folders.makeDragAndDroppable(#{forgery_protection_request_parameter})"
+page << "FolderFeatures.makeDraggable()"

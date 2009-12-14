@@ -1,9 +1,15 @@
 class FoldersController < CrudApplicationController
 
-  def move
+  def move_feature
     @feature = Platter::Feature.find(params[:source_id])
     @folder = Platter::Folder.find(params[:destination_id])
     @feature.update_attributes(:folder => @folder)
+  end
+
+  def move_folder
+    @source_folder = Platter::Folder.find(params[:source_id])
+    @destination_folder = Platter::Folder.find(params[:destination_id])
+    @source_folder.update_attributes(:parent => @destination_folder)
   end
 
   def establish_parents_via_params

@@ -202,7 +202,7 @@ label {
   margin-left: 30px;
 }
 
-#root_folder {
+#folders_area .root_folder {
   width: 100%;
 }
 
@@ -215,7 +215,7 @@ label {
   padding-bottom: 5px;
 }
 
-#folders_area a.edit_link {
+#folders_area a.editable_text_link {
   text-decoration: none;
 }
 
@@ -226,7 +226,7 @@ label {
   margin-left: 10px;
 }
 
-#content a:hover, #folders_area a.edit_link:hover {
+#content a:hover, #folders_area a.editable_text_link:hover {
   text-decoration: none;
   color: #5d5d5d;
 }

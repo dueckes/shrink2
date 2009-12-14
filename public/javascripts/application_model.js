@@ -52,20 +52,31 @@ var _Folders = $.klass({
       object.collapse();
     });
   },
-  makeDroppable: function(rails_mandatory_parameters) {
-    $('#root_folder .header').droppable({
-      accept: '.folder_feature_link',
-      drop: function(event, ui) {
-        $.ajax({ data: 'source_id=' + new FolderFeature(ui.draggable).modelId() + '&destination_id=' + new Folder($(this)).modelId() + rails_mandatory_parameters,
-                 dataType: 'script',
-                 type: 'post',
-                 url: '/folders/move'});
-      }
-    })
+  makeDragAndDroppable: function(rails_mandatory_parameters) {
+    this._makeDraggable();
+    this._makeDroppable(rails_mandatory_parameters);
   },
   _onRootDescendantFolderObjects: function(callback) {
     $('#folders_area li').each(function(i, object) {
        callback(new Folder(object));
+    });
+  },
+  _makeDraggable: function() {
+    $('#folders_area .edit_folder_link').makeDraggable("#folders_area .root_folder", function(draggedDomElement) {
+      draggedDomElement.moveAction = 'move_folder';
+      draggedDomElement.sourceIdValue = new Folder($(draggedDomElement).closest('li')).modelId();
+    });
+  },
+  _makeDroppable: function(rails_mandatory_parameters) {
+    $('#folders_area .header').droppable({
+      accept: '.edit_folder_link, .folder_feature_link',
+      drop: function(event, ui) {
+        var draggedDomElement = ui.draggable.get(0);
+        $.ajax({ data: 'source_id=' + draggedDomElement.sourceIdValue + '&destination_id=' + new Folder($(this)).modelId() + rails_mandatory_parameters,
+                 dataType: 'script',
+                 type: 'post',
+                 url: '/folders/' + draggedDomElement.moveAction});
+      }
     });
   }
 });
@@ -99,20 +110,17 @@ var Folder = $.klass({
 
 var _FolderFeatures = $.klass({
   makeDraggable: function() {
-    $('#root_folder .folder_feature_link').draggable({
-      containment: '#root_folder',
-      revert: 'invalid',
-      start: function(event, ui) {
-        this.dragged = true;
-      }
-    })
+    $('#folders_area .folder_feature_link').makeDraggable("#folders_area .root_folder", function(draggedDomElement) {
+      draggedDomElement.moveAction = 'move_feature';
+      draggedDomElement.sourceIdValue = new FolderFeature($(draggedDomElement).closest('li')).modelId();
+    });
   }
 });
 var FolderFeatures = new _FolderFeatures();
 
 var FolderFeature = $.klass({
-  initialize: function(linkSelector) {
-    this._modelArea = new ModelArea($(linkSelector).closest('li'), 'platter_feature_');
+  initialize: function(areaSelector) {
+    this._modelArea = new ModelArea($(areaSelector), 'platter_feature_');
   },
   modelId: function() {
     return this._modelArea.modelId();
