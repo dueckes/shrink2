@@ -1,2 +1,2 @@
-<%= inline_edit_link folder.name, { :function => "if (!this.dragged) #{remote_function(:url => edit_folder_path(folder), :method => :get)}; this.dragged = false" },
+<%= inline_edit_link folder.name, { :function => draggable_link_remote_function(:url => edit_folder_path(folder), :method => :get) },
                      { :id => dom_id(folder, :edit_link), :class => "edit_folder_link" } %>

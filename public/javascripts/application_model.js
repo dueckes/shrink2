@@ -1,13 +1,15 @@
-var ModelArea = $.klass({
-  initialize: function(areaSelector, idPrefix) {
+var ModelObject = $.klass({
+  initialize: function(areaSelector) {
     this._area = $(areaSelector);
-    this._idPrefix = idPrefix;
+  },
+  equals:function (other) {
+    return this.name() == other.name() && this.modelId() == other.modelId();
   },
   modelId: function() {
     var areaId = this._area.attr('id');
-    return areaId.match(new RegExp('^' + this._idPrefix + '(\\d*)'))[1];
+    return areaId.match(new RegExp('^platter_' + this.name() + '_(\\d*)'))[1];
   },
-  object: function() {
+  area: function() {
     return this._area;
   }
 });
@@ -63,30 +65,35 @@ var _Folders = $.klass({
   },
   _makeDraggable: function() {
     $('#folders_area .edit_folder_link').makeDraggable("#folders_area .root_folder", function(draggedDomElement) {
-      draggedDomElement.moveAction = 'move_folder';
-      draggedDomElement.sourceIdValue = new Folder($(draggedDomElement).closest('li')).modelId();
+      draggedDomElement.modelObject = new Folder($(draggedDomElement).closest('li'));
     });
   },
   _makeDroppable: function(rails_mandatory_parameters) {
     $('#folders_area .header').droppable({
       accept: '.edit_folder_link, .folder_feature_link',
       drop: function(event, ui) {
-        var draggedDomElement = ui.draggable.get(0);
-        $.ajax({ data: 'source_id=' + draggedDomElement.sourceIdValue + '&destination_id=' + new Folder($(this)).modelId() + rails_mandatory_parameters,
-                 dataType: 'script',
-                 type: 'post',
-                 url: '/folders/' + draggedDomElement.moveAction});
+        var draggedModelObject = ui.draggable.get(0).modelObject;
+        var destinationModelObject = new Folder($(this));
+        if (!draggedModelObject.equals(destinationModelObject)) {
+          draggedModelObject.area().fadeOut('fast');
+          $.ajax({ data: 'source_id=' + draggedModelObject.modelId() +
+                         '&destination_id=' + destinationModelObject.modelId() + rails_mandatory_parameters,
+                   dataType: 'script',
+                   type: 'post',
+                   url: '/folders/move_' + draggedModelObject.name()
+          });
+        }
       }
     });
   }
 });
 var Folders = new _Folders();
 
-var Folder = $.klass({
-  initialize: function(areaSelector) {
-    this._modelArea = new ModelArea(areaSelector, 'platter_folder_');
-    this._expandCollapseLink = this._modelArea.object().find('.folder_expand_collapse_link');
-    this._expandArea = this._modelArea.object().find('.expand_area');
+var Folder = $.klass(ModelObject, {
+  initialize: function($super, areaSelector) {
+    $super(areaSelector);
+    this._expandCollapseLink = this._area.find('.folder_expand_collapse_link');
+    this._expandArea = this._area.find('.expand_area');
   },
   toggle: function() {
     if (this._expandCollapseLink.attr('title') == 'Expand') {
@@ -103,26 +110,25 @@ var Folder = $.klass({
     this._expandArea.fadeOut('fast');
     this._expandCollapseLink.attr('title', 'Expand');
   },
-  modelId: function() {
-    return this._modelArea.modelId();
+  name: function() {
+    return "folder";
   }
 });
 
 var _FolderFeatures = $.klass({
   makeDraggable: function() {
     $('#folders_area .folder_feature_link').makeDraggable("#folders_area .root_folder", function(draggedDomElement) {
-      draggedDomElement.moveAction = 'move_feature';
-      draggedDomElement.sourceIdValue = new FolderFeature($(draggedDomElement).closest('li')).modelId();
+      draggedDomElement.modelObject = new FolderFeature($(draggedDomElement).closest('li'));
     });
   }
 });
 var FolderFeatures = new _FolderFeatures();
 
-var FolderFeature = $.klass({
-  initialize: function(areaSelector) {
-    this._modelArea = new ModelArea($(areaSelector), 'platter_feature_');
+var FolderFeature = $.klass(ModelObject, {
+  initialize: function($super, areaSelector) {
+    $super($(areaSelector));
   },
-  modelId: function() {
-    return this._modelArea.modelId();
+  name: function() {
+    return "feature";
   }
 });

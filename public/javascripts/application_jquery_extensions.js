@@ -16,7 +16,7 @@ jQuery.fn.extend({
   makeDraggable: function(containment, startCallback) {
     this.draggable({
       containment: containment,
-      revert: 'invalid',
+      revert: true,
       start: function(event, ui) {
         this.dragged = true;
         if (startCallback) {
