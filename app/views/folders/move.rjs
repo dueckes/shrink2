@@ -1,0 +1,5 @@
+page << "$('##{dom_id(@feature)}_folder_link_area').fadeOutAndRemove('fast')"
+page.replace("#{dom_id(@folder)}", :partial => "folders/show", :locals => { :folder => @folder, :feature => nil, :hidden => true})
+page << "$('##{dom_id(@folder)}').fadeIn('fast')"
+page << "FolderFeatures.makeDraggable()"
+page << "Folders.makeDroppable(#{forgery_protection_request_parameter})"

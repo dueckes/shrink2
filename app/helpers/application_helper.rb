@@ -14,4 +14,18 @@ module ApplicationHelper
     options[:hidden] ? "display: none;" : ""
   end
 
+  def forgery_protection_request_parameter
+    if respond_to?('protect_against_forgery?') && protect_against_forgery?
+      "'#{request_forgery_protection_token}=' + encodeURIComponent('#{escape_javascript form_authenticity_token}')"
+    else
+      ""
+    end
+  end
+
+  def folder_feature_link(feature)
+    ajax_request = "if (!this.dragged) #{remote_function(:url => { :controller => :features, :action => :show_detail, :id => feature.id })}; this.dragged = false;"
+    link_to_function feature.title, ajax_request,
+                     { :id => dom_id(feature, :folder_link), :class => "folder_feature_link", :title => "View Feature" }
+  end
+
 end

@@ -1,9 +1,9 @@
 class FoldersController < CrudApplicationController
-  #TODO extend filters
-  before_filter :establish_model_via_id_param, :only => [:show, :toggle, :edit, :update, :destroy]
 
-  def toggle
-    #Intentionally blank
+  def move
+    @feature = Platter::Feature.find(params[:source_id])
+    @folder = Platter::Folder.find(params[:destination_id])
+    @feature.update_attributes(:folder => @folder)
   end
 
   def establish_parents_via_params
