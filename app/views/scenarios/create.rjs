@@ -1,2 +1,6 @@
 page.insert_html(:before, @add_anywhere_presenter.form_container_dom_id, :partial => "scenarios/show", :locals => { :scenario => @scenario, :hidden => true })
-page << @add_anywhere_presenter.show_model_js
+page.insert_html(:before, @step_add_anywhere_presenter.clicked_item_dom_id, :partial => "steps/form_new",
+                 :locals => { :scenario => @scenario, :add_anywhere_presenter => @step_add_anywhere_presenter })
+page << @add_anywhere_presenter.show_model_and_remove_form_js
+page << @step_add_anywhere_presenter.show_form_js
+

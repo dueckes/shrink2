@@ -74,14 +74,18 @@ var AddAnywhereForm = $.klass(StandardForm, {
   setPositionField: function() {
     this._form.find('input[name*=position]').val(this._positionInList());
   },
-  showModel: function() {
-    this._newModel.fadeIn('fast');
+  showModelAndClearForm: function() {
+    this._showModel();
     this._clearForm();
+  },
+  showModelAndRemoveForm: function() {
+    this._showModel();
+    this._removeForm();
   },
   close: function() {
     var self = this;
     self._form.fadeOut('fast', function() {
-      self._form.remove();
+      self._removeForm();
     });
   },
   _positionInList: function() {
@@ -90,10 +94,16 @@ var AddAnywhereForm = $.klass(StandardForm, {
     var listElementIds = jQuery.map(listElements, function (listElement) { return $(listElement).attr('id') });
     return $.inArray(elementInList.attr('id'), listElementIds);
   },
+  _showModel: function() {
+    this._newModel.fadeIn('fast');
+  },
   _clearForm: function() {
     this._form.find('input:enabled:visible').each(function(i, inputObject) {
       $(inputObject).val('');
     });
+  },
+  _removeForm: function() {
+    this._form.remove();
   }
 });
 

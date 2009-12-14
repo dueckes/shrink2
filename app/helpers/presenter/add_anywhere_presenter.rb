@@ -18,9 +18,18 @@ class AddAnywherePresenter
     "new AddAnywhereForm('##{form_container_dom_id}').open()"
   end
 
-  def show_model_js
+  def show_model_and_clear_form_js
+    "#{create_form_with_model_js}.showModelAndClearForm()"
+  end
+
+  def show_model_and_remove_form_js
+    "#{create_form_with_model_js}.showModelAndRemoveForm()"
+  end
+
+  private
+  def create_form_with_model_js
     new_model_dom_id = @template.dom_id(@new_model)
-    "new AddAnywhereForm('##{form_container_dom_id}', '##{new_model_dom_id}').showModel()"
+    "new AddAnywhereForm('##{form_container_dom_id}', '##{new_model_dom_id}')"
   end
 
 end
