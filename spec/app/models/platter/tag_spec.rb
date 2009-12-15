@@ -91,14 +91,14 @@ module Platter
 
     end
 
-    context "#summarize" do
+    context "#calculate_summary" do
 
       before(:each) do
         @tag = Tag.new(:name => "Some Name")
       end
 
       it "should return the name of the tag" do
-        @tag.summarize.should eql("Some Name")
+        @tag.calculate_summary.should eql("Some Name")
       end
       
     end

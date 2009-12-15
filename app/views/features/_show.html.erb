@@ -19,6 +19,7 @@
       <%= link_to "^", {}, { :href => "#", :id => dom_id(feature, :expand_collapse_link), :title => "Expand/Collapse" } %>
       <%= link_to_remote "<-", { :url => { :controller => :folders, :action => :show_feature, :feature_id => feature.id } }, { :id => dom_id(feature, :show_in_folder_link), :title => "Show In Folder" } %>
       <%= link_to "->", folder_feature_path(feature.folder, feature), { :popup => true, :id => dom_id(feature, :show_link), :title => "Permalink" } %>
+      <%= link_to "v", "#{feature_export_url(:base_filename => feature.base_filename)}.feature", { :title => "Export" } %>
       <%= link_to_remote "X", { :confirm => "Are you sure you want to delete this feature?", :url => folder_feature_path(feature.folder, feature), :method => :delete }, { :id => dom_id(feature, :delete_link), :title => "Delete" } %>
     </div>
   </div>

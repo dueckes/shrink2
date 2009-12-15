@@ -54,6 +54,14 @@ class FeaturesController < CrudApplicationController
     end
   end
 
+  def export
+    @feature = Platter::Feature.find_by_base_filename(params[:base_filename])
+    respond_to do |format|
+      format.html
+      format.feature { render(:text => @feature.to_cucumber_file_format) }
+    end
+  end
+
   def new_id_prefix(model=nil)
     "folder"
   end

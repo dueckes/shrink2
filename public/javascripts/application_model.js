@@ -30,7 +30,7 @@ var Feature = $.klass({
     }
   },
   toggle: function() {
-    this._detailArea.toggle('blind', null, 500);
+    this._detailArea().toggle('blind', null, 500);
   },
   remove: function() {
     this._area.fadeOutAndRemove();

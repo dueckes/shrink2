@@ -4,4 +4,8 @@ String.class_eval do
     self.split("/").collect { |name| name.gsub(/\//, "") } - [""]
   end
 
+  def fileize
+    self.downcase.gsub(/\s/, "_").gsub(/\W/, "")
+  end
+
 end

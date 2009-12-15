@@ -23,8 +23,8 @@ module Platter
       feature.folder
     end
 
-    def summarize
-      [title, steps.collect { |step| "  #{step.summarize}" }].join("\n")
+    def calculate_summary
+      [title, steps.collect { |step| "  #{step.calculate_summary}" }].join("\n")
     end
 
     private

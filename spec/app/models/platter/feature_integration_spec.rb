@@ -114,12 +114,20 @@ describe Platter::Feature do
 
     context "when saved" do
 
-      it "should evaluate and establish the summary once" do
-        @feature.should_receive(:summarize).once.and_return("Some Summary")
+      it "should calculate and establish the summary once" do
+        @feature.should_receive(:calculate_summary).once.and_return("Some Summary")
 
         @feature.update_attributes!(:title => "Some Updated Title")
 
         @feature.summary.should eql("Some Summary")
+      end
+
+      it "should calculate and establish the base filename" do
+        @feature.should_receive(:calculate_base_filename).once.and_return("Some file name")
+
+        @feature.update_attributes!(:title => "Some Updated Title")
+
+        @feature.base_filename.should eql("Some file name")
       end
 
     end
@@ -127,7 +135,7 @@ describe Platter::Feature do
     context "#update_summary!" do
 
       it "should evaluate and establish the summary once" do
-        @feature.should_receive(:summarize).once.and_return("Some Summary")
+        @feature.should_receive(:calculate_summary).once.and_return("Some Summary")
 
         @feature.update_summary!
 

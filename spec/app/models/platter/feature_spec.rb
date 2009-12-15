@@ -386,7 +386,7 @@ module Platter
       end
 
       it "should update the summary to a value retrieved from summarizing the feature" do
-        @feature.stub!(:summarize).and_return("Some Summary")
+        @feature.stub!(:calculate_summary).and_return("Some Summary")
         @feature.stub!(:update_attributes!).with(:summary => "Some Summary")
 
         @feature.update_summary!
@@ -398,7 +398,7 @@ module Platter
       #TODO
     end
 
-    context "#summarize" do
+    context "#calculate_summary" do
 
       before(:each) do
         @feature = Feature.new(:title => "Some Feature Title")
@@ -407,14 +407,14 @@ module Platter
       describe "when the feature is fully populated" do
 
         before(:each) do
-          @tags = (1..3).collect { |i| mock("Tag#{i}", :summarize => "tag_#{i}") }
+          @tags = (1..3).collect { |i| mock("Tag#{i}", :calculate_summary => "tag_#{i}") }
           @feature.stub!(:tags).and_return(@tags)
-          @description_lines = (1..3).collect { |i| mock("FeatureDescriptionLine#{i}", :summarize => "Feature Description Line #{i}") }
+          @description_lines = (1..3).collect { |i| mock("FeatureDescriptionLine#{i}", :calculate_summary => "Feature Description Line #{i}") }
           @feature.stub!(:description_lines).and_return(@description_lines)
-          @scenarios = (1..3).collect { |i| mock("Scenario#{i}", :summarize => "Scenario #{i}") }
+          @scenarios = (1..3).collect { |i| mock("Scenario#{i}", :calculate_summary => "Scenario #{i}") }
           @feature.stub!(:scenarios).and_return(@scenarios)
           
-          @summary_lines = @feature.summarize.split("\n")
+          @summary_lines = @feature.calculate_summary.split("\n")
         end
 
         describe "the feature title" do
@@ -454,6 +454,21 @@ module Platter
 
         end
 
+      end
+
+    end
+
+    context "#calculate_base_filename" do
+
+      before(:each) do
+        @title = "Some Title"
+        @feature = Feature.new(:title => @title)
+      end
+
+      it "should return the fileized version of the feature title" do
+        @title.stub!(:fileize).and_return("Fileized title")
+
+        @feature.calculate_base_filename.should eql("Fileized title")
       end
 
     end

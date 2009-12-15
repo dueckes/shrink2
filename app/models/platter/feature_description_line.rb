@@ -10,7 +10,7 @@ module Platter
     validates_presence_of :text
     validates_length_of :text, :maximum => 256
 
-    alias_attribute :summarize, :text
+    alias_attribute :calculate_summary, :text
 
     def folder
       feature.folder

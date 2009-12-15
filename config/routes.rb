@@ -31,7 +31,7 @@ ActionController::Routing::Routes.draw do |map|
   #   end
 
   # You can have the root of your site routed with map.root -- just remember to delete public/index.html.
-   map.root :controller => "folders"
+   map.root :controller => "features"
 
   # See how all your routes lay out with "rake routes"
 
@@ -49,6 +49,8 @@ ActionController::Routing::Routes.draw do |map|
     end
   end
   map.resources :tags
+
+  map.feature_export 'features/export/:base_filename.:format', :controller => 'features', :action => 'export'
 
   # Defaults
   map.connect ':controller/:action/:id'

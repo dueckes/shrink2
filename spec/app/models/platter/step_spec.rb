@@ -120,10 +120,10 @@ module Platter
 
     end
 
-    context "#summarize" do
+    context "#calculate_summary" do
 
       it "should return the text" do
-        @step.summarize.should eql("Some Text")
+        @step.calculate_summary.should eql("Some Text")
       end
 
     end

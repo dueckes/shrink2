@@ -52,4 +52,41 @@ describe String do
 
   end
 
+  context "#fileize" do
+
+    describe "when a string contains only alphanumeric characters" do
+
+      it "should return the string unaltered" do
+        "some_string".fileize.should eql("some_string")
+      end
+
+    end
+
+    describe "when a string contains spaces" do
+
+      it "should return the string with spaces replaced by underscores" do
+        "string with spaces".fileize.should eql("string_with_spaces")
+      end
+
+    end
+
+    describe "when a string contains mixed casing" do
+
+      it "should return the string in lowercase" do
+        "StringWithMixedCase".fileize.should eql("stringwithmixedcase")
+      end
+
+    end
+
+    describe "when a string contains non-alphanumeric characters" do
+
+      it "should return the string without non-alphanumeric characters" do
+        'T1tle !@#$%with n0n alph4 numeric +)(*&^characters and numb3rs'.fileize.should eql(
+                "t1tle_with_n0n_alph4_numeric_characters_and_numb3rs")
+      end
+
+    end
+
+  end
+
 end

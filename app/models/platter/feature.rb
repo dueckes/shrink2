@@ -15,7 +15,10 @@ module Platter
     validates_length_of :title, :maximum => 256
     validates_uniqueness_of :title, :scope => :folder_id
 
-    before_save { |feature| feature.summary = feature.summarize unless feature.updating_summary? }
+    before_save do |feature|
+      feature.summary = feature.calculate_summary unless feature.updating_summary?
+      feature.base_filename = feature.calculate_base_filename
+    end
 
     UPLOAD_DIRECTORY = "#{RAILS_ROOT}/tmp/uploaded_features".freeze
     SUMMARIZED_ASSOCIATIONS = [:tags, :description_lines, :scenarios]
@@ -41,21 +44,25 @@ module Platter
       summary_lines.preview(matching_line_position, 3, "...")
     end
 
-    def summarize
-      header = [title, tags.collect(&:summarize).join(" "),
-                description_lines.collect { |line| "  #{line.summarize}" }].flatten.join("\n")
-      [header, scenarios.collect(&:summarize)].join("\n\n")
+    def calculate_summary
+      header = [title, tags.collect(&:calculate_summary).join(" "),
+                description_lines.collect { |line| "  #{line.calculate_summary}" }].flatten.join("\n")
+      [header, scenarios.collect(&:calculate_summary)].join("\n\n")
     end
 
     def update_summary!
       @updating_summary = true
       reload_summary_associations
-      update_attributes!(:summary => summarize)
+      update_attributes!(:summary => calculate_summary)
       @updating_summary = false
     end
 
     def updating_summary?
       @updating_summary
+    end
+
+    def calculate_base_filename
+      title.fileize
     end
 
     private

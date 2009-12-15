@@ -164,16 +164,16 @@ module Platter
 
     end
 
-    context "#summarize" do
+    context "#calculate_summary" do
 
       describe "when the scenario is fully populated" do
 
         before(:each) do
           @scenario = Scenario.new(:title => "Some Title")
-          @steps = (1..3).collect { |i| mock("Step#{i}", :summarize => "step #{i}") }
+          @steps = (1..3).collect { |i| mock("Step#{i}", :calculate_summary => "step #{i}") }
           @scenario.stub!(:steps).and_return(@steps)
 
-          @summary_lines = @scenario.summarize.split("\n")
+          @summary_lines = @scenario.calculate_summary.split("\n")
         end
 
         describe "the scenario title" do
@@ -186,7 +186,7 @@ module Platter
 
         describe "the steps" do
 
-          it "should be summarized on the following lines prefixed by spaces" do
+          it "should be calculate_summaryd on the following lines prefixed by spaces" do
             @summary_lines[1..3].should eql(["  step 1", "  step 2", "  step 3"])
           end
 

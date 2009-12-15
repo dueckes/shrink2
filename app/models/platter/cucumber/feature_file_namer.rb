@@ -4,7 +4,7 @@ module Platter
     class FeatureFileNamer
 
       def self.name_for(feature)
-        "#{feature.title.downcase.gsub(/\s/, '_').gsub(/\W/, '')}.feature"
+        "#{feature.base_filename}.feature"
       end
 
     end

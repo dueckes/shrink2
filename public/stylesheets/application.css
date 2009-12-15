@@ -50,6 +50,10 @@ label {
   padding-right: 10px;
 }
 
+strong {
+  font-weight: bold;
+}
+
 /*** NAMED ELEMENTS  ***/
 #container {
   width: 100%;

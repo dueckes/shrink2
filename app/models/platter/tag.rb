@@ -11,7 +11,7 @@ module Platter
     validates_uniqueness_of :name
     validates_length_of :name, :maximum => 256
 
-    alias_attribute :summarize, :name
+    alias_attribute :calculate_summary, :name
 
     def self.find_or_create!(attributes)
       find_by_name(attributes[:name]) || create!(attributes)
