@@ -111,6 +111,22 @@ describe Platter::Folder do
 
     end
 
+    context "#in_tree_path_until?" do
+
+      describe "when the folder is an ancestor of the parameterized folder" do
+
+        before(:each) do
+          @child = DatabaseModelFixture.create_folder!(:parent => @folder)
+        end
+
+        it "should return true" do
+          @folder.in_tree_path_until?(@child).should be_true
+        end
+
+      end
+
+    end
+
   end
 
 end

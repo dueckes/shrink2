@@ -7,6 +7,6 @@
       <%= link_to_remote "+", { :url => { :controller => :folders, :action => :new, :parent_id => root_folder.id }, :method => :get }, { :id => dom_id(root_folder, :add_link), :title => "Add Sub-Folder" } %>
     </div>
   </div>
-  <%= render :partial => "folders/list", :locals => { :folder => root_folder, :feature => feature, :expanded => true } %>
+  <%= render :partial => "folders/list", :locals => { :folder => root_folder, :highlighted_feature => highlighted_feature, :expanded => true } %>
 </div>
 <%= render :partial => "folders/drag_and_drop_script" %>

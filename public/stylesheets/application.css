@@ -231,6 +231,10 @@ label {
   color: #5d5d5d;
 }
 
+#folders_area .highlighted {
+  font-weight: bold;
+}
+
 #features .inner_list {
   padding-top: 0;
 }

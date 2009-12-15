@@ -1,5 +1,6 @@
 class FeaturesController < CrudApplicationController
   layout "features", :only => [:index, :show]
+  helper FoldersHelper
 
   #TODO extend filters
   before_filter :establish_parents_via_params, :only => [:new, :create, :import]

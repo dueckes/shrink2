@@ -22,8 +22,8 @@ module Platter
       parent == nil
     end
 
-    def child_in_tree_path_until?(folder)
-      !!children.find { |child| child == folder || folder.ancestors.include?(child) }
+    def in_tree_path_until?(folder)
+      self == folder || folder.ancestors.include?(self)
     end
 
     class << self

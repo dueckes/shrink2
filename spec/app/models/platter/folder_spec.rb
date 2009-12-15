@@ -298,7 +298,7 @@ module Platter
 
     end
 
-    context "#child_in_tree_path_until?" do
+    context "#in_tree_path_until?" do
 
       before(:each) do
         @folder.parent = @root_folder
@@ -311,38 +311,39 @@ module Platter
         @folder.stub!(:children).and_return(@children)
       end
 
-      describe "when the folder has a child that is the parameterized folder" do
+      describe "when the folder is a parent of the parameterized folder" do
 
         it "should return true" do
-          @folder.child_in_tree_path_until?(@children.second).should be_true
+          @folder.in_tree_path_until?(@children.second).should be_true
         end
 
       end
 
-      describe "when the folder has a child that is an ancestor of the parameterized folder" do
+      describe "when the folder is a distant ancestor of the parameterized folder" do
 
         it "should return true" do
-          @root_folder.child_in_tree_path_until?(@children.first).should be_true
+          @root_folder.in_tree_path_until?(@children.second).should be_true
         end
 
       end
 
-      describe "when the folder has no children that is the same as or ancestors of the parameterized folder" do
+      describe "when the folder is the same as the parameterized folder" do
 
-        it "should return false" do
-          @folder.child_in_tree_path_until?(@folder).should be_false
+        it "should return true" do
+          @folder.in_tree_path_until?(@folder).should be_true
         end
 
       end
 
-      describe "when the folder has no children" do
+      describe "when the folder is a descendant of the parameterized folder" do
 
         it "should return false" do
-          @children.first.child_in_tree_path_until?(@folder).should be_false
+          @folder.in_tree_path_until?(@root_folder).should be_false
         end
 
       end
 
     end
+
   end
 end

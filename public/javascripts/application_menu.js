@@ -66,12 +66,15 @@ var FoldMenuItem = $.klass({
     this._maximizedWidth = '0px';
   },
   toggle: function() {
-    FoldMenu.hideOtherItems(this);
-    var targetWidth = this._maximizedWidth;
     if (this._itemObject.css('left') == this._maximizedWidth) {
-      targetWidth = this._minimizedWidth;
+      this.hide();
+    } else {
+      this.show();
     }
-    this._itemObject.animate({ left: targetWidth }, 500);
+  },
+  show: function() {
+    FoldMenu.hideOtherItems(this);
+    this._itemObject.animate({ left: this._maximizedWidth }, 500);
   },
   hide: function() {
     this._itemObject.animate({ left: this._minimizedWidth }, 500);

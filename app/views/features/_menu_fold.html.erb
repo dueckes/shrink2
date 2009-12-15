@@ -7,7 +7,7 @@
   </div>
   <div id="fold_menu_folders" class="fold_item">
     <div id="folders_area" class="fold_menu_expand_area">
-      <%= render :partial => "folders/show_root", :locals => { :root_folder => root_folder, :feature => nil } %>
+      <%= render :partial => "folders/show_root", :locals => { :root_folder => root_folder, :highlighted_feature => nil } %>
     </div>
     <%= link_to image_tag( "fold_menu_folders.png" ), "#", { :id => "expand_folders_link", :class => "expand_link", :title => "Manage Folders" } %>
   </div>

@@ -1,5 +1,10 @@
 class FoldersController < CrudApplicationController
 
+  def show_feature
+    @root_folder = Platter::Folder.root
+    @feature = Platter::Feature.find(params[:feature_id])
+  end
+
   def move_feature
     @feature = Platter::Feature.find(params[:source_id])
     @folder = Platter::Folder.find(params[:destination_id])
