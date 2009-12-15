@@ -26,7 +26,7 @@
       <li>
         <%= link_to_remote feature.title, { :url => { :controller => :features, :action => :show_detail, :id => feature.id } }, { :id => dom_id(feature, :search_result_link), :title => "View Feature" } %>
         <% feature.search_result_preview_lines(search_text).each do |line| -%>
-          <span><%= line %></span>
+          <span><%= highlight_phrase_in_text(search_text, line) %></span>
         <% end -%>
       </li>
     <% end -%>
