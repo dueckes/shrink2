@@ -50,7 +50,8 @@ ActionController::Routing::Routes.draw do |map|
   end
   map.resources :tags
 
-  map.feature_export 'features/export/:base_filename.:format', :controller => 'features', :action => 'export'
+  map.folder_export 'folders/export/:id.:format', :controller => 'folders', :action => 'export'
+  map.feature_export 'features/export/:id.:format', :controller => 'features', :action => 'export'
 
   # Defaults
   map.connect ':controller/:action/:id'

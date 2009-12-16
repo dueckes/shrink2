@@ -6,9 +6,9 @@ module Platter
     set_scenario_adapter Platter::Scenario
 
     belongs_to :folder, :class_name => "Platter::Folder"
-    has_many :description_lines, :class_name => "Platter::FeatureDescriptionLine", :order => :position
-    has_many :scenarios, :class_name => "Platter::Scenario", :order => :position
-    has_many :feature_tags, :class_name => "Platter::FeatureTag"
+    has_many :description_lines, :class_name => "Platter::FeatureDescriptionLine", :order => :position, :dependent => :destroy
+    has_many :scenarios, :class_name => "Platter::Scenario", :order => :position, :dependent => :destroy
+    has_many :feature_tags, :class_name => "Platter::FeatureTag", :dependent => :destroy
     has_many :tags, :through => :feature_tags, :order => :name
 
     validates_presence_of :folder, :title
@@ -17,10 +17,10 @@ module Platter
 
     before_save do |feature|
       feature.summary = feature.calculate_summary unless feature.updating_summary?
-      feature.base_filename = feature.calculate_base_filename
     end
 
-    UPLOAD_DIRECTORY = "#{RAILS_ROOT}/tmp/uploaded_features".freeze
+    IMPORT_DIRECTORY = "#{RAILS_ROOT}/tmp/imported_features".freeze
+    EXPORT_DIRECTORY = "#{RAILS_ROOT}/tmp/exported_features".freeze
     SUMMARIZED_ASSOCIATIONS = [:tags, :description_lines, :scenarios]
 
     def tag_line
@@ -61,7 +61,7 @@ module Platter
       @updating_summary
     end
 
-    def calculate_base_filename
+    def base_filename
       title.fileize
     end
 

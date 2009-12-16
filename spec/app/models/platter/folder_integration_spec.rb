@@ -41,14 +41,22 @@ describe Platter::Folder do
 
     context "#children" do
 
-      it "should be assignable" do
-        children = (1..3).collect do |i|
+      before(:each) do
+        @children = (1..3).collect do |i|
           child = DatabaseModelFixture.create_folder!(:name => "Child #{i} Name")
           @folder.children << child
           child
         end
-        
-        Platter::Folder.find(@folder).children.should eql(children)
+      end
+
+      it "should be assignable" do
+        Platter::Folder.find(@folder).children.should eql(@children)
+      end
+
+      it "should be destroyed when their parent is destroyed" do
+        @folder.destroy
+
+        @children.each { |child| Platter::Folder.find_by_id(child.id).should be_nil }
       end
       
     end
@@ -58,8 +66,8 @@ describe Platter::Folder do
       describe "when features have been added" do
 
         before(:each) do
-          %w(c b a).each do |character|
-            @folder.features << Platter::Feature.new(:title => "Feature Title #{character}")
+          @features = %w(c b a).collect do |character|
+            Platter::Feature.create!(:title => "Feature Title #{character}", :folder => @folder)
           end
           @folder.features(true)
         end
@@ -71,6 +79,12 @@ describe Platter::Folder do
         it "should be ordered by descending order of title" do
           expected_titles_in_order = %w(a b c).collect { |character| "Feature Title #{character}" }
           @folder.features.collect(&:title).should eql(expected_titles_in_order)
+        end
+
+        it "should all be destroyed when their folder is destroyed" do
+          @folder.destroy
+
+          @features.each { |feature| Platter::Feature.find_by_id(feature.id).should be_nil }
         end
 
       end

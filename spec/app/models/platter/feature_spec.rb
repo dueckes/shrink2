@@ -458,7 +458,7 @@ module Platter
 
     end
 
-    context "#calculate_base_filename" do
+    context "#base_filename" do
 
       before(:each) do
         @title = "Some Title"
@@ -468,7 +468,7 @@ module Platter
       it "should return the fileized version of the feature title" do
         @title.stub!(:fileize).and_return("Fileized title")
 
-        @feature.calculate_base_filename.should eql("Fileized title")
+        @feature.base_filename.should eql("Fileized title")
       end
 
     end

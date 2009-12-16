@@ -64,13 +64,32 @@ describe Platter::Feature do
 
     end
 
+    context "#feature_tags" do
+
+      before(:each) do
+        @feature_tags = %w(a_name z_name m_name).collect do |tag_name|
+          tag = Platter::Tag.find_or_create!(:name => tag_name)
+          Platter::FeatureTag.create!(:feature => @feature, :tag => tag)
+        end
+        @feature.feature_tags(true)
+      end
+
+      it "should all be destroyed when the feature is destroyed" do
+        @feature.destroy
+
+        @feature_tags.each { |feature_tag| Platter::FeatureTag.find_by_id(feature_tag.id).should be_nil }
+      end
+
+    end
+
     context "#description_lines" do
 
       describe "when description lines have been added" do
 
         before(:each) do
-          (1..3).each do |i|
-            @feature.description_lines << Platter::FeatureDescriptionLine.new(:text => "Description Line Text #{i}", :position => 4 - i)
+          @description_lines = (1..3).collect do |i|
+            Platter::FeatureDescriptionLine.create!(
+                    :text => "Description Line Text #{i}", :position => 4 - i, :feature => @feature)
           end
           @feature.description_lines(true)
         end
@@ -85,6 +104,14 @@ describe Platter::Feature do
           end
         end
 
+        it "should all be destroyed when the feature is destroyed" do
+          @feature.destroy
+
+          @description_lines.each do |description_line|
+            Platter::FeatureDescriptionLine.find_by_id(description_line.id).should be_nil
+          end
+        end
+
       end
 
     end
@@ -94,8 +121,8 @@ describe Platter::Feature do
       describe "when scenarios have been added" do
 
         before(:each) do
-          (1..3).each do |i|
-            @feature.scenarios << Platter::Scenario.new(:title => "Scenario Title #{i}", :position => 4 - i)
+          @scenarios = (1..3).collect do |i|
+            Platter::Scenario.create!(:title => "Scenario Title #{i}", :position => 4 - i, :feature => @feature)
           end
           @feature.scenarios(true)
         end
@@ -106,6 +133,12 @@ describe Platter::Feature do
 
         it "should be ordered by position" do
           @feature.scenarios.each_with_index { |scenario, i| scenario.title.should eql("Scenario Title #{3 - i}") }
+        end
+
+        it "should all be destroyed when the feature is destroyed" do
+          @feature.destroy
+
+          @scenarios.each { |scenario| Platter::Scenario.find_by_id(scenario.id).should be_nil }
         end
 
       end
@@ -120,14 +153,6 @@ describe Platter::Feature do
         @feature.update_attributes!(:title => "Some Updated Title")
 
         @feature.summary.should eql("Some Summary")
-      end
-
-      it "should calculate and establish the base filename" do
-        @feature.should_receive(:calculate_base_filename).once.and_return("Some file name")
-
-        @feature.update_attributes!(:title => "Some Updated Title")
-
-        @feature.base_filename.should eql("Some file name")
       end
 
     end

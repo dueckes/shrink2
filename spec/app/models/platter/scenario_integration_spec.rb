@@ -72,8 +72,8 @@ describe Platter::Scenario do
       describe "when steps have been added" do
 
         before(:each) do
-          (1..3).each do |i|
-            @scenario.steps << Platter::Step.new(:text => "Step Text #{i}", :position => 4 - i)
+          @steps = (1..3).collect do |i|
+            Platter::Step.create!(:text => "Step Text #{i}", :position => 4 - i, :scenario => @scenario)
           end
           @scenario.steps(true)
         end
@@ -84,6 +84,12 @@ describe Platter::Scenario do
 
         it "should retrieve steps ordered by position" do
           @scenario.steps.each_with_index { |step, i| step.text.should eql("Step Text #{3 - i}") }
+        end
+
+        it "should all be destroyed when the scenario is destroyed" do
+          @scenario.destroy
+
+          @steps.each { |step| Platter::Step.find_by_id(step.id).should be_nil }
         end
 
       end

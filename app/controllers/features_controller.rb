@@ -55,10 +55,10 @@ class FeaturesController < CrudApplicationController
   end
 
   def export
-    @feature = Platter::Feature.find_by_base_filename(params[:base_filename])
+    @feature = Platter::Feature.find_by_id(params[:id])
     respond_to do |format|
       format.html
-      format.feature { render(:text => @feature.to_cucumber_file_format) }
+      format.feature { send_file(Platter::Cucumber::FeatureExporter.export(@feature), :type => :feature) }
     end
   end
 
@@ -86,7 +86,7 @@ class FeaturesController < CrudApplicationController
   end
 
   def write_feature_file(uploaded_feature_file)
-    destination_file_name = "#{Platter::Feature::UPLOAD_DIRECTORY}/#{uploaded_feature_file.original_filename}"
+    destination_file_name = "#{Platter::Feature::IMPORT_DIRECTORY}/#{uploaded_feature_file.original_filename}"
     File.open(destination_file_name, "w") { |file| file.write(uploaded_feature_file.read) }
     destination_file_name
   end

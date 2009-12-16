@@ -27,12 +27,11 @@ ActiveRecord::Schema.define(:version => 20091125064045) do
   end
 
   create_table "features", :force => true do |t|
-    t.string   "title",         :limit => 256,  :null => false
-    t.string   "base_filename", :limit => 256,  :null => false
-    t.string   "summary",       :limit => 4000, :null => false
+    t.string   "title",      :limit => 256,  :null => false
+    t.string   "summary",    :limit => 4000, :null => false
+    t.integer  "folder_id",                  :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "folder_id",                     :null => false
   end
 
   create_table "folders", :force => true do |t|

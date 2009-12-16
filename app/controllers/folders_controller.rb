@@ -1,4 +1,11 @@
 class FoldersController < CrudApplicationController
+  before_filter :establish_model_via_id_param, :only => [:show, :edit, :update, :destroy, :export]
+
+  def export
+    respond_to do |format|
+      format.zip { send_file(Platter::Cucumber::FolderExporter.export(@folder), :type => :zip) }
+    end
+  end
 
   def show_feature
     @root_folder = Platter::Folder.root

@@ -7,7 +7,7 @@ module Platter
     set_step_adapter Platter::Step
 
     belongs_to :feature, :class_name => "Platter::Feature"
-    has_many :steps, :class_name => "Platter::Step", :order => :position
+    has_many :steps, :class_name => "Platter::Step", :order => :position, :dependent => :destroy
     acts_as_list :scope => :feature
 
     validates_presence_of :title

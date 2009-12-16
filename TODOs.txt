@@ -18,3 +18,4 @@ Next:
       Validation error messages to be discussed
       form_common is no longer 'common' as multiple forms do not use it - views/features is the best example
       feature.summary column size - must be unlimited or, at the least, very large
+      Freeze all dependencies

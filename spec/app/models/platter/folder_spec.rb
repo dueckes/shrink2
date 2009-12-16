@@ -52,6 +52,14 @@ module Platter
 
       end
 
+      describe "when the folder is the root node" do
+
+        it "should return an empty array" do
+          @root_folder.tree_path.should be_empty
+        end
+
+      end
+
       describe "when the folder is sibling two levels deep from the root node" do
 
         before(:each) do
@@ -66,7 +74,7 @@ module Platter
 
       end
 
-      describe "when the folder is a sibling three levels deep from the root node" do
+      describe "when the folder is a descendent three levels deep from the root node" do
 
         before(:each) do
           @root_descendant = Folder.new(
@@ -81,6 +89,49 @@ module Platter
         end
 
       end
+
+    end
+
+    context "#file_path" do
+
+      describe "when the folder is a child of the root node" do
+
+        before(:each) do
+          @folder.parent = @root_folder
+        end
+
+        it "should return the fileized version of the child folder name" do
+          @folder.file_path.should eql(@folder.name.fileize)
+        end
+
+      end
+
+      describe "when the folder is a descendant three levels deep from the root node" do
+
+        before(:each) do
+          @root_descendant = Folder.new(
+                  :name => "1 Level Deep", :parent => @root_folder)
+          @inner_root_descendant = Folder.new(
+                  :name => "2 Levels Deep", :parent => @root_descendant)
+          @folder.name = "3 Levels Deep"
+          @folder.parent = @inner_root_descendant
+        end
+
+        it "should return the combined path of all fileized descendent folder names" do
+          @folder.file_path.should eql(
+                  "#{@root_descendant.name.fileize}/#{@inner_root_descendant.name.fileize}/#{@folder.name.fileize}")
+        end
+
+      end
+
+      describe "when the folder is the root node" do
+
+        it "should return an empty string" do
+          @root_folder.file_path.should be_empty
+        end
+
+      end
+
 
     end
 

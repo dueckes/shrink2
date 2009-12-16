@@ -2,15 +2,22 @@ module Platter
 
   class Folder < ::ActiveRecord::Base
     acts_as_tree :order => :name
-    has_many :features, :class_name => "Platter::Feature", :order => :title
+    has_many :features, :class_name => "Platter::Feature", :order => :title, :dependent => :destroy
 
     validates_presence_of :name
     validates_length_of :name, :maximum => 256
     validates_uniqueness_of :name, :scope => :parent_id
 
+    EXPORT_DIRECTORY = "#{RAILS_ROOT}/tmp/exported_folders".freeze
+
     #TODO Candidate for tree plugin extension
     def tree_path
-      ancestors.reverse - [self.root] + [self]
+      ancestors.reverse + [self] - [self.root]
+    end
+
+    #TODO Candidate for tree plugin extension
+    def file_path
+      tree_path.collect { |folder| folder.name.fileize }.join("/")
     end
 
     #TODO Candidate for tree plugin extension
@@ -18,13 +25,16 @@ module Platter
       parent == self.root
     end
 
+    #TODO Candidate for tree plugin extension
     def root?
       parent == nil
     end
 
+    #TODO Candidate for tree plugin extension
     def in_tree_path_until?(folder)
       self == folder || folder.ancestors.include?(self)
     end
+
 
     class << self
 
