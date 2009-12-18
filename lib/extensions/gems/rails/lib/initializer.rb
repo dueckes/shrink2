@@ -7,7 +7,7 @@ Rails::Initializer.class_eval do
   def require_frameworks
     require_frameworks_without_extensions
     EXTENDED_FRAMEWORKS.each do |framework_name|
-      require File.expand_path("#{RAILS_ROOT}/lib/extensions/frameworks/#{framework_name}/init.rb")
+      require File.expand_path("#{RAILS_ROOT}/lib/extensions/frameworks/#{framework_name}/init")
     end
   end
 
@@ -15,7 +15,7 @@ Rails::Initializer.class_eval do
   def load_gems
     load_gems_without_extensions
     EXTENDED_GEMS.each do |gem_name|
-      require File.expand_path("#{RAILS_ROOT}/lib/extensions/gems/#{gem_name}/init.rb")
+      require File.expand_path("#{RAILS_ROOT}/lib/extensions/gems/#{gem_name}/init")
     end
   end
 
@@ -23,7 +23,7 @@ Rails::Initializer.class_eval do
   def load_plugins
     load_plugins_without_extensions
     EXTENDED_PLUGINS.each do |plugin_name|
-      require File.expand_path("#{RAILS_ROOT}/lib/extensions/plugins/#{plugin_name}/init.rb")
+      require File.expand_path("#{RAILS_ROOT}/lib/extensions/plugins/#{plugin_name}/init")
     end
   end
 

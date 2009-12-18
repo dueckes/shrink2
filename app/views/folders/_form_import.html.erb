@@ -1,14 +1,11 @@
-<% form_remote_tag(:url => { :action => :modify_tags, :id => feature.id }) do -%>
-  <%= text_field_tag :text, nil, :value => feature.tag_line, :id => "#{dom_id(feature)}_tags_text", :size => 92, :maxlength => 255 %>
-  <div id="<%= dom_id(feature) %>_tags_errors" class="errors" style="display: none;">
-  </div>
-  <span>Available tags:</span>
-  <% all_tags.each do |tag| -%>
-    <%= link_to tag.name, "#", :class => "add_tag_link" %>
+<% form_tag({ :controller => :folders, :action => :import, :id => folder.id }, { :multipart => true, :target => "upload_frame", :class => "folder_import" }) do -%>
+  <% field_set_tag do -%>
+    <%= label_tag "#{dom_id(folder)}_import_zip_file", "Import Zip" %><%= file_field_tag :zip_file, :id => "#{dom_id(folder)}_import_zip_file" %>
+    <div class="buttons">
+      <%= submit_tag "Import", :id => "#{dom_id(folder)}_import_zip_submit" %>
+      <%= button_to_function "Cancel", :id => "#{dom_id(folder)}_import_zip_cancel" %>
+    </div>
+    <div id="<%= dom_id(folder) %>_import_zip_errors" class="errors" style="display: none;">
+    </div>
   <% end -%>
-  <span>Comma delimited list supported, e.g. billing, important</span>
-  <div class="form_buttons">
-    <%= submit_tag "OK", :id => "#{dom_id(feature)}_tags_submit" %>
-    <%= button_to_function "Cancel", :id => "#{dom_id(feature)}_tags_cancel" %>
-  </div>
 <% end -%>

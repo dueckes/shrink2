@@ -11,6 +11,9 @@ Dir.glob(File.expand_path(File.dirname(__FILE__) + "/support/**/*.rb")).each { |
 
 require "#{RAILS_ROOT}/rake_initializer"
 
+SPEC_RESOURCES_DIR = "#{RAILS_ROOT}/spec/resources"
+SPEC_TMP_DIR = "#{RAILS_ROOT}/tmp/spec"
+
 Spec::Runner.configure do |config|
   # If you're not using ActiveRecord you should remove these
   # lines, delete config/database.yml and disable :active_record

@@ -54,35 +54,26 @@ describe String do
 
   context "#fileize" do
 
-    describe "when a string contains only alphanumeric characters" do
+    describe "when a string contains alphanumeric characters having different casing, underscores, hyphens and whitespace" do
 
       it "should return the string unaltered" do
-        "some_string".fileize.should eql("some_string")
+        "String with_underscores-Hypens and spaces 1".fileize.should eql("String with_underscores-Hypens and spaces 1")
       end
 
     end
 
-    describe "when a string contains spaces" do
+    describe "when a string contains characters other than alphanumerics, underscores, hypens and whitespace" do
 
-      it "should return the string with spaces replaced by underscores" do
-        "string with spaces".fileize.should eql("string_with_spaces")
+      it "should return remove the non-alphanumerics, underscores, hypens and whitespace characters" do
+        'String!@#$%+)(*&^"'.fileize.should eql("String")
       end
 
     end
 
-    describe "when a string contains mixed casing" do
+    describe "when the string is surrounded by whitespace" do
 
-      it "should return the string in lowercase" do
-        "StringWithMixedCase".fileize.should eql("stringwithmixedcase")
-      end
-
-    end
-
-    describe "when a string contains non-alphanumeric characters" do
-
-      it "should return the string without non-alphanumeric characters" do
-        'T1tle !@#$%with n0n alph4 numeric +)(*&^characters and numb3rs'.fileize.should eql(
-                "t1tle_with_n0n_alph4_numeric_characters_and_numb3rs")
+      it "should return a string with the surrounding whitespace removed" do
+        " some string ".fileize.should eql("some string")
       end
 
     end

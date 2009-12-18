@@ -48,7 +48,7 @@ class FeaturesController < CrudApplicationController
 
   def import
     responds_to_parent do
-      feature = Platter::Cucumber::FeatureImporter.import_file(write_feature_file(params[:feature_file]))
+      feature = FEATURE_IMPORTER.import(:file_path => write_uploaded_file(params[:feature_file]))
       feature.folder = @folder
       feature.save ? render_successful_import(feature) : render_import_errors(feature.errors)
     end
@@ -58,7 +58,11 @@ class FeaturesController < CrudApplicationController
     @feature = Platter::Feature.find_by_id(params[:id])
     respond_to do |format|
       format.html
-      format.feature { send_file(Platter::Cucumber::FeatureExporter.export(@feature), :type => :feature) }
+      format.feature do
+        feature_file_path = FEATURE_EXPORTER.export(
+                :feature => @feature, :destination_directory => session[:temp_directory])
+        send_file(feature_file_path, :type => :feature)
+      end
     end
   end
 
@@ -83,12 +87,6 @@ class FeaturesController < CrudApplicationController
     @description_line_add_anywhere_presenter = AddAnywherePresenter.new(
             :template => @template, :parent_models => [@feature], :short_model_name => :description_line,
             :form_number => next_form_number, :clicked_item_dom_id => dom_id(@feature, :add_description_line_link_area))
-  end
-
-  def write_feature_file(uploaded_feature_file)
-    destination_file_name = "#{Platter::Feature::IMPORT_DIRECTORY}/#{uploaded_feature_file.original_filename}"
-    File.open(destination_file_name, "w") { |file| file.write(uploaded_feature_file.read) }
-    destination_file_name
   end
 
   def render_successful_import(feature)

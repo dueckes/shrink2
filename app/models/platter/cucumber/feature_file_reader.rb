@@ -5,9 +5,9 @@ module Platter
 
       class << self
 
-        def read(*files)
-          cucumber_ast_features = create_step_mother.load_plain_text_features(files.flatten)
-          cucumber_ast_features.collect { |cucumber_ast_feature| Platter::Feature.adapt(cucumber_ast_feature) }
+        def read(file)
+          cucumber_ast_feature = create_step_mother.load_plain_text_features([file])[0]
+          Platter::Feature.adapt(cucumber_ast_feature)
         end
 
         private

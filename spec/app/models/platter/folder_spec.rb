@@ -92,16 +92,16 @@ module Platter
 
     end
 
-    context "#file_path" do
+    context "#directory_path" do
 
-      describe "when the folder is a child of the root node" do
+      describe "when the folder is a child of the root folder" do
 
         before(:each) do
           @folder.parent = @root_folder
         end
 
-        it "should return the fileized version of the child folder name" do
-          @folder.file_path.should eql(@folder.name.fileize)
+        it "should return the child folder name" do
+          @folder.directory_path.should eql(@folder.name)
         end
 
       end
@@ -117,17 +117,17 @@ module Platter
           @folder.parent = @inner_root_descendant
         end
 
-        it "should return the combined path of all fileized descendent folder names" do
-          @folder.file_path.should eql(
-                  "#{@root_descendant.name.fileize}/#{@inner_root_descendant.name.fileize}/#{@folder.name.fileize}")
+        it "should return the combined path of all descendent folder names" do
+          @folder.directory_path.should eql(
+                  "#{@root_descendant.name}/#{@inner_root_descendant.name}/#{@folder.name}")
         end
 
       end
 
-      describe "when the folder is the root node" do
+      describe "when the folder is the root folder" do
 
         it "should return an empty string" do
-          @root_folder.file_path.should be_empty
+          @root_folder.directory_path.should be_empty
         end
 
       end
@@ -313,6 +313,66 @@ module Platter
 
           it "should return false" do
             @folder.should_not be_valid
+          end
+
+        end
+
+        describe "and the name contains characters that are not alphanumeric, spaces, underscore or hyphens" do
+
+          before(:each) do
+            @folder.name = "Some Folder Name 1'"
+          end
+
+          it "should return false" do
+            @folder.should_not be_valid
+          end
+
+        end
+
+        describe "and the name contains only alphanumeric characters" do
+
+          before(:each) do
+            @folder.name = "SomeFolderName1"
+          end
+
+          it "should return true" do
+            @folder.should be_valid
+          end
+
+        end
+
+        describe "and the name contains alphanumeric characters and spaces" do
+
+          before(:each) do
+            @folder.name = "Some Folder Name 1"
+          end
+
+          it "should return true" do
+            @folder.should be_valid
+          end
+
+        end
+
+        describe "and the name contains alphanumeric characters and underscores" do
+
+          before(:each) do
+            @folder.name = "some_folder_name_1"
+          end
+
+          it "should return true" do
+            @folder.should be_valid
+          end
+
+        end
+
+        describe "and the name contains alphanumeric characters and hyphens" do
+
+          before(:each) do
+            @folder.name = "Some-Folder-Name-1"
+          end
+
+          it "should return true" do
+            @folder.should be_valid
           end
 
         end

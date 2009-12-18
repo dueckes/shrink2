@@ -7,15 +7,13 @@ module FoldersHelper
   end
 
   def refresh_folder(page, folder)
-    page << "$('##{dom_id(folder)}').fadeOut('fast')"
-    if folder.root?
-      page.replace("#{dom_id(folder)}", :partial => "folders/show_root", :locals => { :root_folder => folder, :highlighted_feature => nil})
-    else
-      page.replace("#{dom_id(folder)}", :partial => "folders/show", :locals => { :folder => folder, :highlighted_feature => nil, :hidden => true})
-    end
-    page << "$('##{dom_id(folder)}').fadeIn('fast')"
-    page << "Folders.makeDragAndDroppable(#{forgery_protection_request_parameter})"
-    page << "FolderFeatures.makeDraggable()"
+    page << %{
+      $('##{dom_id(folder)}').fadeOutAndIn(function(object) {
+        object.replaceWith(#{::ActiveSupport::JSON.encode(render_folder_to_string(:folder => folder))});
+        Folders.makeDragAndDroppable(#{forgery_protection_request_parameter});
+        FolderFeatures.makeDraggable();
+      })
+    }
   end
 
   def folder_in_feature_path?(folder, feature)
@@ -30,6 +28,14 @@ module FoldersHelper
     element_class = "folder_feature_area"
     element_class += " highlighted" if feature == highlighted_feature
     element_class
+  end
+
+  def render_folder_to_string(options)
+    if options[:folder].root?
+      render("folders/show_root", :root_folder => options[:folder], :highlighted_feature => options[:highlighted_feature])
+    else
+      render("folders/show", :folder => options[:folder], :highlighted_feature => options[:feature], :hidden => false)
+    end
   end
 
 end

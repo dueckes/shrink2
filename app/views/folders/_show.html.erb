@@ -7,8 +7,11 @@
     <div class="highlight_controls">
       <%= link_to "^", "#", { :id => dom_id(folder, :expand_collapse_link), :class => "folder_expand_collapse_link", :title => expand_collapse_title(expanded) } %>
       <%= link_to_remote "+", { :url => { :controller => :folders, :action => :new, :parent_id => folder.id }, :method => :get }, { :id => dom_id(folder, :add_link), :title => "Add Sub-Folder" } %>
+      <%= link_to_remote "A", { :url => { :controller => :folders, :action => :import_gesture, :id => folder.id } }, { :id => dom_id(folder, :import_link), :class => "folder_import_link", :title => "Import" } %>
       <%= link_to "V", "#{folder_export_url(:id => folder.id)}.zip", { :id => dom_id(folder, :export_link), :title => "Export" } %>
       <%= link_to_remote "X", { :confirm => "Are you sure you want to delete this folder?", :url => folder_path(folder), :method => :delete }, { :id => dom_id(folder, :delete_link), :title => "Delete" } %>
+    </div>
+    <div id="<%= dom_id(folder) %>_import_form_area" style="display: none;">
     </div>
   </div>
   <%= render :partial => "folders/list", :locals => { :folder => folder, :highlighted_feature => highlighted_feature, :expanded => expanded } %>

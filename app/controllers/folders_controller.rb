@@ -1,9 +1,27 @@
 class FoldersController < CrudApplicationController
-  before_filter :establish_model_via_id_param, :only => [:show, :edit, :update, :destroy, :export]
+  before_filter :establish_model_via_id_param, :only => [:show, :edit, :update, :destroy,
+                                                         :import_gesture, :import, :export]
+
+  def import_gesture
+    # Intentionally blank
+  end
+
+  def import
+    responds_to_parent do
+      features = FOLDER_IMPORTER.import(:zip_file_path => write_uploaded_file(params[:zip_file]), 
+                                        :extract_root_directory => session[:temp_directory],
+                                        :destination_folder => @folder)
+      invalid_features = features.select { |feature| !feature.valid? }
+      invalid_features.empty? ? render_successful_import(@folder) : render_import_errors(@folder, invalid_features)
+    end
+  end
 
   def export
     respond_to do |format|
-      format.zip { send_file(Platter::Cucumber::FolderExporter.export(@folder), :type => :zip) }
+      format.zip do
+        zip_file_path = FOLDER_EXPORTER.export(:folder => @folder, :zip_root_directory => session[:temp_directory])
+        send_file(zip_file_path, :type => :zip)
+      end
     end
   end
 
@@ -31,6 +49,15 @@ class FoldersController < CrudApplicationController
   def establish_model_for_create
     establish_parents_via_params
     set_model Platter::Folder.new(params[:folder].merge(:parent => @parent))
+  end
+
+  private
+  def render_successful_import(folder)
+    render(:update) { |page| refresh_folder(page, folder) }
+  end
+
+  def render_import_errors(folder, invalid_features)
+    render_errors("#{dom_id(folder)}_import_zip_errors", invalid_features.collect(&:errors))
   end
 
 end

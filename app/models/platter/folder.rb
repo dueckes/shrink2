@@ -6,9 +6,8 @@ module Platter
 
     validates_presence_of :name
     validates_length_of :name, :maximum => 256
+    validates_format_of :name, :with => /\A[0-9a-z_\-\s]*\Z/i
     validates_uniqueness_of :name, :scope => :parent_id
-
-    EXPORT_DIRECTORY = "#{RAILS_ROOT}/tmp/exported_folders".freeze
 
     #TODO Candidate for tree plugin extension
     def tree_path
@@ -16,8 +15,8 @@ module Platter
     end
 
     #TODO Candidate for tree plugin extension
-    def file_path
-      tree_path.collect { |folder| folder.name.fileize }.join("/")
+    def directory_path
+      tree_path.collect { |folder| folder.name }.join("/")
     end
 
     #TODO Candidate for tree plugin extension
@@ -35,13 +34,12 @@ module Platter
       self == folder || folder.ancestors.include?(self)
     end
 
-
     class << self
 
       def find_or_create!(name_or_path)
         folder = self.root
-        name_or_path.as_folder_names.each do |directory_name|
-          folder = self.find_or_create_by_name_and_parent!(directory_name, folder)
+        name_or_path.as_folder_names.each do |folder_name|
+          folder = self.find_or_create_by_name_and_parent!(folder_name, folder)
         end
         folder
       end

@@ -97,8 +97,11 @@ class CrudApplicationController < ApplicationController
     session[:form_number] = session[:form_number] ? session[:form_number] + 1 : 1
   end
 
-  def render_errors(element_id, errors)
-    error_messages = errors.respond_to?(:full_messages) ? errors.full_messages : errors
+  def render_errors(element_id, *errors)
+    error_messages = errors.flatten
+    if errors.flatten.all? { |error| error.respond_to?(:full_messages) }
+      error_messages = errors.flatten.collect { |error| error.full_messages }.flatten
+    end
     render(:update) do |page|
       page.replace_html(element_id, :partial => "common/show_errors", :locals => { :error_messages => error_messages })
       page.show(element_id)

@@ -1,7 +1,7 @@
-folders_area = render("folders/show_root", :root_folder => @root_folder, :highlighted_feature => @feature)
+folder_area = render_folder_to_string(:folder => @root_folder, :highlighted_feature => @feature)
 page << %{
   $('#folders_area').fadeOutAndIn(function(object) {
     FoldMenuItemFactory.createFromName('folders').show();
-    object.html(#{::ActiveSupport::JSON.encode(folders_area)})
+    object.html(#{::ActiveSupport::JSON.encode(folder_area)})
   })
 }

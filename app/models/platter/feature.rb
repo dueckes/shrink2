@@ -19,8 +19,6 @@ module Platter
       feature.summary = feature.calculate_summary unless feature.updating_summary?
     end
 
-    IMPORT_DIRECTORY = "#{RAILS_ROOT}/tmp/imported_features".freeze
-    EXPORT_DIRECTORY = "#{RAILS_ROOT}/tmp/exported_features".freeze
     SUMMARIZED_ASSOCIATIONS = [:tags, :description_lines, :scenarios]
 
     def tag_line

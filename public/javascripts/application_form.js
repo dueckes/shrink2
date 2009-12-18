@@ -135,7 +135,7 @@ var MenuForm = $.klass({
 var TagForm = $.klass(StandardForm, {
   initialize: function($super, tagAreaSelector) {
     var tagAreaObject = $(tagAreaSelector);
-    $super(tagAreaObject.find('div[id$=_tags_form]'));
+    $super(tagAreaObject.find('div[id$=_tags_form_area]'));
     this._list = tagAreaObject.find('div[id$=_tags_list]');
     this._text = tagAreaObject.find('div[id$=_tags_text]');
   },
@@ -156,6 +156,29 @@ var TagForm = $.klass(StandardForm, {
   }
 });
 
+var FolderImportForm = $.klass(StandardForm, {
+  initialize: function($super, folderArea) {
+    $super(folderArea.find('div[id$=_import_form_area]'));
+  },
+  close: function() {
+    var self = this;
+    self._form.hide('blind', null, 500, function() {
+      self._form.html('');
+    });
+  }
+});
+
+var _FolderImportFormFactory = $.klass({
+  createFromFormElement: function(formElement) {
+    var folderArea = formElement.closest('li');
+    if (folderArea.length == 0) {
+      folderArea = formElement.closest('.root_folder')
+    }
+    return new FolderImportForm(folderArea);
+  }
+});
+var FolderImportFormFactory = new _FolderImportFormFactory();
+
 var _FormFactory = $.klass({
   createFromEvent: function(event) {
     var formObject = new NullForm();
@@ -169,6 +192,8 @@ var _FormFactory = $.klass({
       formObject = new AddAnywhereForm(formElement.closest('li'));
     } else if (formElement.hasClass('edit')) {
       formObject = new EditForm(formElement);
+    } else if (formElement.hasClass('folder_import')) {
+      formObject = FolderImportFormFactory.createFromFormElement(formElement);
     } else if (formElement.closest('.tags_area').size() > 0) {
       formObject = new TagForm(formElement.closest('.tags_area'));
     }

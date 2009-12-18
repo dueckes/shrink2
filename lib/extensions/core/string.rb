@@ -5,7 +5,7 @@ String.class_eval do
   end
 
   def fileize
-    self.downcase.gsub(/\s/, "_").gsub(/\W/, "")
+    self.strip.gsub(/[^a-z0-9_\-\s]/i, "")
   end
 
 end
