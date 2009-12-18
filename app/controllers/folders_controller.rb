@@ -1,6 +1,7 @@
 class FoldersController < CrudApplicationController
   before_filter :establish_model_via_id_param, :only => [:show, :edit, :update, :destroy,
                                                          :import_gesture, :import, :export]
+  before_filter :verify_zip_file, :only => [:import]
 
   def import_gesture
     # Intentionally blank
@@ -12,7 +13,8 @@ class FoldersController < CrudApplicationController
                                         :extract_root_directory => session[:temp_directory],
                                         :destination_folder => @folder)
       invalid_features = features.select { |feature| !feature.valid? }
-      invalid_features.empty? ? render_successful_import(@folder) : render_import_errors(@folder, invalid_features)
+      invalid_features.empty? ? render_successful_import(@folder) :
+              render_import_errors(@folder, invalid_features.collect(&:errors))
     end
   end
 
@@ -52,12 +54,16 @@ class FoldersController < CrudApplicationController
   end
 
   private
-  def render_successful_import(folder)
-    render(:update) { |page| refresh_folder(page, folder) }
+  def verify_zip_file
+    responds_to_parent { render_import_errors(@folder, ["Zip to import required"]) } unless params[:zip_file]
   end
 
-  def render_import_errors(folder, invalid_features)
-    render_errors("#{dom_id(folder)}_import_zip_errors", invalid_features.collect(&:errors))
+  def render_successful_import(folder)
+    render(:update) { |page| page << refresh_folder_js(folder) }
+  end
+
+  def render_import_errors(folder, errors)
+    render_errors("#{dom_id(folder)}_import_zip_errors", errors)
   end
 
 end

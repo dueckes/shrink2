@@ -1,6 +1,6 @@
 <% form_tag({ :controller => :folders, :action => :import, :id => folder.id }, { :multipart => true, :target => "upload_frame", :class => "folder_import" }) do -%>
   <% field_set_tag do -%>
-    <%= label_tag "#{dom_id(folder)}_import_zip_file", "Import Zip" %><%= file_field_tag :zip_file, :id => "#{dom_id(folder)}_import_zip_file" %>
+    <%= file_field_tag :zip_file, :id => "#{dom_id(folder)}_import_zip_file" %>
     <div class="buttons">
       <%= submit_tag "Import", :id => "#{dom_id(folder)}_import_zip_submit" %>
       <%= button_to_function "Cancel", :id => "#{dom_id(folder)}_import_zip_cancel" %>

@@ -8,8 +8,8 @@
       <%= link_to_remote "A", { :url => { :controller => :folders, :action => :import_gesture, :id => root_folder.id } }, { :id => dom_id(root_folder, :import_link), :class => "folder_import_link", :title => "Import" } %>
       <%= link_to "V", "#{folder_export_url(:id => root_folder.id)}.zip", { :id => "root_folder_export_link", :title => "Export" } %>
     </div>
-    <div id="<%= dom_id(root_folder) %>_import_form_area" style="display: none;">
-    </div>
+  </div>
+  <div id="<%= dom_id(root_folder) %>_import_form_area" class="folder_import_form_area" style="display: none;">
   </div>
   <%= render :partial => "folders/list", :locals => { :folder => root_folder, :highlighted_feature => highlighted_feature, :expanded => true } %>
 </div>

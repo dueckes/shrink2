@@ -6,13 +6,19 @@ module FoldersHelper
                      { :id => dom_id(feature, :folder_link), :class => "folder_feature_link", :title => "View Feature" }
   end
 
-  def refresh_folder(page, folder)
-    page << %{
+  def refresh_folder_js(folder)
+    %{
       $('##{dom_id(folder)}').fadeOutAndIn(function(object) {
         object.replaceWith(#{::ActiveSupport::JSON.encode(render_folder_to_string(:folder => folder))});
-        Folders.makeDragAndDroppable(#{forgery_protection_request_parameter});
-        FolderFeatures.makeDraggable();
+        #{make_folders_and_features_drag_and_droppable_js}
       })
+    }
+  end
+
+  def make_folders_and_features_drag_and_droppable_js
+    %{
+      Folders.makeDragAndDroppable(#{forgery_protection_request_parameter});
+      FolderFeatures.makeDraggable();
     }
   end
 

@@ -9,7 +9,7 @@ module FeaturesHelper
     page << "new TopMenuItem('#{action}_feature').hide();"
     page.replace_html("content_inner_area", :partial => "features/show_all", :locals => { :features => [feature], :minimized => false })
     page.show("#content_inner_area")
-    refresh_folder(page, feature.folder)
+    page << refresh_folder_js(feature.folder)
   end
   
 end

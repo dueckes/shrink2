@@ -157,7 +157,8 @@ var TagForm = $.klass(StandardForm, {
 });
 
 var FolderImportForm = $.klass(StandardForm, {
-  initialize: function($super, folderArea) {
+  initialize: function($super, folderAreaSelector) {
+    var folderArea = $(folderAreaSelector);
     $super(folderArea.find('div[id$=_import_form_area]'));
   },
   close: function() {
