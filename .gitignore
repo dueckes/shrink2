@@ -1,2 +1,4 @@
-log/*.log
 .idea
+log/*.log
+tmp/sessions/*
+tmp/spec/*

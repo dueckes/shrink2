@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
   before_filter :establish_temp_file_directory
   before_filter :strip_string_parameters
 
-  TMP_ROOT_DIRECTORY = "#{RAILS_ROOT}/tmp"
+  SESSION_TMP_ROOT_DIRECTORY = "#{RAILS_ROOT}/tmp/sessions"
 
   class << self
 
@@ -22,7 +22,7 @@ class ApplicationController < ActionController::Base
   end
 
   def establish_temp_file_directory
-    session[:temp_directory] ||= File.join(TMP_ROOT_DIRECTORY, session[:session_id])
+    session[:temp_directory] ||= File.join(SESSION_TMP_ROOT_DIRECTORY, session[:session_id])
   end
 
   def strip_string_parameters
