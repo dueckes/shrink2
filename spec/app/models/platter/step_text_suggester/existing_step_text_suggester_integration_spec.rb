@@ -1,4 +1,4 @@
-describe Platter::StepSuggester::ExistingTextSuggester do
+describe Platter::StepTextSuggester::ExistingStepTextSuggester do
 
   describe "integrating with the database" do
 
@@ -24,7 +24,7 @@ describe Platter::StepSuggester::ExistingTextSuggester do
       end
 
       before(:each) do
-        @context = mock("Context")
+        @context = mock("Context", :number_of_suggestions_allowed => 10)
       end
 
       describe "when no text is provided" do
@@ -55,14 +55,31 @@ describe Platter::StepSuggester::ExistingTextSuggester do
 
         before(:each) do
           @context.stub!(:text).and_return("First ")
+          @expected_results = ["First word in a phrase",
+                               "First second in this minute",
+                               "First sec on this day",
+                               "First second third - it was incrementing in single digits",
+                               "First second third the number of clients connecting was increasing"].sort
         end
 
-        it "should retrieve existing step texts that starts with the word" do
-          suggestions.sort.should eql(["First word in a phrase",
-                                       "First second in this minute",
-                                       "First sec on this day",
-                                       "First second third - it was incrementing in single digits",
-                                       "First second third the number of clients connecting was increasing"].sort)
+        describe "and the number of candidate results is within the number of additional suggestions allowed" do
+
+          it "should retrieve existing step texts that starts with the word" do
+            suggestions.sort.should eql(@expected_results)
+          end
+
+        end
+
+        describe "and the number of candidate results exceeds the number of additional suggestions allowed" do
+
+          before(:each) do
+            @context.stub!(:number_of_suggestions_allowed).and_return(3)
+          end
+
+          it "should return results whose size is limited to the number of suggestions allowed" do
+            suggestions.should eql(@expected_results[0..2])
+          end
+
         end
 
         it "should retrieve step texts in alphabetical order" do
@@ -131,7 +148,7 @@ describe Platter::StepSuggester::ExistingTextSuggester do
       end
 
       def suggestions
-        Platter::StepSuggester::ExistingTextSuggester.suggestions_for(@context)
+        Platter::StepTextSuggester::ExistingStepTextSuggester.suggestions_for(@context)
       end
 
     end

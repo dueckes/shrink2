@@ -1,9 +1,9 @@
 module Platter
-  module StepSuggester
+  module StepTextSuggester
 
-    class IncompleteFirstWordTextSuggester
+    class ConventionalBddTermSuggester
 
-      ORDERED_WORD_RULES = [ ["then", %w(And)],  ["when", %w(And Then)], ["given", %w(And When)] ]
+      ORDERED_TERM_RULES = [ ["then", %w(And)],  ["when", %w(And Then)], ["given", %w(And When)] ]
 
       class << self
 
@@ -15,7 +15,7 @@ module Platter
         private
         def evaluate_matching_rule(context)
           prior_first_words = first_words_before(context)
-          ORDERED_WORD_RULES.detect { |rule| prior_first_words.match(/\b#{Regexp.escape(rule[0])}\b/) }
+          ORDERED_TERM_RULES.detect { |rule| prior_first_words.match(/\b#{Regexp.escape(rule[0])}\b/) }
         end
 
         def first_words_before (context)

@@ -5,10 +5,8 @@ class StepsController < CrudApplicationController
   before_filter :establish_parents_via_params, :only => [:new, :create, :auto_complete_for_step_text]
 
   def auto_complete_for_step_text
-    require 'pp'
-    pp params
     @step_text_suggestions =
-            Platter::StepSuggester::StepSuggester.suggestions_for(params[:q], params[:position].to_i, @scenario)
+            Platter::StepTextSuggester::Suggester.suggestions_for(params[:q], params[:position].to_i, @scenario)
   end
 
   def reorder

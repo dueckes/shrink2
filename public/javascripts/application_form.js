@@ -75,12 +75,12 @@ var AddAnywhereForm = $.klass(StandardForm, {
     this._form.find('input[name*=position]').val(this.positionInList());
   },
   showModelAndClearForm: function() {
-    this._showModel();
     this._clearForm();
+    this._showModel();
   },
   showModelAndRemoveForm: function() {
-    this._showModel();
     this._removeForm();
+    this._showModel();
   },
   close: function() {
     var self = this;

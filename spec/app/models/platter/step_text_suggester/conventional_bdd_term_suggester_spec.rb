@@ -1,4 +1,4 @@
-describe Platter::StepSuggester::IncompleteFirstWordTextSuggester do
+describe Platter::StepTextSuggester::ConventionalBddTermSuggester do
 
   context "#suggestions_for" do
 
@@ -140,7 +140,7 @@ describe Platter::StepSuggester::IncompleteFirstWordTextSuggester do
 
     def suggestions
       context = mock("Context", :text => @text, :position => @position, :texts_before => @texts_before)
-      Platter::StepSuggester::IncompleteFirstWordTextSuggester.suggestions_for(context)
+      Platter::StepTextSuggester::ConventionalBddTermSuggester.suggestions_for(context)
     end
 
   end

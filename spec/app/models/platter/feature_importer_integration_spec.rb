@@ -63,7 +63,6 @@ describe Platter::FeatureImporter do
           describe "and a feature is invalid" do
 
             before(:all) do
-              puts "Platter::Feature.count: #{Platter::Feature.count}"
               @directory_path = "#{SPEC_RESOURCES_DIR}/directory_with_many_features_one_being_invalid"
               @imported_features = import_directory
               @feature_titles = %w(First Second Third)
