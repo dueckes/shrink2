@@ -6,7 +6,7 @@
     <% field_set_tag do -%>
       <%= form.hidden_field_tag(:form_number, add_anywhere_presenter.form_number) %>
       <%= form.hidden_field_for(:position) %>
-      <%= render :partial => "#{model_name.to_s.pluralize}/form_common", :locals => { :form => form } %>
+      <%= render :partial => "#{model_name.to_s.pluralize}/form_common", :locals => { :form => form, :model => model } %>
       <div id="<%= controller.new_id_prefix(model) %>_new_<%= model_name %>_errors" class="errors" style="display:none;">
       </div>
     <% end -%>

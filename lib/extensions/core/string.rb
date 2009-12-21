@@ -8,4 +8,8 @@ String.class_eval do
     self.strip.gsub(/[^a-z0-9_\-\s]/i, "")
   end
 
+  def contains_complete_word?
+    !!self.match(/^[^\s]+\s/)
+  end
+
 end

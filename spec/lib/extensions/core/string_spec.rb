@@ -80,4 +80,80 @@ describe String do
 
   end
 
+  context "#contains_complete_word?" do
+
+    describe "when the string contains a word followed by a space" do
+
+      before(:each) do
+        @string = "word "
+      end
+
+      it "should return true" do
+        @string.contains_complete_word?.should be_true
+      end
+
+    end
+
+    describe "when the string contains a word followed by a tab" do
+
+      before(:each) do
+        @string = "word\t"
+      end
+
+      it "should return true" do
+        @string.contains_complete_word?.should be_true
+      end
+
+    end
+
+    describe "when the string contains a word followed by a carriage-return" do
+
+      before(:each) do
+        @string = "word\n"
+      end
+
+      it "should return true" do
+        @string.contains_complete_word?.should be_true
+      end
+
+    end
+
+    describe "when the string contains multiple words" do
+
+      before(:each) do
+        @string = "word followed by many more words"
+      end
+      
+      it "should return true" do
+        @string.contains_complete_word?.should be_true
+      end
+
+    end
+
+    describe "when the string contains a word without whitespace" do
+
+      before(:each) do
+        @string = "word"
+      end
+
+      it "should return false" do
+        @string.contains_complete_word?.should be_false
+      end
+
+    end
+
+    describe "when the string is empty" do
+
+      before(:each) do
+        @string = ""
+      end
+
+      it "should return false" do
+        @string.contains_complete_word?.should be_false
+      end
+
+    end
+
+  end
+
 end

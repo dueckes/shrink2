@@ -1,13 +1,14 @@
 class StepsController < CrudApplicationController
   include CrudApplicationControllerAddAnywhereSupport
 
+  before_filter :strip_string_parameters, :except => [:auto_complete_for_step_text]
+  before_filter :establish_parents_via_params, :only => [:new, :create, :auto_complete_for_step_text]
+
   def auto_complete_for_step_text
-    # TODO Script injection protection, find() approach?
-    @steps = Platter::Step.find_by_sql(
-            %{SELECT DISTINCT(text) from #{self.class.model_class.table_name} 
-              WHERE LOWER(text) LIKE '#{params[:q]}%'
-              ORDER BY text ASC
-              LIMIT 10})
+    require 'pp'
+    pp params
+    @step_text_suggestions =
+            Platter::StepSuggester::StepSuggester.suggestions_for(params[:q], params[:position].to_i, @scenario)
   end
 
   def reorder

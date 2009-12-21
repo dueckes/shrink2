@@ -26,8 +26,10 @@ class DatabaseModelFixture
     Platter::Feature.find(:first) || create_feature!(options)
   end
 
-  def self.create_scenario!
-    Platter::Scenario.create!(:feature => find_or_create_feature!, :title => "Scenario Title")
+  def self.create_scenario!(options={})
+    combined_options = { :title => "Scenario Title" }.merge(options)
+    combined_options[:feature] ||= find_or_create_feature!
+    Platter::Scenario.create!(:feature => combined_options[:feature], :title => combined_options[:title])
   end
 
 end
