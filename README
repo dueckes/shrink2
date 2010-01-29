@@ -18,7 +18,13 @@ UPDATE pg_database SET datistemplate = TRUE where datname = 'template1';
 \c template1
 UPDATE pg_database SET datallowconn = FALSE where datname = 'template0';
 
-3.  Grant users privilege to createdb
-* alter role <name> createdb;
+3. Create users
+createuser --createdb --pwprompt shrink_dev
+createuser --createdb --pwprompt shrink_test
+
+Password matches username in both cases
+
+4. Create development database
+createdb --owner=shrink_dev shrink_dev
 
 4. rake db:reset_and_prepare
