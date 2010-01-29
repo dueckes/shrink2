@@ -1,30 +1,70 @@
-shrink: A conventional Rails application managing the described behaviour of an application.
+shrink: A conventional Rails application managing BDD artifacts, currently limited to Cucumber features.
 
-Database info:
+-------------------------------------
+Development Installation instructions
+-------------------------------------
+
+--------
+DATABASE
+--------
 1.  Install postgreSQL
+* For Mac see http://developer.apple.com/internet/opensource/postgres.html
 
 2.  Configure UTF8 encoding
 * Change template1 template database via:
 ---------------- Taken from: http://www.postgresql.org/docs/8.1/interactive/manage-ag-templatedbs.html -----------------
--- Connect as the postgres superuser, e.g.:
--- psql -U postgres template1
--- Then run:
-UPDATE pg_database SET datallowconn = TRUE where datname = 'template0';
-\c template0
-UPDATE pg_database SET datistemplate = FALSE where datname = 'template1';
-drop database template1;
-create database template1 with template = template0 encoding = 'UNICODE';
-UPDATE pg_database SET datistemplate = TRUE where datname = 'template1';
-\c template1
-UPDATE pg_database SET datallowconn = FALSE where datname = 'template0';
+  -- Connect as the postgres superuser, e.g.:
+  psql -U postgres template1
+  -- Then run:
+
+  UPDATE pg_database SET datallowconn = TRUE where datname = 'template0';
+  \c template0
+  UPDATE pg_database SET datistemplate = FALSE where datname = 'template1';
+  drop database template1;
+  create database template1 with template = template0 encoding = 'UNICODE';
+  UPDATE pg_database SET datistemplate = TRUE where datname = 'template1';
+  \c template1
+  UPDATE pg_database SET datallowconn = FALSE where datname = 'template0';
 
 3. Create users
-createuser --createdb --pwprompt shrink_dev
-createuser --createdb --pwprompt shrink_test
+* Execute
 
-Password matches username in both cases
+  createuser --createdb --pwprompt shrink_dev
+  createuser --createdb --pwprompt shrink_test
+
+See config/database.yml for exact details
 
 4. Create development database
-createdb --owner=shrink_dev shrink_dev
+* Execute
 
-4. rake db:reset_and_prepare
+  createdb --owner=shrink_dev shrink_dev
+
+4. Populate development database and create test database
+* Execute
+
+  rake db:reset_and_prepare
+
+----
+GEMS
+----
+1.  Install test specific gems
+* Execute
+
+  sudo gem install rspec --no-ri --no-rdoc --version=1.2.9
+  sudo gem install rspec-rails --no-ri --no-rdoc --version=1.2.9
+
+2.  Install rack
+* Execute
+
+  sudo gem install rack --no-ri --no-rdoc --version=1.0.1
+
+3.  Install postgreSQL adapter
+* For Mac Execute
+
+  sudo gem install pg
+
+-------------
+BUILD TARGETS
+-------------
+
+Full build: rake spec
