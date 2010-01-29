@@ -1,11 +1,9 @@
-<% form_tag({ :controller => :folders, :action => :import, :id => folder.id }, { :multipart => true, :target => "upload_frame", :class => "folder_import" }) do -%>
+<% form_tag({ :controller => :folders, :action => :import }, { :multipart => true, :target => :upload_frame, :id => :folder_import_form, :class => :folder_import }) do -%>
   <% field_set_tag do -%>
-    <%= file_field_tag :zip_file, :id => "#{dom_id(folder)}_import_zip_file" %>
-    <div class="buttons">
-      <%= submit_tag "Import", :id => "#{dom_id(folder)}_import_zip_submit" %>
-      <%= button_to_function "Cancel", :id => "#{dom_id(folder)}_import_zip_cancel" %>
-    </div>
-    <div id="<%= dom_id(folder) %>_import_zip_errors" class="errors" style="display: none;">
+    <%= hidden_field_tag(:id, "", :id => :folder_import_folder_id) %>
+    <%= file_field_tag :zip_file, :id => :folder_import_zip_file, :size => 80 %>
+    <%= submit_tag "Import", :id => :folder_import_zip_submit, :class => :button %>
+    <div id="folder_import_zip_errors" class="errors" style="display: none;">
     </div>
   <% end -%>
 <% end -%>

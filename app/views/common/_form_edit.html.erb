@@ -1,7 +1,9 @@
-<% remote_form_for(model_name, model, :url => url, :html => { :method => :put, :id => dom_id(model, :edit_form), :class => 'edit' }, :builder => form_builder) do |form| -%>
+<% remote_form_for(model.class.short_name, model, :url => url,
+                   :html => { :method => :put, :id => dom_id(model, :edit_form), :class => "#{model.class.short_name}_form simple edit" },
+                   :builder => form_builder_for(model)) do |form| -%>
   <% field_set_tag do -%>
-    <input type="hidden" name="cancel_edit" />
-    <%= render :partial => "#{model_name.to_s.pluralize}/form_common", :locals => { :form => form, :model => model } %>
+    <input type="hidden" name="cancel" />
+    <%= render :partial => "#{model.class.short_name.to_s.pluralize}/form_common", :locals => { :form => form, :model => model } %>
     <div id="<%= dom_id(model) %>_errors" class="errors">
     </div>
   <% end -%>

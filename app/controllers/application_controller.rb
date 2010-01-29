@@ -2,24 +2,22 @@
 # Likewise, all the methods added will be available for all controllers.
 
 class ApplicationController < ActionController::Base
+  include SessionNumberGenerator
+  include PresenterSupport
+  include CurrentUserSupport
+  include CurrentProjectSupport
+
   protect_from_forgery # See ActionController::RequestForgeryProtection for details
-  helper InlineEditHelper, AddAnywhereHelper
+
+  helper InlineEditHelper, AddAnywhereHelper, CellsHelper, TablesHelper, IconsHelper
 
   # Scrub sensitive parameters from your log
-  # filter_parameter_logging :password
+  filter_parameter_logging :password, :password_confirmation
 
   before_filter :establish_temp_file_directory
   before_filter :strip_string_parameters
 
   SESSION_TMP_ROOT_DIRECTORY = "#{RAILS_ROOT}/tmp/sessions"
-
-  class << self
-
-    def render_extra_menu_items?
-      @render_extra_menu_items ||= File.exists?("#{RAILS_ROOT}/app/views/#{self.controller_name}/_menu_items.html.erb")
-    end
-
-  end
 
   def establish_temp_file_directory
     unless session[:temp_directory]

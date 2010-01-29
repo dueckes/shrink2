@@ -2,9 +2,10 @@ class CreateTableFeautres < ActiveRecord::Migration
 
   def self.up
     create_table(:features) do |table|
-      table.string :title, :limit => 256, :null => false
-      table.string :summary, :limit => 4000, :null => false
+      table.integer :project_id, :null => false
       table.integer :folder_id, :null => false
+      table.string :title, :limit => 256, :null => false
+      table.text :summary, :null => true
       table.timestamps
     end
   end

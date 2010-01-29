@@ -1,10 +1,10 @@
-<% folder = Platter::Folder.new(:parent => parent) -%>
+<% folder = Shrink::Folder.new(:parent => parent) -%>
 <% remote_form_for(:folder, folder, :url => { :controller => :folders, :action => :create, :parent_id => parent.id },
-                   :html => { :class => "add" }, :builder => FolderFormBuilder) do |form| -%>
+                   :html => { :class => "new" }, :builder => FolderFormBuilder) do |form| -%>
   <% field_set_tag do -%>
     <%= form.hidden_field_tag(:clicked_add_link_id, dom_id(parent, :add_link)) %>
     <%= render :partial => "folders/form_common", :locals => { :form => form } %>
-    <div id="<%= controller.new_id_prefix(folder) %>_new_folder_errors" class="errors" style="display: none;">
+    <div id="<%= controller.create_errors_area_dom_id(folder) %>_new_folder_errors" class="errors" style="display: none;">
     </div>
   <% end -%>
 <% end -%>

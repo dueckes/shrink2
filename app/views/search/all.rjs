@@ -1,0 +1,3 @@
+page << "$('#search_errors').hideAndBlank()"
+page.replace_html("search_results", :partial => "search/show_all_results", :locals => { :search_text => @search_text, :features => @features, :tags => @tags })
+page << "new SearchResults().open()"

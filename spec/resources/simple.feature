@@ -1,7 +1,7 @@
 @tag_one @tag_two @tag_three
-Feature: Some Simple Feature
+Feature: Simple Feature Example
   As a developer
-  I want to test feature importing
+  I want to test importing a simple feature
   So that I have confidence it works for real users
 
   Scenario: First Scenario

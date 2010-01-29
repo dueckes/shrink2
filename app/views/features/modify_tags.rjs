@@ -1,1 +1,1 @@
-blind_up_tag_form_and_display_tag_list(page, @feature)
+hide_tag_form_and_display_tag_list(page, @feature)

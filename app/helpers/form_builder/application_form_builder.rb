@@ -1,7 +1,7 @@
 class ApplicationFormBuilder < ActionView::Helpers::FormBuilder
 
   class << self
-    attr_reader :element_id_providers
+    attr_reader :element_id_providers, :buttons_visible
 
     def set_element_id_providers(options)
       @element_id_providers ||= {}
@@ -10,7 +10,7 @@ class ApplicationFormBuilder < ActionView::Helpers::FormBuilder
         @element_id_providers[key] = provider_factory_class.new(value)
       end
     end
-    
+
     def inherited(subclass)
       subclass.set_element_id_providers :add => AddFormElementIdProvider, :edit => EditFormElementIdProvider
     end
@@ -23,11 +23,14 @@ class ApplicationFormBuilder < ActionView::Helpers::FormBuilder
   end
 
   def commit_button(options={})
-    submit_button_for(@object.new_record? ? :add : :update, options)
+    submit_button_for(@object.new_record? ? :add : :update,
+                      { :style => @template.element_style(:hidden => !buttons_visible) }.merge(options))
   end
 
-  def cancel_button
-    @template.button_to_function("Cancel", standard_tag_options(:cancel))
+  def label_for(field_as_symbol, text, options={})
+    for_attribute = id_for(field_as_symbol)
+    for_attribute = "#{for_attribute}_#{options[:value]}" if options[:value]
+    label(field_as_symbol, text, { :for => for_attribute }.merge(options))
   end
 
   def text_field_for(field_as_symbol, options={}, autocomplete_options={})
@@ -38,25 +41,33 @@ class ApplicationFormBuilder < ActionView::Helpers::FormBuilder
     }
   end
 
-  def hidden_field_for(field_as_symbol)
-    hidden_field(field_as_symbol, standard_tag_options(field_as_symbol))
+  def hidden_field_for(field_as_symbol, value=nil)
+    hidden_field(field_as_symbol, standard_tag_options(field_as_symbol).merge(:value => value))
   end
 
-  def hidden_field_tag(name, value)
+  def hidden_field_tag(name, value="")
     @template.hidden_field_tag(name, value, standard_tag_options(name))
+  end
+
+  def radio_button_for(field_as_symbol, value, options={})
+    radio_button(field_as_symbol, value, { :id => "#{id_for(field_as_symbol)}_#{value}" }.merge(options))
   end
 
   def id_for(name)
     @element_id_provider.id_for(name)
   end
 
+  def buttons_visible
+    false
+  end
+
   private
   def submit_button_for(verb, options={})
-    submit(verb.to_s.capitalize, { :id => id_for(verb) }.merge(options))
+    submit(verb.to_s.capitalize, { :id => id_for(verb), :class => :button }.merge(options))
   end
 
   def text_field_tag_options(field_as_symbol, options, auto_complete_options)
-    tag_options = { :size => 80, :maxlength => 256 }.merge(standard_tag_options(field_as_symbol)).merge(options)
+    tag_options = { :size => 60, :maxlength => 256 }.merge(standard_tag_options(field_as_symbol)).merge(options)
     tag_options[:autocomplete] = "off" unless auto_complete_options.empty?
     tag_options
   end

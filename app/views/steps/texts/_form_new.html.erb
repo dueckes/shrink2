@@ -1,0 +1,4 @@
+<%= render(:partial => "common/form_new_add_anywhere", :layout => "common/form_new_add_anywhere_layout",
+           :locals => { :model => step,
+                        :url => { :controller => :steps, :action => :create, :scenario_id => step.scenario.id },
+                        :add_anywhere_presenter => add_anywhere_presenter }) %>

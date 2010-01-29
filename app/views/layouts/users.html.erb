@@ -1,0 +1,29 @@
+<% content_for :header_title_area do -%>
+  &nbsp;
+<% end -%>
+<% content_for :header_controls_area do -%>
+  &nbsp;
+<% end -%>
+<% content_for :sidebar_area do -%>
+  <div id="sidebar_button_area">
+    <%= link_to "Add User", "#", { :id => :user_add_form_show_link, :title => "Add User" } %>
+    <div style="display: none;">
+      <div id="user_add_form_area">
+        <%= render :partial => "users/form_new", :locals => { :user => Shrink::User.new, :roles => @roles } %>
+      </div>
+      <%= javascript_tag "new UserAddForm().configurePopup()" %>
+    </div>
+   </div>
+  <div id="users_container" class="sidebar_list_container">
+    <div class="sidebar_header_container">
+      <div class="sidebar_header">
+        Users
+      </div>
+    </div>
+    <%= render :partial => "users/list", :locals => { :users => @users, :hide => nil } %>
+  </div>
+<% end -%>
+<% content_for :main_area do -%>
+  <%= yield %>
+<% end -%>
+<%= render :file => "layouts/secure" %>

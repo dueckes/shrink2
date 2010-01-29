@@ -16,18 +16,81 @@ var StandardForm = $.klass({
   },
   open: function(effect) {
     var self = this;
-    var callback = function() { self._focus(); };
+    var callback = function() { self.focus(); };
     if (effect == 'blind') {
       self._form.show('blind', null, 500, callback);
     } else {
       self._form.fadeIn('fast', callback);
     }
   },
+  toggle: function() {
+    if (this._form.is(':visible')) {
+      this.close();
+    }
+    else {
+      this.open();
+    }
+  },
   cancel: function() {
     this.close();
   },
-  _focus: function() {
-    this._form.find('input:visible:enabled:first').focus();
+  clear: function() {
+    this._clearInputValues();
+    this._uncheckRadioButtons();
+    this._clearErrors();
+    this.focus();
+  },
+  focus: function() {
+    this.firstInput().focus();
+  },
+  firstInput: function() {
+    return this._form.find('input:visible:enabled:first');
+  },
+  _clearInputValues: function() {
+    this._form.find('input:enabled, select:enabled')
+            .not('*[type=hidden]')
+            .not('*[type=button]')
+            .not('*[type=submit]')
+            .not('*[type=radio]')
+            .each(function(i, input) {
+      var inputObject = $(input);
+      inputObject.val('');
+      if (inputObject.flushCache != null) {
+        inputObject.flushCache();
+      }
+    });
+  },
+  _uncheckRadioButtons: function() {
+    this._form.find('input:visible:enabled[type=radio]').each(function(i, input) {
+      $(input).attr('checked', false);
+    });
+  },
+  _clearErrors: function() {
+    this._form.find('div[id*=errors]').each(function(i, element) {
+      $(element).hideAndBlank();
+    });
+  }
+});
+
+var PopUpForm = $.klass(StandardForm, {
+  initialize: function($super, formName, popUpWidth, popUpHeight) {
+    $super('#' + formName + '_form');
+    this._link = $('#' + this._form.attr('id') + '_show_link');
+    this._targetDivId = this._form.closest('div').attr('id');
+    this._popUpWidth = popUpWidth;
+    this._popUpHeight = popUpHeight;
+  },
+  configurePopup: function() {
+    var self = this;
+    self._link.colorbox(
+      { innerWidth: self._popUpWidth,
+        innerHeight: self._popUpHeight,
+        inline: true,
+        href: '#' + self._targetDivId,
+        onComplete: function() {
+          self.clear();
+        }
+      });
   }
 });
 
@@ -71,11 +134,12 @@ var AddAnywhereForm = $.klass(StandardForm, {
     $super(formAreaSelector);
     this._newModel = $(newModelSelector);
   },
-  setPositionField: function() {
-    this._form.find('input[name*=position]').val(this.positionInList());
+  setContainerDomIdAndPositionField: function() {
+    this._form.find('input[name=container_dom_id]').val(this._containerDomId());
+    this._form.find('input[name*=position]').val(this._positionInList());
   },
   showModelAndClearForm: function() {
-    this._clearForm();
+    this.clear();
     this._showModel();
   },
   showModelAndRemoveForm: function() {
@@ -88,23 +152,14 @@ var AddAnywhereForm = $.klass(StandardForm, {
       self._removeForm();
     });
   },
-  positionInList: function() {
-    var elementInList = this._form.closest('li');
-    var listElements = elementInList.closest('ul').children('li');
-    var listElementIds = jQuery.map(listElements, function (listElement) { return $(listElement).attr('id') });
-    return $.inArray(elementInList.attr('id'), listElementIds);
+  _containerDomId: function() {
+    return this._form.closest('li').attr('id');
+  },
+  _positionInList: function() {
+    return UnorderedList.elementPosition(this._form.closest('li'));
   },
   _showModel: function() {
     this._newModel.fadeIn('fast');
-  },
-  _clearForm: function() {
-    this._form.find('input:enabled:visible').each(function(i, input) {
-      var inputObject = $(input);
-      inputObject.val('');
-      if (inputObject.flushCache != null) {
-        inputObject.flushCache();
-      }
-    });
   },
   _removeForm: function() {
     this._form.remove();
@@ -119,20 +174,8 @@ var EditForm = $.klass(StandardForm, {
     this._form.fadeOut('fast');
   },
   cancel: function() {
-    this._form.find('input[name=cancel_edit]').val('true');
+    this._form.find('input[name=cancel]').val('true');
     this._form.find('input[type=submit]').click();
-  }
-});
-
-var MenuForm = $.klass({
-  initialize: function(menuItemName) {
-    this._menuItem = new TopMenuItem(menuItemName);
-  },
-  open: function() {
-    this._menuItem.toggle();
-  },
-  cancel: function() {
-    this._menuItem.hide();
   }
 });
 
@@ -160,45 +203,108 @@ var TagForm = $.klass(StandardForm, {
   }
 });
 
-var FolderImportForm = $.klass(StandardForm, {
-  initialize: function($super, folderAreaSelector) {
-    var folderArea = $(folderAreaSelector);
-    $super(folderArea.find('div[id$=_import_form_area]'));
+var FolderImportForm = $.klass(PopUpForm, {
+  initialize: function($super) {
+    $super('folder_import', '750px', '90px');
+  }
+});
+
+var ProjectAddForm = $.klass(PopUpForm, {
+  initialize: function($super) {
+    $super('project_add', '750px', '110px');
+  }
+});
+
+var UserAddForm = $.klass(PopUpForm, {
+  initialize: function($super) {
+    $super('user_add', '800px', '300px');
+  }
+});
+
+var UserEditForm = $.klass(PopUpForm, {
+  initialize: function($super) {
+    $super('user_edit', '800px', '200px');
+  },
+  clear: function() {
+    this._clearErrors();
+    this.focus();
+  }
+});
+
+var UserEditPasswordForm = $.klass(PopUpForm, {
+  initialize: function($super) {
+    $super('user_edit_password', '750px', '120px');
+  }
+});
+
+var TableForm = $.klass({
+  initialize: function(formSelector) {
+    this._form = $(formSelector);
+    this._table = new Table(formSelector);
+  },
+  setRowAndColumnNumberFields: function() {
+    this._form.find('input[name=number_of_rows]').val(this._table.numberOfRows());
+    this._form.find('input[name=number_of_columns]').val(this._table.numberOfColumns());
+  }
+});
+
+var AddFeatureForm = $.klass({
+  initialize: function() {
+    this._typeSelectionForm = new StandardForm('#feature_add_type_form');
+    this._addForm = new StandardForm('#add_feature_form');
+    this._importForm = new StandardForm('#import_feature_form');
+  },
+  showFormArea: function(formType) {
+    $('#' + this._otherFormType(formType) + '_feature_form').hide();
+    $('#' + formType + '_feature_form').show();
+  },
+  clear: function() {
+    this._typeSelectionForm.clear();
+    this._addForm.clear();
+    this._importForm.clear();
+    this._selectFirstType();
+    this._typeSelectionForm.focus();
+  },
+  _otherFormType: function(formType) {
+    var otherFormType = "add";
+    if (formType == otherFormType) {
+      otherFormType = "import";
+    }
+    return otherFormType;
+  },
+  _selectFirstType: function() {
+    this._typeSelectionForm.firstInput().attr('checked', true);
+  }
+});
+
+var SignInAjaxForm = $.klass(StandardForm, {
+  initialize: function($super) {
+    $super('#sign_in_ajax_form');
+  },
+  open: function($super) {
+    $super('blind');
   },
   close: function() {
     var self = this;
     self._form.hide('blind', null, 500, function() {
-      self._form.html('');
+      self.clear();
     });
   }
 });
-
-var _FolderImportFormFactory = $.klass({
-  createFromFormElement: function(formElement) {
-    var folderArea = formElement.closest('li');
-    if (folderArea.length == 0) {
-      folderArea = formElement.closest('.root_folder')
-    }
-    return new FolderImportForm(folderArea);
-  }
-});
-var FolderImportFormFactory = new _FolderImportFormFactory();
 
 var _FormFactory = $.klass({
   createFromEvent: function(event) {
     var formObject = new NullForm();
     var targetElement = $(event.target);
     var formElement = targetElement.closest('form');
-    if (formElement.closest('#menu').size() > 0) {
-      formObject = new MenuForm(formElement.closest('li').attr('id').match(/^menu_(.*)$/)[1]);
-    } else if (formElement.hasClass('add')) {
+    if (formElement.hasClass('new')) {
       formObject = new AddSimpleForm(formElement.closest('li'), this._clickedAddLinkSelector(formElement));
     } else if (formElement.hasClass('add_anywhere')) {
       formObject = new AddAnywhereForm(formElement.closest('li'));
     } else if (formElement.hasClass('edit')) {
       formObject = new EditForm(formElement);
-    } else if (formElement.hasClass('folder_import')) {
-      formObject = FolderImportFormFactory.createFromFormElement(formElement);
+    } else if (formElement.attr('id') == 'sign_in_ajax_form') {
+      formObject = new SignInAjaxForm();
     } else if (formElement.closest('.tags_area').size() > 0) {
       formObject = new TagForm(formElement.closest('.tags_area'));
     }

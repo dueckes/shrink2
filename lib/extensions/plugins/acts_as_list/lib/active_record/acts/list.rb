@@ -1,4 +1,4 @@
-module Platter
+module Shrink
   module ActiveRecord
     module Acts
       module List

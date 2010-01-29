@@ -1,0 +1,1 @@
+page.replace(@table_presenter.dom_id, :partial => "tables/show", :locals => { :table_presenter => @table_presenter })

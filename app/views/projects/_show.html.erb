@@ -1,0 +1,29 @@
+<div id="project_dashboard">
+  <h1>Projects</h1>
+  <div class="header highlight_controls_area">
+    <div id="<%= dom_id(project) %>_name" class="title">
+      <%= render :partial => "projects/show_name", :locals => { :project => project } %>
+    </div>
+    <div class="highlight_controls">
+      <%= link_to "View Features", project_features_path(project.id), { :id => :show_features_link, :title => "View Features" } %>
+      <%= link_to_remote icon(:delete, :red), { :confirm => "Are you sure you want to delete this project and all its features?", :url => project_path(project), :method => :delete }, { :id => dom_id(project, :delete_link), :title => "Delete" } %>
+    </div>
+  </div>
+  <div class="detail">
+    <div id="significant_statistics" class="section">
+      <h2>Statistics</h2>
+      <ul>
+        <% model_classes.each do |model_class| -%>
+          <%= render :partial => "projects/show_model_statistics", :locals => { :project => project, :model_class => model_class } %>
+        <% end -%>
+      </ul>
+    </div>
+    <div id="recently_changed_features" class="section">
+      <h2>Recently Changed Features</h2>
+      <ul>
+        <%= render_none_or_list_via_partial(recently_changed_features, :partial => "projects/show_recently_changed_features",
+                                            :locals => { :features => recently_changed_features }) %>
+      </ul>
+    </div>
+  </div>
+</div>

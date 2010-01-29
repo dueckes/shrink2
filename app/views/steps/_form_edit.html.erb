@@ -1,4 +1,1 @@
-<%= render(:partial => "common/form_edit", :locals => { :model_name => :step,
-                                                        :model => step,
-                                                        :url => folder_feature_scenario_step_path(step.folder, step.feature, step.scenario, step),
-                                                        :form_builder => StepFormBuilder }) %>
+<%= render :partial => "steps/#{step.step_type.pluralize}/form_edit", :locals => { :step => step } %>

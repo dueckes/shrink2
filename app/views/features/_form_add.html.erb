@@ -1,12 +1,25 @@
-<% form_remote_tag(:url => { :controller => :features, :action => :create }) do -%>
+<% form_tag("#", { :id => :feature_add_type_form, :class => "simple add_feature" }) do -%>
   <% field_set_tag do -%>
-    <%= label_tag "add_feature_title", "Title" %><%= text_field_tag "feature[title]", nil, :size => 120, :id => "add_feature_title" %>
-    <%= label_tag "add_feature_folder_id", "Folder" %><%= select_tag "folder_id", options_from_collection_for_select(folders, :id, :name), :id => "add_feature_folder_id" %>
-    <div class="buttons">
-      <%= submit_tag "Add", :id => "add_feature_submit", :class => "submit" %>
-      <%= button_to_function "Cancel", :id => "add_feature_cancel" %>
+    <%= label_tag :form_type_add, "Blank Feature" %><%= radio_button_tag :form_type, :add, true, { :class => :add_feature_form_type } %>
+    <%= label_tag :form_type_import, "Imported Feature" %><%= radio_button_tag :form_type, :import, false, { :class => :add_feature_form_type } %>
+  <% end -%>
+<% end -%>
+<% form_remote_tag(:url => { :controller => :features, :action => :create }, :html => { :id => :add_feature_form, :class => "simple add_feature" }) do -%>
+  <% field_set_tag do -%>
+    <%= label_tag "add_feature_title", "Title" %><%= text_field_tag "feature[title]", nil, :size => 85, :id => :add_feature_title %>
+    <%= label_tag "add_feature_folder_id", "Folder" %><%= render :partial => "features/form_folder_select", :locals => { :folders => folders, :form_name => :add } %>
+    <%= submit_tag "Add", :id => :add_feature_submit, :class => :button %>
+    <div id="<%= controller.create_errors_area_dom_id(nil) %>" class="errors" style="display: none;">
     </div>
-    <div id="<%= controller.new_id_prefix %>_new_feature_errors" class="errors" style="display: none;">
+  <% end -%>
+<% end -%>
+<% form_tag({ :controller => :features, :action => :import },
+            { :multipart => true, :target => :upload_frame, :id => :import_feature_form, :class => "simple add_feature", :style => "display: none" }) do -%>
+  <% field_set_tag do -%>
+    <%= label_tag "import_feature_file", "File" %><%= file_field_tag :feature_file, :id => "import_feature_file", :size => 77 %>
+    <%= label_tag "import_feature_folder_id", "Folder" %><%= render :partial => "features/form_folder_select", :locals => { :folders => folders, :form_name => :import } %>
+    <%= submit_tag "Add", :id => :import_feature_submit, :class => :button %>
+    <div id="import_feature_errors" class="errors" style="display: none;">
     </div>
   <% end -%>
 <% end -%>

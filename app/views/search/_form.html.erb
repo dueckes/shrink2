@@ -1,0 +1,16 @@
+<% form_remote_tag(:url => { :controller => :search, :action => :all }) do -%>
+  <%= label_tag "search_text", "Search", { :id => :search_text_label } %>
+  <div id="search_text_outer">
+    <%= text_field_tag :text, nil, { :id => :search_text, :maxlength => 256 } %>
+  </div>
+  <%= submit_tag "Search", :style => "display: none" %>
+  <div id="search_errors" class="errors" style="display: none;">
+  </div>
+<% end -%>
+<div id="search_results" style="display: none;">
+</div>
+<div id="search_results_view_previous" style="display: none;">
+  <div id="search_results_view_previous_inner">
+    <%= link_to "View previous search", "#", { :id => :search_results_reopen_link } %>
+  </div>
+</div>

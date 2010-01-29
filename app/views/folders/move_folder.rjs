@@ -1,2 +1,4 @@
-page << "$('##{dom_id(@source_folder)}').fadeOutAndRemove()"
-page << refresh_folder_js(@destination_folder)
+show_move page, <<-SCRIPT
+  $('##{dom_id(@source_folder)}').fadeOutAndRemove();
+  #{refresh_folder_js(@destination_folder)};
+SCRIPT

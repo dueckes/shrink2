@@ -1,0 +1,11 @@
+<% remote_form_for(:user, user, :url => users_path, :builder => UserFormBuilder,
+                   :html => { :id => "user_add_form", :class => "user_form simple" }) do |form| -%>
+  <% field_set_tag do -%>
+    <%= render :partial => "users/form_common_other", :locals => { :form => form, :user => user, :roles => roles } %>
+    <h2>Password</h2>
+    <%= render :partial => "users/form_common_password", :locals => { :form => form } %>
+    <%= form.commit_button %>
+    <div id="<%= controller.create_errors_area_dom_id(user) %>" class="errors" style="display: none;">
+    </div>
+  <% end -%>
+<% end -%>

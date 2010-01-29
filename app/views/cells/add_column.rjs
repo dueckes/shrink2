@@ -1,0 +1,9 @@
+page << "var table = new Table('##{@table_presenter.dom_id}')"
+column_control_cell_html = render("cells/show_column_controls", :cell_presenter => @table_presenter.header_row_presenter.cell_presenters.first)
+page << "table.cell(0, #{@position}).before(#{::ActiveSupport::JSON.encode(column_control_cell_html)})"
+@table_presenter.row_presenters.each_with_index do |row_presenter, row_number|
+  cell_html = render("cells/form_edit", :cell_presenter => row_presenter.cell_presenters.first)
+  page << "table.cell(#{row_number + 1}, #{@position}).before(#{::ActiveSupport::JSON.encode(cell_html)})"
+end
+empty_cell_html = render("cells/show_empty")
+page << "table.cell(#{@table_presenter.row_presenters.size + 1}, #{@position}).before(#{::ActiveSupport::JSON.encode(empty_cell_html)})"

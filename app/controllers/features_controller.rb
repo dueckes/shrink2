@@ -1,24 +1,23 @@
 class FeaturesController < CrudApplicationController
   layout "features", :only => [:index, :show]
-  helper FoldersHelper
+  helper FoldersHelper, StepsHelper
 
   #TODO extend filters
+  before_filter :require_user
+  before_filter :establish_project, :only => :index
+  before_filter :establish_project_from_feature, :only => :show
+  before_filter :establish_root_folder, :only => [:index, :show]
+  before_filter :establish_all_folders, :only => [:index, :show, :refresh_folder_select]
+
   before_filter :establish_parents_via_params, :only => [:new, :create, :import]
   before_filter :establish_model_via_id_param, :only => [:show, :show_detail, :manage_tags, :modify_tags,
                                                          :edit, :update, :destroy]
-  before_filter :establish_root_folder, :only => [:index, :show]
-  before_filter :verify_search_text, :only => [:search]
   before_filter :verify_feature_file, :only => [:import]
 
-  def index
-    @count = Platter::Feature.count
-  end
+  set_create_errors_area_dom_id(:folder_new_feature_errors)
 
-  def search
-    #TODO Pagination
-    @search_text = params[:text]
-    @features = Platter::Feature.find(:all, :conditions => ["lower(summary) like ?", "%#{@search_text.downcase}%"])
-    @tags = Platter::Tag.find(:all, :conditions => ["lower(name) like ?", "%#{@search_text.downcase}%"])
+  def index
+    #Intentionally blank
   end
 
   def show_detail
@@ -26,24 +25,20 @@ class FeaturesController < CrudApplicationController
   end
 
   def manage_tags
-    @all_tags = Platter::Tag.find(:all, :order => "name")
+    @all_tags = current_project.tags.find(:all, :order => "name")
   end
 
   def modify_tags
-    @feature.tag_line = params[:text]
+    @feature.tags.line = params[:text]
   end
 
-  def add_gesture
-    @folders = Platter::Folder.find(:all)
+  def refresh_folder_select
+    @form_name = params[:form_name]
   end
 
   def create
     super
     establish_new_description_line_add_anywhere_presenter
-  end
-
-  def import_gesture
-    @folders = Platter::Folder.find(:all)
   end
 
   def import
@@ -55,7 +50,7 @@ class FeaturesController < CrudApplicationController
   end
 
   def export
-    @feature = Platter::Feature.find_by_id(params[:id])
+    @feature = Shrink::Feature.find_by_id(params[:id])
     respond_to do |format|
       format.html
       format.feature do
@@ -66,31 +61,35 @@ class FeaturesController < CrudApplicationController
     end
   end
 
-  def new_id_prefix(model=nil)
-    "folder"
-  end
-
   private
-  def establish_root_folder
-    @root_folder = Platter::Folder.root
+  def establish_project
+    store_current_project(params[:project_id])
   end
 
-  def verify_search_text
-    render_errors("search_errors", ["Search text required"]) if params[:text].blank?
+  def establish_project_from_feature
+    store_current_project(@feature.folder.project.id)
   end
-  
+
+  def establish_root_folder
+    @root_folder = current_project.root_folder
+  end
+
+  def establish_all_folders
+    @folders = current_project.folders(true)
+  end
+
   def verify_feature_file
     responds_to_parent { render_import_errors(["Feature to import required"]) } unless params[:feature_file]
   end
 
   def establish_new_description_line_add_anywhere_presenter
     @description_line_add_anywhere_presenter = AddAnywherePresenter.new(
-            :template => @template, :parent_models => [@feature], :short_model_name => :description_line,
-            :form_number => next_form_number, :clicked_item_dom_id => dom_id(@feature, :add_description_line_link_area))
+            :model => Shrink::FeatureDescriptionLine.new(:feature => @feature), :controller => self,
+            :clicked_container_dom_id => dom_id(@feature, :add_description_line_link_area))
   end
 
   def render_successful_import(feature)
-    render(:update) { |page| hide_top_menu_and_show_feature(page, feature, "import") }
+    render(:update) { |page| hide_add_feature_form_and_show_feature(page, feature) }
   end
 
   def render_import_errors(errors)

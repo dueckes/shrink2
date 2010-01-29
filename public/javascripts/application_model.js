@@ -2,15 +2,88 @@ var ModelObject = $.klass({
   initialize: function(areaSelector) {
     this._area = $(areaSelector);
   },
-  equals:function (other) {
-    return this.name() == other.name() && this.modelId() == other.modelId();
+  isDroppable: function(other) {
+    return !this._equals(other) && !this._hasAncestor(other);
   },
   modelId: function() {
     var areaId = this._area.attr('id');
-    return areaId.match(new RegExp('^platter_' + this.name() + '_(\\d*)'))[1];
+    return areaId.match(new RegExp('^shrink_' + this.name() + '_(\\d*)'))[1];
   },
   area: function() {
     return this._area;
+  },
+  _equals: function(other) {
+    return this.name() == other.name() && this.modelId() == other.modelId();
+  },
+  _hasAncestor: function(other) {
+    return this._area.parents().index(other.area()) >= 0;
+  }
+});
+
+var _UnorderedList = $.klass({
+  elementPosition: function(elementSelector) {
+    return $(elementSelector).positionInParent();
+  }
+});
+var UnorderedList = new _UnorderedList();
+
+var Table = $.klass({
+  initialize: function(tableSelector) {
+    this._table = $(tableSelector);
+  },
+  row: function(rowPosition) {
+    var rowElement = this._table.find('tr')[rowPosition];
+    return $(rowElement);
+  },
+  cell: function(rowPosition, cellPosition) {
+    var rowObject = this.row(rowPosition);
+    var cellElement = rowObject.find('td, th')[cellPosition];
+    return $(cellElement);
+  },
+  rowPosition: function(rowSelector) {
+    return $(rowSelector).positionInParent();
+  },
+  columnPosition: function(cellSelector) {
+    return $(cellSelector).positionInParent();
+  },
+  numberOfRows: function() {
+    return this._table.find('tr').length;
+  },
+  numberOfColumns: function() {
+    return this.row(0).find('th,td').length;
+  },
+  removeRow: function(rowPosition) {
+    this.row(rowPosition).remove();
+  },
+  removeColumn: function(columnPosition) {
+    this._table.find('tr').each(function(i, rowElement) {
+      var cellElement = $(rowElement).find('th, td')[columnPosition];
+      $(cellElement).remove();
+    });
+  }
+});
+
+var AddFeatureLink = $.klass({
+  initialize: function() {
+    this._linkObject = $('#add_feature_link');
+  },
+  configureFormPopup: function() {
+    var self = this;
+    self._linkObject.colorbox(
+      { innerWidth: '775px',
+        innerHeight: '180px',
+        inline: true,
+        href: '#add_feature_form_area',
+        onOpen: function() {
+          $.ajax({ dataType: 'script',
+                   type: 'get',
+                   url: '/features/refresh_folder_select'
+          });
+        },
+        onComplete: function() {
+          new AddFeatureForm().clear();
+        }
+      });
   }
 });
 
@@ -30,7 +103,7 @@ var Feature = $.klass({
     }
   },
   toggle: function() {
-    this._detailArea().toggle('blind', null, 500);
+    this._expandArea().toggle('blind', null, 500);
   },
   remove: function() {
     this._area.fadeOutAndRemove();
@@ -41,14 +114,14 @@ var Feature = $.klass({
     var elementMatchRegularExpression = new RegExp('(^' + element + ',)|(,' + element + ',)|(,' + element + '$)');
     return commaDelimitedStringWithConsistentCommaSpacing.match(elementMatchRegularExpression) != null;
   },
-  _detailArea: function() {
+  _expandArea: function() {
     return this._area.find('.detail:first');
   },
   _folderFeatureArea: function() {
-    return $('#platter_feature_' + this._modelId(this._area) + '_folder_link_area');
+    return $('#shrink_feature_' + this._modelId(this._area) + '_folder_link_area');
   },
   _modelId: function() {
-    return this._area.attr('id').match(/^area_platter_feature_(.*)$/)[1];
+    return this._area.attr('id').match(/^area_shrink_feature_(.*)$/)[1];
   }
 });
 
@@ -63,30 +136,30 @@ var _Folders = $.klass({
       object.collapse();
     });
   },
-  makeDragAndDroppable: function(rails_mandatory_parameters) {
+  makeDragAndDroppable: function(railsMandatoryParameters) {
     this._makeDraggable();
-    this._makeDroppable(rails_mandatory_parameters);
+    this._makeDroppable(railsMandatoryParameters);
   },
   _onRootDescendantFolderObjects: function(callback) {
-    $('#folders_area li').each(function(i, object) {
+    $('#folders li').each(function(i, object) {
        callback(new Folder(object));
     });
   },
   _makeDraggable: function() {
-    $('#folders_area .edit_folder_link').makeDraggable("#folders_area .root_folder", function(draggedDomElement) {
+    $('#folders .edit_folder_link').makeDraggableWithin("#folders .root_folder", function(draggedDomElement) {
       draggedDomElement.modelObject = new Folder($(draggedDomElement).closest('li'));
     });
   },
-  _makeDroppable: function(rails_mandatory_parameters) {
-    $('#folders_area .header').droppable({
+  _makeDroppable: function(railsMandatoryParameters) {
+    $('#folders .header').droppable({
       accept: '.edit_folder_link, .folder_feature_link',
       drop: function(event, ui) {
         var draggedModelObject = ui.draggable.get(0).modelObject;
         var destinationModelObject = new Folder($(this));
-        if (!draggedModelObject.equals(destinationModelObject)) {
+        if (destinationModelObject.isDroppable(draggedModelObject)) {
           draggedModelObject.area().fadeOut('fast');
           $.ajax({ data: 'source_id=' + draggedModelObject.modelId() +
-                         '&destination_id=' + destinationModelObject.modelId() + rails_mandatory_parameters,
+                         '&destination_id=' + destinationModelObject.modelId() + '&' + railsMandatoryParameters,
                    dataType: 'script',
                    type: 'post',
                    url: '/folders/move_' + draggedModelObject.name()
@@ -126,7 +199,7 @@ var Folder = $.klass(ModelObject, {
 
 var _FolderFeatures = $.klass({
   makeDraggable: function() {
-    $('#folders_area .folder_feature_link').makeDraggable("#folders_area .root_folder", function(draggedDomElement) {
+    $('#folders .folder_feature_link').makeDraggableWithin("#folders .root_folder", function(draggedDomElement) {
       draggedDomElement.modelObject = new FolderFeature($(draggedDomElement).closest('li'));
     });
   }
@@ -139,5 +212,42 @@ var FolderFeature = $.klass(ModelObject, {
   },
   name: function() {
     return "feature";
+  }
+});
+
+var FolderImportLink = $.klass({
+  initialize: function(linkObject) {
+    this._folderId = linkObject.attr('id').match(new RegExp('shrink_folder_(\\d*)$'))[1];
+    this._showFormLink = $('#folder_import_form_show_link');
+  },
+  openFormPopup: function() {
+    $('#folder_import_folder_id').val(this._folderId);
+    this._showFormLink.click();
+  }
+});
+
+var SearchResults = $.klass({
+  initialize: function() {
+    this._results = $('#search_results');
+    this._viewPreviousResults = $('#search_results_view_previous');
+  },
+  open: function() {
+    this.reopen();
+  },
+  reopen: function() {
+    this._viewPreviousResults.hide();
+    this._results.show('blind', null, 500);
+  },
+  processPageClick: function(event) {
+    $.ajax({ dataType: 'script', type: 'get', url: event.target.href });
+    event.preventDefault();
+  },
+  close: function() {
+    var self = this;
+    if (self._results.is(':visible')) {
+      self._results.hide('blind', null, 500, function() {
+        self._viewPreviousResults.show('blind', null, 500);
+      })
+    }
   }
 });

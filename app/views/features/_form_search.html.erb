@@ -1,8 +1,0 @@
-<% form_remote_tag(:url => { :controller => :features, :action => :search }) do -%>
-  <%= text_field_tag :text, nil, :size => 25 %>
-  <%= submit_tag "Search" %>
-  <div id="search_errors" class="errors" style="display: none;">
-  </div>
-<% end -%>
-<div id="search_results" style="display: none;">
-</div>

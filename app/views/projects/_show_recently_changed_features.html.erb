@@ -1,0 +1,10 @@
+<% features.each do |feature| -%>
+  <li class="recently_changed_feature">
+    <div class="feature_link">
+      <%= link_to feature.title, folder_feature_path(feature.folder, feature), { :id => dom_id(feature, :show_link), :title => "View Feature" } %>
+    </div>
+    <div class="feature_last_change_time">
+      <span>Last changed <%= time_ago_in_words(feature.updated_at) %> ago</span>
+    </div>
+  </li>
+<% end -%>

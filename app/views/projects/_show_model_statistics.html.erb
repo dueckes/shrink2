@@ -1,0 +1,3 @@
+<li id="<%= model_class.short_name %>_statistics" class="model_statistics">
+  <%= pluralize(project.send(model_class.short_name.to_s.pluralize).count, model_class.short_name.to_s.capitalize) %>
+</li>

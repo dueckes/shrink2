@@ -1,0 +1,14 @@
+<% content_for :content_area do -%>
+  <div id="sidebar">
+    <%= yield :sidebar_area %>
+  </div>
+  <div id="main_outer">
+    <div id="main_inner">
+      <%= yield :main_area %>
+    </div>
+    <div id="main_footer">
+      &nbsp;
+    </div>
+  </div>
+<% end -%>
+<%= render :file => "layouts/application" %>

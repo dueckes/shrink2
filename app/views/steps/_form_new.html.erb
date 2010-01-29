@@ -1,7 +1,2 @@
-<%= render(:partial => "common/form_area_new_add_anywhere", :locals => { :model_name => :step,
-                                                                         :model => Platter::Step.new(:scenario => scenario),
-                                                                         :url => { :controller => :steps,
-                                                                                   :action => :create,
-                                                                                   :scenario_id => scenario.id },
-                                                                         :form_builder => StepFormBuilder,
-                                                                         :add_anywhere_presenter => add_anywhere_presenter }) %>
+<%= render :partial => "steps/#{step.step_type.pluralize}/form_new",
+           :locals => { :step => step, :add_anywhere_presenter => add_anywhere_presenter } %>

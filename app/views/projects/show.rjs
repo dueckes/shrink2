@@ -1,0 +1,1 @@
+page << render_dashboard_js(@project, @model_classes, @recently_changed_features)

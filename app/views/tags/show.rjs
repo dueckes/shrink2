@@ -1,2 +1,2 @@
-page.replace_html("content_inner_area", :partial => "tags/show_details", :locals => { :tag => @tag } )
-page << "FoldMenu.hideAllItems()"
+page.replace_html("features_container", :partial => "tags/show_details", :locals => { :tag => @tag } )
+page << close_search_results_js

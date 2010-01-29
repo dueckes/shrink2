@@ -1,9 +1,14 @@
 <% li_for(step, :class => "highlight_controls_area", :style => element_style(:hidden => hidden)) do -%>
-  <div id="<%= dom_id(step) %>_text">
-    <%= render :partial => "steps/show_text", :locals => { :step => step } %>
+  <div id="<%= dom_id(step) %>_<%= step.step_type %>">
+    <%= render :partial => "steps/show_#{step.step_type}", :locals => { :step => step } %>
   </div>
   <div class="highlight_controls">
-    <%= add_before_link(:model => step, :url => { :controller => :steps, :action => :new, :scenario_id => step.scenario.id }) %>
-    <%= link_to_remote "X", { :confirm => "Are you sure you want to delete this step?", :url => folder_feature_scenario_step_path(step.folder, step.feature, step.scenario, step), :method => :delete }, { :id => dom_id(step, :delete_link), :title => "Delete" } %>
+    <%= add_before_link(:model => step, :name => "+ Text", :title => "Add Text Before", :id_prefix => :add_text_link,
+                        :url => { :controller => :steps, :action => :new, :scenario_id => step.scenario.id }) %>
+    <%= add_before_link(:model => step, :name => "+ Table", :title => "Add Table Before", :id_prefix => :add_table_link,
+                        :url => { :controller => :steps, :action => :new_table, :scenario_id => step.scenario.id }) %>
+    <%= link_to_remote icon(:delete, :red), { :confirm => "Are you sure you want to delete this step?",
+                                              :url => folder_feature_scenario_step_path(step.folder, step.feature, step.scenario, step), :method => :delete },
+                       { :id => dom_id(step, :delete_link), :title => "Delete" } %>
   </div>
 <% end -%>

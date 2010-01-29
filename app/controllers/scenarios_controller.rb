@@ -4,8 +4,8 @@ class ScenariosController < CrudApplicationController
   def create
     super
     @step_add_anywhere_presenter = AddAnywherePresenter.new(
-            :template => @template, :parent_models => [@scenario], :short_model_name => :step,
-            :form_number => @form_number, :clicked_item_dom_id => dom_id(@scenario, :add_step_link_area))
+            :model => Shrink::Step.new(:scenario => @scenario), :controller => self,
+            :clicked_container_dom_id => dom_id(@scenario, :add_step_link_area))
   end
 
 end

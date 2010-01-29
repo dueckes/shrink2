@@ -1,1 +1,1 @@
-update_inline(page, @step, :step, :text)
+update_inline(page, @step, :step, @step.step_type)

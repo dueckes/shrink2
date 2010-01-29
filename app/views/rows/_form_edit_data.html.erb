@@ -1,0 +1,6 @@
+<tr id="<%= row_presenter.dom_id %>">
+  <% row_presenter.cell_presenters.each do |cell_presenter| -%>
+    <%= render :partial => "cells/form_edit", :locals => { :cell_presenter => cell_presenter } %>
+  <% end -%>
+  <%= render :partial => "cells/show_row_controls", :locals => { :row_presenter => row_presenter } %>
+</tr>

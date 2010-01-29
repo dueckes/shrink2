@@ -1,4 +1,4 @@
-module Platter
+module Shrink
   module ActionView
     module Helpers
       module ScriptaculousHelper

@@ -14,7 +14,7 @@ describe ":import" do
         ENV.stub!(:[]).with("path").and_return(@path)
       end
 
-      it "should delegate to the Platter::FeatureImporter to import the provided path" do
+      it "should delegate to the Shrink::FeatureImporter to import the provided path" do
         FEATURE_IMPORTER.should_receive(:import).with(:directory_path => @path).and_return([])
 
         @task.execute
@@ -23,7 +23,7 @@ describe ":import" do
       describe "when all features are imported without error" do
 
         before(:each) do
-          @features = (1..3).collect { |i| mock("Platter::Feature#{i}", :valid? => true) }
+          @features = (1..3).collect { |i| mock("Shrink::Feature#{i}", :valid? => true) }
           FEATURE_IMPORTER.stub!(:import).and_return(@features)
         end
 
@@ -38,7 +38,7 @@ describe ":import" do
       describe "when some features are imported with errors" do
 
         before(:each) do
-          @features = (1..5).collect { |i| mock("Platter::Feature#{i}",
+          @features = (1..5).collect { |i| mock("Shrink::Feature#{i}",
                                                 :valid? => i % 2 == 0,
                                                 :errors => i % 2 == 0 ? [] : create_errors(i)) }
           FEATURE_IMPORTER.stub!(:import).and_return(@features)

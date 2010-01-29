@@ -1,3 +1,0 @@
-form_area_dom_id = "#{dom_id(@folder)}_import_form_area"
-page.replace_html(form_area_dom_id, :partial => "folders/form_import", :locals => { :folder => @folder })
-page << "$('##{form_area_dom_id}').show('blind', null, 500)"

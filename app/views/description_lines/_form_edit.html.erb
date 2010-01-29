@@ -1,4 +1,3 @@
-<%= render(:partial => "common/form_edit", :locals => { :model_name => :description_line,
-                                                        :model => description_line,
-                                                        :url => folder_feature_description_line_path(description_line.folder, description_line.feature, description_line),
-                                                        :form_builder => FeatureDescriptionLineFormBuilder }) %>
+<%= render(:partial => "common/form_edit",
+           :locals => { :model => description_line,
+                        :url => folder_feature_description_line_path(description_line.folder, description_line.feature, description_line) }) %>

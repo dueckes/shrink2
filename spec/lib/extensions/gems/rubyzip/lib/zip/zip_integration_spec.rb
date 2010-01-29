@@ -1,7 +1,7 @@
-describe ::Platter::Zip::ZipFile do
+describe ::Shrink::Zip::ZipFile do
 
   class TestableZipFile
-    include ::Platter::Zip::ZipFile
+    include ::Shrink::Zip::ZipFile
   end
 
   describe "integrating with the file system" do

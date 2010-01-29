@@ -1,2 +1,4 @@
-page << "$('##{dom_id(@feature)}_folder_link_area').fadeOutAndRemove()"
-page << refresh_folder_js(@folder)
+show_move page, <<-SCRIPT
+  $('##{dom_id(@feature)}_folder_link_area').fadeOutAndRemove();
+  #{refresh_folder_js(@folder)};
+SCRIPT

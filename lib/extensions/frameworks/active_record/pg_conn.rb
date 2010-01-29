@@ -1,4 +1,4 @@
-module Platter
+module Shrink
   module PGconn
 
     def self.included(pg_conn)

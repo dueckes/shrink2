@@ -1,0 +1,12 @@
+<% remote_form_for(model.class.short_name, model, :url => url,
+                   :html => { :onsubmit => "new AddAnywhereForm(this).setContainerDomIdAndPositionField()", :class => "#{model.class.short_name}_form add_anywhere" },
+                   :add_anywhere_presenter => add_anywhere_presenter,
+                   :builder => form_builder_for(model)) do |form| -%>
+  <% field_set_tag do -%>
+    <%= form.hidden_field_tag(:container_dom_id) %>
+    <%= form.hidden_field_for(:position) %>
+    <%= render :partial => "#{model.class.short_name.to_s.pluralize}/form_common", :locals => { :form => form, :model => model } %>
+    <div id="<%= controller.create_errors_area_dom_id(model) %>" class="errors" style="display: none;">
+    </div>
+  <% end -%>
+<% end -%>

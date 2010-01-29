@@ -1,0 +1,4 @@
+<%= link_to "Users", users_path, { :id => :show_users_link, :title => "View Users" } %> |
+<%= link_to "Projects", projects_path, { :id => :show_projects_link, :title => "View Projects" } %> |
+Signed In as <%= link_to current_user.login, user_path(current_user), { :id => :edit_account_link, :title => "View User" } %> |
+<%= link_to "Sign Out", sign_out_url, { :id => :sign_out_link, :title => "Sign Out" } %>

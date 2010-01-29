@@ -5,23 +5,35 @@ class CrudApplicationController < ApplicationController
   class << self
 
     def model_class
-      @model_class || Platter.const_get(self.controller_name.singularize.capitalize)
+      @model_class || Shrink::ModelReflections.class_for(self.controller_name.singularize)
     end
 
     def set_model_class(model_class)
       @model_class = model_class
     end
 
+    def parent_associations
+      self.model_class.parent_associations
+    end
+
     def short_model_name
-      @short_model_name || self.model_class.contextless_name.downcase
+      self.model_class.short_name
     end
 
-    def set_short_model_name(short_model_name)
-      @short_model_name = short_model_name
+    def create_errors_area_dom_id
+      @create_errors_area_dom_id
     end
 
-    def fully_distinguished_model_name
-      self.model_class.model_name.singular
+    def set_create_errors_area_dom_id(dom_id)
+      @create_errors_area_dom_id = dom_id
+    end
+
+    def model_persistence_methods
+      @methods ||= { :create => :save, :update => :update_attributes, :destroy => :destroy }
+    end
+
+    def set_model_persistence_methods(methods)
+      @methods = methods
     end
 
   end
@@ -31,13 +43,9 @@ class CrudApplicationController < ApplicationController
   end
 
   def create
-    establish_model_for_create
+    establish_model_from_params
     create_before_save
-    if !@model.save
-      id_prefix = new_id_prefix(@model)
-      short_model_name = self.class.short_model_name
-      render_errors("#{id_prefix}_new_#{short_model_name}_errors", @model.errors)
-    end
+    render_create_errors(@model.errors) unless @model.save
   end
 
   def create_before_save
@@ -53,8 +61,8 @@ class CrudApplicationController < ApplicationController
   end
 
   def update
-    unless params[:cancel_edit] == "true"
-      if !@model.update_attributes(params[self.class.short_model_name])
+    unless params[:cancel] == "true"
+      unless @model.update_attributes(params[self.class.short_model_name])
         render_errors("#{dom_id(@model)}_errors", @model.errors)
       end
     end
@@ -65,16 +73,16 @@ class CrudApplicationController < ApplicationController
   end
 
   def establish_parents_via_params
-    @parents = self.class.model_class.belongs_to_associations.collect do |association|
+    @parents = self.class.parent_associations.collect do |association|
       parent = association.model_class.find(params["#{association.name}_id"])
       instance_variable_set("@#{association.name}", parent)
       parent
     end
   end
 
-  def establish_model_for_create
+  def establish_model_from_params
     set_model self.class.model_class.new(params[self.class.short_model_name])
-    self.class.model_class.belongs_to_associations.each do |association|
+    self.class.parent_associations.each do |association|
       @model.send("#{association.name}=", instance_variable_get("@#{association.name}"))
     end
   end
@@ -83,9 +91,8 @@ class CrudApplicationController < ApplicationController
     set_model find_model(params)
   end
 
-  def new_id_prefix(model)
-    association_names = self.class.model_class.belongs_to_associations.collect { |association| association.name }
-    association_names.collect { |name| dom_id(model.send(name)) }.join("_")
+  def create_errors_area_dom_id(model)
+    self.class.create_errors_area_dom_id || default_create_errors_area_dom_id(model)
   end
 
   def set_model(model)
@@ -93,8 +100,8 @@ class CrudApplicationController < ApplicationController
     instance_variable_set("@#{self.class.short_model_name}", model)
   end
 
-  def next_form_number
-    session[:form_number] = session[:form_number] ? session[:form_number] + 1 : 1
+  def render_create_errors(errors)
+    render_errors(create_errors_area_dom_id(@model), errors)
   end
 
   def render_errors(element_id, *errors)
@@ -111,6 +118,11 @@ class CrudApplicationController < ApplicationController
   private
   def find_model(params)
     self.class.model_class.find(params[:id])
+  end
+
+  def default_create_errors_area_dom_id(model)
+    prefix = model.class.parent_associations.collect { |association| dom_id(model.send(association.name)) }.join("_")
+    "#{prefix}_new_#{model.class.short_name}_errors"
   end
 
 end

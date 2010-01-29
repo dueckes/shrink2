@@ -1,4 +1,4 @@
-module Platter
+module Shrink
   module Cucumber
     module Ast
 

@@ -1,0 +1,29 @@
+<% content_for :header_title_area do -%>
+  &nbsp;
+<% end -%>
+<% content_for :header_controls_area do -%>
+  &nbsp;
+<% end -%>
+<% content_for :sidebar_area do -%>
+  <div id="sidebar_button_area">
+    <%= link_to "Add Project", "#", { :id => :project_add_form_show_link, :title => "Add Project" } %>
+    <div style="display: none;">
+      <div id="project_add_form_area">
+        <%= render :partial => "projects/form_new", :locals => { :project => Shrink::Project.new } %>
+      </div>
+      <%= javascript_tag "new ProjectAddForm().configurePopup()" %>
+    </div>
+   </div>
+  <div id="projects_container" class="sidebar_list_container">
+    <div class="sidebar_header_container">
+      <div class="sidebar_header">
+        Projects
+      </div>
+    </div>
+    <%= render :partial => "projects/list", :locals => { :projects => @projects, :hide => nil } %>
+  </div>
+<% end -%>
+<% content_for :main_area do -%>
+  <%= yield %>
+<% end -%>
+<%= render :file => "layouts/secure" %>

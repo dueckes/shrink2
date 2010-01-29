@@ -1,9 +1,15 @@
-<ul id="<%= dom_id(scenario, :steps) %>" class="leaf_list steps">
+<ul id="<%= dom_id(scenario, :steps) %>" class="steps">
   <% scenario.steps.each do |step| -%>
     <%= render :partial => "steps/show", :locals => { :step => step, :hidden => false } %>
   <% end -%>
-  <li id="<%= dom_id(scenario, :add_step_link_area) %>" class="add_last_link_area">
-    <%= add_at_end_link(:model_name => :step, :parent => scenario, :url => new_folder_feature_scenario_step_path(scenario.folder, scenario.feature, scenario)) %>
+  <% add_last_link_area_dom_id = dom_id(scenario, :add_step_link_area) -%>
+  <li id="<%= add_last_link_area_dom_id %>" class="add_last_link_area">
+    <%= add_at_end_link(:model_name => :step, :parent => scenario,
+                        :name => "Add Text", :title => "Add Text Here", :id_prefix => :add_step_text_end_link,
+                        :url => { :controller => :steps, :action => :new, :scenario_id => scenario.id }) %>
+    <%= add_at_end_link(:model_name => :step, :parent => scenario,
+                        :name => "Add Table", :title => "Add Table Here", :id_prefix => :add_step_table_end_link,
+                        :url => { :controller => :steps, :action => :new_table, :scenario_id => scenario.id }) %>
   </li>
 </ul>
 <%= render :partial => "steps/script_drag_and_drop", :locals => { :scenario => scenario } %>

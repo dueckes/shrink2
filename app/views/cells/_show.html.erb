@@ -1,0 +1,6 @@
+<% cell_tag(cell_presenter) do -%>
+  <%= link_to_remote with_default_text(cell_presenter.text),
+                     { :url => cell_presenter.table_presenter.edit_url, :method => :get },
+                     { :id => "#{cell_presenter.dom_id}_edit_link", :class => "editable_text_link",
+                       :title => "Click to Edit Table" } %>
+<% end -%>

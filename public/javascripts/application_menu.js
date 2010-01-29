@@ -1,4 +1,3 @@
-//TODO Consolidate menu hide/toggle logic.  Consider moving to one menu.
 var _TopMenu = $.klass({
   hideOtherItems: function(topMenuItem) {
     $('#menu .expand_area:visible').each(function(i, areaObject) {
@@ -37,59 +36,3 @@ var TopMenuItem = $.klass({
     return this._expandAreaObject;
   }
 });
-
-var _FoldMenu = $.klass({
-  hideOtherItems: function(foldMenuItem) {
-    this._onAllMenuItems(function(currentFoldMenuItem) {
-      if (foldMenuItem.id() != currentFoldMenuItem.id()) {
-        currentFoldMenuItem.hide();
-      }
-    });
-  },
-  hideAllItems: function() {
-    this._onAllMenuItems(function(foldMenuItem) {
-      foldMenuItem.hide();
-    });
-  },
-  _onAllMenuItems: function(callback) {
-    $('#fold_menu .fold_item').each(function(i, itemObject) {
-      callback(FoldMenuItemFactory.createFromObject($(itemObject)));
-    });
-  }
-});
-var FoldMenu = new _FoldMenu();
-
-var FoldMenuItem = $.klass({
-  initialize: function(itemObject) {
-    this._itemObject = itemObject;
-    this._minimizedWidth = '-401px';
-    this._maximizedWidth = '0px';
-  },
-  toggle: function() {
-    if (this._itemObject.css('left') == this._maximizedWidth) {
-      this.hide();
-    } else {
-      this.show();
-    }
-  },
-  show: function() {
-    FoldMenu.hideOtherItems(this);
-    this._itemObject.animate({ left: this._maximizedWidth }, 500);
-  },
-  hide: function() {
-    this._itemObject.animate({ left: this._minimizedWidth }, 500);
-  },
-  id: function() {
-    return this._itemObject.attr('id');
-  }
-});
-
-var _FoldMenuItemFactory = $.klass({
-  createFromObject: function(object) {
-    return new FoldMenuItem(object);
-  },
-  createFromName: function(itemName) {
-    return new FoldMenuItem($('#fold_menu_' + itemName));
-  }
-});
-var FoldMenuItemFactory = new _FoldMenuItemFactory();

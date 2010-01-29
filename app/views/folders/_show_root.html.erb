@@ -1,16 +1,15 @@
 <div id="<%= dom_id(root_folder) %>" class="root_folder">
-  <div id="<%= dom_id(root_folder) %>_header" class="header root_folder_header highlight_controls_area">
-    <span><%= root_folder.name %></span>
-    <div class="highlight_controls">
-      <%= link_to "v", "#", { :id => "root_folder_expand_link", :title => "Expand All" } %>
-      <%= link_to "^", "#", { :id => "root_folder_collapse_link", :title => "Collapse All" } %>
-      <%= link_to_remote "+", { :url => { :controller => :folders, :action => :new, :parent_id => root_folder.id }, :method => :get }, { :id => dom_id(root_folder, :add_link), :title => "Add Sub-Folder" } %>
-      <%= link_to_remote "A", { :url => { :controller => :folders, :action => :import_gesture, :id => root_folder.id } }, { :id => dom_id(root_folder, :import_link), :class => "folder_import_link", :title => "Import" } %>
-      <%= link_to "V", "#{folder_export_url(:id => root_folder.id)}.zip", { :id => "root_folder_export_link", :title => "Export" } %>
+  <div class="sidebar_header_container">
+    <div id="<%= dom_id(root_folder) %>_header" class="sidebar_header root_folder_header highlight_controls_area">
+      <span id="root_folder_name"><%= root_folder.name %></span>
+      <div class="highlight_controls">
+        <%= link_to_remote icon(:plus), { :url => { :controller => :folders, :action => :new, :parent_id => root_folder.id }, :method => :get }, { :id => dom_id(root_folder, :add_link), :title => "Add Sub-Folder" } %>
+        <%= link_to "A", "#", { :id => dom_id(root_folder, :import_link), :class => "folder_import_link", :title => "Import Folder Containing Features" } %>
+        <%= link_to icon(:export), "#{folder_export_url(:id => root_folder.id)}.zip", { :id => "root_folder_export_link", :title => "Export Folder And All Features" } %>
+      </div>
     </div>
   </div>
-  <div id="<%= dom_id(root_folder) %>_import_form_area" class="folder_import_form_area" style="display: none;">
-  </div>
   <%= render :partial => "folders/list", :locals => { :folder => root_folder, :highlighted_feature => highlighted_feature, :expanded => true } %>
+  <div class="spacer">&nbsp;</div>
 </div>
 <%= render :partial => "folders/drag_and_drop_script" %>

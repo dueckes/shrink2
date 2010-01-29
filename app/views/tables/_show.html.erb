@@ -1,0 +1,5 @@
+<table id="<%= table_presenter.dom_id %>">
+  <% table_presenter.row_presenters.each do |row_presenter| -%>
+    <%= render :partial => "rows/show", :locals => { :row_presenter => row_presenter } %>
+  <% end -%>
+</table>

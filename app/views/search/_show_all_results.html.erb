@@ -1,0 +1,22 @@
+<div id="last_search_area">
+  <h1>Search Results</h1>
+  <span>You searched for:</span><span id="last_search_text"><%= search_text %></span>
+</div>
+<div id="tag_results">
+  <h2>Tag Matches (<%= tags.size %>)</h2>
+  <% if tags.empty? -%>
+    <span>No tags found</span>
+  <% else -%>
+    <ul>
+      <% tags.each do |tag| -%>
+        <li>
+          <%= link_to_remote highlight(tag.name, search_text), { :url => tag_path(tag), :method => :get }, { :id => dom_id(tag, :search_result_link), :title => "View Tag" } %>
+        </li>
+      <% end -%>
+    </ul>
+  <% end -%>
+</div>
+<%= render :partial => "search/show_feature_results", :locals => { :search_text => search_text, :features => features } %>
+<div id="search_results_close_link_area">
+  <%= link_to icon(:delete), "#", { :id => :search_results_close_link, :title => "Close" }%>
+</div>

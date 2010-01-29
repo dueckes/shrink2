@@ -1,4 +1,4 @@
-common: &common
+_common: &common
   adapter: postgresql
   host: localhost
   port: 5432
@@ -8,18 +8,18 @@ common: &common
 
 development:
   <<: *common
-  username: platter_dev
-  password: platter_dev
-  database: platter_dev
+  username: shrink_dev
+  password: shrink_dev
+  database: shrink_dev
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
 test:
   <<: *common
-  username: platter_test
-  password: platter_test
-  database: platter_test
+  username: shrink_test
+  password: shrink_test
+  database: shrink_test
 
 showcase:
   <<: *common

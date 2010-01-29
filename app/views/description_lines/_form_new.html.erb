@@ -1,7 +1,4 @@
-<%= render(:partial => "common/form_area_new_add_anywhere", :locals => { :model_name => :description_line,
-                                                                         :model => Platter::FeatureDescriptionLine.new(:feature => feature),
-                                                                         :url => { :controller => :description_lines,
-                                                                                   :action => :create,
-                                                                                   :feature_id => feature.id },
-                                                                         :form_builder => FeatureDescriptionLineFormBuilder,
-                                                                         :add_anywhere_presenter => add_anywhere_presenter }) %>
+<%= render(:partial => "common/form_new_add_anywhere", :layout => "common/form_new_add_anywhere_layout",
+           :locals => { :model => Shrink::FeatureDescriptionLine.new(:feature => feature),
+                        :url => { :controller => :description_lines, :action => :create, :feature_id => feature.id },
+                        :add_anywhere_presenter => add_anywhere_presenter }) %>

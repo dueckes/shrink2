@@ -4,7 +4,8 @@ class CreateTableSteps < ActiveRecord::Migration
     create_table(:steps) do |table|
       table.integer :scenario_id, :null => false
       table.integer :position, :null => false
-      table.string :text, :limit => 256, :null => false
+      table.string :text, :limit => 256
+      table.integer :table_id
       table.timestamps
     end
   end

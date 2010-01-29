@@ -1,6 +1,7 @@
+<h1>Features</h1> 
 <ul id="features">
   <% features.each do |feature| -%>
-    <li>
+    <li class="feature">
       <%= render :partial => "features/show", :locals => { :feature => feature, :minimized => minimized } %>
     </li>
   <% end -%>

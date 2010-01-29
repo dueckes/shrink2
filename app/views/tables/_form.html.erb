@@ -1,0 +1,31 @@
+<% form_remote_tag(:url => table_presenter.save_url,
+                   :html => { :onsubmit => "new AddAnywhereForm(this).setContainerDomIdAndPositionField(); new TableForm('##{table_presenter.dom_id}').setRowAndColumnNumberFields()",
+                              :id => table_presenter.dom_id, :class => table_presenter.form_class }) do -%>
+  <%= hidden_field_tag(:container_dom_id) %>
+  <%= hidden_field_tag(:position) %>
+  <%= hidden_field_tag(:number_of_rows) %>
+  <%= hidden_field_tag(:number_of_columns) %>
+  <%= hidden_field_tag(:cancel) %>
+  <table>
+    <tr id="<%= table_presenter.column_controls_row_dom_id %>">
+      <% table_presenter.header_row_presenter.cell_presenters.each do |cell_presenter| -%>
+        <%= render :partial => "cells/show_column_controls", :locals => { :cell_presenter => cell_presenter } %>
+      <% end -%>
+      <%= render :partial => "cells/show_column_controls_after_last", :locals => { :table_presenter => table_presenter } %>
+    </tr>
+    <%= render :partial => "rows/form_edit_header", :locals => { :row_presenter => table_presenter.header_row_presenter } %>
+    <% table_presenter.data_row_presenters.each do |row_presenter| -%>
+      <%= render :partial => "rows/form_edit_data", :locals => { :row_presenter => row_presenter } %>
+    <% end -%>
+    <tr id="<%= table_presenter.last_row_controls_row_dom_id %>">
+      <% table_presenter.header_row_presenter.cell_presenters.each do -%>
+        <%= render :partial => "cells/show_empty" %>
+      <% end -%>
+      <%= render :partial => "cells/show_row_controls_after_last", :locals => { :table_presenter => table_presenter } %>
+    </tr>
+  </table>
+  <div style="clear: left;">
+    <%= submit_tag "Save", :id => "#{table_presenter.dom_id}_save" %>
+    <%= button_to_function "Cancel", { :id => "#{table_presenter.dom_id}_cancel" } %>
+  </div>
+<% end -%>

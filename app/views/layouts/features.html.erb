@@ -1,43 +1,46 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-Transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" >
-  <head>
-    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-    <meta name="author" content="" />
-    <meta name="keywords" content="" />
-    <meta name="description" content="" />
-    <meta name="robots" content="all" />
-    <meta name="copyright" content="&copy; 2009" />
-
-    <title>Platter - Feature Management - Cucumber served in a PracticLe Acceptance Testing Tool for EveRyone</title>
-
-    <!-- to correct the unsightly Flash of Unstyled Content. http://www.bluerobot.com/web/css/fouc.asp -->
-    <%= javascript_tag %>
-
-    <%= stylesheet_link_tag "ie_bug_fix", "reset", "nifty_corners", "jquery.autocomplete", "application" %>
-    <%= javascript_include_tag "jquery-1.3.2.min", "jquery-ui-1.7.2.all.min", "jrails", "jquery.autocomplete",
-                               "jquery.bgiframe", "jquery.dump", "lowpro.jquery", "niftycube", "rounded",
-                               "application_jquery_extensions", "application_form", "application_menu",
-                               "application_model", "application" %>
-  </head>
-  <body>
-    <%= render :partial => "features/menu_fold", :locals => { :root_folder => @root_folder } %>
-    <div id="container">
-      <div id="header">
-        <div id="logo">
-          <%= link_to image_tag("logo.png"), { :controller => :features, :action => :index }, :title => "Home" %>
-        </div>
-        <%= render :partial => "features/menu_header" %>
-      </div>
-      <div id="content">
-        <%= yield %>
-        <br style="clear: left;"/>
-      </div>
-      <div id="footer">
-        <div id="inner_footer">
-          &copy; Copyright 2009
+<% content_for :header_title_area do -%>
+  <%= link_to current_project.name, project_path(current_project), { :id => dom_id(current_project, :show_link), :title => "View Project" } %>
+<% end -%>
+<% content_for :header_controls_area do -%>
+  <div id="search">
+    <%= render :partial => "search/form" %>
+  </div>
+<% end -%>
+<% content_for :sidebar_area do -%>
+  <div id="sidebar_button_area">
+    <div id="add_feature">
+      <%= link_to image_tag("btn-addfeature.png"), "#", { :title => "Add Feature", :id => :add_feature_link } %>
+      <div style="display: none;">
+        <div id="add_feature_form_area">
+          <%= render :partial => "features/form_add", :locals => { :folders => @folders } %>
         </div>
       </div>
+      <%= javascript_tag "new AddFeatureLink().configureFormPopup()" %>
     </div>
-    <iframe id="upload_frame" name="upload_frame" style="display: none"></iframe>
-  </body>
-</html>
+  </div>
+  <div id="folders">
+    <%= render :partial => "folders/show_root", :locals => { :root_folder => @root_folder, :highlighted_feature => nil } %>
+    <div id="root_folder_expand_and_collapse_area">
+      <%= link_to "expand all", "#", { :id => :root_folder_expand_link, :title => "Expand All Folders" } %>
+      <span>&nbsp;|&nbsp;</span>
+      <%= link_to "collapse all", "#", { :id => :root_folder_collapse_link, :title => "Collapse All Folders" } %>
+    </div>
+    <div style="display: none;">
+      <div id="folder_import_form_area">
+        <%= render :partial => "folders/form_import" %>
+      </div>
+      <%= link_to "View Folder Form", "#folder_import_form", :id => :folder_import_form_show_link, :style => "display: none", :title => "Import Folder" %>
+      <%= javascript_tag "new FolderImportForm().configurePopup()" %>
+    </div>
+    <div id="folder_information">
+      Click on a feature to view more details.  You can drag and drop folders and features to sort them.
+    </div>
+  </div>
+<% end -%>
+<% content_for :main_area do -%>
+  <div id="features_container">
+    <%= yield %>
+  </div>
+  <iframe id="upload_frame" name="upload_frame" style="display: none"></iframe>
+<% end -%>
+<%= render :file => "layouts/secure" %>

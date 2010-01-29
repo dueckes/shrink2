@@ -1,21 +1,19 @@
-class AddAnywherePresenter
-  attr_reader :form_number, :clicked_item_dom_id
+class AddAnywherePresenter < ApplicationPresenter
+  attr_reader :clicked_container_dom_id, :container_dom_id
 
   def initialize(options)
-    @template = options[:template]
-    @parent_models = options[:parent_models]
-    @short_model_name = options[:short_model_name]
-    @form_number = options[:form_number]
-    @new_model = options[:new_model]
-    @clicked_item_dom_id = options[:clicked_item_dom_id]
+    super(options[:model], options[:controller])
+    @clicked_container_dom_id = options[:clicked_container_dom_id]
+    @container_dom_id = options[:container_dom_id]
   end
 
-  def form_container_dom_id
-    @template.dom_id(*(@parent_models + ["new_#{@short_model_name}_add_anywhere_form_#{@form_number}"]))
+  def container_dom_id
+    @container_dom_id ||= template.dom_id(
+            *(model.parents + ["new_#{model.class.short_name}_#{controller.next_number(model.class.short_name)}"]))
   end
 
   def show_form_js
-    "new AddAnywhereForm('##{form_container_dom_id}').open()"
+    "new AddAnywhereForm('##{container_dom_id}').open()"
   end
 
   def show_model_and_clear_form_js
@@ -28,8 +26,7 @@ class AddAnywherePresenter
 
   private
   def create_form_with_model_js
-    new_model_dom_id = @template.dom_id(@new_model)
-    "new AddAnywhereForm('##{form_container_dom_id}', '##{new_model_dom_id}')"
+    "new AddAnywhereForm('##{container_dom_id}', '##{template.dom_id(model)}')"
   end
 
 end

@@ -1,3 +1,3 @@
-page.insert_html(:before, @add_anywhere_presenter.clicked_item_dom_id, :partial => "steps/form_new",
-                 :locals => { :scenario => @scenario, :add_anywhere_presenter => @add_anywhere_presenter })
+page.insert_html(:before, @add_anywhere_presenter.clicked_container_dom_id, :partial => "steps/form_new",
+                 :locals => { :step => @add_anywhere_presenter.model, :add_anywhere_presenter => @add_anywhere_presenter })
 page << @add_anywhere_presenter.show_form_js

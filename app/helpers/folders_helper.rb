@@ -44,4 +44,9 @@ module FoldersHelper
     end
   end
 
+  def show_move (page, script)
+    # setTimeout addresses jQuery defect when removing dropped element - see http://dev.jqueryui.com/ticket/4550
+    page << "setTimeout(function() { #{script} }, 500)"
+  end
+
 end

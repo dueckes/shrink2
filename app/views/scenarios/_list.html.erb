@@ -2,7 +2,7 @@
   <% feature.scenarios.each do |scenario| -%>
     <%= render :partial => "scenarios/show", :locals => { :scenario => scenario, :hidden => false } %>
   <% end -%>
-  <li id="<%= dom_id(feature, :add_scenario_link_area) %>">
+  <li id="<%= dom_id(feature, :add_scenario_link_area) %>" class="section_text">
     <%= add_at_end_link(:model_name => :scenario, :parent => feature, :url => new_folder_feature_scenario_path(feature.folder, feature)) %>
   </li>
 </ul>

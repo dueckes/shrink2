@@ -1,3 +1,0 @@
-page << "$('#search_errors').hideAndBlank()"
-page.replace_html("search_results", :partial => "features/show_search_results", :locals => { :search_text => @search_text, :features => @features, :tags => @tags })
-page.show("search_results")

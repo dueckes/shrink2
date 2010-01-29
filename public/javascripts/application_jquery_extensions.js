@@ -20,7 +20,7 @@ jQuery.fn.extend({
     this.hide();
     return this.html('');
   },
-  makeDraggable: function(containment, startCallback) {
+  makeDraggableWithin: function(containment, startCallback) {
     this.draggable({
       containment: containment,
       revert: true,
@@ -31,5 +31,12 @@ jQuery.fn.extend({
         }
       }
     });
+  },
+  positionInParent: function() {
+    var childElements = this.parent().children(this.tagName);
+    var childElementIds = jQuery.map(childElements, function (childElement) {
+      return $(childElement).attr('id')
+    });
+    return $.inArray(this.attr('id'), childElementIds);
   }
 });

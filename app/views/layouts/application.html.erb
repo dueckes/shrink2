@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-Transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" >
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="author" content="" />
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <meta name="robots" content="all" />
+    <meta name="copyright" content="&copy; 2010" />
+
+    <title>Shrink - Explain Your Behaviour</title>
+
+    <!-- To correct the unsightly Flash of Unstyled Content. http://www.bluerobot.com/web/css/fouc.asp -->
+    <%= javascript_tag %>
+
+    <%= stylesheet_link_tag "ie_bug_fix", "reset", "nifty_corners", "jquery.autocomplete", "application",
+                            "colorbox", :cache => true %>
+    <%= javascript_include_tag "jquery-1.3.2.min", "jquery-ui-1.7.2.all.min", "jrails", "jquery.autocomplete",
+                               "jquery.bgiframe", "lowpro.jquery", "jquery.colorbox-1.3.5.min", "jquery.dump",
+                               "application_jquery_extensions", "niftycube", "rounded", "application_form",
+                               "application_menu", "application_model", "application", :cache => true %>
+  </head>
+  <body>
+    <div id="container">
+      <div id="header">
+        <div id="logo_and_title_container">
+          <div id="logo">
+            <%= link_to image_tag("logo.png"), root_path, { :id => :logo_link, :title => "Home" } %>
+          </div>
+          <div id="title">
+            <%= yield :header_title_area %>
+          </div>
+        </div>
+        <div id="header_controls_container">
+          <div id="account_container">
+            <%= render_account_container %>
+          </div>
+          <%= yield :header_controls_area %>
+        </div>
+      </div>
+      <div id="content">
+        <div id="content_inner_area">
+          <%= yield :content_area %>
+        </div>
+        <br style="clear: left;"/>
+      </div>
+      <div id="footer">
+        <div class="links">
+          <%= link_to "Visit SHRINK website", root_path, { :id => :visit_homepage_link, :title => "Home" } %>
+        </div>
+        <div class="about">
+          SHRINK is developed by <%= link_to "Matthew Ueckerman", "http://www.ueckerman.net", { :id => :matthew_ueckerman_link } %> and designed by <%= link_to "Spiral Designs", "http://www.spiraldesigns.com.au", { :id => :spiral_designs_link } %>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
