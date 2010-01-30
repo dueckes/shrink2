@@ -59,12 +59,24 @@ GEMS
   sudo gem install rack --no-ri --no-rdoc --version=1.0.1
 
 3.  Install postgreSQL adapter
-* For Mac Execute
+* For Mac
 
-  sudo gem install pg
+  * Ensure PGHOME/bin is in root path
+  * Execute
+
+    sudo su -
+    export ARCHFLAGS="-arch x86_64"
+    sudo gem install pg --no-ri --no-rdoc
 
 -------------
 BUILD TARGETS
 -------------
 
-Full build: rake spec
+Full build: Performs migrations, resets test database and executes behaviors
+
+  rake full
+
+Behavior build:
+
+  rake spec
+  
