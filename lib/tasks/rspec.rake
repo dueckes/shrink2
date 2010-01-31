@@ -63,9 +63,11 @@ end
 namespace :spec do
   desc "Run all specs in spec directory with RCov (excluding plugin specs)"
   Spec::Rake::SpecTask.new(:rcov) do |t|
-    t.spec_opts = ['--options', "\"#{RAILS_ROOT}/spec/spec.opts\""]
+    t.spec_opts = ["--format", "html:#{RAILS_ROOT}/build/spec_report.html",
+                   "--options", "\"#{RAILS_ROOT}/spec/spec.opts\""]
     t.spec_files = FileList['spec/**/*_spec.rb']
     t.rcov = true
+    t.rcov_dir = "#{RAILS_ROOT}/build/coverage"
     t.rcov_opts = lambda do
       IO.readlines("#{RAILS_ROOT}/spec/rcov.opts").map {|l| l.chomp.split " "}.flatten
     end
