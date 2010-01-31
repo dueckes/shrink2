@@ -25,14 +25,14 @@ For Mac see [http://developer.apple.com/internet/opensource/postgres.html](http:
 2.  Configure UTF8 encoding
 Change template1 template database - instructions taken from [http://www.postgresql.org/docs/8.1/interactive/manage-ag-templatedbs.html](http://www.postgresql.org/docs/8.1/interactive/manage-ag-templatedbs.html)
 
-    $ psql -U postgres template1
+    $ psql \-U postgres template1
     \# UPDATE pg_database SET datallowconn = TRUE where datname = 'template0';
-    \# \c template0
+    \# \\c template0
     \# UPDATE pg_database SET datistemplate = FALSE where datname = 'template1';
     \# drop database template1;
     \# create database template1 with template = template0 encoding = 'UNICODE';
     \# UPDATE pg_database SET datistemplate = TRUE where datname = 'template1';
-    \# \c template1
+    \# \\c template1
     \# UPDATE pg_database SET datallowconn = FALSE where datname = 'template0';
 
 3. Create users
