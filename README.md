@@ -14,21 +14,18 @@ Highlights
 * Full-text search across features
 * Manage feature projects
 
-
 Development Installation instructions
-=====================================
+-------------------------------------
 
-DATABASE
---------
+### DATABASE
 
-# Install postgreSQL
+1. Install postgreSQL
 * For Mac see http://developer.apple.com/internet/opensource/postgres.html
 
 #  Configure UTF8 encoding
 * Change template1 template database via (see http://www.postgresql.org/docs/8.1/interactive/manage-ag-templatedbs.html):
 
   $ psql -U postgres template1
-
   $ UPDATE pg_database SET datallowconn = TRUE where datname = 'template0';
   $ \c template0
   $ UPDATE pg_database SET datistemplate = FALSE where datname = 'template1';
@@ -38,38 +35,35 @@ DATABASE
   $ \c template1
   $ UPDATE pg_database SET datallowconn = FALSE where datname = 'template0';
 
-# Create users
+2. Create users
 
   $ createuser --createdb --pwprompt shrink_dev
   $ createuser --createdb --pwprompt shrink_test
 
 See config/database.yml for exact details
 
-# Create development database
+3. Create development database
 
   $ createdb --owner=shrink_dev shrink_dev
 
-# Populate development database and create test database
+4. Populate development database and create test database
 
   $ rake db:reset_and_prepare
 
-GEMS
-----
+### GEMS
 
-# Install rack
+* Install rack
 
   $ sudo gem install rack --no-ri --no-rdoc --version=1.0.1
 
-# Install postgreSQL adapter
-* For Mac
-
-  ** Ensure `PGHOME/bin` is in root path
+* Install postgreSQL adapter
+For Mac ensure `PGHOME/bin` is in root path then
 
     $ sudo su -
     $ export ARCHFLAGS="-arch x86_64"
     $ sudo gem install pg --no-ri --no-rdoc
 
-# Install build specific gems
+* Install build specific gems
 
   $ sudo gem install rspec --no-ri --no-rdoc --version=1.2.9
   $ sudo gem install rspec-rails --no-ri --no-rdoc --version=1.2.9
@@ -77,8 +71,7 @@ GEMS
   $ sudo gem install roodi --no-ri --no-rdoc
   $ sudo gem install rcov --no-ri --no-rdoc
 
-BUILD TARGETS
--------------
+### BUILD TARGETS
 
 Full build: Performs migrations, resets test database and executes behaviors
 
