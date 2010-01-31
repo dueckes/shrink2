@@ -20,10 +20,10 @@ Development Installation instructions
 ### DATABASE
 
 1. Install postgreSQL
-* For Mac see http://developer.apple.com/internet/opensource/postgres.html
+For Mac see (http://developer.apple.com/internet/opensource/postgres.html)
 
-#  Configure UTF8 encoding
-* Change template1 template database via (see http://www.postgresql.org/docs/8.1/interactive/manage-ag-templatedbs.html):
+2.  Configure UTF8 encoding
+Change template1 template database - instructions taken from (http://www.postgresql.org/docs/8.1/interactive/manage-ag-templatedbs.html)
 
   $ psql -U postgres template1
   $ UPDATE pg_database SET datallowconn = TRUE where datname = 'template0';
@@ -35,26 +35,26 @@ Development Installation instructions
   $ \c template1
   $ UPDATE pg_database SET datallowconn = FALSE where datname = 'template0';
 
-2. Create users
+3. Create users
 
-  $ createuser --createdb --pwprompt shrink_dev
-  $ createuser --createdb --pwprompt shrink_test
+    $ createuser --createdb --pwprompt shrink_dev
+    $ createuser --createdb --pwprompt shrink_test
 
-See config/database.yml for exact details
+See `config/database.yml` for exact details
 
-3. Create development database
+4. Create development database
 
-  $ createdb --owner=shrink_dev shrink_dev
+    $ createdb --owner=shrink_dev shrink_dev
 
-4. Populate development database and create test database
+5. Populate development database and create test database
 
-  $ rake db:reset_and_prepare
+    $ rake db:reset_and_prepare
 
 ### GEMS
 
 * Install rack
 
-  $ sudo gem install rack --no-ri --no-rdoc --version=1.0.1
+    $ sudo gem install rack --no-ri --no-rdoc --version=1.0.1
 
 * Install postgreSQL adapter
 For Mac ensure `PGHOME/bin` is in root path then
@@ -65,23 +65,27 @@ For Mac ensure `PGHOME/bin` is in root path then
 
 * Install build specific gems
 
-  $ sudo gem install rspec --no-ri --no-rdoc --version=1.2.9
-  $ sudo gem install rspec-rails --no-ri --no-rdoc --version=1.2.9
-  $ sudo gem install reek --no-ri --no-rdoc
-  $ sudo gem install roodi --no-ri --no-rdoc
-  $ sudo gem install rcov --no-ri --no-rdoc
+    $ sudo gem install rspec --no-ri --no-rdoc --version=1.2.9
+    $ sudo gem install rspec-rails --no-ri --no-rdoc --version=1.2.9
+    $ sudo gem install reek --no-ri --no-rdoc
+    $ sudo gem install roodi --no-ri --no-rdoc
+    $ sudo gem install rcov --no-ri --no-rdoc
 
 ### BUILD TARGETS
 
-Full build: Performs migrations, resets test database and executes behaviors
+Full build: Performs migrations, metrics checks and executes behaviors
 
-  $ rake full
+    $ rake dev
 
 Behavior build:
 
-  $ rake spec
+    $ rake spec
+
+or
+
+    $ rake spec:rcov
 
 Source code metrics analysis:
 
-  $ rake metrics
+    $ rake metrics
   
