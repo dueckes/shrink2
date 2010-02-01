@@ -48,24 +48,20 @@ See `config/database.yml` for exact details
 
         $ createdb --owner=shrink_dev shrink_dev
 
-5. Populate development database and create test database
-
-        $ rake db:reset_and_prepare
-
 ### GEMS
 
-* Install rack
-
-        $ sudo gem install rack --no-ri --no-rdoc --version=1.0.1
-
-* Install postgreSQL adapter
+* PostgreSQL adapter
 For Mac ensure `PGHOME/bin` is in root path then
 
         $ sudo su -
         $ export ARCHFLAGS="-arch x86_64"
         $ sudo gem install pg --no-ri --no-rdoc
 
-* Install build specific gems
+* Rack
+
+        $ sudo gem install rack --no-ri --no-rdoc --version=1.0.1
+
+* Build specific gems
 
         $ sudo gem install rspec --no-ri --no-rdoc --version=1.2.9
         $ sudo gem install rspec-rails --no-ri --no-rdoc --version=1.2.9
@@ -75,19 +71,12 @@ For Mac ensure `PGHOME/bin` is in root path then
 
 ### BUILD TARGETS
 
-Full build: Performs migrations, metrics checks and executes behaviors
+*Exercise all migrations and prepare test database:* `$ rake db:reset_and_prepare`
 
-    $ rake dev
+*Full build:* `$ rake dev`
+Performs migrations, metrics checks and executes behaviors
 
-Behavior build:
+*Behavior build:* `$ rake spec` or `$ rake spec:rcov`
 
-    $ rake spec
-
-or
-
-    $ rake spec:rcov
-
-Source code metrics analysis:
-
-    $ rake metrics
+*Source code metrics analysis:* `$ rake metrics`
   
