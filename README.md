@@ -67,11 +67,11 @@ For Mac ensure `PGHOME/bin` is in root path then
 
 * Install build specific gems
 
-    $ sudo gem install rspec --no-ri --no-rdoc --version=1.2.9
-    $ sudo gem install rspec-rails --no-ri --no-rdoc --version=1.2.9
-    $ sudo gem install reek --no-ri --no-rdoc
-    $ sudo gem install roodi --no-ri --no-rdoc
-    $ sudo gem install rcov --no-ri --no-rdoc
+        $ sudo gem install rspec --no-ri --no-rdoc --version=1.2.9
+        $ sudo gem install rspec-rails --no-ri --no-rdoc --version=1.2.9
+        $ sudo gem install reek --no-ri --no-rdoc
+        $ sudo gem install roodi --no-ri --no-rdoc
+        $ sudo gem install rcov --no-ri --no-rdoc
 
 ### BUILD TARGETS
 
