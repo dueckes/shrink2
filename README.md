@@ -22,9 +22,11 @@ Development Installation instructions
 ### DATABASE
 
 1. Install postgreSQL
+
     For Mac see [http://developer.apple.com/internet/opensource/postgres.html](http://developer.apple.com/internet/opensource/postgres.html)
 
 2.  Configure UTF8 encoding
+
     Change template1 template database - instructions taken from [http://www.postgresql.org/docs/8.1/interactive/manage-ag-templatedbs.html](http://www.postgresql.org/docs/8.1/interactive/manage-ag-templatedbs.html)
 
         $ psql -U postgres template1
