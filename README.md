@@ -46,17 +46,17 @@ See `config/database.yml` for exact details
 
 4. Create development database
 
-        $ createdb --owner=shrink\_dev shrink\_dev
+        $ createdb --owner=shrink_dev shrink_dev
 
 5. Populate development database and create test database
 
-        $ rake db:reset\_and\_prepare
+        $ rake db:reset_and_prepare
 
 ### GEMS
 
 * Install rack
 
-        $ sudo gem install rack --no-ri --no\-rdoc --version=1.0.1
+        $ sudo gem install rack --no-ri --no-rdoc --version=1.0.1
 
 * Install postgreSQL adapter
 For Mac ensure `PGHOME/bin` is in root path then
@@ -68,7 +68,7 @@ For Mac ensure `PGHOME/bin` is in root path then
 * Install build specific gems
 
     $ sudo gem install rspec --no-ri --no-rdoc --version=1.2.9
-    $ sudo gem install rspec\-rails --no-ri --no-rdoc --version=1.2.9
+    $ sudo gem install rspec-rails --no-ri --no-rdoc --version=1.2.9
     $ sudo gem install reek --no-ri --no-rdoc
     $ sudo gem install roodi --no-ri --no-rdoc
     $ sudo gem install rcov --no-ri --no-rdoc
