@@ -53,6 +53,7 @@ Development Installation instructions
 ### GEMS
 
 * PostgreSQL adapter
+
     For Mac ensure `PGHOME/bin` is in root path then
 
         $ sudo su -
