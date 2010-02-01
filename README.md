@@ -22,10 +22,10 @@ Development Installation instructions
 ### DATABASE
 
 1. Install postgreSQL
-For Mac see [http://developer.apple.com/internet/opensource/postgres.html](http://developer.apple.com/internet/opensource/postgres.html)
+    For Mac see [http://developer.apple.com/internet/opensource/postgres.html](http://developer.apple.com/internet/opensource/postgres.html)
 
 2.  Configure UTF8 encoding
-Change template1 template database - instructions taken from [http://www.postgresql.org/docs/8.1/interactive/manage-ag-templatedbs.html](http://www.postgresql.org/docs/8.1/interactive/manage-ag-templatedbs.html)
+    Change template1 template database - instructions taken from [http://www.postgresql.org/docs/8.1/interactive/manage-ag-templatedbs.html](http://www.postgresql.org/docs/8.1/interactive/manage-ag-templatedbs.html)
 
         $ psql -U postgres template1
         # UPDATE pg_database SET datallowconn = TRUE where datname = 'template0';
@@ -42,7 +42,7 @@ Change template1 template database - instructions taken from [http://www.postgre
         $ createuser --createdb --pwprompt shrink_dev
         $ createuser --createdb --pwprompt shrink_test
 
-See `config/database.yml` for exact details
+    See `config/database.yml` for exact details
 
 4. Create development database
 
@@ -51,7 +51,7 @@ See `config/database.yml` for exact details
 ### GEMS
 
 * PostgreSQL adapter
-For Mac ensure `PGHOME/bin` is in root path then
+    For Mac ensure `PGHOME/bin` is in root path then
 
         $ sudo su -
         $ export ARCHFLAGS="-arch x86_64"
@@ -71,12 +71,15 @@ For Mac ensure `PGHOME/bin` is in root path then
 
 ### BUILD TARGETS
 
-*Exercise all migrations and prepare test database:* `$ rake db:reset_and_prepare`
+* *Exercise all migrations and prepare test database:* `$ rake db:reset_and_prepare`
 
-*Full build:* `$ rake dev`
-Performs migrations, metrics checks and executes behaviors
+* *Developer full-build:* `$ rake dev`
+    Performs migrations and executes behaviors
 
-*Behavior build:* `$ rake spec` or `$ rake spec:rcov`
+* *CI full-build:* `$ rake ci`
+    Developer build with metrics checks and build report generation
 
-*Source code metrics analysis:* `$ rake metrics`
+* *Behavior build:* `$ rake spec` or `$ rake spec:rcov`
+
+* *Source code metrics analysis:* `$ rake metrics`
   
