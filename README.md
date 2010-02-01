@@ -74,9 +74,11 @@ Development Installation instructions
 * *Exercise all migrations and prepare test database:* `$ rake db:reset_and_prepare`
 
 * *Developer full-build:* `$ rake dev`
+
     Performs migrations and executes behaviors
 
 * *CI full-build:* `$ rake ci`
+
     Developer build with metrics checks and build report generation
 
 * *Behavior build:* `$ rake spec` or `$ rake spec:rcov`
