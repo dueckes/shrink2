@@ -1,4 +1,5 @@
-describe Shrink::ProjectSteps do
+#TODO Introduced behavior shared with project_steps_integration_spec
+describe Shrink::ProjectFeatureDescriptionLines do
 
   describe "integrating with the database" do
     it_should_behave_like DatabaseIntegration
@@ -7,18 +8,18 @@ describe Shrink::ProjectSteps do
 
       before(:all) do
         create_project
-        create_scenarios
-        create_steps("First word in a phrase",
-                     "Firstly the outcome was inevitable",
-                     "Some phrase that does not start with First",
-                     "First second in this minute",
-                     "First sec on this day",
-                     "Some phrase that does not start with First second", 
-                     "First second third - it was incrementing in single digits",
-                     "First second third the number of clients connecting was increasing",
-                     "Some phrase that does not start with First second third")
+        create_feature
+        create_description_lines("First word in a phrase",
+                                 "Firstly the outcome was inevitable",
+                                 "Some phrase that does not start with First",
+                                 "First second in this minute",
+                                 "First sec on this day",
+                                 "Some phrase that does not start with First second",
+                                 "First second third - it was incrementing in single digits",
+                                 "First second third the number of clients connecting was increasing",
+                                 "Some phrase that does not start with First second third")
 
-        @project_steps = Shrink::ProjectSteps.new(@project)
+        @project_description_lines = Shrink::ProjectFeatureDescriptionLines.new(@project)
       end
 
       before(:each) do
@@ -38,7 +39,7 @@ describe Shrink::ProjectSteps do
 
         describe "and the number of candidate results is within the limit" do
 
-          it "should retrieve existing step texts that start with the word" do
+          it "should retrieve existing description line texts that start with the word" do
             similar_texts.sort.should eql(@expected_results)
           end
 
@@ -56,7 +57,7 @@ describe Shrink::ProjectSteps do
 
         end
 
-        it "should retrieve step texts in alphabetical order" do
+        it "should retrieve description line texts in alphabetical order" do
           retrieved_texts = similar_texts
           retrieved_texts.sort.should eql(retrieved_texts)
         end
@@ -69,7 +70,7 @@ describe Shrink::ProjectSteps do
           @text = "First sec"
         end
 
-        it "should retrieve existing step texts that start with the word and the incomplete word" do
+        it "should retrieve existing description line texts that start with the word and the incomplete word" do
           similar_texts.sort.should eql(["First second in this minute", "First sec on this day",
                                          "First second third - it was incrementing in single digits",
                                          "First second third the number of clients connecting was increasing"].sort)
@@ -84,25 +85,25 @@ describe Shrink::ProjectSteps do
                                      "First second third the number of clients connecting was increasing"]
         end
 
-        describe "in the same casing as existing step texts" do
+        describe "in the same casing as existing description line texts" do
 
           before(:each) do
             @text = "First second third"
           end
 
-          it "should retrieve existing step texts that start with the words" do
+          it "should retrieve existing description line texts that start with the words" do
             similar_texts.sort.should eql(@expected_similar_texts.sort)
           end
 
         end
 
-        describe "with casing different than existing step texts" do
+        describe "with casing different than existing description line texts" do
 
           before(:each) do
             @text = "fIRST SECOND tHiRd"
           end
 
-          it "should ignore the casing and retrieve existing step texts that start with the words" do
+          it "should ignore the casing and retrieve existing description line texts that start with the words" do
             similar_texts.sort.should eql(@expected_similar_texts.sort)
           end
 
@@ -114,19 +115,16 @@ describe Shrink::ProjectSteps do
         @project = create_project!
       end
 
-      def create_scenarios
-        @scenarios = (1..3).collect do |i|
-          feature = create_feature!(:title => "Feature #{i}", :folder => @project.root_folder)
-          create_scenario!(:feature => feature, :title => "Scenario #{i}")
-        end
+      def create_feature
+        @feature = create_feature!(:project => @project)
       end
 
-      def create_steps(*texts)
-        texts.each_with_index { |text, i| Shrink::Step.create!(:text => text, :scenario => @scenarios[i % 3]) }
+      def create_description_lines(*texts)
+        texts.each { |text| Shrink::FeatureDescriptionLine.create!(:text => text, :feature => @feature) }
       end
 
       def similar_texts
-        @project_steps.find_similar_texts(@text, @limit)
+        @project_description_lines.find_similar_texts(@text, @limit)
       end
 
     end

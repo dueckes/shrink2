@@ -75,6 +75,24 @@ describe Shrink::Project do
 
   end
 
+  context "#description_lines" do
+
+    it "should create a Shrink::ProjectFeatureDescriptionLines instance providing the project" do
+      Shrink::ProjectFeatureDescriptionLines.should_receive(:new).with(@project)
+
+      @project.description_lines
+    end
+
+    it "should return a Shrink::ProjectFeatureDescriptionLines instance" do
+      project_description_lines = mock("ProjectFeatureDescriptionLines")
+
+      Shrink::ProjectFeatureDescriptionLines.stub!(:new).and_return(project_description_lines)
+
+      @project.description_lines.should eql(project_description_lines)
+    end
+
+  end
+
   context "#valid?" do
 
     describe "when a name has been established" do

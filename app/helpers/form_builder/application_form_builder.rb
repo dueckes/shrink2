@@ -37,7 +37,7 @@ class ApplicationFormBuilder < ActionView::Helpers::FormBuilder
     tag_options = text_field_tag_options(field_as_symbol, options, autocomplete_options)
     %{
       #{text_field(field_as_symbol, tag_options)}
-      #{autocomplete_options[:autocomplete_url] ? auto_complete_js(autocomplete_options.merge(tag_options)) : "" }
+      #{autocomplete_options[:url] ? auto_complete_js(autocomplete_options.merge(tag_options)) : "" }
     }
   end
 
@@ -80,7 +80,7 @@ class ApplicationFormBuilder < ActionView::Helpers::FormBuilder
     extra_params_text = options[:extra_params] ?
             options[:extra_params].collect { |key, value| "#{key}: #{value}" }.join(", ") : ""
     @template.javascript_tag %{
-      $('##{options[:id]}').autocomplete('#{options[:autocomplete_url]}', {
+      $('##{options[:id]}').autocomplete('#{options[:url]}', {
         cacheLength: 1, delay: 1250, minChars: 0, selectFirst: false, extraParams: { #{extra_params_text} }
       })
     }

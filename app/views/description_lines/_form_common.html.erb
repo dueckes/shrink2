@@ -1,2 +1,4 @@
-<%= form.text_field_for(:text) %>
+<%= form.text_field_for(:text, {}, { :url => url_for(:controller => :description_lines, :action => :auto_complete_text),
+                                     :extra_params => { :feature_id => model.feature.id,
+                                                        :position => "function() { return UnorderedList.elementPosition($('##{form.id_for(:text)}').closest('li')) }" } }) %>
 <%= form.commit_button %>

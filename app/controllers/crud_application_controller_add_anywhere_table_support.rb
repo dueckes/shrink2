@@ -1,7 +1,6 @@
 module CrudApplicationControllerAddAnywhereTableSupport
 
   def self.included(controller)
-    controller.before_filter :translate_position_to_integer
     controller.before_filter :translate_number_of_rows_to_number_of_persistable_rows
     controller.before_filter :translate_number_of_columns_to_number_of_persistable_columns
     controller.send(:include, InstanceMethods)
@@ -32,10 +31,6 @@ module CrudApplicationControllerAddAnywhereTableSupport
     end
 
     private
-    def translate_position_to_integer
-      params[:position] = params[:position].to_i if params[:position]
-    end
-
     def translate_number_of_rows_to_number_of_persistable_rows
       params[:number_of_rows] = params[:number_of_rows].to_i - 2 if params[:number_of_rows]
     end

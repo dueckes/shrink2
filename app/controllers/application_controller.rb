@@ -16,6 +16,7 @@ class ApplicationController < ActionController::Base
 
   before_filter :establish_temp_file_directory
   before_filter :strip_string_parameters
+  before_filter :translate_position_to_integer
 
   SESSION_TMP_ROOT_DIRECTORY = "#{RAILS_ROOT}/tmp/sessions"
 
@@ -28,6 +29,10 @@ class ApplicationController < ActionController::Base
 
   def strip_string_parameters
     params.each { |key, value| params[key] == value.strip if value.kind_of?(String) }
+  end
+
+  def translate_position_to_integer
+    params[:position] = params[:position].to_i if params[:position]
   end
 
   def write_uploaded_file(uploaded_file)

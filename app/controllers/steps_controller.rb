@@ -5,16 +5,15 @@ class StepsController < CrudApplicationController
   layout nil
 
   #TODO Append to existing filters
-  before_filter :strip_string_parameters, :except => [:auto_complete_for_step_text]
+  before_filter :strip_string_parameters, :except => [:auto_complete_text]
 
-  before_filter :establish_parents_via_params, :only => [:new, :new_table, :create, :create_table, :auto_complete_for_step_text]
+  before_filter :establish_parents_via_params, :only => [:new, :new_table, :create, :create_table, :auto_complete_text]
   before_filter :establish_model_via_id_param, :only => [:show, :edit, :update, :update_table, :destroy]
 
   before_filter :normalize_position_param, :only => [:create, :create_table]
 
-  def auto_complete_for_step_text
-    @step_text_suggestions =
-            Shrink::StepTextSuggester::Suggester.suggestions_for(params[:q], params[:position], @scenario)
+  def auto_complete_text
+    @suggestions = Shrink::TextSuggester::StepSuggester.suggestions_for(params[:q], params[:position], @scenario)
   end
 
   def reorder

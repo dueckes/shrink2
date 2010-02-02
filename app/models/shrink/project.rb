@@ -18,6 +18,10 @@ module Shrink
       @steps ||= Shrink::ProjectSteps.new(self)
     end
 
+    def description_lines
+      @description_lines ||= Shrink::ProjectFeatureDescriptionLines.new(self)
+    end
+
   end
 
 end
