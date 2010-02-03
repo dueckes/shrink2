@@ -3,7 +3,7 @@ module Shrink
   class Project < ::ActiveRecord::Base
     has_one :root_folder, :class_name => "Shrink::Folder", :dependent => :destroy
     has_many :project_users, :class_name => "Shrink::ProjectUser", :dependent => :destroy
-    has_many :users, :through => :project_users
+    has_many :users, :through => :project_users, :extend => Shrink::ProjectUsers
     has_many :folders, :class_name => "Shrink::Folder", :extend => Shrink::ProjectFolders, :dependent => :destroy
     has_many :features, :class_name => "Shrink::Feature", :extend => Shrink::ProjectFeatures
     has_many :tags, :class_name => "Shrink::Tag", :extend => Shrink::ProjectTags, :dependent => :destroy

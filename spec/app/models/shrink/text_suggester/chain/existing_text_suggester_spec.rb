@@ -28,10 +28,7 @@ describe Shrink::TextSuggester::Chain::ExistingTextSuggester do
       end
 
       it "should return an empty array" do
-        suggestions = suggestions_for
-
-        suggestions.should be_an(Array)
-        suggestions.should be_empty
+        suggestions_for.should be_an_empty_array
       end
 
     end

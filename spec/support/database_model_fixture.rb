@@ -100,7 +100,7 @@ module DatabaseModelFixture
     Shrink::Feature.destroy_all
     Shrink::Tag.destroy_all
     Shrink::User.destroy_all(["login != ?", "admin"])
-    Shrink::Role.destroy_all(["name not in(?)", %w(admin normal)])
+    Shrink::Role.destroy_all(["name not in(?)", %w(administrator normal)])
   end
 
 end

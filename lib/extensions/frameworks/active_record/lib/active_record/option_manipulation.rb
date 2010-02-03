@@ -9,11 +9,12 @@ module Shrink
         else
           options[:conditions] || other_options[:conditions]
         end
-        other_options.merge(options).merge(:conditions => combined_conditions)
+        conditions_options = combined_conditions ? { :conditions => combined_conditions } : {}
+        other_options.merge(options).merge(conditions_options)
       end
 
       def merge_conditions_including_values(conditions, other_conditions)
-        ["#{conditions[0]} and (#{other_conditions[0]})", *[conditions[1..-1], other_conditions[1..-1]].flatten]
+        (conditions[1..-1] + other_conditions[1..-1]).unshift("#{conditions[0]} and (#{other_conditions[0]})")
       end
 
     end

@@ -124,8 +124,7 @@ describe Shrink::TextSuggester::Context::Suggestions do
     describe "when no suggestions have been added" do
 
       it "should return an empty array" do
-        @suggestions.to_a.should be_an(Array)
-        @suggestions.to_a.should be_empty
+        @suggestions.to_a.should be_an_empty_array
       end
 
     end
