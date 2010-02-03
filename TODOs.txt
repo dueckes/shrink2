@@ -25,4 +25,6 @@ Next:
       Upgrade Rspec
       Upgrade Rack
       FormBuilders to use set class methods to configure builder, as opposed to overriding methods
-      Analyse form_common, form_new, form_edit usages and devise a better strategy for reuse      
+      Analyse form_common, form_new, form_edit usages and devise a better strategy for reuse
+      after_commit gem as a replacement for before_commit
+      bundler for gem management

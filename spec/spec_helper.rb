@@ -10,7 +10,7 @@ require 'spec/rails'
 
 # Requires supporting files with custom matchers and macros, etc,
 # in ./support/ and its subdirectories.
-require File.expand_path(File.join(File.dirname(__FILE__), 'support', 'database_model_fixture'))
+Dir[File.expand_path(File.join(File.dirname(__FILE__), '**', '*shared_example.rb'))].each { |f| require(f) }
 Dir[File.expand_path(File.join(File.dirname(__FILE__), 'support', '**', '*.rb'))].each { |f| require(f) }
 
 require "#{RAILS_ROOT}/rake_initializer"
