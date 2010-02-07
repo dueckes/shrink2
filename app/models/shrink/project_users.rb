@@ -15,8 +15,6 @@ module Shrink
         conditions = merge_conditions_including_values(
                 conditions, ["#{Shrink::User.table_name}.id not in (?)", project.users.collect(&:id)])
       end
-      require 'pp'
-      pp conditions
       conditions
     end
 
