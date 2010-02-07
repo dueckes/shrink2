@@ -5,7 +5,7 @@ describe Shrink::User do
   end
 
   it "should have a role" do
-    role = Shrink::Role.new(:name => "Some Role Name")
+    role = Shrink::Role.new(:name => "some_role_name")
 
     @user.role = role
 
@@ -135,8 +135,20 @@ describe Shrink::User do
 
   end
 
+  context "#role_symbols" do
+
+    before(:each) do
+      @user.role = Shrink::Role.new(:name => "some_role")
+    end
+
+    it "should return an array containing a symbolized version of users name" do
+      @user.role_symbols.should eql([:some_role])
+    end
+
+  end
+
   def new_role
-    Shrink::Role.new(:name => "Role Name", :description => "Role Description")
+    Shrink::Role.new(:name => "role_name", :description => "Role Description")
   end
 
 end

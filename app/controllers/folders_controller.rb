@@ -1,4 +1,4 @@
-class FoldersController < CrudApplicationController
+class FoldersController < ResourceApplicationController
   
   before_filter :establish_model_via_id_param, :only => [:show, :edit, :update, :destroy, :import, :export]
   before_filter :verify_zip_file, :only => [:import]

@@ -1,11 +1,11 @@
 module InlineEditHelper
 
-  def inline_edit_link(text, options, html_options)
+  def inline_edit_link(text, options, html_options, *args)
     function = options[:function] || remote_function({ :method => :get }.merge(options))
     combined_html_options = { :title => "Click To Edit" }.merge(html_options)
     combined_html_options[:class] = combined_html_options[:class] ?
             combined_html_options[:class] += " editable_text_link" : "editable_text_link"
-    link_to_function(text, function, combined_html_options)
+    link_to_function(text, function, combined_html_options, *args)
   end
 
   def edit_inline(page, model, model_name, field_name)

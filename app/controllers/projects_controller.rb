@@ -1,8 +1,10 @@
-class ProjectsController < CrudApplicationController
+class ProjectsController < ResourceApplicationController
   layout "projects"
 
   before_filter :require_user
   before_filter :establish_all_models, :only => [:index, :show]
+  
+  filter_access_to :all
 
   set_create_errors_area_dom_id "new_project_errors"
 

@@ -1,6 +1,6 @@
 Rails::Initializer.class_eval do
   EXTENDED_FRAMEWORKS = %w(active_record).freeze
-  EXTENDED_GEMS = %w(actionpack cucumber).freeze
+  EXTENDED_GEMS = %w(actionpack cucumber declarative_authorization).freeze
   EXTENDED_PLUGINS = %w(acts_as_list auto_complete).freeze
 
   alias_method :require_frameworks_without_extensions, :require_frameworks

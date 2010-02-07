@@ -1,0 +1,9 @@
+<div id="sidebar_button_area">
+  <%= link_to "Add User", "#", { :id => :user_add_form_show_link, :title => "Add User" } %>
+  <div style="display: none;">
+    <div id="user_add_form_area">
+      <%= render :partial => "users/form_new", :locals => { :user => Shrink::User.new, :roles => roles } %>
+    </div>
+    <%= javascript_tag "new UserAddForm().configurePopup()" %>
+  </div>
+</div>

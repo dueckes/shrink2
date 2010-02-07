@@ -1,3 +1,7 @@
-<%= sign_in_link %>
+<ul>
+  <li class="last">
+    <%= sign_in_link %>
+  </li>
+</ul>
 <%= render :partial => "user_sessions/form_new",
            :locals => { :user_session => Shrink::UserSession.new, :form_type => :ajax, :hidden => true } %>

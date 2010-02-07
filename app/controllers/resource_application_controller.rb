@@ -1,4 +1,4 @@
-class CrudApplicationController < ApplicationController
+class ResourceApplicationController < ApplicationController
   before_filter :establish_parents_via_params, :only => [:new, :create]
   before_filter :establish_model_via_id_param, :only => [:show, :edit, :update, :destroy]
 

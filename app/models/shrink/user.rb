@@ -7,15 +7,20 @@ module Shrink
 
     validates_presence_of :role
 
+    acts_as_authentic do |config|
+      config.logged_in_timeout = 30.minutes
+      config.ignore_blank_passwords = false
+    end
+
     #TODO Modify belongs_to to include/exclude parent associations
     def self.parent_associations
       []
     end
 
-    acts_as_authentic do |config|
-      config.logged_in_timeout = 30.minutes
-      config.ignore_blank_passwords = false
+    def role_symbols
+      [role.name.to_sym]
     end
+
   end
 
 end

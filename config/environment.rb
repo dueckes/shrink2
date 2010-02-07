@@ -27,6 +27,7 @@ Rails::Initializer.run do |config|
   config.gem "RedCloth", :version => "4.2.2"
   config.gem "will_paginate", :version => "2.3.11"
   config.gem "authlogic", :version => "2.1.3"
+  config.gem "declarative_authorization", :version => "0.4"
   config.gem "nokogiri", :version => "1.4.1"
 
   # Only load the plugins named here, in the order given (default is alphabetical).

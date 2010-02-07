@@ -1,5 +1,5 @@
-class ScenariosController < CrudApplicationController
-  include CrudApplicationControllerAddAnywhereSupport
+class ScenariosController < ResourceApplicationController
+  include ResourceApplicationControllerAddAnywhereSupport
 
   def create
     super

@@ -2,6 +2,7 @@ module CurrentUserSupport
 
   def self.included(controller_class)
     controller_class.helper_method :current_user_session, :current_user
+    controller_class.before_filter :set_authorization_current_user
     controller_class.send(:include, InstanceMethods)
   end
 
@@ -15,6 +16,10 @@ module CurrentUserSupport
       @current_user ||= current_user_session && current_user_session.user
     end
 
+    def set_authorization_current_user
+      Authorization.current_user = current_user
+    end
+
     def require_user
       unless current_user
         store_current_path
@@ -22,6 +27,11 @@ module CurrentUserSupport
         redirect_to(sign_in_url)
         return false
       end
+    end
+
+    def with_current_user_required(&block)
+      return false unless require_user != false
+      block.call(current_user)
     end
   
     def require_no_user

@@ -40,9 +40,10 @@ ActionController::Routing::Routes.draw do |map|
   # consider removing or commenting them out if you're using named routes and resources.
 
   # Custom
-  map.sign_up "sign_up", :controller => :users, :action => :new
   map.sign_in "sign_in", :controller => :user_sessions, :action => :new
   map.sign_out "sign_out", :controller => :user_sessions, :action => :destroy
+
+  map.unauthorized "unauthorized", :controller => :errors, :action => :unauthorized
 
   map.resources :users
   map.resource :user_session

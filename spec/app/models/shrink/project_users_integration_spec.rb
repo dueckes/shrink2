@@ -31,7 +31,7 @@ describe Shrink::ProjectUsers do
           @admin_user = create_user!(:login => "UserAdmin", :role => Shrink::Role.find_by_name("administrator"))
         end
     
-        describe "when the login name provided matches the start of many user logins" do
+        describe "when the login provided matches the start of many user logins" do
     
           before(:all) do
             @login_provided = "User"
@@ -45,7 +45,7 @@ describe Shrink::ProjectUsers do
               @found_users = find_unassigned_with_normal_role_and_similar_login
             end
     
-            it "should not return administrators whose login name starts with the proivded login name" do
+            it "should not return administrators whose login starts with the provided login" do
               @found_users.should_not include(@admin_user)
             end
     
@@ -71,7 +71,7 @@ describe Shrink::ProjectUsers do
     
         end
     
-        describe "when the login name provided matches one user login" do
+        describe "when the login provided matches one user login" do
     
           before(:all) do
             @login_provided = "User1"
@@ -100,8 +100,20 @@ describe Shrink::ProjectUsers do
           end
     
         end
+
+        describe "when the login provided has different casing to the login of a user not assigned to the project" do
+
+          before(:all) do
+            @login_provided = "uSER1"
+          end
+
+          it "should return an array containing the user" do
+            find_unassigned_with_normal_role_and_similar_login.should include(@all_normal_users.first)
+          end
+
+        end
     
-        describe "when the login name provided does not natch the start of any user logins" do
+        describe "when the login provided does not natch the start of any user logins" do
     
           before(:all) do
             @login_provided = "DoesNotMatch"

@@ -1,4 +1,4 @@
-module CrudApplicationControllerAddAnywhereSupport
+module ResourceApplicationControllerAddAnywhereSupport
 
   def self.included(controller)
     controller.before_filter :normalize_position_param, :only => [:create]

@@ -1,6 +1,6 @@
-class StepsController < CrudApplicationController
-  include CrudApplicationControllerAddAnywhereSupport
-  include CrudApplicationControllerAddAnywhereTableSupport
+class StepsController < ResourceApplicationController
+  include ResourceApplicationControllerAddAnywhereSupport
+  include ResourceApplicationControllerAddAnywhereTableSupport
 
   layout nil
 

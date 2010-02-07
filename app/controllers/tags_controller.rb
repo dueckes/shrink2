@@ -1,3 +1,3 @@
-class TagsController < CrudApplicationController
+class TagsController < ResourceApplicationController
   helper StepsHelper
 end

@@ -1,5 +1,5 @@
 class RowsController < ApplicationController
-  include CrudApplicationControllerAddAnywhereTableSupport
+  include ResourceApplicationControllerAddAnywhereTableSupport
 
   def add
     @position = params[:position]

@@ -1,0 +1,8 @@
+<div id="users_container" class="sidebar_list_container">
+  <div class="sidebar_header_container">
+    <div class="sidebar_header">
+      Users
+    </div>
+  </div>
+  <%= render :partial => "users/list", :locals => { :users => users, :hide => nil } %>
+</div>

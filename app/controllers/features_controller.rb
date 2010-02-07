@@ -1,4 +1,4 @@
-class FeaturesController < CrudApplicationController
+class FeaturesController < ResourceApplicationController
   layout "features", :only => [:index, :show]
   helper FoldersHelper, StepsHelper
 

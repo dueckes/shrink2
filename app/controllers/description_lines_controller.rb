@@ -1,5 +1,5 @@
-class DescriptionLinesController < CrudApplicationController
-  include CrudApplicationControllerAddAnywhereSupport
+class DescriptionLinesController < ResourceApplicationController
+  include ResourceApplicationControllerAddAnywhereSupport
   set_model_class Shrink::FeatureDescriptionLine
 
   layout nil

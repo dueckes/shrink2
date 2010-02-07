@@ -1,4 +1,4 @@
-module CrudApplicationControllerAddAnywhereTableSupport
+module ResourceApplicationControllerAddAnywhereTableSupport
 
   def self.included(controller)
     controller.before_filter :translate_number_of_rows_to_number_of_persistable_rows

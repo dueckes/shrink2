@@ -6,6 +6,7 @@ class ApplicationController < ActionController::Base
   include PresenterSupport
   include CurrentUserSupport
   include CurrentProjectSupport
+  include AuthorizationSupport
 
   protect_from_forgery # See ActionController::RequestForgeryProtection for details
 

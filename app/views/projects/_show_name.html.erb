@@ -1,1 +1,2 @@
-<%= inline_edit_link project.name, { :url => edit_project_path(project) }, { :id => dom_id(project, :edit_link) } %>
+<%= inline_edit_link project.name, { :url => edit_project_path(project) }, { :id => dom_id(project, :edit_link) },
+                     { :when_permitted_to => [:edit, project], :otherwise => project.name } %>
