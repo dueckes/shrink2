@@ -1,3 +1,4 @@
+.bundle
 .idea
 build/*
 coverage/*
