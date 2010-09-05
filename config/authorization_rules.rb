@@ -8,7 +8,8 @@ authorization do
   end
 
   role :administrator do
-    has_permission_on [:users, :projects], :to => :manage
+    has_permission_on :users, :to => [:manage, :update_password]
+    has_permission_on :projects, :to => :manage
   end
 
 end
