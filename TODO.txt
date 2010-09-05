@@ -10,7 +10,8 @@ Configuration:
 - Session storage strategy?  db?
 
 Next:
-- MU: Cucumber specific names for import/export tasks?
+- MU: Normal users cannot change role
+      Cucumber specific names for import/export tasks?
       Create before_commit active_record extension gem
       after_commit gem as a replacement for before_commit
       Javascript refactoring - address repetition in javascript forms and models

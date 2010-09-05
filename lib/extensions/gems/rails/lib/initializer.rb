@@ -17,6 +17,7 @@ Rails::Initializer.class_eval do
     EXTENDED_GEMS.each do |gem_name|
       require File.expand_path("#{RAILS_ROOT}/lib/extensions/gems/#{gem_name}/init")
     end
+    require "newrelic_rpm"
   end
 
   alias_method :load_plugins_without_extensions, :load_plugins
