@@ -13,7 +13,7 @@ Rails::Initializer.class_eval do
 
   alias_method :load_gems_without_extensions, :load_gems
   def load_gems
-    load_gems_without_extensions
+    Bundler.require :default, Rails.env
     EXTENDED_GEMS.each do |gem_name|
       require File.expand_path("#{RAILS_ROOT}/lib/extensions/gems/#{gem_name}/init")
     end

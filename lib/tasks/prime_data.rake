@@ -5,7 +5,7 @@ namespace :prime do
     FEATURE_TITLE_PREFIX = "Rake Feature"
     PROJECT_NAME = "Data Priming Project"
 
-    desc "creates X number of features in the data priming project, declared via number=X or 1 if no number is provided"
+    desc "creates X number of features in the data priming project, declared via number=X.  Defaults to 1."
     task :features => :environment do
       number_to_create = ENV["number"] ? ENV["number"].to_i : 1
       raise "number must be > 0" unless number_to_create > 0

@@ -20,16 +20,4 @@ test:
   username: shrink_test
   password: shrink_test
   database: shrink_test
-
-showcase:
-  <<: *common
-  username: kunal_platter
-  password: pl4tt3r
-  database: kunal_showcase
-
-production:
-  <<: *common
-  username: kunal_platter
-  password: pl4tt3r
-  database: kunal_platter
   
