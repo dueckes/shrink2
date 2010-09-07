@@ -2,7 +2,7 @@ source "http://rubygems.org"
 
 # Core
 gem "authlogic", "2.1.3"
-gem "cucumber", "0.5.1"
+gem "cucumber", "0.8.5"
 gem "declarative_authorization", "0.5"
 gem "nokogiri", "1.4.1"
 gem "rails", "2.3.8"

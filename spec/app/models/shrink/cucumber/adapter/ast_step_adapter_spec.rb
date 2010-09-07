@@ -11,10 +11,10 @@ describe Shrink::Cucumber::Adapter::AstStepAdapter do
       TestableAstStepAdapter.set_table_adapter(@table_adapter)
     end
 
-    describe "when the Cucumber::Ast::Step contains a keyword and name" do
+    describe "when the Cucumber::Ast::Step contains a keyword and name prefixed with whitespace" do
 
       before(:each) do
-        @cucumber_ast_step = mock("Cucumber::Ast::Step", :keyword => "Some Keyword", :name => "Some Name")
+        @cucumber_ast_step = mock("Cucumber::Ast::Step", :keyword => "Some Keyword", :name => " Some Name")
       end
 
       describe "and no multi-line argument" do

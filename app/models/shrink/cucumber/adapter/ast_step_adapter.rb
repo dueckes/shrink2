@@ -20,7 +20,7 @@ module Shrink
           end
 
           def adapt(cucumber_ast_step)
-            steps = [Shrink::Step.new(:text => "#{cucumber_ast_step.keyword} #{cucumber_ast_step.name}")]
+            steps = [Shrink::Step.new(:text => "#{cucumber_ast_step.keyword}#{cucumber_ast_step.name}")]
             if cucumber_ast_step.multiline_arg && cucumber_ast_step.multiline_arg.is_a?(::Cucumber::Ast::Table)
               steps << Shrink::Step.new(:table => table_adapter.adapt(cucumber_ast_step.multiline_arg))
             end

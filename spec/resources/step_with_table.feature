@@ -1,7 +1,7 @@
 Feature: Step Having A Table
 
   Scenario: A step has a table
-    Given this step is followed by a table
+    Given this step is followed by a table:
     | key 1     | key 2     | key 3     |
     | value 1.1 | value 2.1 | value 3.1 |
     | value 1.2 | value 2.2 | value 3.2 |
