@@ -7,6 +7,13 @@ describe ":prime:data" do
 
       before(:all) do
         @task = Rake::Task["prime:data:features"]
+
+        @initial_simple_log = SimpleLog
+        SimpleLog = RecordingLog
+      end
+
+      after(:all) do
+        SimpleLog = @initial_simple_log
       end
 
       describe "when the data priming project does not exist" do
@@ -66,7 +73,7 @@ describe ":prime:data" do
 
       end
 
-      describe "when provided no number of features to create" do
+      describe "when not provided a number of features to create" do
 
         before(:all) do
           @task.execute
@@ -78,16 +85,23 @@ describe ":prime:data" do
 
       end
 
-      describe "when provided with the number of features to create" do
+      describe "when provided a number of features to create" do
 
         before(:all) do
           @initial_number_value = ENV["number"]
           ENV["number"] = "8"
+
+          RecordingLog.reset
+
           @task.execute
         end
 
         after(:all) do
           ENV["number"] = @initial_number_value
+        end
+
+        it "should log that the provided number of features are being created" do
+          RecordingLog.messages.should include("Creating 8 feature(s)...")
         end
 
         it "should create features whose number is incremented by 1" do
