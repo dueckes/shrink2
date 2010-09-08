@@ -1,0 +1,3 @@
+<%= render(:partial => "common/form_edit", 
+           :locals => { :model => user, :field_set => :role, :field_set_locals => { :roles => roles },
+                        :url => { :controller => :users, :action => :update_role, :id => user.id } }) %>

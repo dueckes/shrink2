@@ -221,9 +221,9 @@ var UserAddForm = $.klass(PopUpForm, {
   }
 });
 
-var UserEditForm = $.klass(PopUpForm, {
+var UserEditRoleForm = $.klass(PopUpForm, {
   initialize: function($super) {
-    $super('user_edit', '800px', '200px');
+    $super('user_edit_role', '750px', '120px');
   },
   clear: function() {
     this._clearErrors();

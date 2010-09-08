@@ -6,6 +6,7 @@
     <%= form.hidden_field_tag(:container_dom_id) %>
     <%= form.hidden_field_for(:position) %>
     <%= render :partial => "#{model.class.short_name.to_s.pluralize}/form_common", :locals => { :form => form, :model => model } %>
+    <%= form.commit_button %>
     <div id="<%= controller.create_errors_area_dom_id(model) %>" class="errors" style="display: none;">
     </div>
   <% end -%>

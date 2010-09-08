@@ -5,7 +5,7 @@ class UserFormBuilder < ApplicationFormBuilder
   end
 
   def buttons_visible
-    true
+    @options[:field_set] != :login
   end
 
 end

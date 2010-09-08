@@ -9,7 +9,7 @@ class AddAnywherePresenter < ApplicationPresenter
 
   def container_dom_id
     @container_dom_id ||= template.dom_id(
-            *(model.parents + ["new_#{model.class.short_name}_#{controller.next_number(model.class.short_name)}"]))
+            *(model.parents + ["new_#{model.class.short_name}_#{controller.next_number(model_name.to_sym)}"]))
   end
 
   def show_form_js

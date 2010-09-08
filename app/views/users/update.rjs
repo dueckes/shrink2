@@ -1,2 +1,2 @@
-page << close_popup_form_js
-page << render_user_details_js(@user, @roles, update_in_sidebar_list_js(@user, @user.login))
+update_inline(page, @user, :user, :login)
+page << update_in_sidebar_list_js(@user, @user.login)

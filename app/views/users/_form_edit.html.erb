@@ -1,11 +1,2 @@
-<% remote_form_for(:user, user, :url => user_path(user),
-                   :html => { :method => :put, :id => :user_edit_form, :class => "user_form simple edit" },
-                   :builder => UserFormBuilder) do |form| -%>
-  <% field_set_tag do -%>
-    <%= render :partial => "users/form_common_login", :locals => { :form => form } %>
-    <%= render({ :partial => "users/form_common_role", :locals => { :form => form, :roles => roles } }, { :when_permitted_to => [:change_role, user] }) %>
-    <%= form.commit_button %>
-    <div id="<%= dom_id(user) %>_errors" class="errors">
-    </div>
-  <% end -%>
-<% end -%>
+<%= render(:partial => "common/form_edit", :locals => { :model => user, :field_set => :login,
+                                                        :url => user_path(user) }) %>

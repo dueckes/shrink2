@@ -1,4 +1,3 @@
-<h2>Role</h2>
 <% roles.each do |role| -%>
   <%= form.label_for :role_id, role.name, :value => role.id %><%= form.radio_button_for :role_id, role.id %>
 <% end -%>

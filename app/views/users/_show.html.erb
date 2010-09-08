@@ -5,23 +5,23 @@
   <div id="user_message"></div>
   <div id="user_detail">
     <div class="header highlight_controls_area">
-      <div class="title">
-        <%= user.login %>
+      <div id="<%= dom_id(user) %>_login" class="title">
+        <%= render :partial => "users/show_login", :locals => { :user => user } %>
       </div>
       <div class="highlight_controls">
-        <%= link_to "Edit", "#", { :id => :user_edit_form_show_link, :title => "Edit User" } %>
+        <%= link_to "Change Role", "#", { :id => :user_edit_role_form_show_link, :title => "Change User Role" }, { :when_permitted_to => [:update_role, user] } %>
         <%= link_to "Change Password", "#", { :id => :user_edit_password_form_show_link, :title => "Change User Password" } %>
         <%= link_to_remote icon(:delete, :red), { :confirm => "Are you sure you want to delete this user?", :url => user_path(user), :method => :delete },
                            { :id => dom_id(user, :delete_link), :title => "Delete" }, { :when_permitted_to => [:delete, user] } %>
         <div style="display: none">
-          <div id="user_edit_form_area">
-            <%= render :partial => "users/form_edit", :locals => { :user => user, :roles => roles } %>
+          <div id="user_edit_role_form_area">
+            <%= render :partial => "users/form_edit_role", :locals => { :user => user, :roles => roles } %>
           </div>
           <div id="user_edit_password_form_area">
             <%= render :partial => "users/form_edit_password", :locals => { :user => user } %>
           </div>
         </div>
-        <%= javascript_tag "new UserEditForm().configurePopup()" %>
+        <%= javascript_tag "new UserEditRoleForm().configurePopup()" %>
         <%= javascript_tag "new UserEditPasswordForm().configurePopup()" %>
       </div>
     </div>

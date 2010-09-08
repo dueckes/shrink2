@@ -1,7 +1,8 @@
 <% remote_form_for(:user, user, :url => users_path, :builder => UserFormBuilder,
                    :html => { :id => "user_add_form", :class => "user_form simple" }) do |form| -%>
   <% field_set_tag do -%>
-    <%= render :partial => "users/form_common_login", :locals => { :form => form } %>
+    <%= form.label_for :login, "Username" %><%= render :partial => "users/form_common_login", :locals => { :form => form } %>
+    <h2>Role</h2>
     <%= render :partial => "users/form_common_role", :locals => { :form => form, :roles => roles } %>
     <h2>Password</h2>
     <%= render :partial => "users/form_common_password", :locals => { :form => form } %>

@@ -1,9 +1,14 @@
-<% remote_form_for(model.class.short_name, model, :url => url,
-                   :html => { :method => :put, :id => dom_id(model, :edit_form), :class => "#{model.class.short_name}_form simple edit" },
+<% field_set ||= nil
+   field_set_locals ||= {}
+   presenter = EditFormPresenter.new(field_set, model, controller) %>
+
+<% remote_form_for(presenter.model_name, model, :url => url, :field_set => field_set,
+                   :html => { :method => :put, :id => presenter.form_id, :class => "#{presenter.model_name}_form simple edit" },
                    :builder => form_builder_for(model)) do |form| -%>
   <% field_set_tag do -%>
     <input type="hidden" name="cancel" />
-    <%= render :partial => "#{model.class.short_name.to_s.pluralize}/form_common", :locals => { :form => form, :model => model } %>
+    <%= render :partial => presenter.field_set_partial, :locals => { :form => form, :model => model }.merge(field_set_locals) %>
+    <%= form.commit_button %>
     <div id="<%= dom_id(model) %>_errors" class="errors">
     </div>
   <% end -%>
