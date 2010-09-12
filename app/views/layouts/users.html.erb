@@ -5,10 +5,7 @@
   &nbsp;
 <% end -%>
 <% content_for :sidebar_area do -%>
-  <%= render({ :partial => "users/sidebar_button_area", :locals => { :roles => @roles } },
-             { :when_permitted_to => [:create, :users], :otherwise => "&nbsp;" }) %>
-  <%= render({ :partial => "users/sidebar_list_area", :locals => { :users => @users } },
-             { :when_permitted_to => [:index, :users], :otherwise => "&nbsp;" }) %>
+  <%= render(:partial => "users/sidebar_area", :locals => { :users => @users, :roles => @roles }) %>
 <% end -%>
 <% content_for :main_area do -%>
   <%= yield %>

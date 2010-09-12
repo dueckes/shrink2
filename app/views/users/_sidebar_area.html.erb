@@ -1,0 +1,4 @@
+<%= render({ :partial => "users/sidebar_button_area", :locals => { :roles => @roles } },
+           { :when_permitted_to => [:create, :users], :otherwise => "&nbsp;" }) %>
+<%= render({ :partial => "users/sidebar_list_area", :locals => { :users => @users } },
+           { :when_permitted_to => [:index, :users], :otherwise => "&nbsp;" }) %>

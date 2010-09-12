@@ -12,4 +12,32 @@ describe Shrink::Role do
     role.description.should eql("Some Role Description")
   end
 
+  context "#administrator?" do
+
+    describe "when the name of the role is administrator" do
+
+      before(:each) do
+        @role = Shrink::Role.new(:name => "administrator")
+      end
+
+      it "should return true" do
+        @role.should be_an_administrator
+      end
+
+    end
+
+    describe "when the name of the role is not administrator" do
+
+      before(:each) do
+        @role = Shrink::Role.new(:name => "not_administrator")
+      end
+
+      it "should return true" do
+        @role.should_not be_an_administrator
+      end
+
+    end
+
+  end
+
 end

@@ -12,9 +12,13 @@ module Shrink
       config.ignore_blank_passwords = false
     end
 
-    #TODO Modify belongs_to to include/exclude parent associations
-    def self.parent_associations
-      []
+    def administrator?
+      role.administrator?
+    end
+
+    # TODO Dirty tracking of user association would be ideal
+    def demotion?(proposed_role)
+      administrator? && !proposed_role.administrator?
     end
 
     def role_symbols

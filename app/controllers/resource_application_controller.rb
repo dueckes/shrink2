@@ -1,5 +1,5 @@
 class ResourceApplicationController < ApplicationController
-  before_filter :establish_parents_via_params, :only => [:new, :create]
+  before_filter :establish_parents_via_params, :only => [:new, :create, :update]
   before_filter :establish_model_via_id_param, :only => [:show, :edit, :update, :destroy]
 
   class << self
@@ -62,9 +62,8 @@ class ResourceApplicationController < ApplicationController
 
   def update
     unless params[:cancel] == "true"
-      unless @model.update_attributes(params[self.class.short_model_name])
-        render_errors("#{dom_id(@model)}_errors", @model.errors)
-      end
+      @model.attributes = params[self.class.short_model_name]
+      render_errors("#{dom_id(@model)}_errors", @model.errors) unless @model.save
     end
   end
 
@@ -74,7 +73,10 @@ class ResourceApplicationController < ApplicationController
 
   def establish_parents_via_params
     @parents = self.class.parent_associations.collect do |association|
-      parent = association.model_class.find(params["#{association.name}_id"])
+      model_params = params[self.class.short_model_name]
+      parent_id = params["#{association.name}_id"] || model_params && model_params["#{association.name}_id"]
+      raise "#{association.name} id not established" unless parent_id
+      parent = association.model_class.find(parent_id)
       instance_variable_set("@#{association.name}", parent)
       parent
     end

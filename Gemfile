@@ -17,6 +17,10 @@ gem "pg", "0.8.0"
 # Monitoring
 gem "newrelic_rpm", "2.12.1"
 
+group :development do
+  gem "ruby-debug", "0.10.3"
+end
+
 group :test do
   gem "reek", "1.2.8"
   gem "roodi", "2.0.1"

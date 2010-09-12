@@ -33,7 +33,7 @@ describe Shrink::User do
       before(:each) do
         @user.login = "some_login"
       end
-
+                                                                                
       describe "and a password has been provided" do
 
         before(:each) do
@@ -135,20 +135,126 @@ describe Shrink::User do
 
   end
 
-  context "#role_symbols" do
+  context "#administrator?" do
 
     before(:each) do
-      @user.role = Shrink::Role.new(:name => "some_role")
+      @role = @user.role = new_role
     end
 
-    it "should return an array containing a symbolized version of users name" do
-      @user.role_symbols.should eql([:some_role])
+    describe "when the user has an administrator role" do
+
+      before(:each) do
+        @role.stub!(:administrator?).and_return(true)
+      end
+
+      it "should return true" do
+        @user.should be_an_administrator
+      end
+
+    end
+
+    describe "when the user does not have an administrator role" do
+
+      before(:each) do
+        @role.stub!(:administrator?).and_return(false)
+      end
+
+      it "should return true" do
+        @user.should_not be_an_administrator 
+      end
+
     end
 
   end
 
-  def new_role
-    Shrink::Role.new(:name => "role_name", :description => "Role Description")
+  context "#demotion" do
+
+    before(:each) do
+      @proposed_role = new_role(:name => "proposed_role_name")
+
+      @user.role = new_role(:name => "current_role_name")
+    end
+
+    describe "when the users has an administrator role" do
+
+      before(:each) do
+        @user.role.stub!(:administrator?).and_return(true)
+      end
+
+      describe "and the proposed role is normal" do
+
+        before(:each) do
+          @proposed_role.stub!(:administrator?).and_return(false)
+        end
+
+        it "should return true" do
+          @user.demotion?(@proposed_role).should be_true
+        end
+
+      end
+
+      describe "and the proposed role is administrator" do
+
+        before(:each) do
+          @proposed_role.stub!(:administrator?).and_return(true)
+        end
+
+        it "should return false" do
+          @user.demotion?(@proposed_role).should be_false
+        end
+
+      end
+
+    end
+
+    describe "when the user has a normal role" do
+
+      before(:each) do
+        @user.role.stub!(:administrator?).and_return(false)
+      end
+
+      describe "and the proposed role is administrator" do
+
+        before(:each) do
+          @proposed_role.stub!(:administrator?).and_return(true)
+        end
+
+        it "should return false" do
+          @user.demotion?(@proposed_role).should be_false
+        end
+
+      end
+
+      describe "and the proposed role is normal" do
+
+        before(:each) do
+          @proposed_role.stub!(:administrator?).and_return(false)
+        end
+
+        it "should return false" do
+          @user.demotion?(@proposed_role).should be_false
+        end
+
+      end
+
+    end
+
+  end
+
+  context "#role_symbols" do
+
+    before(:each) do
+      @user.role = new_role("some_role_name")
+    end
+
+    it "should return an array containing a symbolized version of users name" do
+      @user.role_symbols.should eql([:some_role_name])
+    end
+
+  end
+
+  def new_role(name="role_name")
+    Shrink::Role.new(:name => name, :description => "Role Description")
   end
 
 end

@@ -55,16 +55,28 @@ module ApplicationHelper
     string.blank? ? default_text : string
   end
 
-  def replace_main_inner_js(html, additional_js="")
+  def replace_html_with_default_effect_js(id, html, additional_js="")
     %{
-      $('#main_inner').fadeOutAndIn(function(object) {
+      $('##{id}').fadeOutAndIn(function(object) {
         object.html(#{::ActiveSupport::JSON.encode(html)});
         #{additional_js}
       });
     }
   end
 
-  def remove_from_sidebar_list_and_clear_main_inner_js (model)
+  def refresh_account_container_js(additional_js="")
+    replace_html_with_default_effect_js(:account_container, render_account_container, additional_js)
+  end
+
+  def replace_sidebar_area_js(html, additional_js="")
+    replace_html_with_default_effect_js(:sidebar_area, html, additional_js)
+  end
+
+  def replace_main_inner_js(html, additional_js="")
+    replace_html_with_default_effect_js("main_inner", html, additional_js)
+  end
+
+  def remove_from_sidebar_list_and_clear_main_inner_js(model)
     replace_main_inner_js("", "$('##{dom_id(model)}').fadeOutAndRemove()")
   end
 

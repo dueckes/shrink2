@@ -1,6 +1,2 @@
 folder_area = render_folder_to_string(:folder => @root_folder, :highlighted_feature => @feature)
-page << %{
-  $('##{dom_id(@root_folder)}').fadeOutAndIn(function(object) {
-    object.html(#{::ActiveSupport::JSON.encode(folder_area)})
-  })
-}
+page << replace_html_with_default_effect_js(dom_id(@root_folder), folder_area)
