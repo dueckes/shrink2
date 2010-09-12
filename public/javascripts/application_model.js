@@ -111,7 +111,7 @@ var Feature = $.klass({
   },
   _commaDelimitedStringIncludesElement: function(commaDelimitedString, element) {
     var commaDelimitedStringWithConsistentCommaSpacing = commaDelimitedString.replace(/\s*,\s*/g, ',');
-    var elementMatchRegularExpression = new RegExp('(^' + element + ',)|(,' + element + ',)|(,' + element + '$)');
+    var elementMatchRegularExpression = new RegExp('(^|,)' + element + '(,|$)');
     return commaDelimitedStringWithConsistentCommaSpacing.match(elementMatchRegularExpression) != null;
   },
   _expandArea: function() {

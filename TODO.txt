@@ -10,7 +10,8 @@ Configuration:
 - Session storage strategy?  db?
 
 Next:
-- MU: Folder drag-and-drop not obvious
+- MU: Scenario tag support
+      Folder drag-and-drop not obvious
       Cucumber specific names for import/export tasks?
       Create before_commit active_record extension gem
       after_commit gem as a replacement for before_commit
