@@ -50,6 +50,10 @@ Development Installation instructions
 
         $ createdb --owner=shrink_dev shrink_dev
 
+### Ruby
+
+* Currently only supports ruby 1.8.7
+
 ### GEMS
 
 1. Configure PostgreSQL adapter
@@ -58,23 +62,27 @@ Development Installation instructions
 
         $ export ARCHFLAGS="-arch x86_64"
 
-2. Install bundle
+2. Install bundler
+
+        $ gem install bundler
+
+3. Install bundle
 
         $ bundle install
 
 ### BUILD TARGETS
 
-* *Exercise all migrations and prepare test database:* `$ bundle exec rake db:reset_and_prepare`
+* *Exercise all migrations and prepare test database:* `$ rake db:reset_and_prepare`
 
-* *Developer full-build:* `$ bundle exec rake dev`
+* *Developer full-build:* `$ rake dev`
 
     Performs migrations and executes behaviors
 
-* *CI full-build:* `$ bundle exec rake ci`
+* *CI full-build:* `$ rake ci`
 
     Developer build with metrics checks and build report generation
 
-* *Behavior build:* `$ bundle exec rake spec` or `$ bundle exec rake spec:rcov`
+* *Behavior build:* `$ rake spec` or `$ rake spec:rcov`
 
-* *Source code metrics analysis:* `$ bundle exec rake metrics`
+* *Source code metrics analysis:* `$ rake metrics`
   
