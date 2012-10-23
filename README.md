@@ -50,9 +50,9 @@ Development Installation instructions
 
         $ createdb --owner=shrink_dev shrink_dev
 
-### Ruby
+### RUBY
 
-* Currently only supports ruby 1.8.7
+* Currently 1.8.7 is supported
 
 ### GEMS
 
