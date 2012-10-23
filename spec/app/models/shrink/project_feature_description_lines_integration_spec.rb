@@ -9,7 +9,7 @@ describe Shrink::ProjectFeatureDescriptionLines do
 
       before(:all) do
         create_project
-        create_feature
+        create_valid_feature
         create_description_lines(@all_texts)
 
         @model = Shrink::ProjectFeatureDescriptionLines.new(@project)
@@ -19,7 +19,7 @@ describe Shrink::ProjectFeatureDescriptionLines do
         @project = create_project!
       end
 
-      def create_feature
+      def create_valid_feature
         @feature = create_feature!(:project => @project)
       end
 

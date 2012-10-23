@@ -15,8 +15,8 @@ describe Shrink::Table do
     Shrink::Table.include?(Shrink::Cucumber::Formatter::TableFormatter).should be_true
   end
 
-  it "should be a Shrink::Cucumber::Adapter::AstTableAdapter" do
-    Shrink::Table.include?(Shrink::Cucumber::Adapter::AstTableAdapter).should be_true
+  it "should be a Shrink::Cucumber::Ast::Adapter::TableAdapter" do
+    Shrink::Table.include?(Shrink::Cucumber::Ast::Adapter::TableAdapter).should be_true
   end
 
   context "#header_row" do
@@ -88,7 +88,7 @@ describe Shrink::Table do
     end
 
     it "should not persist the table" do
-      @table.should be_new_record
+      @table.should be_a_new_record
     end
 
     it "should create two rows" do

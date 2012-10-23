@@ -58,146 +58,20 @@ describe Shrink::Feature do
     feature.scenarios.should eql(scenarios)
   end
 
+  it "should be Shrink::Taggable" do
+    Shrink::Feature.include?(Shrink::Taggable).should be_true
+  end
+
   it "should be a Shrink::FeatureSummaryChangeObserver" do
     Shrink::Feature.include?(Shrink::FeatureSummaryChangeObserver).should be_true
   end
 
-  it "should be a Shrink::Cucumber::Adapter::AstFeatureAdapter" do
-    Shrink::Feature.include?(Shrink::Cucumber::Adapter::AstFeatureAdapter).should be_true
+  it "should be a Shrink::Cucumber::Ast::Adapter::FeatureAdapter" do
+    Shrink::Feature.include?(Shrink::Cucumber::Ast::Adapter::FeatureAdapter).should be_true
   end
 
   it "should be a Shrink::Cucumber::Formatter::FeatureFormatter" do
     Shrink::Feature.include?(Shrink::Cucumber::Formatter::FeatureFormatter).should be_true
-  end
-
-  context "#valid?" do
-
-    before(:each) do
-      @feature = Shrink::Feature.new(:project => Shrink::Project.new(:name => "Some Project"),
-                                     :folder => Shrink::Folder.new(:name => "Some folder"),
-                                     :title => "Some Title")
-    end
-
-    describe "when a project has been provided" do
-
-      describe "when a folder has been provided" do
-
-        describe "and a title has been provided" do
-
-          describe "whose length is less than 256 characters" do
-
-            before(:each) do
-              @feature.title = "a" * 255
-            end
-
-            it "should return true" do
-              @feature.should be_valid
-            end
-
-          end
-
-          describe "whose length is 256 characters" do
-
-            before(:each) do
-              @feature.title = "a" * 256
-            end
-
-            it "should return true" do
-              @feature.should be_valid
-            end
-
-          end
-
-          describe "whose length is greater than 256 characters" do
-
-            before(:each) do
-              @feature.title = "a" * 257
-            end
-
-            it "should return false" do
-              @feature.should_not be_valid
-            end
-
-          end
-
-          describe "that is empty" do
-
-            before(:each) do
-              @feature.title = ""
-            end
-
-            it "should return false" do
-              @feature.should_not be_valid
-            end
-
-          end
-
-        end
-
-        describe "and a title has not been provided" do
-
-          before(:each) do
-            @feature.title = nil
-          end
-
-          it "should return false" do
-            @feature.should_not be_valid
-          end
-
-        end
-
-      end
-
-      describe "when a folder has not been provided" do
-
-        before(:each) do
-          @feature.folder = nil
-        end
-
-        it "should return false" do
-          @feature.should_not be_valid
-        end
-
-      end
-
-    end
-
-    describe "when a project has not been provided" do
-
-      before(:each) do
-        @feature.project = nil
-      end
-
-      it "should return false" do
-        @feature.should_not be_valid
-      end
-
-    end
-
-    describe "when an invalid description line has been added" do
-
-      before(:each) do
-        @feature.description_lines << Shrink::FeatureDescriptionLine.new(:text => "")
-      end
-
-      it "should return false" do
-        @feature.should_not be_valid
-      end
-
-    end
-
-    describe "when an invalid scenario has been added" do
-
-      before(:each) do
-        @feature.scenarios << Shrink::Scenario.new(:title => "")
-      end
-
-      it "should return false" do
-        @feature.should_not be_valid
-      end
-
-    end
-
   end
 
   context "#update_summary!" do
@@ -225,7 +99,7 @@ describe Shrink::Feature do
 
     before(:each) do
       @feature = Shrink::Feature.new
-      @summary = mock("Summmary", :null_object => true)
+      @summary = mock("Summary", :null_object => true)
       @feature.stub!(:summary).and_return(@summary)
     end
 

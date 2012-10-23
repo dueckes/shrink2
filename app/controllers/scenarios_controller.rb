@@ -1,6 +1,8 @@
 class ScenariosController < ResourceApplicationController
   include ResourceApplicationControllerAddAnywhereSupport
 
+  helper TagsHelper
+
   def create
     super
     @step_add_anywhere_presenter = AddAnywherePresenter.new(

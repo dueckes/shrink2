@@ -3,7 +3,7 @@ module Shrink
   class Step < ::ActiveRecord::Base
     include Shrink::BelongsToTable
     include Shrink::FeatureSummaryChangeObserver
-    include Shrink::Cucumber::Adapter::AstStepAdapter
+    include Shrink::Cucumber::Ast::Adapter::StepAdapter
     include Shrink::Cucumber::Formatter::StepFormatter
     
     set_table_adapter Shrink::Table

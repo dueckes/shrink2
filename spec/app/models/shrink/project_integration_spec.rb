@@ -169,6 +169,51 @@ describe Shrink::Project do
 
     end
 
+    context "#default" do
+
+      describe "when no projects have been added" do
+
+        it "should return a persisted project" do
+          project = Shrink::Project.default
+
+          project.should be_a(Shrink::Project)
+          project.should_not be_a_new_record
+        end
+
+        it "should return a project whose name indicates it has been auto-generated" do
+          project = Shrink::Project.default
+
+          project.name.should match(/auto-generated/i) 
+        end
+
+      end
+
+      describe "when one project has been added" do
+
+        before(:each) do
+          @project = create_project!
+        end
+
+        it "should return the project" do
+          Shrink::Project.default.should eql(@project)
+        end
+
+      end
+
+      describe "when more than one project has been added" do
+
+        before(:each) do
+          2.times { create_project! }
+        end
+
+        it "should raise an error indicating more than one project exists" do
+          lambda { Shrink::Project.default }.should raise_error(Exception, /more than one project exists/i)
+        end
+
+      end
+      
+    end
+
   end
 
 end

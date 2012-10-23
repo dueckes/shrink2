@@ -2,12 +2,15 @@ module Shrink
 
   class Scenario < ::ActiveRecord::Base
     include Shrink::FeatureSummaryChangeObserver
-    include Shrink::Cucumber::Adapter::AstScenarioAdapter
+    include Shrink::Cucumber::Ast::Adapter::ScenarioAdapter
     include Shrink::Cucumber::Formatter::ScenarioFormatter
+    include Shrink::Taggable
+
     set_step_adapter Shrink::Step
 
     belongs_to :feature, :class_name => "Shrink::Feature"
     has_many :steps, :class_name => "Shrink::Step", :order => :position, :dependent => :destroy
+
     acts_as_list :scope => :feature
 
     validates_presence_of :title

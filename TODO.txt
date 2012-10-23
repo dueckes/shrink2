@@ -10,7 +10,13 @@ Configuration:
 - Session storage strategy?  db?
 
 Next:
-- MU: Scenario tag support
+- MU: Upgrade to Rails 3
+      Upgrade TeamCity
+      Upgrade Cucumber
+      Acceptance Test via Cucumber
+      scenario.project = project to assign project to tags
+      Scenario tag support
+      Introduce FactoryGirl or Machinist
       Folder drag-and-drop not obvious
       Cucumber specific names for import/export tasks?
       Create before_commit active_record extension gem

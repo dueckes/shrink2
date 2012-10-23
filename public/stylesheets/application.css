@@ -655,7 +655,7 @@ td, th {
   clear: left;
 }
 
-#features .show_tags_link {
+#features .show_tags_link, #scenarios .show_tags_link {
   font-weight: bold;
 }
 

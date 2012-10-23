@@ -3,7 +3,7 @@ describe Shrink::Scenario do
   describe "integrating with the database" do
     it_should_behave_like DatabaseIntegration
     it_should_behave_like ClearDatabaseAfterEach
-    
+
     before(:each) do
       @feature = create_feature!
     end
@@ -65,73 +65,78 @@ describe Shrink::Scenario do
 
     end
 
-    context "#steps" do
+    describe "when a scenario has been created" do
 
       before(:each) do
-        @scenario = create_scenario!
+        @scenario = @model = create_scenario!
       end
 
-      describe "when steps have been added" do
+      context "#steps" do
 
-        before(:each) do
-          @steps = (1..3).collect do |i|
-            Shrink::Step.create!(:text => "Step Text #{i}", :position => 4 - i, :scenario => @scenario)
-          end
-          @scenario.steps(true)
-        end
-
-        it "should have the same amount of steps that have been added" do
-          @scenario.steps.should have(3).steps
-        end
-
-        it "should retrieve steps ordered by position" do
-          @scenario.steps.each_with_index { |step, i| step.text.should eql("Step Text #{3 - i}") }
-        end
-
-        it "should all be destroyed when the scenario is destroyed" do
-          @scenario.destroy
-
-          @steps.each { |step| Shrink::Step.find_by_id(step.id).should be_nil }
-        end
-
-      end
-
-    end
-
-    context "#order_steps" do
-
-      describe "when provided a list of all step ids" do
-
-        before(:each) do
-          @scenario = create_scenario!
-          @steps = (1..3).collect { |i| Shrink::Step.create!(:scenario => @scenario, :text => "Step#{i}") }
-        end
-
-        describe "whose order corresponds with the position of the steps" do
+        describe "when steps have been added" do
 
           before(:each) do
-            @scenario.order_steps(@steps.collect(&:id))
-          end
-        end
-
-
-        it "should leave the order of the steps unchanged" do
-          @scenario.steps.should eql(@steps)
-        end
-
-        describe "whose order does not correspond with the position of the steps" do
-
-          before(:each) do
-            @scenario.order_steps(@steps.collect(&:id).reverse)
+            @steps = (1..3).collect do |i|
+              Shrink::Step.create!(:text => "Step Text #{i}", :position => 4 - i, :scenario => @scenario)
+            end
+            @scenario.steps(true)
           end
 
-          it "should order the steps based on the position of their id in the list" do
-            @scenario.steps.should eql(@steps.reverse)
+          it "should have the same amount of steps that have been added" do
+            @scenario.steps.should have(3).steps
+          end
+
+          it "should retrieve steps ordered by position" do
+            @scenario.steps.each_with_index { |step, i| step.text.should eql("Step Text #{3 - i}") }
+          end
+
+          it "should all be destroyed when the scenario is destroyed" do
+            @scenario.destroy
+
+            @steps.each { |step| Shrink::Step.find_by_id(step.id).should be_nil }
           end
 
         end
 
       end
+
+      context "#order_steps" do
+
+        describe "when provided a list of all step ids" do
+
+          before(:each) do
+            @steps = (1..3).collect { |i| Shrink::Step.create!(:scenario => @scenario, :text => "Step#{i}") }
+          end
+
+          describe "whose order corresponds with the position of the steps" do
+
+            before(:each) do
+              @scenario.order_steps(@steps.collect(&:id))
+            end
+          end
+
+
+          it "should leave the order of the steps unchanged" do
+            @scenario.steps.should eql(@steps)
+          end
+
+          describe "whose order does not correspond with the position of the steps" do
+
+            before(:each) do
+              @scenario.order_steps(@steps.collect(&:id).reverse)
+            end
+
+            it "should order the steps based on the position of their id in the list" do
+              @scenario.steps.should eql(@steps.reverse)
+            end
+
+          end
+
+        end
+
+      end
+
+      it_should_behave_like "A taggable model integrating with the database"
 
     end
 

@@ -5,13 +5,9 @@ describe Shrink::FeatureSummaryChangeObserver do
 
     describe "when it observes a change to one feature" do
 
-      before(:all) do
-        @feature_member_class = Shrink::FeatureDescriptionLine
-      end
-
       before(:each) do
         @feature = create_feature!
-        @feature_member = create_model!(@feature_member_class, :feature => @feature, :text => "Feature Member Text")
+        @feature_member = create_description_line!(:feature => @feature, :text => "Feature Member Text")
       end
 
       context "#after_save" do
@@ -44,15 +40,11 @@ describe Shrink::FeatureSummaryChangeObserver do
 
     describe "when it observes changes to many features" do
 
-      before(:all) do
-        @feature_member_class = Shrink::Tag
-      end
-
       before(:each) do
-        @feature_member = create_model!(@feature_member_class, :name => "Feature Member Name")
+        @feature_member = create_tag!(:name => "Feature Member Name")
         @features = (1..3).collect do |i|
           feature = create_feature!(:title => "Feature#{i}")
-          @feature_member.features << feature
+          feature.tags << @feature_member
           feature
         end
       end

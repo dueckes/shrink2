@@ -7,6 +7,8 @@ module Shrink
     belongs_to :project, :class_name => "Shrink::Project"
     has_many :feature_tags, :class_name => "Shrink::FeatureTag"
     has_many :features, :through => :feature_tags
+    has_many :scenario_tags, :class_name => "Shrink::ScenarioTag"
+    has_many :scenarios, :through => :scenario_tags
 
     validates_presence_of :name
     validates_length_of :name, :maximum => 256
@@ -20,6 +22,10 @@ module Shrink
 
     def self.find_or_create!(attributes)
       find_or_block(attributes) { create!(attributes) }
+    end
+
+    def models
+      [].concat(features).concat(scenarios)
     end
 
     private

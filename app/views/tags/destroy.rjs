@@ -1,2 +1,2 @@
-update_feature_tag_lines(page, @tag)
+update_tag_lines(page, @tag)
 page << "$('##{dom_id(@tag)}_content').fadeOutAndRemove()"

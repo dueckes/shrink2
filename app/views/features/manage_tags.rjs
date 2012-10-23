@@ -1,2 +1,1 @@
-page.replace_html("#{dom_id(@feature)}_tags_form_area", :partial => "features/form_tags", :locals => { :feature => @feature, :all_tags => @all_tags })
-page << "new TagForm('##{dom_id(@feature)}_tags_area').open()"
+show_tag_form(page, @feature, @all_tags)

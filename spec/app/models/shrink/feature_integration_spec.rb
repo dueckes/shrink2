@@ -7,18 +7,108 @@ describe Shrink::Feature do
       it_should_behave_like ClearDatabaseAfterEach
 
       before(:each) do
-        @feature = create_feature!
+        @feature = @model = create_feature!
       end
 
       context "#valid?" do
 
-        describe "when a title is established" do
+        describe "when a project has been provided" do
 
-          describe "and the title is the same as another features title in the same folder" do
+          describe "and a folder has been provided" do
+
+            describe "and a title has been provided" do
+
+              describe "whose length is less than 256 characters" do
+
+                it "should return true" do
+                  @feature.should be_valid
+                end
+
+              end
+
+              describe "whose length is 256 characters" do
+
+                before(:each) do
+                  @feature.title = "a" * 256
+                end
+
+                it "should return true" do
+                  @feature.should be_valid
+                end
+
+              end
+
+              describe "whose length is greater than 256 characters" do
+
+                before(:each) do
+                  @feature.title = "a" * 257
+                end
+
+                it "should return false" do
+                  @feature.should_not be_valid
+                end
+
+              end
+
+              describe "that is empty" do
+
+                before(:each) do
+                  @feature.title = ""
+                end
+
+                it "should return false" do
+                  @feature.should_not be_valid
+                end
+
+              end
+
+              describe "which is the same as another features title in the same folder" do
+
+                before(:each) do
+                  create_feature!(:title => "Same Title", :folder => @feature.folder)
+                  @feature.title = "Same Title"
+                end
+
+                it "should return false" do
+                  @feature.should_not be_valid
+                end
+
+              end
+
+              describe "which is the same as another features title in a different folder" do
+
+                before(:each) do
+                  different_folder = create_folder!(:name => "Different Folder")
+                  create_feature!(:title => "Same Title", :folder => different_folder)
+                  @feature.title = "Same Title"
+                end
+
+                it "should return true" do
+                  @feature.should be_valid
+                end
+
+              end
+
+            end
+
+            describe "and a title has not been provided" do
+
+              before(:each) do
+                @feature.title = nil
+              end
+
+              it "should return false" do
+                @feature.should_not be_valid
+              end
+
+            end
+
+          end
+
+          describe "when a project has not been provided" do
 
             before(:each) do
-              create_feature!(:title => "Same Title", :folder => @feature.folder)
-              @feature.title = "Same Title"
+              @feature.project = nil
             end
 
             it "should return false" do
@@ -27,16 +117,38 @@ describe Shrink::Feature do
 
           end
 
-          describe "and the title is the same as another features title in a different folder" do
+          describe "and a folder has not been provided" do
 
             before(:each) do
-              different_folder = create_folder!(:name => "Different Folder")
-              create_feature!(:title => "Same Title", :folder => different_folder)
-              @feature.title = "Same Title"
+              @feature.folder = nil
             end
 
-            it "should return true" do
-              @feature.should be_valid
+            it "should return false" do
+              @feature.should_not be_valid
+            end
+
+          end
+
+          describe "when an invalid description line has been added" do
+
+            before(:each) do
+              @feature.description_lines << Shrink::FeatureDescriptionLine.new(:text => "")
+            end
+
+            it "should return false" do
+              @feature.should_not be_valid
+            end
+
+          end
+
+          describe "when an invalid scenario has been added" do
+
+            before(:each) do
+              @feature.scenarios << Shrink::Scenario.new(:title => "")
+            end
+
+            it "should return false" do
+              @feature.should_not be_valid
             end
 
           end
@@ -73,54 +185,7 @@ describe Shrink::Feature do
 
       end
 
-      context "#feature_tags" do
-
-        before(:each) do
-          @feature_tags = %w(a_name z_name m_name).collect do |tag_name|
-            tag = Shrink::Tag.create!(:project => @feature.project, :name => tag_name)
-            Shrink::FeatureTag.create!(:feature => @feature, :tag => tag)
-          end
-          @feature.feature_tags(true)
-        end
-
-        it "should all be destroyed when the feature is destroyed" do
-          @feature.destroy
-
-          @feature_tags.each { |feature_tag| Shrink::FeatureTag.find_by_id(feature_tag.id).should be_nil }
-        end
-
-      end
-
-      context "#tags" do
-
-        describe "when tags have been added" do
-
-          before(:each) do
-            @tags = %w(a_name z_name m_name).collect do |tag_name|
-              tag = Shrink::Tag.create!(:project => @feature.project, :name => tag_name)
-              @feature.tags << tag
-              tag
-            end
-            @feature.tags(true)
-          end
-
-          it "should have the same amount of tags that have been added" do
-            @feature.tags.should have(3).tags
-          end
-
-          it "should be ordered in descending order of tag name" do
-            @feature.tags.collect(&:name).should eql(%w(a_name m_name z_name))
-          end
-
-          it "should not be destroyed when the feature is destroyed" do
-            @feature.destroy
-
-            @tags.each { |tag| Shrink::Tag.find_by_id(tag.id).should_not be_nil }
-          end
-
-        end
-
-      end
+      it_should_behave_like "A taggable model integrating with the database"
 
       context "#description_lines" do
 

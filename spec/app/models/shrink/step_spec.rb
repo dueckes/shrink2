@@ -47,8 +47,8 @@ describe Shrink::Step do
     Shrink::Step.include?(Shrink::FeatureSummaryChangeObserver).should be_true
   end
 
-  it "should be a Shrink::Cucumber::Adapter::AstStepAdapter" do
-    Shrink::Step.include?(Shrink::Cucumber::Adapter::AstStepAdapter).should be_true
+  it "should be a Shrink::Cucumber::Ast::Adapter::StepAdapter" do
+    Shrink::Step.include?(Shrink::Cucumber::Ast::Adapter::StepAdapter).should be_true
   end
 
   it "should be a Shrink::Cucumber::Formatter::StepFormatter" do

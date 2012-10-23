@@ -16,7 +16,8 @@ module Shrink
           end
 
           def started_persisting(model)
-            @outer_models[@outer_models.size - 1] = model if @outer_models.last.nil?
+            model_position = @outer_models.index(nil)
+            @outer_models[model_position] = model unless model_position.nil?
           end
 
           def transaction_with_outer_model_tracking(*args, &block)

@@ -1,6 +1,7 @@
 class FeaturesController < ResourceApplicationController
   layout "features", :only => [:index, :show]
-  helper FoldersHelper, StepsHelper
+
+  helper FoldersHelper, StepsHelper, TagsHelper
 
   #TODO extend filters
   before_filter :require_user

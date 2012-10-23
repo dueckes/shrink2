@@ -46,7 +46,7 @@ describe Shrink::Table do
         end
 
         it "should create a persisted table" do
-          @table.should_not be_new_record
+          @table.should_not be_a_new_record
         end
 
         it "should create the number of rows specified" do
@@ -54,7 +54,7 @@ describe Shrink::Table do
         end
 
         it "should persist each row" do
-          @rows.each { |row| row.should_not be_new_record }
+          @rows.each { |row| row.should_not be_a_new_record }
         end
 
         it "should create the number of columns specified in each row" do
@@ -62,7 +62,7 @@ describe Shrink::Table do
         end
 
         it "should persist each cell" do
-          @cells.each { |cell| cell.should_not be_new_record }
+          @cells.each { |cell| cell.should_not be_a_new_record }
         end
 
         it "should create cells with the text provided" do

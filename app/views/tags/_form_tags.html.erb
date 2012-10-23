@@ -1,0 +1,16 @@
+<% form_remote_tag(:url => { :action => :modify_tags, :id => model.id, :class => :simple }) do -%>
+  <% field_set_tag do -%>
+    <%= text_field_tag :text, nil, :value => model.tags.line, :id => "#{dom_id(model)}_tags_text", :size => 65, :maxlength => 255 %>
+    <div id="<%= dom_id(model) %>_tags_errors" class="errors" style="display: none;">
+    </div>
+    <span>Available tags:</span>
+    <% all_tags.each do |tag| -%>
+      <%= link_to tag.name, "#", :class => "add_tag_link" %>
+    <% end -%>
+    <span>Comma delimited list supported, e.g. billing, important</span>
+    <div class="buttons">
+      <%= submit_tag "OK", :id => "#{dom_id(model)}_tags_submit" %>
+      <%= button_to_function "Cancel", :id => "#{dom_id(model)}_tags_cancel" %>
+    </div>
+  <% end -%>
+<% end -%>

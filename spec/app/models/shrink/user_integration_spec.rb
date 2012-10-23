@@ -48,6 +48,7 @@ describe Shrink::User do
     end
 
     context "#role" do
+      it_should_behave_like ClearDatabaseAfterEach
 
       describe "when a role has been established" do
 
@@ -106,6 +107,7 @@ describe Shrink::User do
     end
 
     context "#valid?" do
+      it_should_behave_like ClearDatabaseAfterEach
 
       describe "when valid attributes are established including role_id as opposed to role" do
 

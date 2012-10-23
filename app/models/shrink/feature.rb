@@ -2,8 +2,9 @@ module Shrink
 
   class Feature < ::ActiveRecord::Base
     include Shrink::FeatureSummaryChangeObserver
-    include Shrink::Cucumber::Adapter::AstFeatureAdapter
+    include Shrink::Cucumber::Ast::Adapter::FeatureAdapter
     include Shrink::Cucumber::Formatter::FeatureFormatter
+    include Shrink::Taggable
 
     set_observed_callback_methods :save
     set_scenario_adapter Shrink::Scenario
@@ -12,8 +13,6 @@ module Shrink
     belongs_to :folder, :class_name => "Shrink::Folder"
     has_many :description_lines, :class_name => "Shrink::FeatureDescriptionLine", :order => :position, :dependent => :destroy
     has_many :scenarios, :class_name => "Shrink::Scenario", :order => :position, :dependent => :destroy
-    has_many :feature_tags, :class_name => "Shrink::FeatureTag", :dependent => :destroy
-    has_many :tags, :through => :feature_tags, :order => :name, :extend => Shrink::FeatureTags
 
     validates_presence_of :project, :folder, :title
     validates_length_of :title, :maximum => 256

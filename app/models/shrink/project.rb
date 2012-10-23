@@ -14,6 +14,11 @@ module Shrink
 
     after_create { |project| Shrink::Folder.create_root_folder!(project) }
 
+    def self.default
+      raise "No default project could be identified as more than one project exists" if count > 1 
+      first || create!(:name => "Auto-generated project")
+    end
+
     def steps
       @steps ||= Shrink::ProjectSteps.new(self)
     end

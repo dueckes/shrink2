@@ -13,7 +13,9 @@ require 'spec/rails'
 Dir[File.expand_path(File.join(File.dirname(__FILE__), '**', '*shared_example.rb'))].each { |f| require(f) }
 Dir[File.expand_path(File.join(File.dirname(__FILE__), 'support', '**', '*.rb'))].each { |f| require(f) }
 
+# Configure Rake
 require "#{RAILS_ROOT}/rake_initializer"
+require "#{RAILS_ROOT}/lib/extensions/rake/task_executor"
 
 SPEC_RESOURCES_DIR = "#{RAILS_ROOT}/spec/resources"
 SPEC_TMP_DIR = "#{RAILS_ROOT}/tmp/spec"
@@ -22,7 +24,7 @@ Spec::Runner.configure do |config|
   # If you're not using ActiveRecord you should remove these
   # lines, delete config/database.yml and disable :active_record
   # in your config/boot.rb
-  config.use_transactional_fixtures = true
+  config.use_transactional_fixtures = false
   config.use_instantiated_fixtures  = false
   config.fixture_path = RAILS_ROOT + '/spec/fixtures/'
 

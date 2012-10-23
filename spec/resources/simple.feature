@@ -4,6 +4,7 @@ Feature: Simple Feature Example
   I want to test importing a simple feature
   So that I have confidence it works for real users
 
+  @tag_four @tag_five @tag_six
   Scenario: First Scenario
     Given First scenario given
     And First scenario and

@@ -1,2 +1,2 @@
-Feature: First
+Feature: First Feature Title
   

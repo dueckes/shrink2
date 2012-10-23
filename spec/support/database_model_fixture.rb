@@ -1,13 +1,13 @@
 module DatabaseModelFixture
 
   def create_project!(options={})
-    default_options = { :name => "Project Name" }
+    default_options = { :name => "Project #{Shrink::Project.count + 1} Name" }
     combined_options = default_options.merge(options)
     Shrink::Project.create!(combined_options)
   end
 
   def find_or_create_project!(options={})
-    Shrink::Project.find(:first) || create_project!(options)
+    Shrink::Project.first || create_project!(options)
   end
 
   def create_folder!(options={})
@@ -18,7 +18,7 @@ module DatabaseModelFixture
   end
 
   def find_or_create_folder!(options={})
-    Shrink::Folder.find(:first) || create_folder!(options)
+    Shrink::Folder.first || create_folder!(options)
   end
 
   def create_feature!(options={})
@@ -29,7 +29,7 @@ module DatabaseModelFixture
   end
 
   def find_or_create_feature!(options={})
-    Shrink::Feature.find(:first) || create_feature!(options)
+    Shrink::Feature.first || create_feature!(options)
   end
 
   def create_tag!(options={})
@@ -72,7 +72,7 @@ module DatabaseModelFixture
   end
 
   def find_role!
-    Shrink::Role.find(:first)
+    Shrink::Role.first
   end
 
   def create_model!(model_class, options={})

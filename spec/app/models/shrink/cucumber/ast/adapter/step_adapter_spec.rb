@@ -1,7 +1,7 @@
-describe Shrink::Cucumber::Adapter::AstStepAdapter do
+describe Shrink::Cucumber::Ast::Adapter::StepAdapter do
 
   class TestableAstStepAdapter
-    include Shrink::Cucumber::Adapter::AstStepAdapter
+    include Shrink::Cucumber::Ast::Adapter::StepAdapter
   end
 
   context "#adapt" do

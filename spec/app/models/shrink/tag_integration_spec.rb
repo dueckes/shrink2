@@ -22,9 +22,32 @@ describe Shrink::Tag do
           end
         end
 
-        it "should contain the features that have been added" do
-          @tag.features.should have(3).feature
+        it "should contain the features that have been added ordered alphanumerically" do
+          @tag.features.should have(3).features
           @tag.features.collect(&:title).should include("a_title", "m_title", "z_title")
+        end
+
+      end
+
+    end
+
+    context "#scenarios" do
+
+      before(:each) do
+        @tag = create_tag!
+      end
+
+      describe "when scenarios have been added" do
+
+        before(:each) do
+          %w(a_title z_title m_title).each do |scenario_title|
+            @tag.scenarios << create_scenario!(:title => scenario_title)
+          end
+        end
+
+        it "should contain the scenarios that have been added ordered alphanumerically" do
+          @tag.scenarios.should have(3).scenarios
+          @tag.scenarios.collect(&:title).should include("a_title", "m_title", "z_title")
         end
 
       end
@@ -116,7 +139,7 @@ describe Shrink::Tag do
       def find_or_new_and_expect_new_tag(expected_attributes)
         new_tag = Shrink::Tag.find_or_new(expected_attributes)
 
-        new_tag.should be_new_record
+        new_tag.should be_a_new_record
         expected_attributes.each do |attribute_name, attribute_value|
           new_tag.send(attribute_name).should eql(attribute_value)
         end
@@ -165,7 +188,7 @@ describe Shrink::Tag do
       def find_or_create_and_expect_created_tag(expected_attributes)
         created_tag = Shrink::Tag.find_or_create!(expected_attributes)
 
-        created_tag.should_not be_new_record
+        created_tag.should_not be_a_new_record
         expected_attributes.each do |attribute_name, attribute_value|
           created_tag.send(attribute_name).should eql(attribute_value)
         end

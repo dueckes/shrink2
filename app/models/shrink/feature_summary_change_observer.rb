@@ -1,4 +1,5 @@
 module Shrink
+
   module FeatureSummaryChangeObserver
 
     def self.included(model_class)
@@ -42,4 +43,5 @@ module Shrink
     end
 
   end
+
 end

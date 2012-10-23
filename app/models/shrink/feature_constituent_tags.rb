@@ -1,6 +1,6 @@
 module Shrink
 
-  module FeatureTags
+  module FeatureConstituentTags
 
     def line
       self.collect(&:name).join(", ")
@@ -24,17 +24,17 @@ module Shrink
     end
 
     private
+    def feature
+      proxy_owner.feature
+    end
+
     def project
       feature.project
     end
 
-    def feature
-      proxy_owner
-    end
-
     def add(names)
-      feature_tag_names = self.collect(&:name)
-      added_tag_names = names.find_all { |tag_name| !feature_tag_names.include?(tag_name) }
+      tag_names = self.collect(&:name)
+      added_tag_names = names.find_all { |tag_name| !tag_names.include?(tag_name) }
       added_tag_names.each { |tag_name| self << Shrink::Tag.find_or_create!(:name => tag_name, :project => project) }
     end
 

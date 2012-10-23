@@ -2,7 +2,7 @@ module Shrink
 
   class Table < ::ActiveRecord::Base
     include Shrink::Cucumber::Formatter::TableFormatter
-    include Shrink::Cucumber::Adapter::AstTableAdapter
+    include Shrink::Cucumber::Ast::Adapter::TableAdapter
 
     has_many :rows, :class_name => "Shrink::Row", :order => :position, :dependent => :destroy
 

@@ -21,7 +21,7 @@ Development Installation instructions
 
 ### DATABASE
 
-1. Install postgreSQL
+1. Install postgreSQL 8.3 or later
 
     For Mac see [http://developer.apple.com/internet/opensource/postgres.html](http://developer.apple.com/internet/opensource/postgres.html)
 
@@ -52,39 +52,29 @@ Development Installation instructions
 
 ### GEMS
 
-* PostgreSQL adapter
+1. Configure PostgreSQL adapter
 
-    For Mac ensure `PGHOME/bin` is in root path then
+    For Mac ensure `PGHOME/bin` is in path then:
 
-        $ sudo su -
         $ export ARCHFLAGS="-arch x86_64"
-        $ sudo gem install pg --no-ri --no-rdoc
 
-* Rack
+2. Install bundle
 
-        $ sudo gem install rack --no-ri --no-rdoc --version=1.0.1
-
-* Build specific gems
-
-        $ sudo gem install rspec --no-ri --no-rdoc --version=1.2.9
-        $ sudo gem install rspec-rails --no-ri --no-rdoc --version=1.2.9
-        $ sudo gem install reek --no-ri --no-rdoc
-        $ sudo gem install roodi --no-ri --no-rdoc
-        $ sudo gem install rcov --no-ri --no-rdoc
+        $ bundle install
 
 ### BUILD TARGETS
 
-* *Exercise all migrations and prepare test database:* `$ rake db:reset_and_prepare`
+* *Exercise all migrations and prepare test database:* `$ bundle exec rake db:reset_and_prepare`
 
-* *Developer full-build:* `$ rake dev`
+* *Developer full-build:* `$ bundle exec rake dev`
 
     Performs migrations and executes behaviors
 
-* *CI full-build:* `$ rake ci`
+* *CI full-build:* `$ bundle exec rake ci`
 
     Developer build with metrics checks and build report generation
 
-* *Behavior build:* `$ rake spec` or `$ rake spec:rcov`
+* *Behavior build:* `$ bundle exec rake spec` or `$ bundle exec rake spec:rcov`
 
-* *Source code metrics analysis:* `$ rake metrics`
+* *Source code metrics analysis:* `$ bundle exec rake metrics`
   
