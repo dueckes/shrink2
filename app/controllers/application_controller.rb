@@ -23,7 +23,7 @@ class ApplicationController < ActionController::Base
 
   def establish_temp_file_directory
     unless session[:temp_directory]
-      session[:temp_directory] = File.join(SESSION_TMP_ROOT_DIRECTORY, session[:id].to_s)
+      session[:temp_directory] = File.join(SESSION_TMP_ROOT_DIRECTORY, session.session_id.to_s)
       FileUtils.mkdir_p(session[:temp_directory])
     end
   end
