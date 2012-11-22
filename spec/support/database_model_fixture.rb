@@ -77,6 +77,12 @@ module DatabaseModelFixture
     Shrink::Role.first
   end
 
+  def create_role!(options={})
+    default_options = { :name => "Role Name", :description => "Role Description" }
+    combined_options = default_options.merge(options)
+    Shrink::Role.create!(combined_options)
+  end
+
   def create_model!(model_class, options={})
     self.send("create_#{model_class.short_name}!", options)
   end
