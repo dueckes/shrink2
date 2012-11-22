@@ -1,8 +1,8 @@
 describe Shrink::FeatureImporter do
 
   before(:each) do
-    @feature_adapter = mock("FeatureAdapter", :null_object => true)
-    @feature_file_manager = mock("FeatureFileManager", :null_object => true)
+    @feature_adapter = mock("FeatureAdapter").as_null_object
+    @feature_file_manager = mock("FeatureFileManager").as_null_object
   end
 
   context "#import" do

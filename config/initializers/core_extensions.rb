@@ -1,4 +1,4 @@
-require "#{RAILS_ROOT}/lib/extensions/core/module"
-require "#{RAILS_ROOT}/lib/extensions/core/surrounding_elements"
-require "#{RAILS_ROOT}/lib/extensions/core/array"
-require "#{RAILS_ROOT}/lib/extensions/core/string"
+require Rails.root.join('lib', 'extensions', 'core', 'module')
+require Rails.root.join('lib', 'extensions', 'core', 'surrounding_elements')
+require Rails.root.join('lib', 'extensions', 'core', 'array')
+require Rails.root.join('lib', 'extensions', 'core', 'string')

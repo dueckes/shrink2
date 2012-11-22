@@ -1,0 +1,1 @@
+InlineEdit.update('#<%= inline_form_id(@step, @step.step_type) %>', "<%= escape_javascript(render :partial => "steps/show_#{@step.step_type}", :locals => { :step => @step }) %>");

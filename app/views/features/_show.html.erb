@@ -4,7 +4,7 @@
       <%= render :partial => "features/show_title", :locals => { :feature => feature } %>
     </div>
     <div id="<%= dom_id(feature) %>_tags_area" class="tags_area">
-      <%= link_to_remote "Tags", { :url => { :controller => :features, :action => :manage_tags, :id => feature.id } }, { :class => :show_tags_link } %>
+      <%= link_to "Tags", { :controller => :features, :action => :manage_tags, :id => feature.id }, { :remote => true, :class => :show_tags_link } %>
       <div id="<%= dom_id(feature) %>_tags_list_area" class="tags_list_area">
         <div id="<%= dom_id(feature) %>_tags_list">
           <%= render :partial => "tags/show_tags", :locals => { :model => feature } %>
@@ -15,14 +15,14 @@
     </div>
     <div class="highlight_controls">
       <%= link_to "^", {}, { :href => "#", :id => dom_id(feature, :expand_collapse_link), :class => :feature_expand_collapse_link, :title => "Expand/Collapse" } %>
-      <%= link_to_remote icon(:folder_view), { :url => { :controller => :folders, :action => :show_feature, :feature_id => feature.id } },
-                         { :id => dom_id(feature, :show_in_folder_link), :title => "View In Folder" } %>
+      <%= link_to icon(:folder_view), feature_in_folders_path(feature),
+                  :remote => true, :id => dom_id(feature, :show_in_folder_link), :title => "View In Folder" %>
       <%= link_to icon(:anchor), folder_feature_path(feature.folder, feature),
                   { :popup => true, :id => dom_id(feature, :show_link), :title => "Permalink" } %>
-      <%= link_to icon(:export), "#{feature_export_url(:id => feature.id)}.feature", { :title => "Export" } %>
-      <%= link_to_remote icon(:delete, :red), { :confirm => "Are you sure you want to delete this feature?",
-                                                :url => folder_feature_path(feature.folder, feature), :method => :delete },
-                         { :id => dom_id(feature, :delete_link), :title => "Delete" } %>
+      <%= link_to icon(:export), feature_export_url(:id => feature.id, :format => :feature), { :title => "Export" } %>
+      <%= link_to icon(:delete, :red), folder_feature_path(feature.folder, feature),
+                  :remote => true, :method => :delete , :confirm => "Are you sure you want to delete this feature?",
+                  :id => dom_id(feature, :delete_link), :title => "Delete" %>
     </div>
   </div>
   <ul class="detail" style="<%= element_style(:hidden => minimized) %>">

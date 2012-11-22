@@ -3,7 +3,7 @@ class UsersController < ResourceApplicationController
 
   before_filter :require_user
   before_filter :establish_all_models, :only => [:index, :show, :update_role]
-  before_filter :establish_all_roles, :only => [:index, :show, :update_role]
+  before_filter :establish_all_roles, :only => [:index, :create, :show, :update_role]
   before_filter :establish_parents_via_params, :only => [:new, :create, :update_role]
   before_filter :establish_model_via_id_param, :only => [:show, :edit, :update, :update_role, :update_password, :destroy]
 
@@ -33,11 +33,11 @@ class UsersController < ResourceApplicationController
 
   private
   def establish_all_models
-    @users = Shrink::User.find(:all, :order => "login asc")
+    @users = Shrink::User.order("login asc")
   end
 
   def establish_all_roles
-    @roles = Shrink::Role.find(:all, :order => "name asc")
+    @roles = Shrink::Role.order("name asc")
   end
 
 end

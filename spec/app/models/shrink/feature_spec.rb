@@ -99,7 +99,7 @@ describe Shrink::Feature do
 
     before(:each) do
       @feature = Shrink::Feature.new
-      @summary = mock("Summary", :null_object => true)
+      @summary = mock("Summary").as_null_object
       @feature.stub!(:summary).and_return(@summary)
     end
 

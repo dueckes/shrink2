@@ -1,15 +1,15 @@
 <% expanded = folder_in_feature_path?(folder, highlighted_feature) -%>
-<% li_for(folder, :style => element_style(:hidden => hidden)) do -%>
+<%= li_for(folder, :style => element_style(:hidden => hidden)) do -%>
   <div id="<%= dom_id(folder) %>_header" class="header highlight_controls_area">
     <div id="<%= dom_id(folder) %>_name">
       <%= render :partial => "folders/show_name", :locals => { :folder => folder } %>
     </div>
     <div class="highlight_controls">
       <%= link_to "^", "#", { :id => dom_id(folder, :expand_collapse_link), :class => :folder_expand_collapse_link, :title => expand_collapse_title(expanded) } %>
-      <%= link_to_remote icon(:plus), { :url => { :controller => :folders, :action => :new, :parent_id => folder.id }, :method => :get }, { :id => dom_id(folder, :add_link), :title => "Add Sub-Folder" } %>
+      <%= link_to icon(:plus), { :controller => :folders, :action => :new, :parent_id => folder.id }, { :remote => true, :method => :get, :id => dom_id(folder, :add_link), :title => "Add Sub-Folder" } %>
       <%= link_to "A", "#", { :id => dom_id(folder, :import_link), :class => :folder_import_link, :title => "Import Folder Containing Features" } %>
-      <%= link_to icon(:export), "#{folder_export_url(:id => folder.id)}.zip", { :id => dom_id(folder, :export_link), :title => "Export Folder And All Features" } %>
-      <%= link_to_remote icon(:delete), { :confirm => "Are you sure you want to delete this folder?", :url => folder_path(folder), :method => :delete }, { :id => dom_id(folder, :delete_link), :title => "Delete" } %>
+      <%= link_to icon(:export), "#{folder_export_url(:id => folder.id, :format => :zip)}", { :id => dom_id(folder, :export_link), :title => "Export Folder And All Features" } %>
+      <%= link_to icon(:delete), folder_path(folder), :remote => true, :method => :delete, :confirm => "Are you sure you want to delete this folder?", :id => dom_id(folder, :delete_link), :title => "Delete" %>
     </div>
   </div>
   <%= render :partial => "folders/list", :locals => { :folder => folder, :highlighted_feature => highlighted_feature, :expanded => expanded } %>

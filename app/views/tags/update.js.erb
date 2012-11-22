@@ -1,0 +1,2 @@
+InlineEdit.update('#<%= inline_form_id(@tag, :name) %>', "<%= escape_javascript(render :partial => "tags/show_name", :locals => { :tag => @tag }) %>");
+<%= render :partial => "tags/update_tag_lines", :locals => { :tag => @tag } %>

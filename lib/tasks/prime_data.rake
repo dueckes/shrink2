@@ -19,8 +19,8 @@ namespace :prime do
     end
 
     def find_largest_persisted_feature_number
-      features = find_or_create_data_priming_project.features.find(
-              :all, :conditions => ["title like ?", "#{FEATURE_TITLE_PREFIX} %"])
+      features = find_or_create_data_priming_project.features.all(
+              :conditions => ["title like ?", "#{FEATURE_TITLE_PREFIX} %"])
       features.collect do |feature|
         feature_number_match = feature.title.match(/^#{FEATURE_TITLE_PREFIX} (\d*)$/)
         feature_number_match ? feature_number_match[1].to_i : 0

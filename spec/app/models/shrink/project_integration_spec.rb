@@ -1,9 +1,10 @@
 describe Shrink::Project do
 
   describe "integrating with the database" do
-    it_should_behave_like DatabaseIntegration
+    include_context "database integration"
 
     describe "when a project is created" do
+      include_context "clear database after all"
 
       before(:all) do
         @project = Shrink::Project.create!(:name => "Test project")
@@ -49,8 +50,9 @@ describe Shrink::Project do
     end
 
     context "#folders.count" do
+      include_context "clear database after each"
 
-      before(:all) do
+      before(:each) do
         @project = create_project!
       end
 
@@ -64,7 +66,7 @@ describe Shrink::Project do
 
       describe "when multiple folders have been added" do
 
-        before(:all) do
+        before(:each) do
           (1..3).each { |i| create_folder!(:project => @project, :name => "Folder #{i}") }
         end
 
@@ -77,7 +79,7 @@ describe Shrink::Project do
     end
 
     context "#folders" do
-      it_should_behave_like ClearDatabaseAfterEach
+      include_context "clear database after each"
 
       before(:each) do
         @project = find_or_create_project!
@@ -93,7 +95,7 @@ describe Shrink::Project do
         end
 
         it "should have the amount of folders added plus one to account for the root folder" do
-          @project.folders.should have(4).folders
+          @project.should have(4).folders
         end
 
         it "should all be destroyed when the project is destroyed" do
@@ -107,7 +109,7 @@ describe Shrink::Project do
     end
 
     context "#project_users" do
-      it_should_behave_like ClearDatabaseAfterEach
+      include_context "clear database after each"
 
       before(:each) do
         @project = find_or_create_project!
@@ -124,7 +126,7 @@ describe Shrink::Project do
         end
 
         it "should have the amount of project users added" do
-          @project.project_users.should have(3).project_users
+          @project.should have(3).project_users
         end
 
         it "should all be destroyed when the project is destroyed" do
@@ -138,7 +140,7 @@ describe Shrink::Project do
     end
 
     context "#users" do
-      it_should_behave_like ClearDatabaseAfterEach
+      include_context "clear database after each"
 
       before(:each) do
         @project = find_or_create_project!
@@ -156,7 +158,7 @@ describe Shrink::Project do
         end
 
         it "should have the same amount of users that have been added" do
-          @project.users.should have(3).users
+          @project.should have(3).users
         end
 
         it "should not be destroyed when the project is destroyed" do
@@ -169,7 +171,94 @@ describe Shrink::Project do
 
     end
 
+    context "#tags" do
+      include_context "clear database after each"
+
+      before(:each) do
+        @project = create_project!
+        @project_tags = @project.tags
+      end
+
+      context "#find" do
+
+        describe "when multiple projects contain multiple tags" do
+
+          before(:each) do
+            other_project = create_project!(:name => "Other Project")
+            @tags_within_project = (1..3).collect do |i|
+              create_tag!(:project => other_project, :name => "Tag #{i}")
+              create_tag!(:project => @project, :name => "Tag #{i}")
+            end
+          end
+
+          describe "and the conditions match multiple tags in multiple projects" do
+
+            before(:each) do
+              find_tags_ordered_by_name(:conditions => ["name like ?", "Tag %"])
+            end
+
+            it "should return the only the matching tags within the project" do
+              @tags.should eql(@tags_within_project)
+            end
+
+          end
+
+          describe "and the conditions match no tags within the project" do
+
+            before(:each) do
+              find_tags_ordered_by_name(:conditions => ["name = ?", "Does not match"])
+            end
+
+            it "should return an empty array" do
+              @tags.should be_empty
+            end
+
+          end
+
+        end
+
+        describe "when a project contains no tags" do
+
+          it "should return an empty array" do
+            @project_tags.all.should be_empty
+          end
+
+        end
+
+        def find_tags_ordered_by_name(options)
+          @tags = @project_tags.all({ :order => "name asc" }.merge(options))
+        end
+
+      end
+
+      context "#count" do
+
+        describe "when the project contains multiple tags" do
+
+          before(:each) do
+            (1..3).each { |i| create_tag!(:project => @project, :name => "Tag #{i}") }
+          end
+
+          it "should return the number of tags within the project" do
+            @project_tags.count.should eql(3)
+          end
+
+        end
+
+        describe "when the project contains no tags" do
+
+          it "should return 0" do
+            @project_tags.count.should eql(0)
+          end
+
+        end
+
+      end
+
+    end
+
     context "#default" do
+      include_context "clear database after each"
 
       describe "when no projects have been added" do
 

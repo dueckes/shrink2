@@ -9,7 +9,7 @@ module Shrink
             base.extend(ClassMethods)
             base.send(:include, InstanceMethods)
             base.add_declarative_authorization_support_to(:render, :content_tag, :content_tag_for,
-                                                          :link_to, :link_to_remote, :link_to_function)
+                                                          :link_to, :link_to_function)
           end
 
           module ClassMethods
@@ -34,15 +34,10 @@ module Shrink
                 authorization_hash = args.pop
                 permitted_to?(*authorization_hash[:when_permitted_to]) ?
                         self.send(method.to_sym, *args, &block) :
-                        render_text(authorization_hash[:otherwise] || "", &block)
+                        (authorization_hash[:otherwise] || "").html_safe
               else
                 self.send(method.to_sym, *args, &block)
               end
-            end
-
-            private
-            def render_text(text, &block)
-              block && block_called_from_erb?(block) ? concat(text) :text
             end
 
           end

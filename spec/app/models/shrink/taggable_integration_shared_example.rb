@@ -1,4 +1,4 @@
-describe "A taggable model integrating with the database", :shared => true do
+shared_examples_for "a taggable model integrating with the database" do
 
   context "##{described_class.short_name}_tags" do
 
@@ -37,7 +37,7 @@ describe "A taggable model integrating with the database", :shared => true do
       end
 
       it "should have the same amount of tags that have been added" do
-        @model.tags.should have(3).tags
+        @model.should have(3).tags
       end
 
       it "should be ordered in descending order of tag name" do

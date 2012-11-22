@@ -1,0 +1,4 @@
+DragAndDrop.show_move(function() {
+  $('#<%= dom_id(@feature) %>_folder_link_area').fadeOutAndRemove();
+  <%= raw(refresh_folder_js(@folder)) %>
+});

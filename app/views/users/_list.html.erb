@@ -1,7 +1,7 @@
 <ul id="users">
   <% users.each do |user| %>
-    <% li_for(user, { :style => element_style(:hidden => user == hide) }, { :when_permitted_to => [:show, user] }) do -%>
-      <%= link_to_remote user.login, { :url => user_path(user), :method => :get }, { :id => dom_id(user, :show_link) } %>
+    <%= li_for(user, { :style => element_style(:hidden => user == hide) }, { :when_permitted_to => [:show, user] }) do -%>
+      <%= link_to user.login, user_path(user), :remote => true, :method => :get, :id => dom_id(user, :show_link) %>
     <% end -%>
   <% end -%>
 </ul>

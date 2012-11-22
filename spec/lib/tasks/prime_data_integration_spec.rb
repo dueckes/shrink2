@@ -1,8 +1,8 @@
 describe ":prime:data" do
 
   describe "integrating with the database" do
-    it_should_behave_like DatabaseIntegration
-    
+    include_context "database integration"
+
     context ":features" do
 
       before(:all) do
@@ -17,6 +17,7 @@ describe ":prime:data" do
       end
 
       describe "when the data priming project does not exist" do
+        include_context "clear database after all"
 
         before(:all) do
           @task.execute
@@ -29,6 +30,7 @@ describe ":prime:data" do
       end
 
       describe "when the data priming project exists" do
+        include_context "clear database after all"
 
         before(:all) do
           create_data_priming_project
@@ -47,6 +49,7 @@ describe ":prime:data" do
       end
 
       describe "when no primed features exist" do
+        include_context "clear database after all"
 
         before(:all) do
           @task.execute
@@ -59,6 +62,7 @@ describe ":prime:data" do
       end
 
       describe "when primed features exist" do
+        include_context "clear database after all"
 
         before(:all) do
           create_data_priming_project
@@ -74,6 +78,7 @@ describe ":prime:data" do
       end
 
       describe "when not provided a number of features to create" do
+        include_context "clear database after all"
 
         before(:all) do
           @task.execute
@@ -86,6 +91,7 @@ describe ":prime:data" do
       end
 
       describe "when provided a number of features to create" do
+        include_context "clear database after all"
 
         before(:all) do
           @initial_number_value = ENV["number"]
@@ -119,7 +125,7 @@ describe ":prime:data" do
       end
 
       def data_priming_project_features
-        data_priming_project.features.find(:all)
+        data_priming_project.features.all
       end
 
       def create_data_priming_project

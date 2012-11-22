@@ -1,5 +1,8 @@
-<% remote_form_for(:project, project, :url => projects_path, :builder => ProjectFormBuilder,
-                   :html => { :id => :project_add_form, :class => "project_form simple" }) do |form| -%>
+<%= form_for(project, :as => :project,
+                     :remote => true,
+                     :url => projects_path,
+                     :builder => ProjectFormBuilder,
+                     :html => { :id => :project_add_form, :class => "project_form simple" }) do |form| -%>
   <% field_set_tag do -%>
     <%= form.label :name, "Name", :id => :project_name_label %>
     <%= render :partial => "projects/form_common", :locals => { :form => form, :model => project } %>

@@ -1,8 +1,8 @@
 describe Shrink::TextSuggester::Chain::ConventionalBddTermSuggester do
 
   before(:each) do
-    @configuration = mock("Configuration", :null_object => true)
-    @context = mock("Context", :configuration => @configuration, :null_object => true)
+    @configuration = mock("Configuration").as_null_object
+    @context = mock("Context", :configuration => @configuration).as_null_object
   end
 
   context "#suggestions_for" do

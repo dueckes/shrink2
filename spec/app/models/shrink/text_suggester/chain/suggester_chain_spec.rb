@@ -1,8 +1,8 @@
 describe Shrink::TextSuggester::Chain::SuggesterChain do
 
   before(:each) do
-    @suggestions = mock("Suggestions", :null_object => true)
-    @context = mock("Context", :suggestions => @suggestions, :null_object => true)
+    @suggestions = mock("Suggestions").as_null_object
+    @context = mock("Context", :suggestions => @suggestions).as_null_object
 
     suggesters.each { |suggester| suggester.stub!(:suggestions_for) }
   end

@@ -1,7 +1,7 @@
 <ul id="projects">
   <% projects.each do |project| %>
-    <% li_for(project, :style => element_style(:hidden => project == hide)) do -%>
-      <%= link_to_remote project.name, { :url => project_path(project), :method => :get }, { :id => dom_id(project, :show_link) } %>
+    <%= li_for(project, :style => element_style(:hidden => project == hide)) do -%>
+      <%= link_to project.name, project_path(project), :remote => true, :method => :get, :id => dom_id(project, :show_link) %>
     <% end -%>
   <% end -%>
 </ul>

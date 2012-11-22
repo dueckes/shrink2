@@ -6,14 +6,14 @@ class SearchController < ApplicationController
   RESULTS_PER_PAGE = 5
 
   def all
-    @tags = current_project.tags.find(:all, :conditions => ["lower(name) like ?", "%#{@search_text.downcase}%"])
+    @tags = current_project.tags.where("lower(name) like ?", "%#{@search_text.downcase}%")
     features
   end
 
   def features
-    @features = current_project.features.paginate(:all,
-            :conditions => ["lower(summary) like ?", "%#{@search_text.downcase}%"], :order => "title asc",
-            :page => params[:page], :per_page => RESULTS_PER_PAGE)
+    @features = current_project.features.where("lower(summary) like ?", "%#{@search_text.downcase}%") \
+                                        .order("title asc") \
+                                        .paginate(:page => params[:page], :per_page => RESULTS_PER_PAGE)
   end
 
   private

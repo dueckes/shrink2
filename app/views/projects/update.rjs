@@ -1,2 +1,0 @@
-update_inline(page, @project, :project, :name)
-page << update_in_sidebar_list_js(@project, @project.name)

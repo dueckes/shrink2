@@ -1,4 +1,4 @@
-Spec::Matchers.define :be_an_empty_string do
+RSpec::Matchers.define :be_an_empty_string do
 
   match do |actual|
     actual.is_a?(String) && actual.empty?

@@ -1,0 +1,4 @@
+DragAndDrop.show_move(function () {
+  $('#<%= dom_id(@source_folder) %>').fadeOutAndRemove();
+  <%= raw(refresh_folder_js(@destination_folder)) %>
+});

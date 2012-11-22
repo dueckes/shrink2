@@ -1,0 +1,2 @@
+InlineEdit.update('#<%= inline_form_id(@project, :name) %>', "<%= escape_javascript(render :partial => "projects/show_name", :locals => { :project => @project }) %>");
+SidebarList.update('#<%= dom_id(@project) %>', "<%= @project.name %>");

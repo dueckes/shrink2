@@ -1,9 +1,6 @@
-<% table_js = new_table_js(row_presenter) -%>
 <td>
-  <%= link_to_remote icon(:plus), { :url => row_presenter.add_row_url,
-                                    :with => "'position=' + #{table_js}.rowPosition('##{row_presenter.dom_id}') + '&number_of_columns=' + #{table_js}.numberOfColumns()" },
-                     { :title => "Add Row Before" } %>
-  <%= link_to_remote icon(:delete, :red), { :url => row_presenter.remove_row_url,
-                                            :with => "'position=' + #{table_js}.rowPosition('##{row_presenter.dom_id}')" },
-                     { :id => "#{row_presenter.dom_id}_delete_link", :title => "Delete Row" } %>
+  <%= link_to icon(:plus), "#", :remote => true, "data-url" => row_presenter.add_row_url,
+              :class => "table_link add_row", :title => "Add Row Before" %>
+  <%= link_to icon(:delete, :red), "#", :remote => true, "data-url" => row_presenter.remove_row_url,
+              :id => "#{row_presenter.dom_id}_delete_link", :class => "table_link remove_row", :title => "Delete Row" %>
 </td>

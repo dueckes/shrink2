@@ -1,7 +1,7 @@
 describe Shrink::FeatureDescriptionLine do
 
   describe "integrating with the database" do
-    it_should_behave_like DatabaseIntegration
+    include_context "database integration"
 
     before(:all) do
       @feature = create_feature!

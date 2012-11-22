@@ -7,10 +7,10 @@ describe Shrink::Cucumber::Ast::Adapter::ScenarioAdapter do
   context "#adapt" do
 
     before(:each) do
-      @cucumber_ast_scenario = mock("Cucumber::Ast::Scenario",  :name => "", :steps => [], :tag_names => [])
-      @step_adapter = mock("Shrink::Cucumber::Ast::Adapter::StepAdapter", :null_object => true)
+      @cucumber_ast_scenario = mock(Cucumber::Ast::Scenario,  :name => "", :steps => [], :tag_names => [])
+      @step_adapter = mock(Shrink::Cucumber::Ast::Adapter::StepAdapter).as_null_object
       TestableAstScenarioAdapter.set_step_adapter(@step_adapter)
-      @tag_adapter = mock("Shrink::Cucumber::Ast::Adapter::TagAdapter", :null_object => true)
+      @tag_adapter = mock(Shrink::Cucumber::Ast::Adapter::TagAdapter).as_null_object
       TestableAstScenarioAdapter.set_tag_adapter(@tag_adapter)
     end
 

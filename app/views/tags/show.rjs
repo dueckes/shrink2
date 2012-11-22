@@ -1,2 +1,0 @@
-page.replace_html("features_container", :partial => "tags/show_details", :locals => { :tag => @tag } )
-page << close_search_results_js

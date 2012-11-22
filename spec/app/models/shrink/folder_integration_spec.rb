@@ -1,8 +1,8 @@
 describe Shrink::Folder do
 
   describe "integrating with the database" do
-    it_should_behave_like DatabaseIntegration
-    it_should_behave_like ClearDatabaseAfterEach      
+    include_context "database integration"
+    include_context "clear database after each"
 
     before(:each) do
       @project = Shrink::Project.create!(:name => "Project Name")
@@ -56,7 +56,7 @@ describe Shrink::Folder do
         end
 
         it "should have the same amount of features that have been added" do
-          @folder.features.should have(3).features
+          @folder.should have(3).features
         end
 
         it "should be ordered by descending order of title" do

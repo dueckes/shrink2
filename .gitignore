@@ -3,5 +3,6 @@
 build/*
 coverage/*
 log/*.log
+tmp/*
 tmp/sessions/*
 tmp/spec/*

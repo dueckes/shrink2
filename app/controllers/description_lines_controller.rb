@@ -2,7 +2,7 @@ class DescriptionLinesController < ResourceApplicationController
   include ResourceApplicationControllerAddAnywhereSupport
   set_model_class Shrink::FeatureDescriptionLine
 
-  layout nil
+  layout false
 
   #TODO Append to existing filters
   before_filter :strip_string_parameters, :except => [:auto_complete_text]

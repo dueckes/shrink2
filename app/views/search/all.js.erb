@@ -1,0 +1,3 @@
+$('#search_errors').hideAndBlank();
+$("#search_results").html("<%= escape_javascript(render :partial => "search/show_all_results", :locals => { :search_text => @search_text, :features => @features, :tags => @tags }) %>");
+new SearchResults().open();

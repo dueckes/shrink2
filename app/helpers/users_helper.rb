@@ -1,7 +1,7 @@
 module UsersHelper
 
   def render_user_details_js(user, roles, additional_js="")
-    html = render(:partial => "users/show", :locals => { :user => user, :roles => roles })
+    html = render(:partial => "users/show.html.erb", :locals => { :user => user, :roles => roles })
     replace_main_inner_js(html, additional_js)
   end
 

@@ -1,0 +1,3 @@
+$('#<%= nested_dom_id(:new_folder) %>').before("<%= escape_javascript(render :partial => "folders/show", :locals => { :folder => @folder, :highlighted_feature => nil, :hidden => true }) %>");
+new AddSimpleForm('#<%= nested_dom_id(:new_folder)%>', '#<%= nested_dom_id(:add_link) %>', '#<%= dom_id(@folder) %>').close();
+<%= raw(make_folders_and_features_drag_and_droppable_js) %>

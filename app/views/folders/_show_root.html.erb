@@ -3,9 +3,9 @@
     <div id="<%= dom_id(root_folder) %>_header" class="sidebar_header root_folder_header highlight_controls_area">
       <span id="root_folder_name"><%= root_folder.name %></span>
       <div class="highlight_controls">
-        <%= link_to_remote icon(:plus), { :url => { :controller => :folders, :action => :new, :parent_id => root_folder.id }, :method => :get }, { :id => dom_id(root_folder, :add_link), :title => "Add Sub-Folder" } %>
+        <%= link_to icon(:plus), new_folder_path(root_folder), { :remote => true, :method => :get, :id => dom_id(root_folder, :add_link), :title => "Add Sub-Folder" } %>
         <%= link_to "A", "#", { :id => dom_id(root_folder, :import_link), :class => "folder_import_link", :title => "Import Folder Containing Features" } %>
-        <%= link_to icon(:export), "#{folder_export_url(:id => root_folder.id)}.zip", { :id => "root_folder_export_link", :title => "Export Folder And All Features" } %>
+        <%= link_to icon(:export), "#{folder_export_url(:id => root_folder.id, :format => :zip)}", { :id => "root_folder_export_link", :title => "Export Folder And All Features" } %>
       </div>
     </div>
   </div>

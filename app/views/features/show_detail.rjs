@@ -1,2 +1,0 @@
-page.replace_html("features_container", :partial => "features/show_all", :locals => { :features => [@feature], :minimized => false })
-page << close_search_results_js

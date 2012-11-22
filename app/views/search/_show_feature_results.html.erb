@@ -6,7 +6,8 @@
     <ul>
       <% features.each do |feature| -%>
         <li>
-          <%= link_to_remote feature.title, { :url => { :controller => :features, :action => :show_detail, :id => feature.id } }, { :id => dom_id(feature, :search_result_link), :title => "View Feature" } %>
+          <%= link_to feature.title, { :controller => :features, :action => :show_detail, :id => feature.id },
+                      { :remote => true, :id => dom_id(feature, :search_result_link), :title => "View Feature" } %>
           <%= search_preview(feature, search_text) %>
         </li>
       <% end -%>

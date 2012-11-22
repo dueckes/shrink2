@@ -1,10 +1,10 @@
 describe Shrink::Feature do
 
   describe "integrating with the database" do
-    it_should_behave_like DatabaseIntegration
+    include_context "database integration"
 
     describe "when a feature has been created" do
-      it_should_behave_like ClearDatabaseAfterEach
+      include_context "clear database after each"
 
       before(:each) do
         @feature = @model = create_feature!
@@ -185,7 +185,7 @@ describe Shrink::Feature do
 
       end
 
-      it_should_behave_like "A taggable model integrating with the database"
+      it_should_behave_like "a taggable model integrating with the database"
 
       context "#description_lines" do
 
@@ -200,7 +200,7 @@ describe Shrink::Feature do
           end
 
           it "should have the same amount of description lines that have been added" do
-            @feature.description_lines.should have(3).description_lines
+            @feature.should have(3).description_lines
           end
 
           it "should be ordered by position" do
@@ -233,7 +233,7 @@ describe Shrink::Feature do
           end
 
           it "should have the same amount of scenarios that have been added" do
-            @feature.scenarios.should have(3).scenarios
+            @feature.should have(3).scenarios
           end
 
           it "should be ordered by position" do

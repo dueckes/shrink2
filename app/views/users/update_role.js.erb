@@ -1,0 +1,6 @@
+new UserEditRoleForm().close();
+<% if @current_user_demoted -%>
+  <%= raw(refresh_account_container_and_user_sidebar_and_user_details_js(@user, @roles)) %>
+<% else -%>
+  $('#user_message').fadeOutAndInAndReplace("Role changed");
+<% end -%>

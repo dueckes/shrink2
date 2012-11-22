@@ -1,1 +1,0 @@
-update_inline(page, @description_line, :description_line, :text)

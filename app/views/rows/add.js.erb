@@ -1,0 +1,1 @@
+new Table('#<%= @table_presenter.dom_id %>').row(<%= @position %>).before("<%= escape_javascript(render :partial => "rows/form_edit_data", :locals => { :row_presenter => @table_presenter.row_presenters.first }) %>");

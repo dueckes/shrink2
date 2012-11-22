@@ -1,6 +1,9 @@
 <% folder = Shrink::Folder.new(:parent => parent) -%>
-<% remote_form_for(:folder, folder, :url => { :controller => :folders, :action => :create, :parent_id => parent.id },
-                   :html => { :class => "new" }, :builder => FolderFormBuilder) do |form| -%>
+<%= form_for(folder, :as => :folder,
+                    :remote => true,
+                    :url => { :controller => :folders, :action => :create, :parent_id => parent.id },
+                    :html => { :class => "new" },
+                    :builder => FolderFormBuilder) do |form| -%>
   <% field_set_tag do -%>
     <%= form.hidden_field_tag(:clicked_add_link_id, dom_id(parent, :add_link)) %>
     <%= render :partial => "folders/form_common", :locals => { :form => form } %>

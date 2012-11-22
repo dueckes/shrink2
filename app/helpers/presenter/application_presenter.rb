@@ -7,7 +7,7 @@ class ApplicationPresenter
   end
 
   def dom_id
-    @dom_id ||= @model.new_record? ? "new_#{model_name}_#{next_number(model_name.to_sym)}" : template.dom_id(@model)
+    @dom_id ||= @model.new_record? ? "new_#{model_name}_#{next_number(model_name.to_sym)}" : view_context.dom_id(@model)
   end
 
   def model_name

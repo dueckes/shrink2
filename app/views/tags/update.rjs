@@ -1,2 +1,0 @@
-update_inline(page, @tag, :tag, :name)
-update_tag_lines(page, @tag)

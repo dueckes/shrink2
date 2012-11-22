@@ -1,2 +1,0 @@
-row_html = render("rows/form_edit_data", :row_presenter => @table_presenter.row_presenters.first)
-page << "new Table('##{@table_presenter.dom_id}').row(#{@position}).before(#{::ActiveSupport::JSON.encode(row_html)})"

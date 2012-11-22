@@ -1,8 +1,8 @@
 describe Shrink::FolderImporter do
 
   before(:each) do
-    @feature_importer = mock("FeatureImporter", :null_object => true)
-    @destination_folder = mock("Folder")
+    @feature_importer = mock(Shrink::FeatureImporter).as_null_object
+    @destination_folder = mock(Shrink::Folder)
     @features = (1..3).collect { |i| mock("Feature#{i}") }
   end
 
@@ -11,7 +11,7 @@ describe Shrink::FolderImporter do
     before(:each) do
       @folder_importer = Shrink::FolderImporter.new(@feature_importer)
 
-      @zip_importer = mock("ZipImporter", :null_object => true)
+      @zip_importer = mock("ZipImporter").as_null_object
       Shrink::FolderImporter::ZipImporter.stub!(:new).and_return(@zip_importer)
     end
 

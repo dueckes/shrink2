@@ -1,1 +1,0 @@
-edit_inline(page, @step, :step, @step.step_type)

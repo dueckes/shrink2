@@ -1,0 +1,3 @@
+$('#main_inner').fadeOutAndInAndReplace("<%= escape_javascript(render :partial => "projects/show.html.erb", :locals => { :project => project,
+                                                                                                                         :model_classes => model_classes,
+                                                                                                                         :recently_changed_features => recently_changed_features }) %>");

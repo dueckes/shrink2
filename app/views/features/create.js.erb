@@ -1,0 +1,3 @@
+<%= render :partial => "features/hide_add_form_and_show", :locals => { :feature => @feature } %>
+$('#<%= @description_line_add_anywhere_presenter.clicked_container_dom_id %>').before("<%= escape_javascript(render :partial => "description_lines/form_new", :locals => { :feature => @feature, :add_anywhere_presenter => @description_line_add_anywhere_presenter }) %>");
+<%= raw(@description_line_add_anywhere_presenter.show_form_js) %>

@@ -16,11 +16,8 @@ module AddAnywhereHelper
 
   private
   def add_anywhere_link(name, options)
-    link_id = options[:id]
-    link_js_object = "$('##{link_id}')"
-    link_to_remote name, { :url => options[:url], :method => :get,
-                           :with => "'clicked_container_dom_id=' + #{link_js_object}.closest('li').attr('id') + '&position=' + UnorderedList.elementPosition(#{link_js_object}.closest('li'))" },
-                   { :id => link_id, :title => options[:title] }
+    link_to name, "#", :remote => true, :method => :get, "data-url" => url_for(options[:url]),
+                       :id => options[:id], :class => :add_anywhere_link, :title => options[:title]
   end
 
 end

@@ -1,2 +1,0 @@
-update_inline(page, @user, :user, :login)
-page << update_in_sidebar_list_js(@user, @user.login)

@@ -7,7 +7,7 @@ describe Shrink::FolderExporter do
       @folder_exporter = Shrink::FolderExporter.new(@feature_adapter)
       @folder = mock("Folder")
 
-      @zip_exporter = mock("ZipExporter", :null_object => true)
+      @zip_exporter = mock("ZipExporter").as_null_object
       Shrink::FolderExporter::ZipExporter.stub!(:new).and_return(@zip_exporter)
     end
 

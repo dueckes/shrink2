@@ -1,0 +1,2 @@
+$('#<%= @add_anywhere_presenter.container_dom_id %>').before("<%= escape_javascript(render :partial => "steps/show", :locals => { :step => @step, :hidden => true }) %>");
+<%= raw(@add_anywhere_presenter.show_model_and_clear_form_js) %>

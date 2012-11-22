@@ -1,2 +1,0 @@
-page.replace_html(nested_dom_id(:new_folder), :partial => "folders/form_new", :locals => { :parent => @parent })
-page << "new AddSimpleForm('##{nested_dom_id(:new_folder)}', '##{nested_dom_id(:add_link)}').open()"

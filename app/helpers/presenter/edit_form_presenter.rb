@@ -6,7 +6,7 @@ class EditFormPresenter < ApplicationPresenter
   end
 
   def form_id
-    @field_set_name ? "#{model_name}_edit_#{@field_set_name}_form" : template.dom_id(@model, :edit_form)
+    @field_set_name ? "#{model_name}_edit_#{@field_set_name}_form" : view_context.dom_id(@model, :edit_form)
   end
 
   def field_set_partial

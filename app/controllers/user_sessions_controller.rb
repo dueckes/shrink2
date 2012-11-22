@@ -28,12 +28,7 @@ class UserSessionsController < ApplicationController
   end
 
   def create_js_response
-    render(:update) do |page|
-      @user_session.valid? ? page << "window.location = '#{projects_url}'" :
-              page.replace(:sign_in_ajax_form, :partial => "user_sessions/form_new",
-                           :locals => { :user_session => @user_session, :form_type => :ajax, :hidden => false })
-
-    end
+    render :js => "window.location = '#{projects_url}'" if @user_session.valid?
   end
 
 end

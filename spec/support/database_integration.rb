@@ -1,16 +1,16 @@
-share_as :DatabaseIntegration do
+share_examples_for "database integration" do
   include DatabaseModelFixture
 
-  it_should_behave_like ClearDatabaseAfterAll
+  include_context "clear database after all"
 end
 
-share_as :ClearDatabaseAfterAll do
+share_examples_for "clear database after all" do
 
   after(:all) { destroy_all_models }
 
 end
 
-share_as :ClearDatabaseAfterEach do
+share_examples_for "clear database after each" do
 
   after(:each) { destroy_all_models }
 

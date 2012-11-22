@@ -1,4 +1,4 @@
-<% li_for(scenario, :class => "scenario section", :style => element_style(:hidden => hidden)) do -%>
+<%= li_for(scenario, :class => "scenario section", :style => element_style(:hidden => hidden)) do -%>
   <div class="inner_header highlight_controls_area">
     <div id="<%= dom_id(scenario) %>_title_area">
       <span class="section_inner_title">Scenario:</span>
@@ -8,9 +8,9 @@
     </div>
     <div class="highlight_controls">
       <%= add_before_link(:model => scenario, :url => { :controller => :scenarios, :action => :new, :feature_id => scenario.feature.id }) %>
-      <%= link_to_remote icon(:delete, :red), { :confirm => "Are you sure you want to delete this scenario?",
-                                                :url => folder_feature_scenario_path(scenario.folder, scenario.feature, scenario), :method => :delete },
-                         { :id => dom_id(scenario, :delete_link), :title => "Delete" } %>
+      <%= link_to icon(:delete, :red), folder_feature_scenario_path(scenario.folder, scenario.feature, scenario),
+                  :remote => true, :method => :delete, :confirm => "Are you sure you want to delete this scenario?",
+                  :id => dom_id(scenario, :delete_link), :title => "Delete" %>
     </div>
   </div>
   <%= render :partial => "steps/list", :locals => { :scenario => scenario } %>

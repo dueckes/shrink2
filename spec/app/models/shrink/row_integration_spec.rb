@@ -1,21 +1,21 @@
 describe Shrink::Row do
 
   describe "integrating with the database" do
-    it_should_behave_like DatabaseIntegration
+    include_context "database integration"
 
     context "#cells" do
 
       describe "when cells have been added" do
 
-        before(:all) do
+        before(:each) do
           @table = Shrink::Table.create!
           @row = Shrink::Row.create!(:table => @table)
           @cells = (1..3).collect { |i| Shrink::Cell.create!(:row => @row, :text => "Cell #{i}") }
-          @row.cells(true)
+          @row.reload
         end
 
         it "should have the same amount of cells that have been added" do
-          @row.cells.should have(3).cells
+          @row.should have(3).cells
         end
 
         it "should be ordered in the position they were added" do

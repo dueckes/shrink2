@@ -1,4 +1,6 @@
-<% remote_form_for(model.class.short_name, model, :url => url,
+<%= form_for(model, :as => model.class.short_name,
+                   :remote => true,
+                   :url => url,
                    :html => { :onsubmit => "new AddAnywhereForm(this).setContainerDomIdAndPositionField()", :class => "#{model.class.short_name}_form add_anywhere" },
                    :add_anywhere_presenter => add_anywhere_presenter,
                    :builder => form_builder_for(model)) do |form| -%>

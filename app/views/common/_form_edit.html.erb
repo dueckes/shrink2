@@ -2,9 +2,9 @@
    field_set_locals ||= {}
    presenter = EditFormPresenter.new(field_set, model, controller) %>
 
-<% remote_form_for(presenter.model_name, model, :url => url, :field_set => field_set,
-                   :html => { :method => :put, :id => presenter.form_id, :class => "#{presenter.model_name}_form simple edit" },
-                   :builder => form_builder_for(model)) do |form| -%>
+<%= form_for(model, :as => presenter.model_name, :remote => true, :url => url, :field_set => field_set,
+            :html => { :method => :put, :id => presenter.form_id, :class => "#{presenter.model_name}_form simple edit" },
+            :builder => form_builder_for(model)) do |form| -%>
   <% field_set_tag do -%>
     <input type="hidden" name="cancel" />
     <%= render :partial => presenter.field_set_partial, :locals => { :form => form, :model => model }.merge(field_set_locals) %>

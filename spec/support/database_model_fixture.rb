@@ -1,3 +1,5 @@
+require Rails.root.join('lib/shrink/database')
+
 module DatabaseModelFixture
 
   def create_project!(options={})
@@ -33,7 +35,7 @@ module DatabaseModelFixture
   end
 
   def create_tag!(options={})
-    default_options = { :name => "Tag Name" }
+    default_options = { :name => "Tag #{Shrink::Tag.count + 1} Name" }
     combined_options = default_options.merge(options)
     combined_options[:project] = find_or_create_project! unless combined_options[:project]
     Shrink::Tag.create!(combined_options)
@@ -95,12 +97,7 @@ module DatabaseModelFixture
   end
 
   def destroy_all_models
-    Shrink::Project.destroy_all
-    Shrink::Folder.destroy_all
-    Shrink::Feature.destroy_all
-    Shrink::Tag.destroy_all
-    Shrink::User.destroy_all(["login != ?", "admin"])
-    Shrink::Role.destroy_all(["name not in(?)", %w(administrator normal)])
+    Shrink::Database.clear
   end
 
 end

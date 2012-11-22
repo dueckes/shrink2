@@ -3,7 +3,7 @@ describe ":import" do
   context ":features" do
 
     describe "integrating with the database" do
-      it_should_behave_like DatabaseIntegration
+      include_context "database integration"
 
       describe "when a directory containing multiple feature files is provided" do
 

@@ -1,3 +1,0 @@
-page.insert_html(:before, @add_anywhere_presenter.clicked_container_dom_id, :partial => "description_lines/form_new", 
-                 :locals => { :feature => @feature, :add_anywhere_presenter => @add_anywhere_presenter })
-page << @add_anywhere_presenter.show_form_js

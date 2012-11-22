@@ -183,7 +183,7 @@ describe Shrink::Scenario do
 
     describe "when the scenario is fully populated" do
 
-      before(:all) do
+      before(:each) do
         @scenario = Shrink::Scenario.new(:title => "Some Title")
         @steps = (1..3).collect do |i|
           mock("Step#{i}", :calculate_summary => "step summary #{i}", :text_type? => i % 2 > 0)

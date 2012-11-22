@@ -1,0 +1,4 @@
+new UserAddForm().close();
+$('#users').replaceWith("<%= escape_javascript(render :partial => "users/list", :locals => { :users => @users, :hide => @user }) %>");
+<%= render :partial => "users/show.js.erb", :locals => { :user => @user, :roles => @roles } %>
+$('#<%= dom_id(@user) %>').fadeIn(2000);

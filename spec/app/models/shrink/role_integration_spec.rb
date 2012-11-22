@@ -1,7 +1,7 @@
 describe Shrink::Role do
 
   describe "integrating with the database" do
-    it_should_behave_like DatabaseIntegration
+    include_context "database integration"
 
     describe "when one role is created" do
 

@@ -14,8 +14,6 @@ Highlights
 * Full-text search across features
 * Manage feature projects
 
-For a full-set of requirements see the [http://www.pivotaltracker.com/](http://www.pivotaltracker.com/) _Platter_ project.
-
 Development Installation instructions
 -------------------------------------
 
@@ -85,4 +83,9 @@ Development Installation instructions
 * *Behavior build:* `$ rake spec` or `$ rake spec:rcov`
 
 * *Source code metrics analysis:* `$ rake metrics`
+
+License
+-------
+
+Shrink is licensed under the [Creative Commons Attribution-NonCommercial-NoDerivs 3.0 Unported (CC BY-NC-ND 3.0) License](http://creativecommons.org/licenses/by-nc-nd/3.0/)
   

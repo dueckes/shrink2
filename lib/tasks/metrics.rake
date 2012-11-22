@@ -20,13 +20,13 @@ namespace :metrics do
   end
 
   def all_ruby_files_in(dir)
-    "#{File.expand_path(RAILS_ROOT)}/#{dir}/**/*.rb"
+    "#{Rails.root}/#{dir}/**/*.rb"
   end
 
   def write_report(tool_name, content)
     SimpleLog.info content
 
-    report_directory = "#{RAILS_ROOT}/build/metrics"
+    report_directory = Rails.root.join('build', 'metrics')
     report_file_name = "#{report_directory}/#{tool_name}.txt"
     FileUtils.mkdir_p report_directory
     File.open(report_file_name, "w") { |file| file << content }

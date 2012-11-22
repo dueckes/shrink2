@@ -3,19 +3,17 @@ describe Shrink::FeatureImporter do
   describe Shrink::FeatureImporter::DirectoryImporter do
 
     describe "integrating with the file system and database" do
-      it_should_behave_like DatabaseIntegration
-
-      before(:all) do
-        @project = create_project!
-      end
+      include_context "database integration"
 
       describe "and configured for use with cucumber" do
 
         describe "when importing a file" do
 
           describe "containing a feature and a scenario within it contain tags" do
+            include_context "clear database after all"
 
             before(:all) do
+              @project = create_project!
               @file_path = "#{SPEC_RESOURCES_DIR}/tagged_feature_and_scenario.feature"
               @imported_feature = import_directory
             end
@@ -30,12 +28,12 @@ describe Shrink::FeatureImporter do
               scenario.tags.collect(&:name).should eql(%w(scenario_tag_one scenario_tag_two scenario_tag_three))
             end
 
-          end
+            def import_directory
+              Shrink::FeatureImporter::FileImporter.new(
+                      :feature_adapter => Shrink::Cucumber::FeatureAdapter,
+                      :file_path => @file_path).import
+            end
 
-          def import_directory
-            Shrink::FeatureImporter::FileImporter.new(
-                    :feature_adapter => Shrink::Cucumber::FeatureAdapter,
-                    :file_path => @file_path).import
           end
 
         end
@@ -45,8 +43,10 @@ describe Shrink::FeatureImporter do
           describe "containing one feature" do
 
             describe "and the feature is valid" do
+              include_context "clear database after all"
 
               before(:all) do
+                @project = create_project!
                 @directory_path = "#{SPEC_RESOURCES_DIR}/directory_with_one_feature"
                 @imported_features = import_directory
               end
@@ -67,8 +67,10 @@ describe Shrink::FeatureImporter do
           describe "containing many features" do
 
             describe "and all the features are valid" do
+              include_context "clear database after all"
 
               before(:all) do
+                @project = create_project!
                 @directory_path = "#{SPEC_RESOURCES_DIR}/directory_with_many_valid_features"
                 @imported_features = import_directory
                 @expected_titles = %w(First Second Third).collect { |prefix| "#{prefix} Feature Title" }
@@ -87,8 +89,10 @@ describe Shrink::FeatureImporter do
             end
 
             describe "and a feature is invalid" do
+              include_context "clear database after all"
 
               before(:all) do
+                @project = create_project!
                 @directory_path = "#{SPEC_RESOURCES_DIR}/directory_with_many_features_one_being_invalid"
                 @imported_features = import_directory
                 @feature_titles = %w(First Second Third)
@@ -111,8 +115,10 @@ describe Shrink::FeatureImporter do
           describe "containing sub-directories with features" do
 
             describe "and the features are valid" do
+              include_context "clear database after all"
 
               before(:all) do
+                @project = create_project!
                 @directory_path = "#{SPEC_RESOURCES_DIR}/directory_with_sub_directories_having_features"
                 @imported_features = import_directory
 

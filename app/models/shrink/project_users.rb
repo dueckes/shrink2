@@ -4,8 +4,7 @@ module Shrink
     include Shrink::ActiveRecord::OptionManipulation
 
     def find_unassigned_with_normal_role_and_similar_login(login)
-      Shrink::User.find(:all, :joins => :role,
-                        :conditions => find_unassigned_with_normal_role_and_similar_login_conditions(login))
+      Shrink::User.joins(:role).where(find_unassigned_with_normal_role_and_similar_login_conditions(login)).all
     end
 
     private
@@ -19,7 +18,7 @@ module Shrink
     end
 
     def project
-      proxy_owner
+      proxy_association.owner
     end
 
   end

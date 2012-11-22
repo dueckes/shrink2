@@ -1,4 +1,4 @@
-Spec::Matchers.define :be_an_empty_array do
+RSpec::Matchers.define :be_an_empty_array do
 
   match do |actual|
     actual.is_a?(Array) && actual.empty?

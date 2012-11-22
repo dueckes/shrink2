@@ -1,7 +1,7 @@
 describe Shrink::User do
 
   describe "integrating with the database" do
-    it_should_behave_like DatabaseIntegration
+    include_context "database integration"
 
     describe "when a user is created" do
 
@@ -17,7 +17,7 @@ describe Shrink::User do
     end
 
     context "#user_projects" do
-      it_should_behave_like ClearDatabaseAfterEach
+      include_context "clear database after each"
 
       before(:each) do
         @user = create_user!
@@ -34,7 +34,7 @@ describe Shrink::User do
         end
 
         it "should have the amount of user projects added" do
-          @user.user_projects.should have(3).user_projects
+          @user.should have(3).user_projects
         end
 
         it "should all be destroyed when the user is destroyed" do
@@ -48,7 +48,7 @@ describe Shrink::User do
     end
 
     context "#role" do
-      it_should_behave_like ClearDatabaseAfterEach
+      include_context "clear database after each"
 
       describe "when a role has been established" do
 
@@ -75,7 +75,7 @@ describe Shrink::User do
     end
 
     context "#projects" do
-      it_should_behave_like ClearDatabaseAfterEach
+      include_context "clear database after each"
 
       before(:each) do
         @user = create_user!
@@ -107,7 +107,7 @@ describe Shrink::User do
     end
 
     context "#valid?" do
-      it_should_behave_like ClearDatabaseAfterEach
+      include_context "clear database after each"
 
       describe "when valid attributes are established including role_id as opposed to role" do
 

@@ -10,7 +10,8 @@
     <ul>
       <% tags.each do |tag| -%>
         <li>
-          <%= link_to_remote highlight(tag.name, search_text), { :url => tag_path(tag), :method => :get }, { :id => dom_id(tag, :search_result_link), :title => "View Tag" } %>
+          <%= link_to highlight(tag.name, search_text), tag_path(tag), :remote => true, :method => :get,
+                      :id => dom_id(tag, :search_result_link), :title => "View Tag" %>
         </li>
       <% end -%>
     </ul>

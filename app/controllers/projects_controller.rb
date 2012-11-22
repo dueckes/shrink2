@@ -28,7 +28,7 @@ class ProjectsController < ResourceApplicationController
 
   private
   def establish_all_models
-    @projects = Shrink::Project.find(:all, :order => "name desc")
+    @projects = Shrink::Project.order("name desc")
   end
 
 end

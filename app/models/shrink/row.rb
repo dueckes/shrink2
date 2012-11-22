@@ -15,9 +15,8 @@ module Shrink
     end
 
     def update_cells!(cell_texts)
-      (cells.count - cell_texts.size).times { cells.last.destroy }
-      (cell_texts.size - cells.count).times { cells.build }
-      cells.each_with_index { |cell, i| cell.update_attributes!(:text => cell_texts[i])}
+      cells.destroy_all
+      cell_texts.each { |cell_text| cells.build(:text => cell_text).save! }
     end
 
     def row_type

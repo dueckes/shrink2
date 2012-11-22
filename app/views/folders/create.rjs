@@ -1,4 +1,0 @@
-page.insert_html(:before, nested_dom_id(:new_folder), :partial => "folders/show",
-                 :locals => { :folder => @folder, :highlighted_feature => nil, :hidden => true })
-page << "new AddSimpleForm('##{nested_dom_id(:new_folder)}', '##{nested_dom_id(:add_link)}', '##{dom_id(@folder)}').close()"
-page << make_folders_and_features_drag_and_droppable_js

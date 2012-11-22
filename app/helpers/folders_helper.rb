@@ -1,9 +1,8 @@
 module FoldersHelper
 
   def folder_feature_link(feature)
-    ajax_request = draggable_link_remote_function(:url => { :controller => :features, :action => :show_detail, :id => feature.id })
-    link_to_function feature.title, ajax_request,
-                     { :id => dom_id(feature, :folder_link), :class => "folder_feature_link", :title => "View Feature" }
+    link_to feature.title, { :controller => :features, :action => :show_detail, :id => feature.id },
+            { :remote => true, 'data-draggable' => true, :id => dom_id(feature, :folder_link), :class => "folder_feature_link", :title => "View Feature" }
   end
 
   def refresh_folder_js(folder)
@@ -44,7 +43,7 @@ module FoldersHelper
     end
   end
 
-  def show_move (page, script)
+  def show_move(page, script)
     # setTimeout addresses jQuery defect when removing dropped element - see http://dev.jqueryui.com/ticket/4550
     page << "setTimeout(function() { #{script} }, 500)"
   end

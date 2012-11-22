@@ -8,25 +8,25 @@ class AddAnywherePresenter < ApplicationPresenter
   end
 
   def container_dom_id
-    @container_dom_id ||= template.dom_id(
+    @container_dom_id ||= view_context.dom_id(
             *(model.parents + ["new_#{model.class.short_name}_#{controller.next_number(model_name.to_sym)}"]))
   end
 
   def show_form_js
-    "new AddAnywhereForm('##{container_dom_id}').open()"
+    "new AddAnywhereForm('##{container_dom_id}').open();"
   end
 
   def show_model_and_clear_form_js
-    "#{create_form_with_model_js}.showModelAndClearForm()"
+    "#{create_form_with_model_js}.showModelAndClearForm();"
   end
 
   def show_model_and_remove_form_js
-    "#{create_form_with_model_js}.showModelAndRemoveForm()"
+    "#{create_form_with_model_js}.showModelAndRemoveForm();"
   end
 
   private
   def create_form_with_model_js
-    "new AddAnywhereForm('##{container_dom_id}', '##{template.dom_id(model)}')"
+    "new AddAnywhereForm('##{container_dom_id}', '##{view_context.dom_id(model)}')"
   end
 
 end

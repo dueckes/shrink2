@@ -44,7 +44,7 @@ module CurrentUserSupport
     end
 
     def store_current_path
-      session[:stored_path] = request.request_uri
+      session[:stored_path] = request.fullpath
     end
 
     def redirect_to_stored_path_or(path)

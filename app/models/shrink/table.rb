@@ -36,9 +36,10 @@ module Shrink
     end
 
     def update_with_dimensions_and_texts!(dimensions, texts)
-      (rows.count - dimensions[:rows]).times { rows.last.destroy }
-      (dimensions[:rows] - rows.count).times { self.rows << Shrink::Row.create!(:table => self) }
-      rows.each_with_index { |row, i| row.update_cells!(texts[i * dimensions[:columns], dimensions[:columns]]) }
+      rows.destroy_all
+      (0..dimensions[:rows] - 1).each do |i|
+        create_row!(texts[i * dimensions[:columns], dimensions[:columns]])
+      end
     end
 
     def header_row

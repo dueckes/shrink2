@@ -1,11 +1,11 @@
 describe Shrink::ProjectFeatureDescriptionLines do
 
   describe "integrating with the database" do
-    it_should_behave_like DatabaseIntegration
+    include_context "database integration"
 
     context "#find_similar_texts" do
 
-      it_should_behave_like "A find_similar_texts model method returning persisted texts similar to the text provided"
+      include_examples "a find_similar_texts model method returning persisted texts similar to the text provided"
 
       before(:all) do
         create_project

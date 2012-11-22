@@ -1,5 +1,0 @@
-form_folder_select_json_encoded_html = ::ActiveSupport::JSON.encode(
-        render(:partial => "features/form_folder_select", :locals => { :folders => @folders }))
-%w(add_feature_folder_id import_feature_folder_id).each do |select_folder_dom_id|
-  page << "$('##{select_folder_dom_id}').replaceWith(#{form_folder_select_json_encoded_html})"
-end

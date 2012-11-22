@@ -1,7 +1,7 @@
 describe Shrink::Step do
 
   describe "Integrating with the database" do
-    it_should_behave_like DatabaseIntegration
+    include_context "database integration"
 
     before(:all) do
       @scenario = create_scenario!

@@ -14,7 +14,7 @@ describe Shrink::Cucumber::Ast::Adapter::TableAdapter do
 
       describe "containing one cell" do
 
-        before(:all) do
+        before(:each) do
           to_table([["cell text"]])
         end
 
@@ -24,11 +24,11 @@ describe Shrink::Cucumber::Ast::Adapter::TableAdapter do
         end
 
         it "should create a table with one Shrink::Row" do
-          @table.rows.should have(1).row
+          @table.should have(1).row
         end
 
         it "should create a row with one Shrink::Cell" do
-          @table.rows.first.cells.should have(1).cell
+          @table.rows.first.should have(1).cell
         end
 
         it "should create a cell with the text in the Cucumber cell" do
@@ -39,7 +39,7 @@ describe Shrink::Cucumber::Ast::Adapter::TableAdapter do
 
       describe "containing multiple cells" do
 
-        before(:all) do
+        before(:each) do
           @row_cell_texts = ["cell 1", "cell 2", "cell 3"]
           to_table([@row_cell_texts])
         end
@@ -54,7 +54,7 @@ describe Shrink::Cucumber::Ast::Adapter::TableAdapter do
 
     describe "when the Cucumber table contains multiple rows" do
 
-      before(:all) do
+      before(:each) do
         to_table((1..3).collect do |row_number|
           (1..3).collect { |column_number| "Cell #{row_number}.#{column_number}" }
         end)
@@ -63,7 +63,7 @@ describe Shrink::Cucumber::Ast::Adapter::TableAdapter do
       describe "that each contain multiple cells" do
 
         it "should create a Shrink::Row for each row" do
-          @table.rows.should have(3).rows
+          @table.should have(3).rows
         end
 
         it "should preserve the order of the Cucumber rows" do
@@ -71,7 +71,7 @@ describe Shrink::Cucumber::Ast::Adapter::TableAdapter do
         end
 
         it "should create a Shrink::Cell for each cell" do
-          @table.rows.each { |row| row.cells.should have(3).cells }
+          @table.rows.each { |row| row.should have(3).cells }
         end
 
         it "should preserve the order of the Cucumber cells" do

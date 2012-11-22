@@ -1,3 +1,0 @@
-page << close_popup_form_js
-page.replace(:users, :partial => "users/list", :locals => { :users => @users, :hide => @user })
-page << "$('##{dom_id(@user)}').highlight(2000)"

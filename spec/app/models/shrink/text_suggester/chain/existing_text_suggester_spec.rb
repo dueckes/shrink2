@@ -1,7 +1,7 @@
 describe Shrink::TextSuggester::Chain::ExistingTextSuggester do
 
   before(:each) do
-    @context = mock("Context", :null_object => true)
+    @context = mock("Context").as_null_object
   end
 
   context "#suggestions_for" do

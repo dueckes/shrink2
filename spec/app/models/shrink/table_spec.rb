@@ -96,7 +96,7 @@ describe Shrink::Table do
     end
 
     it "should create rows each containing one cell" do
-      @rows.each { |row| row.cells.should have(1).cell }
+      @rows.each { |row| row.should have(1).cell }
     end
 
     it "should create cells with no text" do

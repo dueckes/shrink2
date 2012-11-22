@@ -1,0 +1,1 @@
+$('#sign_in_ajax_form').replaceWith("<%= escape_javascript(render :partial => "user_sessions/form_new", :locals => { :user_session => @user_session, :form_type => :ajax, :hidden => false }) %>");

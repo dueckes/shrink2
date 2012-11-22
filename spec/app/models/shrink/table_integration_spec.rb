@@ -1,20 +1,20 @@
 describe Shrink::Table do
 
   describe "integrating with the database" do
-    it_should_behave_like DatabaseIntegration
+    include_context "database integration"
 
     context "#rows" do
 
       describe "when rows have been added" do
 
-        before(:all) do
+        before(:each) do
           @table = Shrink::Table.create!
           @rows = (1..3).collect { Shrink::Row.create!(:table => @table) }
-          @table.rows(true)
+          @table.reload
         end
 
         it "should have the same amount of rows that have been added" do
-          @table.rows.should have(3).rows
+          @table.should have(3).rows
         end
 
         it "should be ordered in the position they were added" do
@@ -50,7 +50,7 @@ describe Shrink::Table do
         end
 
         it "should create the number of rows specified" do
-          @table.rows.should have(@number_of_rows).rows
+          @table.should have(@number_of_rows).rows
         end
 
         it "should persist each row" do
@@ -97,7 +97,7 @@ describe Shrink::Table do
           end
 
           it "should create the added columns in each row" do
-            @rows.each { |row| row.cells.should have(3).cells }
+            @rows.each { |row| row.should have(3).cells }
           end
 
           it "should leave cells with the updates texts" do
@@ -120,8 +120,7 @@ describe Shrink::Table do
           end
 
           it "should destroy the removed columns from each row" do
-            @rows.each { |row| row.cells.should have(1).cell }
-
+            @rows.each { |row| row.should have(1).cell }
           end
 
           it "should leave cells with the updated texts" do
@@ -143,7 +142,7 @@ describe Shrink::Table do
           end
 
           it "should not alter the number of cells in each row" do
-            @rows.each { |row| row.cells.should have(2).cells }
+            @rows.each { |row| row.should have(2).cells }
           end
 
           it "should leave cells with the updated texts" do

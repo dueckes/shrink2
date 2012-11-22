@@ -38,7 +38,7 @@ class ApplicationFormBuilder < ActionView::Helpers::FormBuilder
     %{
       #{text_field(field_as_symbol, tag_options)}
       #{autocomplete_options[:url] ? auto_complete_js(autocomplete_options.merge(tag_options)) : "" }
-    }
+    }.html_safe
   end
 
   def hidden_field_for(field_as_symbol, value=nil)

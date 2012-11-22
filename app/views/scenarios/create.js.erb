@@ -1,0 +1,4 @@
+$('#<%= @add_anywhere_presenter.container_dom_id %>').before("<%= escape_javascript(render :partial => "scenarios/show", :locals => { :scenario => @scenario, :hidden => true }) %>");
+$('#<%= @step_add_anywhere_presenter.clicked_container_dom_id %>').before("<%= escape_javascript(render :partial => "steps/form_new", :locals => { :step => @step_add_anywhere_presenter.model, :add_anywhere_presenter => @step_add_anywhere_presenter }) %>");
+<%= raw(@add_anywhere_presenter.show_model_and_remove_form_js) %>
+<%= raw(@step_add_anywhere_presenter.show_form_js) %>

@@ -1,9 +1,10 @@
 describe Shrink::FeatureSummaryChangeObserver do
 
   describe "integrating with the database" do
-    it_should_behave_like DatabaseIntegration
+    include_context "database integration"
 
     describe "when it observes a change to one feature" do
+      include_context "clear database after each"
 
       before(:each) do
         @feature = create_feature!
@@ -39,6 +40,7 @@ describe Shrink::FeatureSummaryChangeObserver do
     end
 
     describe "when it observes changes to many features" do
+      include_context "clear database after each"
 
       before(:each) do
         @feature_member = create_tag!(:name => "Feature Member Name")

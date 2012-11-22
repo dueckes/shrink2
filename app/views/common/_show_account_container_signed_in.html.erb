@@ -1,11 +1,11 @@
 <ul>
-  <% content_tag(:li, :when_permitted_to => [:index, :users]) do -%>
+  <%= content_tag(:li, :when_permitted_to => [:index, :users]) do -%>
     <%= link_to "Users", users_path, { :id => :show_users_link, :title => "View Users" } %>
   <% end -%>
-  <% content_tag(:li, :when_permitted_to => [:index, :projects]) do -%>
+  <%= content_tag(:li, :when_permitted_to => [:index, :projects]) do -%>
     <%= link_to "Projects", projects_path, { :id => :show_projects_link, :title => "View Projects" } %>
   <% end -%>
-  <% content_tag(:li, :when_permitted_to => [:show, current_user]) do -%>
+  <%= content_tag(:li, :when_permitted_to => [:show, current_user]) do -%>
     Signed In as <%= link_to current_user.login, user_path(current_user), { :id => :edit_account_link, :title => "View User" } %>
   <% end -%>
   <li class="last">

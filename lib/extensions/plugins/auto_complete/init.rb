@@ -1,3 +1,3 @@
-require File.expand_path(File.dirname(__FILE__) + "/lib/auto_complete_macros_helper")
+require File.expand_path("../lib/auto_complete_macros_helper", __FILE__)
 
 ActionController::Base.helper(::Shrink::AutoCompleteMacrosHelper)

@@ -10,10 +10,8 @@ Configuration:
 - Session storage strategy?  db?
 
 Next:
-- MU: Upgrade to Rails 3
+- MU: Acceptance Test via Cucumber
       Upgrade TeamCity
-      Upgrade Cucumber
-      Acceptance Test via Cucumber
       scenario.project = project to assign project to tags
       Scenario tag support
       Introduce FactoryGirl or Machinist
@@ -28,8 +26,5 @@ Next:
       Validation errors causes height change - discuss with Pam
       Validation error messages to be discussed
       form_common is no longer 'common' as multiple forms do not use it - views/features is the best example
-      Difference between j and ::ActiveSupport::JSON.encode
-      Upgrade Rspec
-      Upgrade Rack
       FormBuilders to use set class methods to configure builder, as opposed to overriding methods
       Analyse form_common, form_new, form_edit usages and devise a better strategy for reuse

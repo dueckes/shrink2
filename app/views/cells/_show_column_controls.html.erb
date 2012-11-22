@@ -1,10 +1,6 @@
-<% cell_dom_id = cell_presenter.column_controls_dom_id -%>
-<% table_js = new_table_js(cell_presenter) -%>
-<td id="<%= cell_dom_id %>" class="column_controls_cell">
-  <%= link_to_remote icon(:plus), { :url => cell_presenter.table_presenter.add_column_url,
-                                 :with => "'position=' + #{table_js}.columnPosition('##{cell_dom_id}') + '&number_of_rows=' + #{table_js}.numberOfRows()" },
-                     { :title => "Add Column Before" } %>
-  <%= link_to_remote icon(:delete, :red), { :url => cell_presenter.table_presenter.remove_column_url,
-                                          :with => "'position=' + #{table_js}.columnPosition('##{cell_dom_id}')" },
-                     { :title => "Delete Column" } %>
+<td id="<%= cell_presenter.column_controls_dom_id %>" class="column_controls_cell">
+  <%= link_to icon(:plus), "#", :remote => true, "data-url" => cell_presenter.table_presenter.add_column_url,
+              :class => "table_link add_column", :title => "Add Column Before" %>
+  <%= link_to icon(:delete, :red), "#", :remote => true, "data-url" => cell_presenter.table_presenter.remove_column_url,
+              :class => "table_link remove_column", :title => "Delete Column" %>
 </td>

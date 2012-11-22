@@ -1,0 +1,3 @@
+$.fn.colorbox.close();
+$('#features_container').html("<%= escape_javascript(render :partial => "features/show_all", :locals => { :features => [feature], :minimized => false }) %>");
+<%= raw(refresh_folder_js(feature.folder)) %>

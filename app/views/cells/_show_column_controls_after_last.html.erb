@@ -1,7 +1,4 @@
-<% cell_dom_id = table_presenter.last_column_controls_cell_dom_id -%>
-<% table_js = new_table_js(table_presenter) -%>
-<td id="<%= cell_dom_id %>" class="column_controls_cell">
-  <%= link_to_remote icon(:plus), { :url => table_presenter.add_column_url,
-                                 :with => "'position=' + #{table_js}.columnPosition('##{cell_dom_id}') + '&number_of_rows=' + #{table_js}.numberOfRows()" },
-                     { :title => "Add Column Here" } %>
+<td id="<%= table_presenter.last_column_controls_cell_dom_id %>" class="column_controls_cell">
+  <%= link_to icon(:plus), "#", :remote => true, "data-url" => table_presenter.add_column_url,
+              :class => "table_link add_column", :title => "Add Column Here" %>
 </td>

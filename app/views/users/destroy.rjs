@@ -1,1 +1,0 @@
-page << remove_from_sidebar_list_and_clear_main_inner_js(@user)

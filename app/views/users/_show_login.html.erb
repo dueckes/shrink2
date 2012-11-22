@@ -1,1 +1,1 @@
-<%= inline_edit_link user.login, { :url => edit_user_path(user) }, { :id => dom_id(user, :edit_link) } %>
+<%= inline_edit_link user.login, edit_user_path(user), :id => dom_id(user, :edit_link) %>

@@ -1,8 +1,8 @@
 describe Shrink::Scenario do
 
   describe "integrating with the database" do
-    it_should_behave_like DatabaseIntegration
-    it_should_behave_like ClearDatabaseAfterEach
+    include_context "database integration"
+    include_context "clear database after each"
 
     before(:each) do
       @feature = create_feature!
@@ -83,7 +83,7 @@ describe Shrink::Scenario do
           end
 
           it "should have the same amount of steps that have been added" do
-            @scenario.steps.should have(3).steps
+            @scenario.should have(3).steps
           end
 
           it "should retrieve steps ordered by position" do
@@ -136,7 +136,7 @@ describe Shrink::Scenario do
 
       end
 
-      it_should_behave_like "A taggable model integrating with the database"
+      it_should_behave_like "a taggable model integrating with the database"
 
     end
 

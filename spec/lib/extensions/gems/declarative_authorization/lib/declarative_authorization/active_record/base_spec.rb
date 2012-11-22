@@ -9,8 +9,8 @@ describe Shrink::DeclarativeAuthorization::ActiveRecord::Base do
     context "#decl_auth_context" do
 
       before(:each) do
-        @tableized_name = mock("TableizedName", :null_object => true)
-        @contextless_name = mock("ContextlessName", :tableize => @tableized_name, :null_object => true)
+        @tableized_name = mock("TableizedName").as_null_object
+        @contextless_name = mock("ContextlessName", :tableize => @tableized_name).as_null_object
         TestableBaseClass.stub!(:contextless_name).and_return(@contextless_name)
       end
 

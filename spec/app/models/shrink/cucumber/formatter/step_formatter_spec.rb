@@ -13,13 +13,13 @@ describe Shrink::Cucumber::Formatter::StepFormatter do
 
   context "#to_cucumber_file_format" do
 
-    before(:all) do
+    before(:each) do
       @formatter = TestableStepFormatter.new
     end
 
     describe "when the formatter contains text" do
 
-      before(:all) do
+      before(:each) do
         @formatter.text = "Some Text"
       end
 
@@ -31,7 +31,7 @@ describe Shrink::Cucumber::Formatter::StepFormatter do
 
     describe "when the formatter contains a table" do
 
-      before(:all) do
+      before(:each) do
         formatted_table = (1..3).collect { |i| "line #{i}" }.join("\n")
         @formatter.table = mock("Table", :to_cucumber_file_format => formatted_table)
 

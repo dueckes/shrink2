@@ -1,8 +1,11 @@
-<% self.send(form_method_for(form_type), :user_session, user_session,
-             { :url => user_session_path, :html => { :id => "sign_in_#{form_type}_form", :class => "sign_in simple",
-                                                     :style => element_style(:hidden => hidden) } }) do |form| -%>
-  <%= form.error_messages(:id => :sign_on_errors, :header_message => nil) %>
+<%= form_for(user_session, :as => :user_session,
+                           :remote => true,
+                           :url => user_session_path,
+                           :html => { :id => "sign_in_#{form_type}_form",
+                                      :class => "sign_in simple",
+                                      :style => element_style(:hidden => hidden) }) do |form| -%>
   <% field_set_tag do -%>
+    <%= render :partial => "common/show_errors", :locals => { :error_messages => user_session.errors.full_messages } %>
     <%= form.label(:login, "Username") %><%= form.text_field(:login, :maxlength => 128, :size => 30) %>
     <%= form.label(:password) %><%= form.password_field(:password, :maxlength => 128, :size => 30) %>
     <div class="buttons">

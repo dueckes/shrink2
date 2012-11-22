@@ -2,16 +2,16 @@
 module ApplicationHelper
 
   def sign_in_link
-    @controller.controller_name == "user_sessions" && @controller.action_name == "new" ? "Sign In" :
+    controller.controller_name == "user_sessions" && controller.action_name == "new" ? "Sign In" :
             link_to("Sign In", "#", { :id => :sign_in_link, :title => "Sign In" })
   end
 
-  def form_method_for(type)
-    type == :ajax ? :remote_form_for : :form_for
+  def remote_form?(form_type)
+    form_type == :ajax
   end
 
   def render_none_or_list_via_partial(array, *render_args)
-    array.empty? ? "<li>None</li>" : render(*render_args)
+    array.empty? ? "<li>None</li>".html_safe : render(*render_args)
   end
 
   def render_message
@@ -41,14 +41,10 @@ module ApplicationHelper
 
   def forgery_protection_request_parameter
     if respond_to?('protect_against_forgery?') && protect_against_forgery?
-      "'#{request_forgery_protection_token}=' + encodeURIComponent('#{escape_javascript form_authenticity_token}')"
+      "'#{request_forgery_protection_token}=' + encodeURIComponent('#{escape_javascript(form_authenticity_token)}')"
     else
       ""
     end
-  end
-
-  def draggable_link_remote_function(options)
-    "if (!this.dragged) #{remote_function(options)}; this.dragged = false"
   end
 
   def with_default_text(string, default_text="&lt;empty&gt;")
@@ -90,10 +86,6 @@ module ApplicationHelper
 
   def close_popup_form_js
     "$.fn.colorbox.close()"
-  end
-
-  def close_search_results_js
-    "new SearchResults().close()"    
   end
 
 end

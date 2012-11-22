@@ -7,13 +7,13 @@ describe Shrink::Cucumber::Ast::Adapter::FeatureAdapter do
   context "#adapt" do
 
     before(:each) do
-      @cucumber_ast_feature = mock("Cucumber::Ast::Feature", :feature_elements => [])
-      @feature_parser = mock("Shrink::Cucumber::Ast::FeatureParser", :raw_tag_names => [], :title => "", :text_lines => [])
+      @cucumber_ast_feature = mock(Cucumber::Ast::Feature, :feature_elements => [])
+      @feature_parser = mock(Shrink::Cucumber::Ast::FeatureParser, :raw_tag_names => [], :title => "", :text_lines => [])
       Shrink::Cucumber::Ast::FeatureParser.stub!(:new).with(@cucumber_ast_feature).and_return(@feature_parser)
 
-      @scenario_adapter = mock("Shrink::Cucumber::Ast::Adapter::ScenarioAdapter", :null_object => true)
+      @scenario_adapter = mock(Shrink::Cucumber::Ast::Adapter::ScenarioAdapter).as_null_object
       TestableAstFeatureAdapter.set_scenario_adapter(@scenario_adapter)
-      @tag_adapter = mock("Shrink::Cucumber::Ast::Adapter::TagAdapter")
+      @tag_adapter = mock(Shrink::Cucumber::Ast::Adapter::TagAdapter)
       TestableAstFeatureAdapter.set_tag_adapter(@tag_adapter)
     end
 

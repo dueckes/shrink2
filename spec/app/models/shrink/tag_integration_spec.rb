@@ -1,9 +1,10 @@
 describe Shrink::Tag do
 
   describe "integrating with the database" do
-    it_should_behave_like DatabaseIntegration
+    include_context "database integration"
+    include_context "clear database after each"
 
-    before(:all) do
+    before(:each) do
       @project = create_project!(:name => "Some Project")
       @other_project = create_project!(:name => "Another Project")
     end
@@ -23,7 +24,7 @@ describe Shrink::Tag do
         end
 
         it "should contain the features that have been added ordered alphanumerically" do
-          @tag.features.should have(3).features
+          @tag.should have(3).features
           @tag.features.collect(&:title).should include("a_title", "m_title", "z_title")
         end
 
@@ -46,7 +47,7 @@ describe Shrink::Tag do
         end
 
         it "should contain the scenarios that have been added ordered alphanumerically" do
-          @tag.scenarios.should have(3).scenarios
+          @tag.should have(3).scenarios
           @tag.scenarios.collect(&:title).should include("a_title", "m_title", "z_title")
         end
 

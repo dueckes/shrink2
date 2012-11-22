@@ -111,8 +111,6 @@ describe Shrink::DeclarativeAuthorization::ActionPack::ActionView::Base do
     before(:each) do
       @testable_instance = TestableBaseInstanceMethods.new
       @testable_instance.stub!(:permitted_to?)
-      @testable_instance.stub!(:block_called_from_erb?)
-      @testable_instance.stub!(:concat)
     end
 
     context "#invoke_with_declarative_authorization_support" do
@@ -125,11 +123,11 @@ describe Shrink::DeclarativeAuthorization::ActionPack::ActionView::Base do
       describe "when the arguments of the method conclude with a hash containing a :when_permitted_to key" do
 
         before(:each) do
-          @args << { :when_permitted_to => [:privledge, :object] }
+          @args << { :when_permitted_to => [:privilege, :object] }
         end
 
         it "should invoke #permitted_to with the value provided in the hash entry" do
-          @testable_instance.should_receive(:permitted_to?).with(:privledge, :object)
+          @testable_instance.should_receive(:permitted_to?).with(:privilege, :object)
 
           invoke_with_declarative_authorization_support
         end
@@ -140,8 +138,8 @@ describe Shrink::DeclarativeAuthorization::ActionPack::ActionView::Base do
             @testable_instance.stub!(:permitted_to?).and_return(true)
           end
 
-          it "should delegate to and return the result from the method preserving arguments and any block provided" do
-            @testable_instance.should_receive(:method_with_args_and_block).with(*@args, &@block).and_return("Result")
+          it "should delegate to and return the result from the method providing arguments and any block provided" do
+            @testable_instance.should_receive(:method_with_args_and_block).with(1, 3, 5, &@block).and_return("Result")
 
             invoke_with_declarative_authorization_support.should eql("Result")
           end
@@ -160,30 +158,12 @@ describe Shrink::DeclarativeAuthorization::ActionPack::ActionView::Base do
               @args.last[:otherwise] = "Alternate Result"
             end
 
-            describe "and the original method contains a block call from an erb" do
-
-              before(:each) do
-                @testable_instance.stub!(:block_called_from_erb?).with(@block).and_return(true)
-              end
-
-              it "should concat the value provided in the hash entry" do
-                @testable_instance.should_receive(:concat).with("Alternate Result")
-
-                invoke_with_declarative_authorization_support
-              end
-
+            it "should return the value provided in the hash entry" do
+              invoke_with_declarative_authorization_support.should eql("Alternate Result")
             end
 
-            describe "and the original method contains a block that is not called from an erb" do
-
-              before(:each) do
-                @testable_instance.stub!(:block_called_from_erb?).with(@block).and_return(false)
-              end
-
-              it "should return the value provided in the hash entry" do
-                invoke_with_declarative_authorization_support.should eql("Alternate Result")
-              end
-
+            it "should return a html safe value" do
+              invoke_with_declarative_authorization_support.should be_html_safe
             end
 
           end
@@ -191,9 +171,13 @@ describe Shrink::DeclarativeAuthorization::ActionPack::ActionView::Base do
           describe "and the hash does not contain an :otherwise key" do
 
             it "should return an empty string" do
-              @testable_instance.invoke_with_declarative_authorization_support(
-                      :method_with_args_and_block, *@args).should be_an_empty_string
+              invoke_with_declarative_authorization_support.should be_an_empty_string
             end
+
+            it "should return a html safe string" do
+              invoke_with_declarative_authorization_support.should be_html_safe
+            end
+
 
           end
 

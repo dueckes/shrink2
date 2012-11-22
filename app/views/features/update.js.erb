@@ -1,0 +1,4 @@
+InlineEdit.update('#<%= inline_form_id(@feature, :title) %>', "<%= escape_javascript(render :partial => "features/show_title", :locals => { :feature => @feature }) %>");
+$('#<%= dom_id(@feature) %>_folder_link_area').fadeOutAndIn(function() {
+  $('#<%= dom_id(@feature, :folder_link) %>').html("<%= escape_javascript(@feature.title) %>");
+});

@@ -1,6 +1,0 @@
-page << close_popup_form_js
-if @current_user_demoted
-  page << refresh_account_container_and_user_sidebar_and_user_details_js(@user, @roles)
-else
-  page << replace_user_message_js("Role changed")
-end

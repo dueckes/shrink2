@@ -1,7 +1,7 @@
 describe Shrink::TextSuggester::Context::Context do
 
   before(:each) do
-    @configuration = mock("Configuration", :null_object => true)
+    @configuration = mock("Configuration").as_null_object
     @parent_model = mock("ParentModel")
   end
 
@@ -61,7 +61,7 @@ describe Shrink::TextSuggester::Context::Context do
       @project_models = mock("ProjectModels")
       @configuration.should_receive(:models_in).with(project).and_return(@project_models)
 
-      @suggestions = mock("Suggestions", :null_object => true)
+      @suggestions = mock("Suggestions").as_null_object
       Shrink::TextSuggester::Context::Suggestions.stub!(:new).and_return(@suggestions)
 
       create_context

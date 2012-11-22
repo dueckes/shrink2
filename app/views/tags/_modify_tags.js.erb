@@ -1,0 +1,2 @@
+$('#<%= dom_id(model) %>_tags_list').html("<%= escape_javascript(render :partial => "tags/show_tags", :locals => { :model => model }) %>");
+new TagForm('#<%= dom_id(model) %>_tags_area').close();

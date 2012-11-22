@@ -1,0 +1,2 @@
+$('#<%= nested_dom_id(:new_folder) %>').html("<%= escape_javascript(render :partial => "folders/form_new", :locals => { :parent => @parent }) %>");
+new AddSimpleForm('#<%= nested_dom_id(:new_folder) %>', '#<%= nested_dom_id(:add_link) %>').open();

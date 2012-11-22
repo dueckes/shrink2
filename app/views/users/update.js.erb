@@ -1,0 +1,2 @@
+InlineEdit.update('#<%= inline_form_id(@user, :login) %>', "<%= escape_javascript(render :partial => "users/show_login", :locals => { :user => @user }) %>");
+SidebarList.update('#<%= dom_id(@user) %>', "<%= @user.login %>");

@@ -2,7 +2,7 @@ class StepsController < ResourceApplicationController
   include ResourceApplicationControllerAddAnywhereSupport
   include ResourceApplicationControllerAddAnywhereTableSupport
 
-  layout nil
+  layout false
 
   #TODO Append to existing filters
   before_filter :strip_string_parameters, :except => [:auto_complete_text]

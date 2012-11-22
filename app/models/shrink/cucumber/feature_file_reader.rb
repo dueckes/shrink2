@@ -6,7 +6,7 @@ module Shrink
       class << self
 
         def read(file)
-          cucumber_ast_feature = Shrink::Cucumber::StepMotherFactory.create.load_plain_text_features([file])[0]
+          cucumber_ast_feature = ::Cucumber::FeatureFile.new(file).parse({}, {})
           cucumber_ast_feature.init
           Shrink::Feature.adapt(cucumber_ast_feature)
         end

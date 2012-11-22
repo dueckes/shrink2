@@ -1,2 +1,0 @@
-folder_area = render_folder_to_string(:folder => @root_folder, :highlighted_feature => @feature)
-page << replace_html_with_default_effect_js(dom_id(@root_folder), folder_area)

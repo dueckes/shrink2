@@ -1,4 +1,4 @@
-describe "A find_similar_texts model method returning persisted texts similar to the text provided", :shared => true do
+shared_examples_for "a find_similar_texts model method returning persisted texts similar to the text provided" do
 
   before(:all) do
     @all_texts = ["First word in a phrase",

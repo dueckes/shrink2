@@ -1,18 +1,18 @@
 class FeaturesController < ResourceApplicationController
   layout "features", :only => [:index, :show]
 
-  helper FoldersHelper, StepsHelper, TagsHelper
+  helper FoldersHelper, StepsHelper
 
   #TODO extend filters
   before_filter :require_user
   before_filter :establish_project, :only => :index
+  before_filter :establish_model_via_id_param, :only => [:show, :show_detail, :manage_tags, :modify_tags,
+                                                         :edit, :update, :destroy]
   before_filter :establish_project_from_feature, :only => :show
   before_filter :establish_root_folder, :only => [:index, :show]
   before_filter :establish_all_folders, :only => [:index, :show, :refresh_folder_select]
 
   before_filter :establish_parents_via_params, :only => [:new, :create, :import]
-  before_filter :establish_model_via_id_param, :only => [:show, :show_detail, :manage_tags, :modify_tags,
-                                                         :edit, :update, :destroy]
   before_filter :verify_feature_file, :only => [:import]
 
   set_create_errors_area_dom_id(:folder_new_feature_errors)
@@ -26,7 +26,7 @@ class FeaturesController < ResourceApplicationController
   end
 
   def manage_tags
-    @all_tags = current_project.tags.find(:all, :order => "name")
+    @all_tags = current_project.tags.order("name")
   end
 
   def modify_tags
@@ -51,7 +51,7 @@ class FeaturesController < ResourceApplicationController
   end
 
   def export
-    @feature = Shrink::Feature.find_by_id(params[:id])
+    @feature = Shrink::Feature.find(params[:id])
     respond_to do |format|
       format.html
       format.feature do

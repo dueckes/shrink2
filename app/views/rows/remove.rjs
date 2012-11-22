@@ -1,1 +1,0 @@
-page << "new Table('##{@table_dom_id}').removeRow(#{@position})"

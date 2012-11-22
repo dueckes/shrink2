@@ -20,12 +20,12 @@ module Shrink
     end
 
     def unused
-      project.tags.find(:order => "name") - self
+      project.tags.all(:order => "name") - self
     end
 
     private
     def feature
-      proxy_owner.feature
+      proxy_association.owner.feature
     end
 
     def project

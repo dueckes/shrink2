@@ -1,0 +1,4 @@
+new ProjectAddForm().close();
+$('#projects').replaceWith("<%= escape_javascript(render :partial => "projects/list", :locals => { :projects => @projects, :hide => @project }) %>");
+<%= render :partial => "projects/show.js.erb", :locals => { :project => @project, :model_classes => [], :recently_changed_features => [] } %>
+$('#<%= dom_id(@project) %>').fadeIn(2000);

@@ -7,22 +7,21 @@ describe Shrink::Cucumber::FeatureFileReader do
       before(:each) do
         @file = "file.feature"
 
-        @cucumber_ast_feature = mock("Cucumber::Ast::Feature", :null_object => true)
-        @step_mother = mock("Cucumber::StepMother", :load_plain_text_features => [@cucumber_ast_feature],
-                                                    :null_object => true)
-        Shrink::Cucumber::StepMotherFactory.stub!(:create).and_return(@step_mother)
+        @cucumber_ast_feature = mock(Cucumber::Ast::Feature).as_null_object
+        @feature_file = mock(::Cucumber::FeatureFile, :parse => @cucumber_ast_feature).as_null_object
+        ::Cucumber::FeatureFile.stub!(:new).and_return(@feature_file)
 
         Shrink::Feature.stub!(:adapt)
       end
 
-      it "should create a Cucumber::StepMother instance responsible for reading the file" do
-        Shrink::Cucumber::StepMotherFactory.should_receive(:create)
+      it "should create a Cucumber::FeatureFile responsible for parsing the file" do
+        ::Cucumber::FeatureFile.should_receive(:new).with(@file)
 
         invoke_read
       end
 
-      it "should delegate to the Cucumber:StepMother to read the file" do
-        @step_mother.should_receive(:load_plain_text_features).with([@file])
+      it "should delegate to the Cucumber:FeatureFile to parse the file" do
+        @feature_file.should_receive(:parse).with({}, {})
 
         invoke_read
       end

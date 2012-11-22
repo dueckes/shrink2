@@ -1,0 +1,6 @@
+var table = new Table('#<%= @table_presenter.dom_id %>');
+table.cell(0, <%= @position %>).before("<%= escape_javascript(render :partial => "cells/show_column_controls", :locals => { :cell_presenter => @table_presenter.header_row_presenter.cell_presenters.first }) %>");
+<% @table_presenter.row_presenters.each_with_index do |row_presenter, row_number| -%>
+  table.cell(<%= row_number + 1 %>, <%= @position %>).before("<%= escape_javascript(render :partial => "cells/form_edit", :locals => { :cell_presenter => row_presenter.cell_presenters.first }) %>");
+<% end -%>
+table.cell(<%= @table_presenter.row_presenters.size + 1 %>, <%= @position %>).before("<%= escape_javascript(render :partial => "cells/show_empty") %>");
