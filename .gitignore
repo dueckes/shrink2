@@ -1,8 +1,7 @@
 .bundle
+.DS_Store
 .idea
 build/*
 coverage/*
-log/*.log
+log/*
 tmp/*
-tmp/sessions/*
-tmp/spec/*
