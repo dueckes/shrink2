@@ -1,8 +1,8 @@
-When /^I navigate to the homepage$/ do
-  visit('/')
+When /^I visit the (.*) page$/ do |page_name|
+  @current_page = find_page(page_name)
+  @current_page.visit
 end
 
 Then /^the page should be shown without error$/ do
-  page.should have_content("Shrink - confide and benefit")
-  page.should_not have_content("error")
+  @current_page.should be_shown_without_error
 end
