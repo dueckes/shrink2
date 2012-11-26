@@ -16,13 +16,13 @@ module Shrink
         end
 
         def shown?
-          @session.has_content?('Sign In') && @session.has_field?('Username') && @session.has_field?('Password')
+          @session.has_content?("Sign In") && @session.has_field?("Username") && @session.has_field?("Password")
         end
 
         def sign_in(role)
-          @session.fill_in('Username', :with => role.username)
-          @session.fill_in('Password', :with => role.password)
-          @session.click_button('Sign In')
+          @session.fill_in("Username", :with => role.username)
+          @session.fill_in("Password", :with => role.password)
+          @session.click_button("Sign In")
         end
 
       end

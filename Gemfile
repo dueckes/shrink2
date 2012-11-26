@@ -64,8 +64,6 @@ group :test do
 
   gem 'cucumber-rails', '~> 1.3', :require => false
   gem 'capybara', '~> 1.1'
-  # database_cleaner is not required, but highly recommended
-  gem 'database_cleaner', '~> 0.9'
   gem 'selenium-webdriver', '~> 2.25'
   gem 'launchy', '~> 2.1'
 end

@@ -1,5 +1,5 @@
 share_examples_for "database integration" do
-  include DatabaseModelFixture
+  include Shrink::DatabaseModelFixture
 
   include_context "clear database after all"
 end

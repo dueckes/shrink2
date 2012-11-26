@@ -4,7 +4,7 @@
                      :builder => ProjectFormBuilder,
                      :html => { :id => :project_add_form, :class => "project_form simple" }) do |form| -%>
   <% field_set_tag do -%>
-    <%= form.label :name, "Name", :id => :project_name_label %>
+    <%= form.label :name, "Name", :id => :project_name_label, :for => :project_name_field %>
     <%= render :partial => "projects/form_common", :locals => { :form => form, :model => project } %>
     <%= form.commit_button %>
     <div id="<%= controller.create_errors_area_dom_id(project) %>" class="errors" style="display: none;">

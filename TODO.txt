@@ -10,7 +10,12 @@ Configuration:
 - Session storage strategy?  db?
 
 Next:
-- MU: Acceptance Test via Cucumber
+- MU: Verify import / export
+      When not authenticated, ajax actions do not redirect to sign-in page (no feedback)
+      Support drop on root folder
+      Split application.js
+      Split application_form.js
+      Expand acceptance tests
       Upgrade TeamCity
       scenario.project = project to assign project to tags
       Scenario tag support

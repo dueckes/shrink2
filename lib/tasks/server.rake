@@ -17,6 +17,9 @@ namespace :server do
       puts "#{TEST_SERVER} stopped"
     end
 
+    desc "Restarts a running local test server"
+    task :restart => %w{server:test:stop server:test:start}
+
     desc "Indicates the status of the local test server"
     task :status do
       puts "#{TEST_SERVER} is #{TEST_SERVER.status}"
